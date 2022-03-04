@@ -30,6 +30,26 @@ public class Entreprise implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    private String nom;
+
+    /**
+     * Get the value of nom
+     *
+     * @return the value of nom
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * Set the value of nom
+     *
+     * @param nom new value of nom
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
 
     @Override
     public int hashCode() {

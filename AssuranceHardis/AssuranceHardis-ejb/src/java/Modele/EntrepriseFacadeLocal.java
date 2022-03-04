@@ -28,5 +28,7 @@ public interface EntrepriseFacadeLocal {
     List<Entreprise> findRange(int[] range);
 
     int count();
+
+    void CreerEntreprise(String nom);
     
 }

@@ -13,5 +13,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestionClientLocal {
+
+    void CreerClientUnique(String nom);
     
 }

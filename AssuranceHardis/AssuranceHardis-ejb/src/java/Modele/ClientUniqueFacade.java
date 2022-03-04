@@ -27,5 +27,12 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
     public ClientUniqueFacade() {
         super(ClientUnique.class);
     }
+
+    @Override
+    public void CreerClientUnique(String nom) {
+        ClientUnique cu = new ClientUnique();
+        cu.setNom(nom);
+        getEntityManager().persist(cu);
+    }
     
 }

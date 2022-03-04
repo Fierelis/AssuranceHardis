@@ -28,5 +28,7 @@ public interface ClientUniqueFacadeLocal {
     List<ClientUnique> findRange(int[] range);
 
     int count();
+
+    void CreerClientUnique(String nom);
     
 }
