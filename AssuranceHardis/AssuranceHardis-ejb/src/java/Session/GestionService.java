@@ -5,6 +5,8 @@
  */
 package Session;
 
+import Modele.AssureurFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,17 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestionService implements GestionServiceLocal {
 
+    @EJB
+    private AssureurFacadeLocal assureurFacade;
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public void CreerAssureur(String NomAssureur) {
+        assureurFacade.CreerAssureur(NomAssureur);
+    }
+    
+    
+    
 }

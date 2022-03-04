@@ -28,4 +28,10 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         super(Assureur.class);
     }
     
+    public void CreerAssureur(String NomAssureur){
+        Assureur Assur = new Assureur();
+        Assur.setNomAssureur(NomAssureur);
+        em.persist(Assur);
+    }
+    
 }

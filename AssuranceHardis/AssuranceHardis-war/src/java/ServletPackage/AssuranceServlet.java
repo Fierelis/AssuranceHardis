@@ -5,8 +5,10 @@
  */
 package ServletPackage;
 
+import Session.GestionServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AssuranceServlet", urlPatterns = {"/AssuranceServlet"})
 public class AssuranceServlet extends HttpServlet {
+
+    @EJB
+    private GestionServiceLocal gestionService;
+    
+    protected void doActionCreerAssureur(HttpServletRequest request, HttpServletResponse response){
+        String NomAssur = request.getParameter("NomAssureur");
+        gestionService.CreerAssureur(NomAssur);
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +43,18 @@ public class AssuranceServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            String jspClient = null;
+            String act = request.getParameter("action");
+            
+            if ((act == null) || act.equals("vide")){
+                jspClient = "/CreerAssureur.jsp";
+                request.setAttribute("message", "pas d'informations");
+            }
+            else if (act.equals("insererAssureur")){
+                doActionCreerAssureur(request, response);
+            }
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

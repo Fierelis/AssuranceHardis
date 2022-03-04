@@ -6,6 +6,7 @@
 package Modele;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,27 @@ public class Assureur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable=false)
+    private String NomAssureur;
+
+    /**
+     * Get the value of NomAssureur
+     *
+     * @return the value of NomAssureur
+     */
+    public String getNomAssureur() {
+        return NomAssureur;
+    }
+
+    /**
+     * Set the value of NomAssureur
+     *
+     * @param NomAssureur new value of NomAssureur
+     */
+    public void setNomAssureur(String NomAssureur) {
+        this.NomAssureur = NomAssureur;
+    }
+
 
     public Long getId() {
         return id;

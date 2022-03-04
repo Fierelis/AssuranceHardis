@@ -28,5 +28,5 @@ public interface AssureurFacadeLocal {
     List<Assureur> findRange(int[] range);
 
     int count();
-    
+    public void CreerAssureur(String NomAssureur);
 }
