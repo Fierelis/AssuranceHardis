@@ -6,10 +6,12 @@
 package Modele;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +24,114 @@ public class Offre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable=false)
+    private String TypeOffre;
+    @Column(nullable=false)
+    private double PrixOffre;
+    @Column(nullable=false)
+    private String DescriptionOffreContractuelle;
+    @Column(nullable=false)
+    private boolean OffreActive;
+
+    @ManyToOne
+    private UtilisateurService OffreDeUtilisateurService;
+
+    /**
+     * Get the value of OffreDeUtilisateurService
+     *
+     * @return the value of OffreDeUtilisateurService
+     */
+    public UtilisateurService getOffreDeUtilisateurService() {
+        return OffreDeUtilisateurService;
+    }
+
+    /**
+     * Set the value of OffreDeUtilisateurService
+     *
+     * @param OffreDeUtilisateurService new value of OffreDeUtilisateurService
+     */
+    public void setOffreDeUtilisateurService(UtilisateurService OffreDeUtilisateurService) {
+        this.OffreDeUtilisateurService = OffreDeUtilisateurService;
+    }
+
+    /**
+     * Get the value of OffreActive
+     *
+     * @return the value of OffreActive
+     */
+    public boolean isOffreActive() {
+        return OffreActive;
+    }
+
+    /**
+     * Set the value of OffreActive
+     *
+     * @param OffreActive new value of OffreActive
+     */
+    public void setOffreActive(boolean OffreActive) {
+        this.OffreActive = OffreActive;
+    }
+
+
+    /**
+     * Get the value of DescriptionOffreContractuelle
+     *
+     * @return the value of DescriptionOffreContractuelle
+     */
+    public String getDescriptionOffreContractuelle() {
+        return DescriptionOffreContractuelle;
+    }
+
+    /**
+     * Set the value of DescriptionOffreContractuelle
+     *
+     * @param DescriptionOffreContractuelle new value of
+     * DescriptionOffreContractuelle
+     */
+    public void setDescriptionOffreContractuelle(String DescriptionOffreContractuelle) {
+        this.DescriptionOffreContractuelle = DescriptionOffreContractuelle;
+    }
+
+
+    /**
+     * Get the value of PrixOffre
+     *
+     * @return the value of PrixOffre
+     */
+    public double getPrixOffre() {
+        return PrixOffre;
+    }
+
+    /**
+     * Set the value of PrixOffre
+     *
+     * @param PrixOffre new value of PrixOffre
+     */
+    public void setPrixOffre(double PrixOffre) {
+        this.PrixOffre = PrixOffre;
+    }
+
+
+    /**
+     * Get the value of TypeOffre
+     *
+     * @return the value of TypeOffre
+     */
+    public String getTypeOffre() {
+        return TypeOffre;
+    }
+
+    /**
+     * Set the value of TypeOffre
+     *
+     * @param TypeOffre new value of TypeOffre
+     */
+    public void setTypeOffre(String TypeOffre) {
+        this.TypeOffre = TypeOffre;
+    }
+
+    
+    
 
     public Long getId() {
         return id;

@@ -28,5 +28,13 @@ public interface OffreFacadeLocal {
     List<Offre> findRange(int[] range);
 
     int count();
+
+    public List<Offre> RechercherOffreParType(String TypeOffre);
+
+    public List<Offre> RechercherOffreParTypeUtilisateur(String TypeUtilisateur);
+
+    public void SupprimerOffre(long IdOffre);
+
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService);
     
 }

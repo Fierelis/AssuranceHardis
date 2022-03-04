@@ -6,22 +6,130 @@
 package Modele;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author alex_
  */
 @Entity
-public class Courtier implements Serializable {
+public class Courtier extends UtilisateurService implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable=false)
+    private String NomCourtier;
+    @Column(nullable=false)
+    private String PrenomCourtier;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date DateNaissanceCourtier;
+    @Column(nullable=false)
+    private String AdresseCourtier;
+    @Column(nullable=false)
+    private String MailCourtier;
+
+    /**
+     * Get the value of MailCourtier
+     *
+     * @return the value of MailCourtier
+     */
+    public String getMailCourtier() {
+        return MailCourtier;
+    }
+
+    /**
+     * Set the value of MailCourtier
+     *
+     * @param MailCourtier new value of MailCourtier
+     */
+    public void setMailCourtier(String MailCourtier) {
+        this.MailCourtier = MailCourtier;
+    }
+
+
+    /**
+     * Get the value of AdresseCourtier
+     *
+     * @return the value of AdresseCourtier
+     */
+    public String getAdresseCourtier() {
+        return AdresseCourtier;
+    }
+
+    /**
+     * Set the value of AdresseCourtier
+     *
+     * @param AdresseCourtier new value of AdresseCourtier
+     */
+    public void setAdresseCourtier(String AdresseCourtier) {
+        this.AdresseCourtier = AdresseCourtier;
+    }
+
+
+    /**
+     * Get the value of DateNaissanceCourtier
+     *
+     * @return the value of DateNaissanceCourtier
+     */
+    public Date getDateNaissanceCourtier() {
+        return DateNaissanceCourtier;
+    }
+
+    /**
+     * Set the value of DateNaissanceCourtier
+     *
+     * @param DateNaissanceCourtier new value of DateNaissanceCourtier
+     */
+    public void setDateNaissanceCourtier(Date DateNaissanceCourtier) {
+        this.DateNaissanceCourtier = DateNaissanceCourtier;
+    }
+
+
+    /**
+     * Get the value of PrenomCourtier
+     *
+     * @return the value of PrenomCourtier
+     */
+    public String getPrenomCourtier() {
+        return PrenomCourtier;
+    }
+
+    /**
+     * Set the value of PrenomCourtier
+     *
+     * @param PrenomCourtier new value of PrenomCourtier
+     */
+    public void setPrenomCourtier(String PrenomCourtier) {
+        this.PrenomCourtier = PrenomCourtier;
+    }
+
+
+    /**
+     * Get the value of NomCourtier
+     *
+     * @return the value of NomCourtier
+     */
+    public String getNomCourtier() {
+        return NomCourtier;
+    }
+
+    /**
+     * Set the value of NomCourtier
+     *
+     * @param NomCourtier new value of NomCourtier
+     */
+    public void setNomCourtier(String NomCourtier) {
+        this.NomCourtier = NomCourtier;
+    }
+
 
     public Long getId() {
         return id;
