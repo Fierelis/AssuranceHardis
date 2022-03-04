@@ -27,5 +27,12 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     public EntrepriseFacade() {
         super(Entreprise.class);
     }
+
+    @Override
+    public void CreerEntreprise(String nom) {
+        Entreprise e = new Entreprise();
+        e.setNom(nom);
+        getEntityManager().persist(e);
+    }
     
 }
