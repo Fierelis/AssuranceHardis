@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,11 @@ public interface CourtierFacadeLocal {
     List<Courtier> findRange(int[] range);
 
     int count();
+
+    void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier);
+
+    public Courtier RechercherCourtier(long IdCourtier);
+
+    public void SupprimerCourtier(String IdCourtier);
     
 }

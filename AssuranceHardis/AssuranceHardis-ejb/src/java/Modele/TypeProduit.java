@@ -6,10 +6,13 @@
 package Modele;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -18,10 +21,34 @@ import javax.persistence.Id;
 @Entity
 public class TypeProduit implements Serializable {
 
+    @OneToMany(mappedBy = "LeTypeDeProduit")
+    private List<Offre> LesOffresCorrespondantes;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable=false)
+    private String NomTypeProduit;
+
+    /**
+     * Get the value of NomTypeProduit
+     *
+     * @return the value of NomTypeProduit
+     */
+    public String getNomTypeProduit() {
+        return NomTypeProduit;
+    }
+
+    /**
+     * Set the value of NomTypeProduit
+     *
+     * @param NomTypeProduit new value of NomTypeProduit
+     */
+    public void setNomTypeProduit(String NomTypeProduit) {
+        this.NomTypeProduit = NomTypeProduit;
+    }
+
 
     public Long getId() {
         return id;

@@ -28,5 +28,9 @@ public interface UtilisateurServiceFacadeLocal {
     List<UtilisateurService> findRange(int[] range);
 
     int count();
+
+    public void CreerUtilisateurService(String LoginUtilisateurService, String PasswordUtilisateurService, String TypeUserService);
+
+    public UtilisateurService RechercherUtilisateurService(long IdUS);
     
 }

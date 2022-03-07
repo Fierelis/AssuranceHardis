@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,14 @@ public interface AssureurFacadeLocal {
     List<Assureur> findRange(int[] range);
 
     int count();
+
+
+    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN);
+
+    public Assureur RechercherAssureur(long IdAssureur);
+
+    void SupprimerAssureur(String IdAssureur);
+
     public void CreerAssureur(String NomAssureur);
+
 }

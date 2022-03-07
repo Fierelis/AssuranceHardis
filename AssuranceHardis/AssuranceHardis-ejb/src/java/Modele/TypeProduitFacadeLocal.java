@@ -28,5 +28,11 @@ public interface TypeProduitFacadeLocal {
     List<TypeProduit> findRange(int[] range);
 
     int count();
+
+    public void CreerTypeProduit(String NomTypeProduit);
+
+    public TypeProduit RechercherTypeProduit(String NomTypeProduit);
+
+    public void SupprimerTypeProduit(long IdTypeProduit);
     
 }

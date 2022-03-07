@@ -28,6 +28,7 @@ public class AssuranceServlet extends HttpServlet {
     protected void doActionCreerAssureur(HttpServletRequest request, HttpServletResponse response){
         String NomAssur = request.getParameter("NomAssureur");
         gestionService.CreerAssureur(NomAssur);
+ 
     }
 
     /**
