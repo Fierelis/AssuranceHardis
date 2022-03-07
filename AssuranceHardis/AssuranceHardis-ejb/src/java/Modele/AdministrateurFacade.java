@@ -31,6 +31,7 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
     }
     
     
+    @Override
    public Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin, String TypeUserAdmin){
        Administrateur NouvelAdmin = new Administrateur();
        NouvelAdmin.setLoginAdmin(LoginAdmin);
@@ -42,6 +43,7 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
        em.persist(NouvelAdmin);
        return NouvelAdmin;
    }
+    @Override
     public Administrateur RechercherAdministrateur(long IdAdmin){
         Administrateur Admin = null;
         String txt="SELECT Admin FROM Administrateur AS Admin WHERE Admin.id =:IdAdmin";
@@ -54,6 +56,7 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
         return Admin;
     }
 
+    @Override
     public void SupprimerAdministrateur(String IdAdmin) {
         String txt="DELETE FROM Administrateur as Admin WHERE Admin.id = :IdAdmin ";
         Query req =getEntityManager().createQuery(txt);
