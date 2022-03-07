@@ -6,12 +6,14 @@
 package Modele;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,6 +21,9 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Offre implements Serializable {
+
+    @OneToMany(mappedBy = "LoffreDuContrat")
+    private List<Contrat> LesContrats;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,6 +40,27 @@ public class Offre implements Serializable {
 
     @ManyToOne
     private UtilisateurService OffreDeUtilisateurService;
+
+    @ManyToOne
+    private TypeProduit LeTypeDeProduit;
+
+    /**
+     * Get the value of LeTypeDeProduit
+     *
+     * @return the value of LeTypeDeProduit
+     */
+    public TypeProduit getLeTypeDeProduit() {
+        return LeTypeDeProduit;
+    }
+
+    /**
+     * Set the value of LeTypeDeProduit
+     *
+     * @param LeTypeDeProduit new value of LeTypeDeProduit
+     */
+    public void setLeTypeDeProduit(TypeProduit LeTypeDeProduit) {
+        this.LeTypeDeProduit = LeTypeDeProduit;
+    }
 
     /**
      * Get the value of OffreDeUtilisateurService

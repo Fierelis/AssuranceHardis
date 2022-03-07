@@ -28,5 +28,11 @@ public interface AdministrateurFacadeLocal {
     List<Administrateur> findRange(int[] range);
 
     int count();
+
+    public Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin, String TypeUserAdmin);
+
+    public void SupprimerAdministrateur(String IdAdmin);
+
+    public Administrateur RechercherAdministrateur(long IdAdmin);
     
 }
