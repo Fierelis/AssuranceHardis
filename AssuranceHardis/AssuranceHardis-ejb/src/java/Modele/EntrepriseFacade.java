@@ -32,7 +32,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
 
     @Override
     public void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String parameter1) {
-        Entreprise entreprise=new Entreprise();
+        Entreprise entreprise = new Entreprise();
         entreprise.setLogin(login);
         entreprise.setMdp(mdp);
         entreprise.setDateCreationUser(dateCreationUser);
