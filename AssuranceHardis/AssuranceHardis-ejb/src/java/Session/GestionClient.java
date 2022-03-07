@@ -23,7 +23,7 @@ public class GestionClient implements GestionClientLocal {
     
     @Override
     public void CreerClientUnique(String nom) {
-        clientUniqueFacade.CreerClientUnique(nom);
+       
     }
 
     

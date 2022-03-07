@@ -6,10 +6,12 @@
 package Modele;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -22,6 +24,70 @@ public class Facture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String typeFacture;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date datePaiement;
+    
+    private boolean validationPaiement;
+
+    /**
+     * Get the value of validationPaiement
+     *
+     * @return the value of validationPaiement
+     */
+    public boolean isValidationPaiement() {
+        return validationPaiement;
+    }
+
+    /**
+     * Set the value of validationPaiement
+     *
+     * @param validationPaiement new value of validationPaiement
+     */
+    public void setValidationPaiement(boolean validationPaiement) {
+        this.validationPaiement = validationPaiement;
+    }
+
+
+    /**
+     * Get the value of datePaiement
+     *
+     * @return the value of datePaiement
+     */
+    public Date getDatePaiement() {
+        return datePaiement;
+    }
+
+    /**
+     * Set the value of datePaiement
+     *
+     * @param datePaiement new value of datePaiement
+     */
+    public void setDatePaiement(Date datePaiement) {
+        this.datePaiement = datePaiement;
+    }
+
+
+    /**
+     * Get the value of typeFacture
+     *
+     * @return the value of typeFacture
+     */
+    public String getTypeFacture() {
+        return typeFacture;
+    }
+
+    /**
+     * Set the value of typeFacture
+     *
+     * @param typeFacture new value of typeFacture
+     */
+    public void setTypeFacture(String typeFacture) {
+        this.typeFacture = typeFacture;
+    }
+
 
     public Long getId() {
         return id;

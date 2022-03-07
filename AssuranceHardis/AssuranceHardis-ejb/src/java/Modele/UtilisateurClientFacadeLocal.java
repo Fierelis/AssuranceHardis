@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,13 @@ public interface UtilisateurClientFacadeLocal {
     List<UtilisateurClient> findRange(int[] range);
 
     int count();
+
+    void CreerUtilisateurClient(String login, String mdp, Date dateCreationUser, String typeUser);
+
+    UtilisateurClient RechercheUtilisateurClient(long id);
+
+    void SupprimerUtilisateurClient(long id);
+
+    List AllUtilisateurClient();
     
 }

@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,6 +30,11 @@ public interface EntrepriseFacadeLocal {
 
     int count();
 
-    void CreerEntreprise(String nom);
-    
+    void CreerEntreprise(String nom, String raisonSocial, String siegeSocial, String tailleEntreprise, Date dateCreationEntreprise, String login, String mdp, Date dateCreationUser, String typeUser);
+
+    Entreprise RechercheEntreprise(long id);
+
+    void SupprimerEntreprise(long id);
+
+
 }
