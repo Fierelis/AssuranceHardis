@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +23,110 @@ public class Contrat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private double PrixOffre;
+
+    private String DescriptionContrat;
+
+    private int DureeContrat;
+    
+    @ManyToOne
+    private Offre LoffreDuContrat;
+
+    @ManyToOne
+    private UtilisateurClient LeClientduContrat;
+
+    /**
+     * Get the value of LeClientduContrat
+     *
+     * @return the value of LeClientduContrat
+     */
+    public UtilisateurClient getLeClientduContrat() {
+        return LeClientduContrat;
+    }
+
+    /**
+     * Set the value of LeClientduContrat
+     *
+     * @param LeClientduContrat new value of LeClientduContrat
+     */
+    public void setLeClientduContrat(UtilisateurClient LeClientduContrat) {
+        this.LeClientduContrat = LeClientduContrat;
+    }
+
+    /**
+     * Get the value of LoffreDuContrat
+     *
+     * @return the value of LoffreDuContrat
+     */
+    public Offre getLoffreDuContrat() {
+        return LoffreDuContrat;
+    }
+
+    /**
+     * Set the value of LoffreDuContrat
+     *
+     * @param LoffreDuContrat new value of LoffreDuContrat
+     */
+    public void setLoffreDuContrat(Offre LoffreDuContrat) {
+        this.LoffreDuContrat = LoffreDuContrat;
+    }
+
+
+    /**
+     * Get the value of DureeContrat
+     *
+     * @return the value of DureeContrat
+     */
+    public int getDureeContrat() {
+        return DureeContrat;
+    }
+
+    /**
+     * Set the value of DureeContrat
+     *
+     * @param DureeContrat new value of DureeContrat
+     */
+    public void setDureeContrat(int DureeContrat) {
+        this.DureeContrat = DureeContrat;
+    }
+
+    /**
+     * Get the value of DescriptionContrat
+     *
+     * @return the value of DescriptionContrat
+     */
+    public String getDescriptionContrat() {
+        return DescriptionContrat;
+    }
+
+    /**
+     * Set the value of DescriptionContrat
+     *
+     * @param DescriptionContrat new value of DescriptionContrat
+     */
+    public void setDescriptionContrat(String DescriptionContrat) {
+        this.DescriptionContrat = DescriptionContrat;
+    }
+
+    /**
+     * Get the value of PrixOffre
+     *
+     * @return the value of PrixOffre
+     */
+    public double getPrixOffre() {
+        return PrixOffre;
+    }
+
+    /**
+     * Set the value of PrixOffre
+     *
+     * @param PrixOffre new value of PrixOffre
+     */
+    public void setPrixOffre(double PrixOffre) {
+        this.PrixOffre = PrixOffre;
+    }
+
 
     public Long getId() {
         return id;

@@ -5,9 +5,11 @@
  */
 package Modele;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,40 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
 
     public AdministrateurFacade() {
         super(Administrateur.class);
+    }
+    
+    
+    @Override
+   public Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin, String TypeUserAdmin){
+       Administrateur NouvelAdmin = new Administrateur();
+       NouvelAdmin.setLoginAdmin(LoginAdmin);
+       NouvelAdmin.setMailAdmin(MailAdmin);
+       NouvelAdmin.setPrenomAdmin(PrenomAdmin);
+       NouvelAdmin.setPasswordAdmin(PasswordAdmin);
+       NouvelAdmin.setNomAdmin(NomAdmin);
+       NouvelAdmin.setTypeUserAdmin("Admin");
+       em.persist(NouvelAdmin);
+       return NouvelAdmin;
+   }
+    @Override
+    public Administrateur RechercherAdministrateur(long IdAdmin){
+        Administrateur Admin = null;
+        String txt="SELECT Admin FROM Administrateur AS Admin WHERE Admin.id =:IdAdmin";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("IdAdmin",IdAdmin);
+        List<Administrateur>result = req.getResultList();
+        if(result.size()==1){
+            Admin = (Administrateur)result.get(0);
+        }
+        return Admin;
+    }
+
+    @Override
+    public void SupprimerAdministrateur(String IdAdmin) {
+        String txt="DELETE FROM Administrateur as Admin WHERE Admin.id = :IdAdmin ";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("IdAdmin",IdAdmin);
+        req.executeUpdate();
     }
     
 }
