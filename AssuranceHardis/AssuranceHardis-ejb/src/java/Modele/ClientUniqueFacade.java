@@ -31,7 +31,7 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
     }
 
     @Override
-    public void CreationClientUnique(String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser) {
+    public void CreationClientUnique(String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban) {
         ClientUnique clientUnique = new ClientUnique();
         clientUnique.setLogin(login);
         clientUnique.setMdp(mdp);
