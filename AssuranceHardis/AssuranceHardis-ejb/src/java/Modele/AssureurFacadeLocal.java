@@ -34,5 +34,5 @@ public interface AssureurFacadeLocal {
 
     public Assureur RechercherAssureur(long IdAssureur);
 
-    void SupprimerAssureur(String IdAssureur);
+    void SupprimerAssureur(long IdAssureur);
 }

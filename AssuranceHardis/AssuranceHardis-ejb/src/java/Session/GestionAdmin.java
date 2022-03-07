@@ -5,6 +5,7 @@
  */
 package Session;
 
+import Modele.Administrateur;
 import Modele.AdministrateurFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,4 +23,23 @@ public class GestionAdmin implements GestionAdminLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
+    @Override
+    public void CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin) {
+        administrateurFacade.CreerAdministrateur(NomAdmin, PrenomAdmin, MailAdmin, LoginAdmin, PasswordAdmin, PasswordAdmin);
+    }
+
+    @Override
+    public Administrateur RechercherAdministrateur(long IdAdmin) {
+        Administrateur Admin = administrateurFacade.RechercherAdministrateur(IdAdmin);
+        return Admin;
+    }
+
+    @Override
+    public void SupprimerAdministrateur(long IdAdmin) {
+        administrateurFacade.SupprimerAdministrateur(IdAdmin);
+    }
+    
+    
+    
+    
 }

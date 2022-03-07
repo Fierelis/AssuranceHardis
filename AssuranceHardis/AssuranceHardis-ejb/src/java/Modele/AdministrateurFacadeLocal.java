@@ -31,7 +31,7 @@ public interface AdministrateurFacadeLocal {
 
     public Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin, String TypeUserAdmin);
 
-    public void SupprimerAdministrateur(String IdAdmin);
+    public void SupprimerAdministrateur(long IdAdmin);
 
     public Administrateur RechercherAdministrateur(long IdAdmin);
     

@@ -5,7 +5,8 @@
  */
 package ServletPackage;
 
-import Session.GestionServiceLocal;
+
+import Session.GestionAdminLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -17,17 +18,19 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author alex_
+ * @author alex_ 
  */
 @WebServlet(name = "AssuranceServlet", urlPatterns = {"/AssuranceServlet"})
 public class AssuranceServlet extends HttpServlet {
 
+
     @EJB
-    private GestionServiceLocal gestionService;
+    private GestionAdminLocal gestionAdmin;
+
+
     
     protected void doActionCreerAssureur(HttpServletRequest request, HttpServletResponse response){
         String NomAssur = request.getParameter("NomAssureur");
-        
     }
 
     /**

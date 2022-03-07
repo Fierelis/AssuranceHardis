@@ -5,6 +5,7 @@
  */
 package Session;
 
+import Modele.Administrateur;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestionAdminLocal {
+
+    void CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin);
+
+    Administrateur RechercherAdministrateur(long IdAdmin);
+
+    void SupprimerAdministrateur(long IdAdmin);
     
 }

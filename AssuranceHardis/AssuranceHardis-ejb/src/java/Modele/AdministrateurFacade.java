@@ -55,9 +55,8 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
         }
         return Admin;
     }
-
     @Override
-    public void SupprimerAdministrateur(String IdAdmin) {
+    public void SupprimerAdministrateur(long IdAdmin) {
         String txt="DELETE FROM Administrateur as Admin WHERE Admin.id = :IdAdmin ";
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("IdAdmin",IdAdmin);

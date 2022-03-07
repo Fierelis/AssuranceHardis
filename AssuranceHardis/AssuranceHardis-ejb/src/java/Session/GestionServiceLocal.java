@@ -5,6 +5,8 @@
  */
 package Session;
 
+import Modele.Assureur;
+import Modele.Courtier;
 import java.util.Date;
 import javax.ejb.Local;
 
@@ -17,5 +19,15 @@ public interface GestionServiceLocal {
 
 
     public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN);
+
+    Assureur RechercherAssureur(long IdAssureur);
+
+    void SupprimerAssureur(long IdAssureur);
+
+    void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier);
+
+    Courtier RechercherCourtier(long IdCourtier);
+
+    void SupprimerCourtier(long IdCourtier);
     
 }

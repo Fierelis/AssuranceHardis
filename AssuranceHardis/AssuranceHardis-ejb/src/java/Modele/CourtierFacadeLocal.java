@@ -34,6 +34,6 @@ public interface CourtierFacadeLocal {
 
     public Courtier RechercherCourtier(long IdCourtier);
 
-    public void SupprimerCourtier(String IdCourtier);
+    public void SupprimerCourtier(long IdCourtier);
     
 }

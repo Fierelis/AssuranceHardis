@@ -5,7 +5,12 @@
  */
 package Session;
 
+import Modele.Assureur;
 import Modele.AssureurFacadeLocal;
+import Modele.Courtier;
+import Modele.CourtierFacadeLocal;
+import Modele.OffreFacadeLocal;
+import Modele.TypeProduitFacadeLocal;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,6 +23,15 @@ import javax.ejb.Stateless;
 public class GestionService implements GestionServiceLocal {
 
     @EJB
+    private TypeProduitFacadeLocal typeProduitFacade;
+
+    @EJB
+    private OffreFacadeLocal offreFacade;
+
+    @EJB
+    private CourtierFacadeLocal courtierFacade;
+
+    @EJB
     private AssureurFacadeLocal assureurFacade;
 
     // Add business logic below. (Right-click in editor and choose
@@ -25,8 +39,37 @@ public class GestionService implements GestionServiceLocal {
 
     @Override
     public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
-   
+        assureurFacade.CreerAssureur(LoginUserService, PasswordUserService, TypeUserService, RaisonSocialeAssureur, DateCreation, MailAssurance, SiegeSocialAssureur, SIREN);
     }
+
+    @Override
+    public Assureur RechercherAssureur(long IdAssureur) {
+        Assureur Assur = assureurFacade.RechercherAssureur(IdAssureur);
+        return Assur;
+    }
+
+    @Override
+    public void SupprimerAssureur(long IdAssureur) {
+        assureurFacade.SupprimerAssureur(IdAssureur);
+    }
+
+    @Override
+    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier) {
+        courtierFacade.CreerCourtier(NomCourtier, PrenomCourtier, DateNaissanceCourtier, AdresseCourtier, MailCourtier, LoginCourtier, PasswordCourtier, TypeUserCourtier);
+    }
+
+    @Override
+    public Courtier RechercherCourtier(long IdCourtier) {
+        Courtier Court = courtierFacade.RechercherCourtier(IdCourtier);
+        return Court;
+    }
+
+    @Override
+    public void SupprimerCourtier(long IdCourtier) {
+        courtierFacade.SupprimerCourtier(IdCourtier);
+    }
+    
+    
     
     
     

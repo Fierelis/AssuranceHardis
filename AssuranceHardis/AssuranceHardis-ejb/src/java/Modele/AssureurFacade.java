@@ -59,7 +59,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
     }
 
     @Override
-    public void SupprimerAssureur(String IdAssureur) {
+    public void SupprimerAssureur(long IdAssureur) {
         String txt="DELETE FROM Assureur as Assur WHERE Assur.id = :IdAssureur ";
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("IdAssureur",IdAssureur);

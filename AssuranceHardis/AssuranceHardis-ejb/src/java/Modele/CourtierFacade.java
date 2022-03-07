@@ -25,7 +25,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
+ }
 
     public CourtierFacade() {
         super(Courtier.class);
@@ -59,7 +59,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     }
 
     @Override
-    public void SupprimerCourtier(String IdCourtier) {
+    public void SupprimerCourtier(long IdCourtier) {
         String txt="DELETE FROM Courtier as Assur WHERE Courtier.id = :IdCourtier ";
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("IdCourtier",IdCourtier);
