@@ -5,6 +5,7 @@
  */
 package Session;
 
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestionClientLocal {
-    public void CreerClientUnique(String nom);
+
+    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban);
+
+  
 }

@@ -5,10 +5,10 @@
  */
 package ServletPackage;
 
-
-import Session.GestionAdminLocal;
+import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,20 +18,16 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author alex_ 
+ * @author alex_  
  */
 @WebServlet(name = "AssuranceServlet", urlPatterns = {"/AssuranceServlet"})
 public class AssuranceServlet extends HttpServlet {
 
-
     @EJB
-    private GestionAdminLocal gestionAdmin;
+    private GestionClientLocal gestionClient;
 
-
-    
-    protected void doActionCreerAssureur(HttpServletRequest request, HttpServletResponse response){
-        String NomAssur = request.getParameter("NomAssureur");
-    }
+   
+ 
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,18 +41,20 @@ public class AssuranceServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             
             String jspClient = null;
-            String act = request.getParameter("action");
+            String act = null;
             
-            if ((act == null) || act.equals("vide")){
-                jspClient = "/CreerAssureur.jsp";
+            if ((act == null) || act.equals("vide")){  
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                Date d= new Date(10,10,2020);
+                gestionClient.CreerClientUnique("nom", "prenom", "login", "mdp", d, "Assureur", "051561616161651g");
                 request.setAttribute("message", "pas d'informations");
+               // String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban)
             }
-            else if (act.equals("insererAssureur")){
-                doActionCreerAssureur(request, response);
-            }
+            
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
