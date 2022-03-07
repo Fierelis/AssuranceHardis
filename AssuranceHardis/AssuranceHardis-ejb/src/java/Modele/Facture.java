@@ -7,7 +7,9 @@ package Modele;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,12 +27,20 @@ public class Facture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(nullable=false)
     private String typePaiement;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePaiement;
     @Column(nullable=false)
+
+    
+    private String typeFacture;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date datePaiement;
+
     private boolean validationPaiement;
 
     /**
@@ -72,6 +82,7 @@ public class Facture implements Serializable {
 
 
     /**
+
      * Get the value of typePaiement
      *
      * @return the value of typePaiement
@@ -87,6 +98,23 @@ public class Facture implements Serializable {
      */
     public void setTypePaiement(String typePaiement) {
         this.typePaiement = typePaiement;
+
+     * Get the value of typeFacture
+     *
+     * @return the value of typeFacture
+     */
+    public String getTypeFacture() {
+        return typeFacture;
+    }
+
+    /**
+     * Set the value of typeFacture
+     *
+     * @param typeFacture new value of typeFacture
+     */
+    public void setTypeFacture(String typeFacture) {
+        this.typeFacture = typeFacture;
+
     }
 
 

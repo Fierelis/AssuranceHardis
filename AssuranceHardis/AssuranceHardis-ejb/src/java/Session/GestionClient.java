@@ -5,6 +5,8 @@
  */
 package Session;
 
+import Modele.ClientUniqueFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,17 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestionClient implements GestionClientLocal {
 
+    @EJB
+    private ClientUniqueFacadeLocal clientUniqueFacade;
+
+    
+    
+    @Override
+    public void CreerClientUnique(String nom) {
+       
+    }
+
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }

@@ -30,10 +30,18 @@ public interface FactureFacadeLocal {
 
     int count();
 
+
     public void SupprimerFacture(long id);
 
     public Facture RechercherFacture(long id);
 
     public void CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement);
+
+    void CreerFacture(String typeFacture, Date datePaiement, boolean validationPaiement);
+
+    void SupprimerFacture(long id);
+
+    Facture RechercheFacture(long id);
+
     
 }

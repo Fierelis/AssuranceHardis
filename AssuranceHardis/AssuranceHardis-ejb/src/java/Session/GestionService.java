@@ -24,8 +24,13 @@ public class GestionService implements GestionServiceLocal {
     // "Insert Code > Add Business Method")
 
     @Override
+
     public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
    
+
+    public void CreerAssureur(String NomAssureur) {
+        assureurFacade.CreerAssureur(NomAssureur);
+ 
     }
     
     

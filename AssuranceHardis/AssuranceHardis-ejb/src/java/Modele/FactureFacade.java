@@ -31,15 +31,24 @@ public class FactureFacade extends AbstractFacade<Facture> implements FactureFac
     }
 
     @Override
+
     public void CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement) {
         Facture facture = new Facture();
         facture.setDatePaiement(datePaiement);
         facture.setTypePaiement(typePaiement);
         facture.setValidationPaiement(validationPaiement);
+
+    public void CreerFacture(String typeFacture, Date datePaiement, boolean validationPaiement) {
+        Facture facture = new Facture();
+        facture.setTypeFacture(typeFacture);
+        facture.setValidationPaiement(validationPaiement);
+        facture.setDatePaiement(datePaiement);
+
         getEntityManager().persist(facture);
     }
 
     @Override
+
     public Facture RechercherFacture(long id) {
         Facture facture = null;
         String txt="Select facture from Facture as f where f.id=:i";
@@ -55,6 +64,20 @@ public class FactureFacade extends AbstractFacade<Facture> implements FactureFac
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("i",id);
         req.executeUpdate();
+    }
+    
+
+    public void SupprimerFacture(long id) {
+    }
+
+    @Override
+    public Facture RechercheFacture(long id) {
+       Facture facture =null;
+       String txt="Select facture from Facture as f where f.id=:i";
+       Query req=getEntityManager().createQuery(txt);
+       req=req.setParameter("i",id);
+       facture=(Facture)req.getSingleResult();
+       return facture; 
     }
     
     

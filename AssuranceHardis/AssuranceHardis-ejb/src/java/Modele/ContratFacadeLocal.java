@@ -28,5 +28,11 @@ public interface ContratFacadeLocal {
     List<Contrat> findRange(int[] range);
 
     int count();
+
+    void CreerContrat(String typeOffre, double prixOffre, String descriptionContrat, String raisonSocialAssurance, int dureeContrat);
+
+    Contrat RechercheContrat(long id);
+
+    void SupprimerContrat(long id);
     
 }

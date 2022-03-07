@@ -26,6 +26,7 @@ public class Assureur extends UtilisateurService implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable=false)
+
     private String RaisonSocialeAssureur;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateCreation;
@@ -111,24 +112,37 @@ public class Assureur extends UtilisateurService implements Serializable{
         this.DateCreation = DateCreation;
     }
 
-    
+
+    private String NomAssureur;
+
 
     /**
      * Get the value of NomAssureur
      *
      * @return the value of NomAssureur
      */
+
     public String getRaisonSocialeAssureur() {
         return RaisonSocialeAssureur;
+
+    public String getNomAssureur() {
+        return NomAssureur;
+
     }
 
     /**
      * Set the value of NomAssureur
      *
+
      * @param RaisonSocialeAssureur new value of RaisonSocialeAssureur
      */
     public void setRaisonSocialeAssureur(String RaisonSocialeAssureur) {
         this.RaisonSocialeAssureur = RaisonSocialeAssureur;
+
+     * @param NomAssureur new value of NomAssureur
+     */
+    public void setNomAssureur(String NomAssureur) {
+        this.NomAssureur = NomAssureur;
     }
 
 

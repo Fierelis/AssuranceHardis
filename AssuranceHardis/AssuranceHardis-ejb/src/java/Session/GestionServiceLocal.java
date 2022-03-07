@@ -15,7 +15,11 @@ import javax.ejb.Local;
 @Local
 public interface GestionServiceLocal {
 
+ 
 
     public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN);
+
+    void CreerAssureur(String NomAssureur);
+ 
     
 }

@@ -31,6 +31,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         super(Assureur.class);
     }
     
+
     @Override
     public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
         Assureur Assur = new Assureur();
@@ -66,5 +67,10 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         req.executeUpdate();
     }
     
-    
+    public void CreerAssureur(String NomAssureur){
+        Assureur Assur = new Assureur();
+        Assur.setNomAssureur(NomAssureur);
+        em.persist(Assur);
+    }
+
 }
