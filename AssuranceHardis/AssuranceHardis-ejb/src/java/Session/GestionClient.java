@@ -6,6 +6,7 @@
 package Session;
 
 import Modele.ClientUniqueFacadeLocal;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -21,12 +22,16 @@ public class GestionClient implements GestionClientLocal {
 
     
     
-    @Override
-    public void CreerClientUnique(String nom) {
-        //clientUniqueFacade.CreerClientUnique(nom);
-    }
+    
+    
 
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban) {
+        clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban);
+    }
+
 }

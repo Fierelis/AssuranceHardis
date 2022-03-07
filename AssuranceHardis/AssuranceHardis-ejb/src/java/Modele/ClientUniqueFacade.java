@@ -39,6 +39,7 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         clientUnique.setTypeUser(typeUser);
         clientUnique.setNom(nom);
         clientUnique.setPrenom(prenom);
+        clientUnique.setIban(iban);
         getEntityManager().persist(clientUnique);
     }
 
