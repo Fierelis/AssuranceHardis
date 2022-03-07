@@ -5,9 +5,11 @@
  */
 package Modele;
 
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +29,37 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
     public ClientUniqueFacade() {
         super(ClientUnique.class);
     }
+
+    @Override
+    public void CreationClientUnique(String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser) {
+        ClientUnique clientUnique = new ClientUnique();
+        clientUnique.setLogin(login);
+        clientUnique.setMdp(mdp);
+        clientUnique.setDateCreationUser(dateCreationUser);
+        clientUnique.setTypeUser(typeUser);
+        clientUnique.setNom(nom);
+        clientUnique.setPrenom(prenom);
+        getEntityManager().persist(clientUnique);
+    }
+
+    @Override
+    public ClientUnique RechercheClientUnique(long id) {
+        ClientUnique clientUnique=null;
+        String txt="Select clientUnique from ClientUnique as cu where cu.id=:i";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("i",id);
+        clientUnique=(ClientUnique)req.getSingleResult();
+        return clientUnique;
+    }
+
+    @Override
+    public void SupprimerClientUnique(long id) {
+        String txt="delete clientUnique from ClientUnique as cu where cu.id=:i";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("i",id);
+        req.executeUpdate();
+    }
+
+    
     
 }

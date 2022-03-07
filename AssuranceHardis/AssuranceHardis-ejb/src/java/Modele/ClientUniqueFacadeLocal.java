@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,13 @@ public interface ClientUniqueFacadeLocal {
     List<ClientUnique> findRange(int[] range);
 
     int count();
+
+    void CreationClientUnique(String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser);
+
+    ClientUnique RechercheClientUnique(long id);
+
+    void SupprimerClientUnique(long id);
+
+   
     
 }

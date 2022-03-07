@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,11 @@ public interface FactureFacadeLocal {
     List<Facture> findRange(int[] range);
 
     int count();
+
+    void CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement);
+
+    Facture RechercherFacture(long id);
+
+    void SupprimerFacture(long id);
     
 }
