@@ -68,6 +68,18 @@ public class GestionService implements GestionServiceLocal {
     public void SupprimerCourtier(long IdCourtier) {
         courtierFacade.SupprimerCourtier(IdCourtier);
     }
+
+    @Override
+    public Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier) {
+        Courtier Court = courtierFacade.AuthentificationCourtier(LoginCourtier, PasswordCourtier);
+        return Court;
+    }
+
+    @Override
+    public Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur) {
+        Assureur Assur = assureurFacade.AuthentificationAssureur(LoginAssureur, PasswordAssureur);
+        return Assur;
+    }
     
     
     

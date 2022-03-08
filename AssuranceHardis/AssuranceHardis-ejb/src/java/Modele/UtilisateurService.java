@@ -25,6 +25,9 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class UtilisateurService implements Serializable {
 
+    @OneToMany(mappedBy = "LogUserService")
+    private List<Logs> AssociatedLogs;
+
     @OneToMany(mappedBy = "OffreDeUtilisateurService")
     private List<Offre> offres;
 

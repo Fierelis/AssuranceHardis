@@ -20,5 +20,7 @@ public interface GestionAdminLocal {
     Administrateur RechercherAdministrateur(long IdAdmin);
 
     void SupprimerAdministrateur(long IdAdmin);
+
+    Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin);
     
 }

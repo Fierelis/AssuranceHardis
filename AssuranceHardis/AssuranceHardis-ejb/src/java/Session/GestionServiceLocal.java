@@ -28,6 +28,12 @@ public interface GestionServiceLocal {
 
     Courtier RechercherCourtier(long IdCourtier);
 
-    void SupprimerCourtier(long IdCourtier);
+    void SupprimerCourtier(long IdCourtier); 
+
+    Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier);
+
+    Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur);
+    
+    
     
 }

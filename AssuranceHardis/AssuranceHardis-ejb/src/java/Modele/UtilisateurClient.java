@@ -24,6 +24,9 @@ import javax.persistence.Temporal;
 
 public class UtilisateurClient implements Serializable {
 
+    @OneToMany(mappedBy = "LogUserClient")
+    private List<Logs> AssociatedLogs;
+
     @OneToMany(mappedBy = "LeClientduContrat")
     private List<Contrat> LesContrats;
 

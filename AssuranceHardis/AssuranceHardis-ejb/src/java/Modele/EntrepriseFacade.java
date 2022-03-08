@@ -6,6 +6,7 @@
 package Modele;
 
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -61,6 +62,20 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("i",id);
         req.executeUpdate();
+    }
+
+    @Override
+    public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise) {
+        Entreprise Boite = null;
+        String txt="Select Boite from Entreprise as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise";
+        Query req=getEntityManager().createQuery(txt);
+        req=req.setParameter("LoginEntreprise",LoginEntreprise);
+        req=req.setParameter("PasswordEntreprise", PasswordEntreprise);
+        List<Entreprise>result = req.getResultList();
+        if(result.size()==1){
+            Boite=(Entreprise)result.get(0);
+        }
+        return null;
     }
 
 

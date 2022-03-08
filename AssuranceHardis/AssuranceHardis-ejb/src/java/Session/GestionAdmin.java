@@ -38,6 +38,12 @@ public class GestionAdmin implements GestionAdminLocal {
     public void SupprimerAdministrateur(long IdAdmin) {
         administrateurFacade.SupprimerAdministrateur(IdAdmin);
     }
+
+    @Override
+    public Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin) {
+        Administrateur Admin = administrateurFacade.AuthentificationAdmin(LoginAdmin, PasswordAdmin);
+        return Admin;
+    }
     
     
     

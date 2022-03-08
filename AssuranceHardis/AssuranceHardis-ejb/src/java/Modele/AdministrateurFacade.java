@@ -62,5 +62,19 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
         req.setParameter("IdAdmin",IdAdmin);
         req.executeUpdate();
     }
+
+    @Override
+    public Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin) {
+         Administrateur Admin = null;
+        String txt="Select Admin from Administrateur as Admin where Admin.LoginAdmin=:LoginCourtier and Admin.PasswordAdmin=:PasswordAdmin";
+        Query req=getEntityManager().createQuery(txt);
+        req=req.setParameter("LoginAdmin",LoginAdmin);
+        req=req.setParameter("PasswordAdmin", PasswordAdmin);
+        List<Administrateur>result = req.getResultList();
+        if(result.size()==1){
+            Admin=(Administrateur)result.get(0);
+        }
+        return Admin;
+    }
     
 }

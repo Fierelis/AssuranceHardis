@@ -22,6 +22,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Offre implements Serializable {
 
+    @OneToMany(mappedBy = "LogOffre")
+    private List<Logs> AssociatedLogs;
+
     @OneToMany(mappedBy = "LoffreDuContrat")
     private List<Contrat> LesContrats;
 

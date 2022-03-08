@@ -5,6 +5,8 @@
  */
 package Session;
 
+import Modele.ClientUnique;
+import Modele.Entreprise;
 import java.util.Date;
 import javax.ejb.Local;
 
@@ -17,5 +19,10 @@ public interface GestionClientLocal {
 
     public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban);
 
+    ClientUnique RechercherClientUnique(long IdclientUnique);
+
+    ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique);
+
+    public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
   
 }

@@ -5,6 +5,12 @@
  */
 package ServletPackage;
 
+import Modele.Administrateur;
+import Modele.Assureur;
+import Modele.ClientUnique;
+import Modele.Courtier;
+import Modele.Entreprise;
+import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,10 +31,19 @@ import javax.servlet.http.HttpServletResponse;
 public class AssuranceServlet extends HttpServlet {
 
     @EJB
+    private GestionAdminLocal gestionAdmin;
+
+    @EJB
+    private Session.GestionServiceLocal gestionService;
+
+    @EJB
     private GestionClientLocal gestionClient;
 
    
- 
+    protected void Test(HttpServletRequest request, HttpServletResponse response){
+        Date d = new Date();
+        gestionService.CreerAssureur("JohnDoe", "JD", "Assureur", "MAIF", d, "Johndoe@hotmail.fr", "Paris", 0);
+     }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +59,7 @@ public class AssuranceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
-            
+            HttpSession sess = request.getSession(true);
             String jspClient = null;
             String act = null;
             
@@ -55,6 +71,48 @@ public class AssuranceServlet extends HttpServlet {
                // String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban)
             }
             
+            // SESSION --------------------------------------------------------------------------------------------------------------------------
+            else if (act.equals("")){ 
+            String login = request.getParameter("login");
+            String mdp = request.getParameter("mdp");
+ 
+                if (!(login.trim().isEmpty())|| mdp.trim().isEmpty()){ 
+                    ClientUnique ClientU = gestionClient.AuthentificationClientUnique(login, mdp);
+                    Entreprise Boite = gestionClient.AuthentificationEntreprise(login, mdp);
+                    Courtier Court = gestionService.AuthentificationCourtier(login, mdp);
+                    Assureur Assur = gestionService.AuthentificationAssureur(login, mdp);
+                    Administrateur Admin = gestionAdmin.AuthentificationAdmin(login, mdp);
+                        if (ClientU!=null){                  
+                            sess.setAttribute("ClientUnique", ClientU);
+                            jspClient="/SessionClientUnique.jsp";
+                        }
+                        else if (Boite!=null){ 
+                            sess.setAttribute("Entreprise", Boite);
+                            jspClient="/SessionEntreprise.jsp";
+                        }
+                        else if (Court!=null){ 
+                            sess.setAttribute("Courtier", Court);
+                            jspClient="/SessionCourtier.jsp";
+                        }
+                        else if (Assur!=null){ 
+                            sess.setAttribute("Assureur", Assur);
+                            jspClient="/SessionAssureur.jsp";
+                        }
+                        else if (Admin!=null){ 
+                            sess.setAttribute("Admin", Admin);
+                            jspClient="/SessionAdmin.jsp";
+                        }
+                        else { 
+                            jspClient="/Connexion.jsp";
+                            request.setAttribute("message", "Aucun utilisateur enregistré à ce nom");
+                             }
+                            }
+                    else { 
+                    jspClient="/Menu.jsp";
+                    request.setAttribute("message", "Identifiant ou mot de passe incorrect");
+                }           
+            }
+            // SESSION --------------------------------------------------------------------------------------------------------------------------
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -64,6 +122,7 @@ public class AssuranceServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AssuranceServlet at " + request.getContextPath() + "</h1>");
+            
             out.println("</body>");
             out.println("</html>");
         }

@@ -65,6 +65,20 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         req.setParameter("IdAssureur",IdAssureur);
         req.executeUpdate();
     }
+
+    @Override
+    public Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur) {
+         Assureur Assur = null;
+        String txt="Select Assur from ClientUnique as Assur where Assur.LoginUserService=:LoginAssureur and Assur.PasswordUserService=:PasswordAssureur";
+        Query req=getEntityManager().createQuery(txt);
+        req=req.setParameter("LoginAssureur",LoginAssureur);
+        req=req.setParameter("PasswordAssureur", PasswordAssureur);
+        List<Assureur>result = req.getResultList();
+        if(result.size()==1){
+            Assur=(Assureur)result.get(0);
+        }
+        return Assur;
+    }
     
     
 }

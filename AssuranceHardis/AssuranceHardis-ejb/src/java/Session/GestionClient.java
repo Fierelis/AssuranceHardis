@@ -5,7 +5,10 @@
  */
 package Session;
 
+import Modele.ClientUnique;
 import Modele.ClientUniqueFacadeLocal;
+import Modele.Entreprise;
+import Modele.EntrepriseFacadeLocal;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,6 +19,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestionClient implements GestionClientLocal {
+
+    @EJB
+    private EntrepriseFacadeLocal entrepriseFacade;
 
     @EJB
     private ClientUniqueFacadeLocal clientUniqueFacade;
@@ -32,6 +38,23 @@ public class GestionClient implements GestionClientLocal {
     @Override
     public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban) {
         clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban);
+    }
+
+    @Override
+    public ClientUnique RechercherClientUnique(long IdclientUnique) {
+        return null;
+    }
+
+    @Override
+    public ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique) {
+        ClientUnique Clientu = clientUniqueFacade.AuthentificationClientUnique(LoginClientUnique, PasswordClientUnique);
+        return Clientu;
+    }
+    
+    @Override
+    public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise) {
+        Entreprise Boite = entrepriseFacade.AuthentificationEntreprise(LoginEntreprise, PasswordEntreprise);
+        return Boite;
     }
 
 }

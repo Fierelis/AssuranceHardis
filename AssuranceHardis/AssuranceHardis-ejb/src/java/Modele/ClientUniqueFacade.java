@@ -6,6 +6,7 @@
 package Modele;
 
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -59,6 +60,20 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("i",id);
         req.executeUpdate();
+    }
+
+    @Override
+    public ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique) {
+         ClientUnique ClientU = null;
+        String txt="Select ClientU from ClientUnique as ClientU where ClientU.login=:LoginClientUnique and ClientU.mdp=:PasswordClientUnique";
+        Query req=getEntityManager().createQuery(txt);
+        req=req.setParameter("LoginClientUnique",LoginClientUnique);
+        req=req.setParameter("PasswordClientUnique", PasswordClientUnique);
+        List<ClientUnique>result = req.getResultList();
+        if(result.size()==1){
+            ClientU=(ClientUnique)result.get(0);
+        }
+        return ClientU;
     }
 
     

@@ -34,5 +34,7 @@ public interface AdministrateurFacadeLocal {
     public void SupprimerAdministrateur(long IdAdmin);
 
     public Administrateur RechercherAdministrateur(long IdAdmin);
+
+    Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin);
     
 }

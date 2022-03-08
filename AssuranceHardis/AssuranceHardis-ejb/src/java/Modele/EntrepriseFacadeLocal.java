@@ -36,5 +36,7 @@ public interface EntrepriseFacadeLocal {
 
     void SupprimerEntreprise(long id);
 
+    Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
+
     
 }
