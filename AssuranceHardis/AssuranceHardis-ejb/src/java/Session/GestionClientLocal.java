@@ -26,5 +26,7 @@ public interface GestionClientLocal {
     public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
     String HashageSha256(String mdp);
 
+    void CreerEntreprise(String nom,String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte);
+
   
 }

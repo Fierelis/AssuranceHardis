@@ -5,8 +5,12 @@
  */
 package Modele;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,7 +36,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     }
 
     @Override
-    public void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail) {
+    public void CreerEntreprise(String nom,String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail) {
         Entreprise entreprise = new Entreprise();
         entreprise.setLogin(login);
         entreprise.setMdp(mdp);
@@ -41,9 +45,10 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         entreprise.setNom(mdp);
         entreprise.setDateCreationEntreprise(dateCreationEntreprise);
         entreprise.setRaisonSocialSocial(raisonSocial);
-        entreprise.setSiegeSocialEntreprise(tailleEntreprise);
+        entreprise.setSiegeSocialEntreprise(siegeSocial);
         entreprise.setTailleEntreprise(tailleEntreprise);
         entreprise.setMail(mail);
+        entreprise.setNom(nom);
         getEntityManager().persist(entreprise);
     }
 
@@ -77,9 +82,6 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
             Boite=(Entreprise)result.get(0);
         }
         return null;
-    }
-
-
-    
+    } 
     
 }

@@ -55,4 +55,9 @@ public class GestionClient implements GestionClientLocal {
         return clientUniqueFacade.HashageSha256(mdp);
     }
 
+    @Override
+    public void CreerEntreprise(String nom, String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte) {
+        entrepriseFacade.CreerEntreprise(nom, login, mdp, dateCreationCompte, typeUser, raisonSocial, dateCreationEntreprise, siegeSocial, tailleEntreprise, mail);
+    }
+
 }

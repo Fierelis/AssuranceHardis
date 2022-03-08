@@ -69,14 +69,17 @@ public class AssuranceServlet extends HttpServlet {
             String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
-                jspClient="/CreerClientUnique.jsp";
+                jspClient="/CreerEntreprise.jsp";
                 request.setAttribute("message", "pas d'informations");
                // String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban)
             }
             else if(act.equals("CreerClientUnique")){
                 doActionCreerClientUnique(request, response);
-                System.out.println("uwu");
                 jspClient="/CreerClientUnique.jsp";
+            }
+            else if(act.equals("CreerEntreprise")){
+                doActionCreerEntreprise(request, response);
+                jspClient="/CreerEntreprise.jsp";
             }
             
             // SESSION --------------------------------------------------------------------------------------------------------------------------
@@ -158,10 +161,35 @@ public class AssuranceServlet extends HttpServlet {
             Date dateCreation = new Date();
             String typeUser="Client Unique";
             String hashage=gestionClient.HashageSha256(mdp);
-            System.out.println(hashage);
             
             gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban, email);
-            message = "Agent créé avec succès !";
+            message = "Client créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+    
+    protected void doActionCreerEntreprise(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String nom = request.getParameter("NomEntreprise");
+        String raisonSocial = request.getParameter("RaisonSocial");
+        String login = request.getParameter("LoginEntreprise");
+        String mdp = request.getParameter("MdpEntreprise");
+        String dateCreation = request.getParameter("DateCreationEntreprise");
+        String mail = request.getParameter("Email");
+        String taille = request.getParameter("TailleEntreprise");
+        String siegeSocial = request.getParameter("SiegeSocial");
+        String message;
+        if (nom.trim().isEmpty() || raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty()|| siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerEntreprise.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une Entreprise";
+        } else {
+            
+            Date dateCreationCompteEntreprise = new Date();
+            String typeUser="Entreprise";
+            String hashage=gestionClient.HashageSha256(mdp);
+            java.sql.Date dateCreationEntreprise = java.sql.Date.valueOf(dateCreation);
+            gestionClient.CreerEntreprise(nom,login, hashage,typeUser ,raisonSocial, dateCreationEntreprise, siegeSocial, taille,mail,dateCreationCompteEntreprise);
+            message = "Entreprise créé avec succès !";
         }
         request.setAttribute("message", message);
 
