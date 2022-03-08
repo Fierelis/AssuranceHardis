@@ -18,16 +18,19 @@
                 <fieldset>
                     <legend>Informations Client</legend>
                     <label for="NomClient">Nom : <span class="requis">*</span></label>
-                    <input type="text" name="NomClient" value="" size="20" maxlength="20" /><br />
-
+                    <input type="text" name="NomClient" value="" size="40" maxlength="45" /><br />
                     <label for="PrenomClient">Prenom : <span class="requis">*</span></label>
-                    <input type="text" name="PrenomClient" value="" size=“80" maxlength="20" /><br />
+                    <input type="text" name="PrenomClient" value="" size=“40" maxlength="45" /><br />
                     <label for="LoginClient">Login : <span class="requis">*</span></label>
-                    <input type="text" name="LoginClient" Value="" size="80" maxlength="100" /> <br />
+                    <input type="text" name="LoginClient" Value="" size="40" maxlength="100" /> <br />
                     <label for="MdpClient">Mot de passe : <span class="requis">*</span></label>
-                    <input type="password" name="MdpClient" value="" size="20" maxlength="20" /><br />
+                    <input type="password" name="MdpClient" value="" size="40" maxlength="45" /><br />
                     <label for="Iban">Iban : <span class="requis">*</span></label>
-                    <input type="text" name="Iban" value="" size="20" maxlength="20" /><br />
+                    <input type="text" name="Iban" value="" size="40" maxlength="45" /><br />
+                    <label for="Email">Email : <span class="requis">*</span></label>
+                    <input type="text" name="Email" value="" size="40" maxlength="45" /><br />
+                    
+                    
                     <input type="hidden" name="action" value="CreerClientUnique">
                 </fieldset>
                 <input type="submit" value="Valider" />

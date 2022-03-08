@@ -29,6 +29,26 @@ public class ClientUnique extends UtilisateurClient implements Serializable {
     private String prenom;
     @Column(nullable=false)
     private String iban;
+    @Column(nullable=false)
+    private String mail;
+
+    /**
+     * Get the value of mail
+     *
+     * @return the value of mail
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * Set the value of mail
+     *
+     * @param mail new value of mail
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
     /**
      * Get the value of iban

@@ -17,7 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface GestionClientLocal {
 
-    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban);
+    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail);
 
     ClientUnique RechercherClientUnique(long IdclientUnique);
 

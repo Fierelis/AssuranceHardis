@@ -62,16 +62,21 @@ public class AssuranceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
-            HttpSession sess = request.getSession(true);
+            
+            
+            HttpSession sess = request.getSession(true);          
             String jspClient = null;
-            String act = null;
+            String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Date d= new Date(10,10,2020);
-                gestionClient.CreerClientUnique("nom", "prenom", "login", "mdp", d, "Assureur", "051561616161651g");
+                jspClient="/CreerClientUnique.jsp";
                 request.setAttribute("message", "pas d'informations");
                // String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban)
+            }
+            else if(act.equals("CreerClientUnique")){
+                doActionCreerClientUnique(request, response);
+                System.out.println("uwu");
+                jspClient="/CreerClientUnique.jsp";
             }
             
             // SESSION --------------------------------------------------------------------------------------------------------------------------
@@ -114,8 +119,12 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient="/Menu.jsp";
                     request.setAttribute("message", "Identifiant ou mot de passe incorrect");
                 }           
-            }
+            }       
             // SESSION --------------------------------------------------------------------------------------------------------------------------
+            
+            RequestDispatcher Rd;
+            Rd = getServletContext().getRequestDispatcher(jspClient);
+            Rd.forward(request, response);
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -141,17 +150,17 @@ public class AssuranceServlet extends HttpServlet {
         String login = request.getParameter("LoginClient");
         String mdp = request.getParameter("MdpClient");
         String iban = request.getParameter("Iban");
+        String email = request.getParameter("Email");
         String message;
         if (nom.trim().isEmpty() || prenom.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || iban.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
-            
             Date dateCreation = new Date();
             String typeUser="Client Unique";
             String hashage=gestionClient.HashageSha256(mdp);
             System.out.println(hashage);
             
-            gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban);
+            gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban, email);
             message = "Agent créé avec succès !";
         }
         request.setAttribute("message", message);
