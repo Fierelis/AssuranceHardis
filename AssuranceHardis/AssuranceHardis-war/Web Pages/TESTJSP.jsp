@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SessionAssureur
-    Created on : 8 mars 2022, 11:01:00
+    Document   : TESTJSP
+    Created on : 8 mars 2022, 13:49:21
     Author     : alex_
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World2 !</h1>
+        <h1>Hello World!</h1>
     </body>
 </html>
