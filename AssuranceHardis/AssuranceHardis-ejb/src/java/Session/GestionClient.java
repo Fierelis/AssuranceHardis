@@ -34,4 +34,10 @@ public class GestionClient implements GestionClientLocal {
         clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban);
     }
 
+    @Override
+    public String HashageSha256(String mdp) {
+        return clientUniqueFacade.HashageSha256(mdp);
+    }
+    
+    
 }

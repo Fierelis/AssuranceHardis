@@ -25,14 +25,14 @@ public class Entreprise extends UtilisateurClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;   
-    @Column(nullable=false)
+    
     private String raisonSocialSocial;
-    @Column(nullable=false)
+    
     private String siegeSocialEntreprise;
-    @Column(nullable=false)
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateCreationEntreprise;
-    @Column(nullable=false)
+    
     private String tailleEntreprise;
 
     /**

@@ -17,5 +17,7 @@ public interface GestionClientLocal {
 
     public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban);
 
+    String HashageSha256(String mdp);
+
   
 }

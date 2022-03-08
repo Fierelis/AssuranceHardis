@@ -8,8 +8,11 @@ package ServletPackage;
 import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.print.attribute.standard.DateTimeAtCreation;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,17 +47,22 @@ public class AssuranceServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            String jspClient = null;
-            String act = null;
+            String jsp = null;
+            String act = request.getParameter("action");
+            if ((act == null) || (act.equals("vide"))) {
+                jsp = "/CreerClientUnique.jsp";
+                //request.setAttribute("message", "pas d'informations");
+            } 
+            //--------------------------------
+            else if (act.equals("CreerClientUnique")) {
+                doActionCreerClientUnique(request, response);
+                jsp = "/CreerClientUnique.jsp";
+                
+            } 
             
-            if ((act == null) || act.equals("vide")){  
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Date d= new Date(10,10,2020);
-                gestionClient.CreerClientUnique("nom", "prenom", "login", "mdp", d, "Assureur", "051561616161651g");
-                request.setAttribute("message", "pas d'informations");
-               // String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban)
-            }
-            
+            RequestDispatcher Rd;
+            Rd = getServletContext().getRequestDispatcher(jsp);
+            Rd.forward(request, response);
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -67,6 +75,33 @@ public class AssuranceServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+    
+    
+    
+    // DoAction pour creer un client unique
+    protected void doActionCreerClientUnique(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String nom = request.getParameter("NomClient");
+        String prenom = request.getParameter("PrenomClient");
+        String login = request.getParameter("LoginClient");
+        String mdp = request.getParameter("MdpClient");
+        String iban = request.getParameter("Iban");
+        String message;
+        if (nom.trim().isEmpty() || prenom.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || iban.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
+        } else {
+            
+            Date dateCreation = new Date();
+            String typeUser="Client Unique";
+            String hashage=gestionClient.HashageSha256(mdp);
+            System.out.println(hashage);
+            
+            gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban);
+            message = "Agent créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -36,6 +36,8 @@ public interface ClientUniqueFacadeLocal {
 
     void SupprimerClientUnique(long id);
 
+    String HashageSha256(String mdp);
+
    
     
 }
