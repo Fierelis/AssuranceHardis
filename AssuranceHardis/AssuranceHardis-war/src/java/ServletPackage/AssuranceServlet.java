@@ -14,8 +14,11 @@ import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.print.attribute.standard.DateTimeAtCreation;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -126,6 +129,33 @@ public class AssuranceServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+    
+    
+    
+    // DoAction pour creer un client unique
+    protected void doActionCreerClientUnique(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String nom = request.getParameter("NomClient");
+        String prenom = request.getParameter("PrenomClient");
+        String login = request.getParameter("LoginClient");
+        String mdp = request.getParameter("MdpClient");
+        String iban = request.getParameter("Iban");
+        String message;
+        if (nom.trim().isEmpty() || prenom.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || iban.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
+        } else {
+            
+            Date dateCreation = new Date();
+            String typeUser="Client Unique";
+            String hashage=gestionClient.HashageSha256(mdp);
+            System.out.println(hashage);
+            
+            gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban);
+            message = "Agent créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

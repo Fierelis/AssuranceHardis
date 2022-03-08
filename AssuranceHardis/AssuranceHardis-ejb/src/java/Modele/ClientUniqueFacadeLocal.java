@@ -37,6 +37,7 @@ public interface ClientUniqueFacadeLocal {
     void SupprimerClientUnique(long id);
 
     ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique);
+    String HashageSha256(String mdp);
 
    
     

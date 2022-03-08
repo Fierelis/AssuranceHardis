@@ -26,15 +26,8 @@ public class GestionClient implements GestionClientLocal {
     @EJB
     private ClientUniqueFacadeLocal clientUniqueFacade;
 
-    
-    
-    
-    
-
-    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
     @Override
     public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban) {
         clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban);
@@ -50,11 +43,16 @@ public class GestionClient implements GestionClientLocal {
         ClientUnique Clientu = clientUniqueFacade.AuthentificationClientUnique(LoginClientUnique, PasswordClientUnique);
         return Clientu;
     }
-    
+
     @Override
     public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise) {
         Entreprise Boite = entrepriseFacade.AuthentificationEntreprise(LoginEntreprise, PasswordEntreprise);
         return Boite;
+    }
+
+    @Override
+    public String HashageSha256(String mdp) {
+        return clientUniqueFacade.HashageSha256(mdp);
     }
 
 }

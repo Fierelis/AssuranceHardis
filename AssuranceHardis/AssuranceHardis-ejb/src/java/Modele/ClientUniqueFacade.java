@@ -11,6 +11,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,36 +50,58 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
 
     @Override
     public ClientUnique RechercheClientUnique(long id) {
-        ClientUnique clientUnique=null;
-        String txt="Select clientUnique from ClientUnique as cu where cu.id=:i";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("i",id);
-        clientUnique=(ClientUnique)req.getSingleResult();
+        ClientUnique clientUnique = null;
+        String txt = "Select clientUnique from ClientUnique as cu where cu.id=:i";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("i", id);
+        clientUnique = (ClientUnique) req.getSingleResult();
         return clientUnique;
     }
 
     @Override
     public void SupprimerClientUnique(long id) {
-        String txt="delete clientUnique from ClientUnique as cu where cu.id=:i";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("i",id);
+        String txt = "delete clientUnique from ClientUnique as cu where cu.id=:i";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("i", id);
         req.executeUpdate();
     }
 
     @Override
     public ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique) {
-         ClientUnique ClientU = null;
-        String txt="Select ClientU from ClientUnique as ClientU where ClientU.login=:LoginClientUnique and ClientU.mdp=:PasswordClientUnique";
-        Query req=getEntityManager().createQuery(txt);
-        req=req.setParameter("LoginClientUnique",LoginClientUnique);
-        req=req.setParameter("PasswordClientUnique", PasswordClientUnique);
-        List<ClientUnique>result = req.getResultList();
-        if(result.size()==1){
-            ClientU=(ClientUnique)result.get(0);
+        ClientUnique ClientU = null;
+        String txt = "Select ClientU from ClientUnique as ClientU where ClientU.login=:LoginClientUnique and ClientU.mdp=:PasswordClientUnique";
+        Query req = getEntityManager().createQuery(txt);
+        req = req.setParameter("LoginClientUnique", LoginClientUnique);
+        req = req.setParameter("PasswordClientUnique", PasswordClientUnique);
+        List<ClientUnique> result = req.getResultList();
+        if (result.size() == 1) {
+            ClientU = (ClientUnique) result.get(0);
         }
         return ClientU;
     }
 
-    
-    
+    @Override
+    public String HashageSha256(String mdp) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+            md.update(mdp.getBytes());
+            byte byteData[] = md.digest();
+
+            //convertir le tableau de bits en une format hexadécimal - méthode 1
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < byteData.length; i++) {
+                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            //System.out.println("En format hexa : " + sb.toString());
+            return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ClientUniqueFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+
+    }
+
 }

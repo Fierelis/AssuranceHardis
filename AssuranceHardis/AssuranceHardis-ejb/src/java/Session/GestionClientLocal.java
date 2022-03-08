@@ -24,5 +24,7 @@ public interface GestionClientLocal {
     ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique);
 
     public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
+    String HashageSha256(String mdp);
+
   
 }
