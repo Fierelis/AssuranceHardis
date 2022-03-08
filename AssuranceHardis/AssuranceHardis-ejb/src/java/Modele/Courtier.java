@@ -35,6 +35,46 @@ public class Courtier extends UtilisateurService implements Serializable {
     private String AdresseCourtier;
     @Column(nullable=false)
     private String MailCourtier;
+    @Column(nullable=false)
+    private String VilleCourtier;
+    @Column(nullable=false)
+    private String CPCourtier;
+
+    /**
+     * Get the value of CPCourtier
+     *
+     * @return the value of CPCourtier
+     */
+    public String getCPCourtier() {
+        return CPCourtier;
+    }
+
+    /**
+     * Set the value of CPCourtier
+     *
+     * @param CPCourtier new value of CPCourtier
+     */
+    public void setCPCourtier(String CPCourtier) {
+        this.CPCourtier = CPCourtier;
+    }
+
+    /**
+     * Get the value of VilleCourtier
+     *
+     * @return the value of VilleCourtier
+     */
+    public String getVilleCourtier() {
+        return VilleCourtier;
+    }
+
+    /**
+     * Set the value of VilleCourtier
+     *
+     * @param VilleCourtier new value of VilleCourtier
+     */
+    public void setVilleCourtier(String VilleCourtier) {
+        this.VilleCourtier = VilleCourtier;
+    }
 
     /**
      * Get the value of MailCourtier

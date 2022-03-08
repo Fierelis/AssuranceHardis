@@ -24,7 +24,7 @@ public interface GestionServiceLocal {
 
     void SupprimerAssureur(long IdAssureur);
 
-    void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier);
+    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier, String VilleCourtier, String CPCourtier);
 
     Courtier RechercherCourtier(long IdCourtier);
 

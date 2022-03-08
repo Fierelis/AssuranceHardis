@@ -32,7 +32,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     }
 
     @Override
-    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier) {
+    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier, String VilleCourtier, String CPCourtier) {
     Courtier NouveauCourtier = new Courtier();
     NouveauCourtier.setAdresseCourtier(AdresseCourtier);
     NouveauCourtier.setDateNaissanceCourtier(DateNaissanceCourtier);
@@ -41,6 +41,8 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     NouveauCourtier.setPasswordUserService(PasswordUserServiceCourtier);
     NouveauCourtier.setPrenomCourtier(PrenomCourtier);
     NouveauCourtier.setNomCourtier(NomCourtier);
+    NouveauCourtier.setVilleCourtier(VilleCourtier);
+    NouveauCourtier.setCPCourtier(CPCourtier);
     NouveauCourtier.setTypeUserService("Courtier");
     em.persist(NouveauCourtier);
     }

@@ -54,8 +54,8 @@ public class GestionService implements GestionServiceLocal {
     }
 
     @Override
-    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier) {
-        courtierFacade.CreerCourtier(NomCourtier, PrenomCourtier, DateNaissanceCourtier, AdresseCourtier, MailCourtier, LoginCourtier, PasswordCourtier, TypeUserCourtier);
+    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier, String VilleCourtier, String CPCourtier) {
+        courtierFacade.CreerCourtier(NomCourtier, PrenomCourtier, DateNaissanceCourtier, AdresseCourtier, MailCourtier, LoginCourtier, PasswordCourtier, TypeUserCourtier, VilleCourtier, CPCourtier);
     }
 
     @Override

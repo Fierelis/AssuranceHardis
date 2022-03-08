@@ -64,18 +64,14 @@ public class AssuranceServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession sess = request.getSession(true);
             String jspClient = null;
-            String act = null;
+            String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                Date d= new Date(10,10,2020);
-                gestionClient.CreerClientUnique("nom", "prenom", "login", "mdp", d, "Assureur", "051561616161651g");
-                request.setAttribute("message", "pas d'informations");
-               // String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban)
+                jspClient = "/Connexion.jsp";
             }
             
             // SESSION --------------------------------------------------------------------------------------------------------------------------
-            else if (act.equals("")){ 
+            else if (act.equals("Connexion")){ 
             String login = request.getParameter("login");
             String mdp = request.getParameter("mdp");
  
@@ -117,6 +113,28 @@ public class AssuranceServlet extends HttpServlet {
             }
             // SESSION --------------------------------------------------------------------------------------------------------------------------
             
+            else if (act.equals("MenuCreerCompte")){ 
+                jspClient = "/MenuCreationCompte.jsp";
+            }
+            else if (act.equals("SelectionnerCreationClientUnique")){ 
+                jspClient = "/.jsp";
+            }
+             else if (act.equals("SelectionnerCreationEntreprise")){ 
+                jspClient = "/.jsp";
+            }
+             else if (act.equals("SelectionnerCreationClientCourtier")){ 
+                jspClient = "/.jsp";
+            }
+             else if (act.equals("SelectionnerCreationAssureur")){ 
+                jspClient = "/.jsp";
+            }
+             else if (act.equals("SelectionnerCreationAdmin")){ 
+                jspClient = "/.jsp";
+            }
+            
+            RequestDispatcher Rd;
+            Rd = getServletContext().getRequestDispatcher(jspClient);
+            Rd.forward(request, response);
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
