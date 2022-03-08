@@ -17,7 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface GestionClientLocal {
 
-    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban);
+    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail);
 
     ClientUnique RechercherClientUnique(long IdclientUnique);
 
@@ -25,6 +25,8 @@ public interface GestionClientLocal {
 
     public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
     String HashageSha256(String mdp);
+
+    void CreerEntreprise(String nom,String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte);
 
   
 }

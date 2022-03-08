@@ -25,15 +25,35 @@ public class Entreprise extends UtilisateurClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;   
-    
+    @Column(nullable=false)
     private String raisonSocialSocial;
-    
+    @Column(nullable=false)
     private String siegeSocialEntreprise;
-    
+    @Column(nullable=false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateCreationEntreprise;
-    
+    @Column(nullable=false)
     private String tailleEntreprise;
+    @Column(nullable=false)
+    private String mail;
+
+    /**
+     * Get the value of mail
+     *
+     * @return the value of mail
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * Set the value of mail
+     *
+     * @param mail new value of mail
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
     /**
      * Get the value of tailleEntreprise
