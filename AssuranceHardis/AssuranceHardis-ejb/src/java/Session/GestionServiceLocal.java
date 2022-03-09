@@ -7,7 +7,9 @@ package Session;
 
 import Modele.Assureur;
 import Modele.Courtier;
+import Modele.Offre;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -33,6 +35,8 @@ public interface GestionServiceLocal {
     Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier);
 
     Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur);
+
+    public List<Offre> FiltrerOffre(String filtre, Courtier Court, Assureur Assur);
     
     
     

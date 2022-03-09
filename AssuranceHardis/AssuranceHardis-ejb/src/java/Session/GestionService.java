@@ -9,9 +9,11 @@ import Modele.Assureur;
 import Modele.AssureurFacadeLocal;
 import Modele.Courtier;
 import Modele.CourtierFacadeLocal;
+import Modele.Offre;
 import Modele.OffreFacadeLocal;
 import Modele.TypeProduitFacadeLocal;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -79,6 +81,12 @@ public class GestionService implements GestionServiceLocal {
     public Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur) {
         Assureur Assur = assureurFacade.AuthentificationAssureur(LoginAssureur, PasswordAssureur);
         return Assur;
+    }
+
+    @Override
+    public List<Offre> FiltrerOffre(String filtre, Courtier Court, Assureur Assur) {
+        List <Offre> ListeFiltree = offreFacade.FiltrerOffre(filtre, Court, Assur);
+        return ListeFiltree;
     }
     
     

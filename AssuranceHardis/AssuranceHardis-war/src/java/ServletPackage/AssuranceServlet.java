@@ -10,12 +10,14 @@ import Modele.Assureur;
 import Modele.ClientUnique;
 import Modele.Courtier;
 import Modele.Entreprise;
+import Modele.Offre;
 import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.print.attribute.standard.DateTimeAtCreation;
 import javax.servlet.RequestDispatcher;
@@ -69,8 +71,8 @@ public class AssuranceServlet extends HttpServlet {
             String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
-                //jspClient = "/Connexion.jsp";
-                jspClient = "/CreerAdmin.jsp";
+                jspClient = "/Connexion.jsp";
+                //jspClient = "/CreerAdmin.jsp";
             }
             else if(act.equals("CreerClientUnique")){
                 doActionCreerClientUnique(request, response);
@@ -118,8 +120,13 @@ public class AssuranceServlet extends HttpServlet {
                             sess.setAttribute("Entreprise", Boite);
                             jspClient="/SessionEntreprise.jsp";
                         }
-                        else if (Court!=null){ 
+                        else if (Court!=null){
                             sess.setAttribute("Courtier", Court);
+                            List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
+                            List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, Assur);
+                            request.setAttribute("Courtier", Court);
+                            request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
+                            request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                             jspClient="/SessionCourtier.jsp";
                         }
                         else if (Assur!=null){ 
@@ -162,7 +169,10 @@ public class AssuranceServlet extends HttpServlet {
              else if (act.equals("SelectionnerCreationAdmin")){ 
                 jspClient = "/CreerAdmin.jsp";
             }
-            
+            else if (act.equals("CreerOffreCourtier")){ 
+                jspClient = "/CreerOffre.jsp";
+            }
+                
             RequestDispatcher Rd;
             Rd = getServletContext().getRequestDispatcher(jspClient);
             Rd.forward(request, response);
