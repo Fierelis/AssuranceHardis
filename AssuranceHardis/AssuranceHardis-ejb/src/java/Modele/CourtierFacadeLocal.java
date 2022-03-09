@@ -37,5 +37,7 @@ public interface CourtierFacadeLocal {
     public void SupprimerCourtier(long IdCourtier);
 
     Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier);
+
+    List RechercheCourtierPartenaire(long idAssurance);
     
 }

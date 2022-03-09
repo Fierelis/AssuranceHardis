@@ -11,7 +11,9 @@ import Modele.Courtier;
 import Modele.CourtierFacadeLocal;
 import Modele.OffreFacadeLocal;
 import Modele.TypeProduitFacadeLocal;
+import Modele.UtilisateurService;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -82,7 +84,32 @@ public class GestionService implements GestionServiceLocal {
     }
     
     
+    @Override
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance) {
+        offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance);
+    }
+
+    @Override
+    public List RechercheTypeOffre(String typeOffre) {
+        return offreFacade.RechercherOffreParType(typeOffre);
+    }
+
     
+    @Override
+    public List RechercheParTypeUtilisateur(String typeUser) {
+        return offreFacade.RechercherOffreParTypeUtilisateur(typeUser);
+    }
+
+    @Override
+    public List GetListOffreAll() {
+        return offreFacade.GetListOffreAll();
+    }
+
+    @Override
+    public List RechercheCourtierPartenaire(long idAssurance) {
+        return courtierFacade.RechercheCourtierPartenaire(idAssurance);
+    }
+
     
     
 }
