@@ -29,52 +29,60 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
     public AdministrateurFacade() {
         super(Administrateur.class);
     }
-    
-    
+
     @Override
-   public Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin, String TypeUserAdmin){
-       Administrateur NouvelAdmin = new Administrateur();
-       NouvelAdmin.setLoginAdmin(LoginAdmin);
-       NouvelAdmin.setMailAdmin(MailAdmin);
-       NouvelAdmin.setPrenomAdmin(PrenomAdmin);
-       NouvelAdmin.setPasswordAdmin(PasswordAdmin);
-       NouvelAdmin.setNomAdmin(NomAdmin);
-       NouvelAdmin.setTypeUserAdmin("Admin");
-       em.persist(NouvelAdmin);
-       return NouvelAdmin;
-   }
+    public Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin, String TypeUserAdmin) {
+        Administrateur NouvelAdmin = new Administrateur();
+        NouvelAdmin.setLoginAdmin(LoginAdmin);
+        NouvelAdmin.setMailAdmin(MailAdmin);
+        NouvelAdmin.setPrenomAdmin(PrenomAdmin);
+        NouvelAdmin.setPasswordAdmin(PasswordAdmin);
+        NouvelAdmin.setNomAdmin(NomAdmin);
+        NouvelAdmin.setTypeUserAdmin("Admin");
+        em.persist(NouvelAdmin);
+        return NouvelAdmin;
+    }
+
     @Override
-    public Administrateur RechercherAdministrateur(long IdAdmin){
+    public Administrateur RechercherAdministrateur(long IdAdmin) {
         Administrateur Admin = null;
-        String txt="SELECT Admin FROM Administrateur AS Admin WHERE Admin.id =:IdAdmin";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("IdAdmin",IdAdmin);
-        List<Administrateur>result = req.getResultList();
-        if(result.size()==1){
-            Admin = (Administrateur)result.get(0);
+        String txt = "SELECT Admin FROM Administrateur AS Admin WHERE Admin.id =:IdAdmin";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("IdAdmin", IdAdmin);
+        List<Administrateur> result = req.getResultList();
+        if (result.size() == 1) {
+            Admin = (Administrateur) result.get(0);
         }
         return Admin;
     }
+
     @Override
     public void SupprimerAdministrateur(long IdAdmin) {
-        String txt="DELETE FROM Administrateur as Admin WHERE Admin.id = :IdAdmin ";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("IdAdmin",IdAdmin);
+        String txt = "DELETE FROM Administrateur as Admin WHERE Admin.id = :IdAdmin ";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("IdAdmin", IdAdmin);
         req.executeUpdate();
     }
 
     @Override
     public Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin) {
-         Administrateur Admin = null;
-        String txt="Select Admin from Administrateur as Admin where Admin.LoginAdmin=:LoginCourtier and Admin.PasswordAdmin=:PasswordAdmin";
-        Query req=getEntityManager().createQuery(txt);
-        req=req.setParameter("LoginAdmin",LoginAdmin);
-        req=req.setParameter("PasswordAdmin", PasswordAdmin);
-        List<Administrateur>result = req.getResultList();
-        if(result.size()==1){
-            Admin=(Administrateur)result.get(0);
+
+        try {
+            Administrateur Admin = null;
+            String txt = "Select Admin from Administrateur as Admin where Admin.LoginAdmin=:LoginAdmin and Admin.PasswordAdmin=:PasswordAdmin";
+            Query req = getEntityManager().createQuery(txt);
+            req = req.setParameter("LoginAdmin", LoginAdmin);
+            req = req.setParameter("PasswordAdmin", PasswordAdmin);
+            List<Administrateur> result = req.getResultList();
+            if (result.size() == 1) {
+                Admin = (Administrateur) result.get(0);
+            }
+            return Admin;
+
+        } catch (Exception e) {
+            return null;
         }
-        return Admin;
+
     }
-    
+
 }

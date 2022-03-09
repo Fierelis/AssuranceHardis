@@ -85,13 +85,19 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("Connexion")){ 
             String login = request.getParameter("login");
             String mdp = request.getParameter("mdp");
- 
+            String mdpHache = gestionClient.HashageSha256(mdp);
                 if (!(login.trim().isEmpty())|| mdp.trim().isEmpty()){ 
-                    ClientUnique ClientU = gestionClient.AuthentificationClientUnique(login, mdp);
-                    Entreprise Boite = gestionClient.AuthentificationEntreprise(login, mdp);
-                    Courtier Court = gestionService.AuthentificationCourtier(login, mdp);
-                    Assureur Assur = gestionService.AuthentificationAssureur(login, mdp);
-                    Administrateur Admin = gestionAdmin.AuthentificationAdmin(login, mdp);
+                    ClientUnique ClientU = null;
+                    Entreprise Boite = null;
+                    Courtier Court = null;
+                    Assureur Assur =null;
+                    Administrateur Admin = null;
+                    ClientU = gestionClient.AuthentificationClientUnique(login, mdpHache);
+                    Boite = gestionClient.AuthentificationEntreprise(login, mdpHache);
+                    Court = gestionService.AuthentificationCourtier(login, mdpHache);
+                    Assur = gestionService.AuthentificationAssureur(login, mdpHache);
+                    Admin = gestionAdmin.AuthentificationAdmin(login, mdpHache);
+                    
                         if (ClientU!=null){                  
                             sess.setAttribute("ClientUnique", ClientU);
                             jspClient="/SessionClientUnique.jsp";
@@ -116,7 +122,7 @@ public class AssuranceServlet extends HttpServlet {
                             jspClient="/Connexion.jsp";
                             request.setAttribute("message", "Aucun utilisateur enregistré à ce nom");
                              }
-                            }
+                }
                     else { 
                     jspClient="/Menu.jsp";
                     request.setAttribute("message", "Identifiant ou mot de passe incorrect");
@@ -130,19 +136,19 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/MenuCreationCompte.jsp";
             }
             else if (act.equals("SelectionnerCreationClientUnique")){ 
-                jspClient = "/.jsp";
+                jspClient = "/CreerClientUnique.jsp";
             }
              else if (act.equals("SelectionnerCreationEntreprise")){ 
-                jspClient = "/.jsp";
+                jspClient = "/CreerEntreprise.jsp";
             }
-             else if (act.equals("SelectionnerCreationClientCourtier")){ 
-                jspClient = "/.jsp";
+             else if (act.equals("SelectionnerCreationCourtier")){ 
+                jspClient = "/CreerCourtier.jsp";
             }
              else if (act.equals("SelectionnerCreationAssureur")){ 
-                jspClient = "/.jsp";
+                jspClient = "/CreerAssureur.jsp";
             }
              else if (act.equals("SelectionnerCreationAdmin")){ 
-                jspClient = "/.jsp";
+                jspClient = "/CreerAdmin.jsp";
             }
             
             RequestDispatcher Rd;

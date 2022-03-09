@@ -30,9 +30,9 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
     public AssureurFacade() {
         super(Assureur.class);
     }
-    
+
     @Override
-    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
+    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN) {
         Assureur Assur = new Assureur();
         Assur.setLoginUserService(LoginUserService);
         Assur.setPasswordUserService(PasswordUserService);
@@ -44,41 +44,49 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         Assur.setRaisonSocialeAssureur(RaisonSocialeAssureur);
         em.persist(Assur);
     }
-    
+
     @Override
-    public Assureur RechercherAssureur(long IdAssureur){
+    public Assureur RechercherAssureur(long IdAssureur) {
         Assureur Assur = null;
-        String txt="SELECT Assur FROM Assureur AS Assur WHERE Assur.id =:IdAssureur";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("IdAssureur",IdAssureur);
-        List<Assureur>result = req.getResultList();
-        if(result.size()==1){
-            Assur = (Assureur)result.get(0);
+        String txt = "SELECT Assur FROM Assureur AS Assur WHERE Assur.id =:IdAssureur";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("IdAssureur", IdAssureur);
+        List<Assureur> result = req.getResultList();
+        if (result.size() == 1) {
+            Assur = (Assureur) result.get(0);
         }
         return Assur;
     }
 
     @Override
     public void SupprimerAssureur(long IdAssureur) {
-        String txt="DELETE FROM Assureur as Assur WHERE Assur.id = :IdAssureur ";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("IdAssureur",IdAssureur);
+        String txt = "DELETE FROM Assureur as Assur WHERE Assur.id = :IdAssureur ";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("IdAssureur", IdAssureur);
         req.executeUpdate();
     }
 
     @Override
     public Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur) {
-         Assureur Assur = null;
-        String txt="Select Assur from ClientUnique as Assur where Assur.LoginUserService=:LoginAssureur and Assur.PasswordUserService=:PasswordAssureur";
-        Query req=getEntityManager().createQuery(txt);
-        req=req.setParameter("LoginAssureur",LoginAssureur);
-        req=req.setParameter("PasswordAssureur", PasswordAssureur);
-        List<Assureur>result = req.getResultList();
-        if(result.size()==1){
-            Assur=(Assureur)result.get(0);
+
+        try {
+            Assureur Assur = null;
+            String txt = "Select Assur from UtilisateurService as Assur where Assur.LoginUserService=:LoginAssureur and Assur.PasswordUserService=:PasswordAssureur and Assur.TypeUserService=:Assureur";
+            Query req = getEntityManager().createQuery(txt);
+            req = req.setParameter("LoginAssureur", LoginAssureur);
+            req = req.setParameter("PasswordAssureur", PasswordAssureur);
+            req = req.setParameter("Assureur", "Assureur");
+            List<Assureur> result = req.getResultList();
+            if (result.size() == 1) {
+                Assur = (Assureur) result.get(0);
+            }
+            return Assur;
+
+        } catch (Exception e) {
+
+            return null;
         }
-        return Assur;
+
     }
-    
-    
+
 }

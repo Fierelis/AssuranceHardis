@@ -72,16 +72,22 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
 
     @Override
     public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise) {
-        Entreprise Boite = null;
-        String txt="Select Boite from Entreprise as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise";
+        
+        try {
+            Entreprise Boite = null;
+        String txt="Select Boite from UtilisateurClient as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise and Boite.typeUser=:entreprise";
         Query req=getEntityManager().createQuery(txt);
         req=req.setParameter("LoginEntreprise",LoginEntreprise);
         req=req.setParameter("PasswordEntreprise", PasswordEntreprise);
+        req=req.setParameter("entreprise", "Entreprise");
         List<Entreprise>result = req.getResultList();
         if(result.size()==1){
             Boite=(Entreprise)result.get(0);
         }
-        return null;
+        return Boite;
+        } catch (Exception e) {
+            return null;
+        }
     } 
     
 }
