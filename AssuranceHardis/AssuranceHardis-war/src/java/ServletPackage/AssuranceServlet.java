@@ -69,8 +69,8 @@ public class AssuranceServlet extends HttpServlet {
             String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
-                jspClient = "/Connexion.jsp";
-                
+                //jspClient = "/Connexion.jsp";
+                jspClient = "/CreerAdmin.jsp";
             }
             else if(act.equals("CreerClientUnique")){
                 doActionCreerClientUnique(request, response);
@@ -79,6 +79,18 @@ public class AssuranceServlet extends HttpServlet {
             else if(act.equals("CreerEntreprise")){
                 doActionCreerEntreprise(request, response);
                 jspClient="/CreerEntreprise.jsp";
+            }
+            else if(act.equals("CreerAssur")){
+                doActionCreerAssur(request, response);
+                jspClient="/CreerAssureur.jsp";
+            }
+            else if(act.equals("CreerCourtier")){
+                doActionCreerCourtier(request, response);
+                jspClient="/CreerCourtier.jsp";
+            }
+            else if(act.equals("CreerAdmin")){
+                doActionCreerAdmin(request, response);
+                jspClient="/CreerAdmin.jsp";
             }
             
             // SESSION --------------------------------------------------------------------------------------------------------------------------
@@ -209,6 +221,83 @@ public class AssuranceServlet extends HttpServlet {
             java.sql.Date dateCreationEntreprise = java.sql.Date.valueOf(dateCreation);
             gestionClient.CreerEntreprise(nom,login, hashage,typeUser ,raisonSocial, dateCreationEntreprise, siegeSocial, taille,mail,dateCreationCompteEntreprise);
             message = "Entreprise créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+    
+    protected void doActionCreerAssur(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String Email = request.getParameter("EmailAssur");
+        String Login = request.getParameter("LoginAssur");
+        String Mdp = request.getParameter("MdpAssur");
+        String RaisonSociale = request.getParameter("RaisonSocialeAssur");
+        String SiegeSocial = request.getParameter("SiegeSocialAssur");
+        String DateCreation = request.getParameter("DateCreationAssur");
+        String numSiren = request.getParameter("numSiren");
+ 
+        String message;
+        if (Email.trim().isEmpty() || Login.trim().isEmpty() || Mdp.trim().isEmpty() || RaisonSociale.trim().isEmpty() || SiegeSocial.trim().isEmpty() || DateCreation.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Assureur";
+        } else {
+            
+            String typeUser="Assureur";
+            String hashage=gestionClient.HashageSha256(Mdp);
+            Long siren=Long.valueOf(numSiren);
+            java.sql.Date dateCreationAssurance = java.sql.Date.valueOf(DateCreation);
+            gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
+            //    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
+
+            message = "Assureur créé avec succès !";
+        }
+        request.setAttribute("message", message);
+    }
+    
+    protected void doActionCreerCourtier(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String Email = request.getParameter("Email");
+        String Login = request.getParameter("LoginCourtier");
+        String Mdp = request.getParameter("MdpCourtier");
+        String nom = request.getParameter("NomCourtier");
+        String prenom = request.getParameter("PrenomCourtier");
+        String dateNaissance = request.getParameter("DateNaissance");
+        String adresse = request.getParameter("AdresseCourtier");
+        String ville=request.getParameter("VilleCourtier");
+        String cp=request.getParameter("CPCourtier");
+ 
+        String message;
+        if (Email.trim().isEmpty() || Login.trim().isEmpty() || Mdp.trim().isEmpty() || nom.trim().isEmpty() || prenom.trim().isEmpty() || dateNaissance.trim().isEmpty()|| adresse.trim().isEmpty()|| ville.trim().isEmpty()|| cp.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerCourtier.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Courtier";
+        } else {
+
+            String typeUser="Courtier";
+            java.sql.Date dateNaissanceCourtier = java.sql.Date.valueOf(dateNaissance);
+            String hashage=gestionClient.HashageSha256(Mdp);
+            gestionService.CreerCourtier(nom, prenom, dateNaissanceCourtier, Email, Login, hashage, typeUser, adresse, ville, cp);
+            
+            message = "Courtier créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+    
+    protected void doActionCreerAdmin(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String nom = request.getParameter("NomAdmin");
+        String prenom = request.getParameter("PrenomAdmin");
+        String mail = request.getParameter("MailAdmin");
+        String login = request.getParameter("LoginAdmin");
+        String mdp = request.getParameter("MdpAdmin");
+
+ 
+        String message;
+        if (nom.trim().isEmpty() || prenom.trim().isEmpty() || mail.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerAdmin.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Admin";
+        } else {
+
+            String hashage=gestionClient.HashageSha256(mdp);
+            gestionAdmin.CreerAdministrateur(nom, prenom, mail, login, hashage);
+            message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);
 

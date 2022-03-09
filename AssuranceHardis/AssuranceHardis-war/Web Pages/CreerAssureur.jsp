@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Creer Assureur</title>
     </head>
     <body>
               <h1>Création Assureur</h1>
@@ -33,9 +33,11 @@
                     <label for="SiegeSocialAssur">Siege Social : <span class="requis"></span></label>
                     <input type="text" name="SiegeSocialAssur" value="" size="40" maxlength="45" /><br />
                     
-                    <label for="DateCreationAssur">Date Création : <span class="requis"></span></label>
+                    <label for="DateCreationAssur">Date de création : <span class="requis"></span></label>
                     <input type="Date" name="DateCreationAssur" value="" size="40" maxlength="45" /><br />
-
+                    
+                    <label for="numSiren">Numero de Siren : <span class="requis"></span></label>
+                    <input type="long" name="numSiren" value="" size="40" maxlength="45" /><br />
 
                     <input type="hidden" name="action" value="CreerAssur">
                 </fieldset>
