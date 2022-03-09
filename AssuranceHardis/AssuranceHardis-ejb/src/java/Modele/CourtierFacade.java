@@ -71,7 +71,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     @Override
     public Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier) {
         try {
-            Courtier Court = null;
+        Courtier Court = null;
         String txt="Select Court from UtilisateurService as Court where Court.LoginUserService=:LoginCourtier and Court.PasswordUserService=:PasswordCourtier and Court.TypeUserService=:Courtier";
         Query req=getEntityManager().createQuery(txt);
         req=req.setParameter("LoginCourtier",LoginCourtier);
@@ -86,6 +86,24 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
             return null;
         }
         
+        
+        
+        
+    }
+
+    @Override
+    public List RechercheCourtierPartenaire(long idAssurance) {
+        try {
+            String txt="Select c from UtilisateurService as c "
+                    + "inner join Offre as o on o.OffreDeUtilisateurService=c.id"
+                    + "where c.id=:idAssurance";
+            Query req=getEntityManager().createQuery(txt);
+            req=req.setParameter("idAssurance",idAssurance);
+            List<Courtier>result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
     }
     
     

@@ -22,7 +22,7 @@ public interface OffreFacadeLocal {
     void remove(Offre offre);
 
     Offre find(Object id);
-
+ 
     List<Offre> findAll();
 
     List<Offre> findRange(int[] range);
@@ -35,8 +35,10 @@ public interface OffreFacadeLocal {
 
     public void SupprimerOffre(long IdOffre);
 
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService);
-
     public List<Offre> FiltrerOffre(String Filtre, Courtier Court, Assureur Assur);
+    
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance);
+
+    List GetListOffreAll();
     
 }

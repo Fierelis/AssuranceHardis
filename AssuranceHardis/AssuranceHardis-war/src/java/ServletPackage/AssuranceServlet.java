@@ -44,11 +44,11 @@ public class AssuranceServlet extends HttpServlet {
     @EJB
     private GestionClientLocal gestionClient;
 
-   
+    /*
     protected void Test(HttpServletRequest request, HttpServletResponse response){
         Date d = new Date();
         gestionService.CreerAssureur("JohnDoe", "JD", "Assureur", "MAIF", d, "Johndoe@hotmail.fr", "Paris", 0);
-     }
+     }*/
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,7 +72,6 @@ public class AssuranceServlet extends HttpServlet {
             
             if ((act == null) || act.equals("vide")){  
                 jspClient = "/Connexion.jsp";
-                //jspClient = "/CreerAdmin.jsp";
             }
             else if(act.equals("CreerClientUnique")){
                 doActionCreerClientUnique(request, response);
@@ -94,6 +93,7 @@ public class AssuranceServlet extends HttpServlet {
                 doActionCreerAdmin(request, response);
                 jspClient="/CreerAdmin.jsp";
             }
+        
             
             // SESSION --------------------------------------------------------------------------------------------------------------------------
             else if (act.equals("Connexion")){ 
@@ -129,9 +129,26 @@ public class AssuranceServlet extends HttpServlet {
                             request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                             jspClient="/SessionCourtier.jsp";
                         }
-                        else if (Assur!=null){ 
+                        else if (Assur!=null){ // iciiiiiiiiiiiiiiiiiiiiiiiiii
                             sess.setAttribute("Assureur", Assur);
+                            
+                            Assureur a= (Assureur)sess.getAttribute("Assureur");
+                            request.setAttribute("AssureurJSP", a);
+                            
+                            // liste de toutes les offres
+                            List<Offre>ListOffre = gestionService.GetListOffreAll();                           
+                            request.setAttribute("ListeAllOffre", ListOffre);
+                           
+                            // liste de tous les courtiers partenaires
+                            List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
+                            request.setAttribute("ListCourtier", ListCourtier);
+                            // liste de tous les clients souscripteur 
+                      
+                            
+                            
+
                             jspClient="/SessionAssureur.jsp";
+
                         }
                         else if (Admin!=null){ 
                             sess.setAttribute("Admin", Admin);

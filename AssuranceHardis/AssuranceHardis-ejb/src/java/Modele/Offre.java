@@ -33,7 +33,7 @@ public class Offre implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable=false)
-    private String TypeOffre;
+    private String TypeOffre;//groupé ou simple
     @Column(nullable=false)
     private double PrixOffre;
     @Column(nullable=false)

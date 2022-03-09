@@ -6,6 +6,7 @@
 package Modele;
 
 import java.util.ArrayList;
+import Modele.Assureur;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,13 +33,14 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
     }
 
     @Override
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService) {
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance){
         Offre nouvelleOffre = new Offre();
         nouvelleOffre.setDescriptionOffreContractuelle(DescriptionOffre);
         nouvelleOffre.setOffreActive(OffreActive);
         nouvelleOffre.setOffreDeUtilisateurService(IdUtilisateurService);
         nouvelleOffre.setPrixOffre(PrixOffre);
         nouvelleOffre.setTypeOffre(TypeOffre);
+        nouvelleOffre.setPartenariatAssurance(PartenariatAssurance);
         em.persist(nouvelleOffre);
     }
 
@@ -127,5 +129,12 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         }
         return ListeFiltree;
     }
-
+@Override
+    public List GetListOffreAll() {
+        String txt="Select o from Offre as o"
+                + "where o.OffreActive=true";
+        Query req=getEntityManager().createQuery(txt);
+        List<Offre>result = req.getResultList();
+        return result;
+    }
 }

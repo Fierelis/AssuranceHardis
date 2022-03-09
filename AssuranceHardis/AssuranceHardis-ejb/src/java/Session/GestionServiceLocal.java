@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package Session;
-
+import Modele.Offre;
 import Modele.Assureur;
 import Modele.Courtier;
-import Modele.Offre;
+import Modele.UtilisateurService;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -37,6 +37,16 @@ public interface GestionServiceLocal {
     Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur);
 
     public List<Offre> FiltrerOffre(String filtre, Courtier Court, Assureur Assur);
+    
+    void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance);
+
+    List RechercheTypeOffre(String typeOffre);
+
+    List RechercheParTypeUtilisateur(String typeUser);
+
+    List GetListOffreAll();
+
+    List RechercheCourtierPartenaire(long idAssurance);
     
     
     
