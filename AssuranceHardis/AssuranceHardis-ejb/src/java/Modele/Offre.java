@@ -43,6 +43,27 @@ public class Offre implements Serializable {
 
     @ManyToOne
     private UtilisateurService OffreDeUtilisateurService;
+    
+    @ManyToOne
+    private Assureur PartenariatAssurance;
+
+    /**
+     * Get the value of PartenariatAssurance
+     *
+     * @return the value of PartenariatAssurance
+     */
+    public Assureur getPartenariatAssurance() {
+        return PartenariatAssurance;
+    }
+
+    /**
+     * Set the value of PartenariatAssurance
+     *
+     * @param PartenariatAssurance new value of PartenariatAssurance
+     */
+    public void setPartenariatAssurance(Assureur PartenariatAssurance) {
+        this.PartenariatAssurance = PartenariatAssurance;
+    }
 
     @ManyToOne
     private TypeProduit LeTypeDeProduit;
