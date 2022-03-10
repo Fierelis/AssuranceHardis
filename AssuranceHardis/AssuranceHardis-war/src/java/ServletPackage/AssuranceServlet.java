@@ -83,7 +83,6 @@ public class AssuranceServlet extends HttpServlet {
                 
                 jspClient = "/Connexion.jsp";
                 //jspClient = "/CreerAssureur.jsp";
-                //jspClient = "/CreerAssureur.jsp";
 
             }
             else if(act.equals("CreerClientUnique")){
@@ -160,7 +159,7 @@ public class AssuranceServlet extends HttpServlet {
                             //request.setAttribute("ListCourtier", ListCourtier);
                             
                             // liste de tous les clients souscripteur 
-                      
+                            sess.setAttribute("AssureurCreerOffre", Assur);
                             jspClient="/SessionAssureur.jsp";
 
                         }
@@ -234,6 +233,17 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                 jspClient="/SessionCourtier.jsp";
             }
+            else if(act.equals("CreerOffreAssureur")){  
+                //System.out.println("Uwu Ca sent mauvais !!!");
+                Assureur assureur=(Assureur)sess.getAttribute("AssureurCreerOffre");
+                //System.out.println(assureur.getId());
+                request.setAttribute("AssureurCreerOffreAssureur", assureur);
+                jspClient="/CreerOffreAssureur.jsp";
+            }
+            else if(act.equals("FormCreerOffreAssureur")){  
+                doActionCreerOffreAssureur(request, response);
+                jspClient="/SessionAssureur.jsp";
+            } 
             
             
                 
@@ -402,7 +412,8 @@ public class AssuranceServlet extends HttpServlet {
             // recuperer l'assureur
             long idAssureur=Long.valueOf(assureur);
             Assureur a=gestionService.RechercherAssureur(idAssureur);
-            
+            //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
+
             gestionService.CreerOffre(TypeOffre, prix, Description, true, null, a, typeProduitOffre);
             message = "Admin créé avec succès !";
         }
