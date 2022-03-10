@@ -11,6 +11,7 @@ import Modele.ClientUnique;
 import Modele.Courtier;
 import Modele.Entreprise;
 import Modele.Offre;
+import Modele.TypeProduit;
 import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
@@ -71,7 +72,19 @@ public class AssuranceServlet extends HttpServlet {
             String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
+                /*
+                gestionService.CreerTypeProduit("Santé");
+                gestionService.CreerTypeProduit("Vie");
+                gestionService.CreerTypeProduit("Prévoyance");
+                gestionService.CreerTypeProduit("IARD");
+                gestionService.CreerTypeProduit("Epargne");
+                gestionService.CreerTypeProduit("Placement Financier");
+                */
+                
                 jspClient = "/Connexion.jsp";
+                //jspClient = "/CreerAssureur.jsp";
+                //jspClient = "/CreerAssureur.jsp";
+
             }
             else if(act.equals("CreerClientUnique")){
                 doActionCreerClientUnique(request, response);
@@ -83,7 +96,7 @@ public class AssuranceServlet extends HttpServlet {
             }
             else if(act.equals("CreerAssur")){
                 doActionCreerAssur(request, response);
-                jspClient="/CreerAssureur.jsp";
+                jspClient="/CreerAssureur.jsp";;
             }
             else if(act.equals("CreerCourtier")){
                 doActionCreerCourtier(request, response);
@@ -93,6 +106,7 @@ public class AssuranceServlet extends HttpServlet {
                 doActionCreerAdmin(request, response);
                 jspClient="/CreerAdmin.jsp";
             }
+            
         
             
             // SESSION --------------------------------------------------------------------------------------------------------------------------
@@ -138,12 +152,13 @@ public class AssuranceServlet extends HttpServlet {
                             request.setAttribute("AssureurJSP", a);
                             
                             // liste de toutes les offres
-                            List<Offre>ListOffre = gestionService.GetListOffreAll();                           
-                            request.setAttribute("ListeAllOffre", ListOffre);
+                            //List<Offre>ListOffre = gestionService.GetListOffreAll();                           
+                            //request.setAttribute("ListeAllOffre", ListOffre);
                            
                             // liste de tous les courtiers partenaires
-                            List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
-                            request.setAttribute("ListCourtier", ListCourtier);
+                            //List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
+                            //request.setAttribute("ListCourtier", ListCourtier);
+                            
                             // liste de tous les clients souscripteur 
                       
                             jspClient="/SessionAssureur.jsp";
@@ -187,7 +202,7 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/CreerAdmin.jsp";
             }
             else if (act.equals("CreerOffreCourtier")){ 
-                jspClient = "/CreerOffre.jsp";
+                jspClient = "/CreerOffreCourtier.jsp";
             }
             else if(act.equals("Deconnexion")){
                 sess.setAttribute("Courtier",null);
@@ -311,7 +326,6 @@ public class AssuranceServlet extends HttpServlet {
             Long siren=Long.valueOf(numSiren);
             java.sql.Date dateCreationAssurance = java.sql.Date.valueOf(DateCreation);
             gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
-            //    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
 
             message = "Assureur créé avec succès !";
         }
@@ -367,6 +381,35 @@ public class AssuranceServlet extends HttpServlet {
         request.setAttribute("message", message);
 
     }
+    
+    protected void doActionCreerOffreAssureur(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String TypeOffre = request.getParameter("TypeOffre");
+        String PrixOffre = request.getParameter("PrixOffre");
+        String Description = request.getParameter("Description");
+        String assureur= request.getParameter("Assureur");
+        String typeProduit = request.getParameter("TypeProduit");
+
+        System.out.println(assureur);
+        String message;
+        if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
+        } else {
+            double prix=Double.valueOf(PrixOffre);
+            
+            // besoin rechercher le type produit
+            TypeProduit typeProduitOffre=gestionService.rechercheTypeProduit(typeProduit);
+            // recuperer l'assureur
+            long idAssureur=Long.valueOf(assureur);
+            Assureur a=gestionService.RechercherAssureur(idAssureur);
+            
+            gestionService.CreerOffre(TypeOffre, prix, Description, true, null, a, typeProduitOffre);
+            message = "Admin créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+
     protected void doActionModifierCourtier(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
         String ID = request.getParameter("Idcourtier");

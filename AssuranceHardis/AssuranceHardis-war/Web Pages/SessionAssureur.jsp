@@ -13,24 +13,30 @@
 <html>
     <head>
         <jsp:useBean id="AssureurJSP" scope="request" class="Modele.Assureur"></jsp:useBean>
-        <jsp:useBean id="ListeAllOffre" scope="request" class="java.util.List"></jsp:useBean>
-        <jsp:useBean id="ListCourtier" scope="request" class="java.util.List"></jsp:useBean>
+        
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DashBoard Assureur</title>
     </head>
     <body>
          <% Assureur a= AssureurJSP;%>
-         <% List<Offre> listeOffre= ListeAllOffre;%>
-         <% List<Courtier> listeCourtier= ListCourtier;%>
+         <% //List<Offre> listeOffre= ListeAllOffre;%>
+         <% //List<Courtier> listeCourtier= ListCourtier;%>
          
-        <h1>Bienvenue sur votre espace <%=a.getLoginUserService() %></h1>
+        <h1>Bienvenue sur votre espace <%=a.getLoginUserService()%></h1>
         
-        <select name="Affichage">                  
-            <option value ="Petite">Afficher les offres de contrats disponible</option>   
-            <option value ="Moyenne">Afficher les courtiers partenaires</option>   
-            <option value ="Grande">Afficher les clients souscripteurs</option>   
-        </select><br />   
+         
+        
+        <form method="get" action="AssuranceServlet">
+            <input type="hidden" name="action" value="CreerOffreAssureur">
+            <input type="submit" value="Créer une offre" />
+            
+        </form>
+        <form method="get" action="AssuranceServlet">
+            <input type="hidden" name="action" value="Deconnexion">
+            <input type="submit" value="Se deconnnecter" />
+            
+        </form>
         
     </body>
 </html>

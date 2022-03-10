@@ -11,6 +11,7 @@ import Modele.Courtier;
 import Modele.CourtierFacadeLocal;
 import Modele.Offre;
 import Modele.OffreFacadeLocal;
+import Modele.TypeProduit;
 import Modele.TypeProduitFacadeLocal;
 import Modele.UtilisateurService;
 import java.util.Date;
@@ -92,8 +93,8 @@ public class GestionService implements GestionServiceLocal {
     
     
     @Override
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance) {
-        offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance);
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
+        offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance, LeTypeDeProduit);
     }
 
     @Override
@@ -117,6 +118,17 @@ public class GestionService implements GestionServiceLocal {
         return courtierFacade.RechercheCourtierPartenaire(idAssurance);
     }
 
+    @Override
+    public void CreerTypeProduit(String nom) {
+        typeProduitFacade.CreerTypeProduit(nom);
+    }
+
+    @Override
+    public TypeProduit rechercheTypeProduit(String nom) {
+        return typeProduitFacade.RechercherTypeProduit(nom);
+    }
+
+    
     public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier,  String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier,  String VilleCourtier, String CPCourtier) {
         courtierFacade.ModifierInformationsCourtier(court, NomCourtier, PrenomCourtier, AdresseCourtier, MailCourtier, LoginUserServiceCourtier, PasswordUserServiceCourtier,  VilleCourtier, CPCourtier);
     }
