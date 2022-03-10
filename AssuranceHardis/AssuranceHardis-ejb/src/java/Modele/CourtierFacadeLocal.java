@@ -39,5 +39,7 @@ public interface CourtierFacadeLocal {
     Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier);
 
     List RechercheCourtierPartenaire(long idAssurance);
+
+    public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String VilleCourtier, String CPCourtier);
     
 }

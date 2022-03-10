@@ -114,17 +114,19 @@ public class AssuranceServlet extends HttpServlet {
                     
                         if (ClientU!=null){                  
                             sess.setAttribute("ClientUnique", ClientU);
+                            request.setAttribute("ClientUnique", ClientU);
                             jspClient="/SessionClientUnique.jsp";
                         }
                         else if (Boite!=null){ 
                             sess.setAttribute("Entreprise", Boite);
+                            request.setAttribute("Entreprise", Boite);
                             jspClient="/SessionEntreprise.jsp";
                         }
                         else if (Court!=null){
                             sess.setAttribute("Courtier", Court);
                             List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
                             List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, Assur);
-                            request.setAttribute("Courtier", Court);
+                            request.setAttribute("CourtierJSP", Court);
                             request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                             request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                             jspClient="/SessionCourtier.jsp";
@@ -144,14 +146,12 @@ public class AssuranceServlet extends HttpServlet {
                             request.setAttribute("ListCourtier", ListCourtier);
                             // liste de tous les clients souscripteur 
                       
-                            
-                            
-
                             jspClient="/SessionAssureur.jsp";
 
                         }
                         else if (Admin!=null){ 
                             sess.setAttribute("Admin", Admin);
+                            request.setAttribute("Admin", Admin);
                             jspClient="/SessionAdmin.jsp";
                         }
                         else { 
@@ -189,6 +189,38 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("CreerOffreCourtier")){ 
                 jspClient = "/CreerOffre.jsp";
             }
+            else if(act.equals("Deconnexion")){
+                sess.setAttribute("Courtier",null);
+                sess.setAttribute("Entreprise",null);
+                sess.setAttribute("ClientUnique",null);
+                sess.setAttribute("Assureur",null);
+                sess.setAttribute("Admin",null);
+                jspClient="/Connexion.jsp";
+            }
+            else if (act.equals("CompteCourtier")){
+                Courtier Court = (Courtier)sess.getAttribute("Courtier");
+                request.setAttribute("Courtier", Court);
+                jspClient = "/CompteCourtier.jsp";
+            }
+            else if(act.equals("ModifierInfoCourtier")){
+                doActionModifierCourtier(request, response);
+                Courtier Court = (Courtier)sess.getAttribute("Courtier");
+                sess.setAttribute("Courtier", Court);
+                jspClient = "/CompteCourtier.jsp";
+            }
+            else if (act.equals("RetourSessionCourtier")){
+                Courtier Court = (Courtier)sess.getAttribute("Courtier");
+                Assureur Assur = null;
+                sess.setAttribute("Courtier", Court);
+                List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
+                List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, Assur);
+                request.setAttribute("CourtierJSP", Court);
+                request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
+                request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
+                jspClient="/SessionCourtier.jsp";
+            }
+            
+            
                 
             RequestDispatcher Rd;
             Rd = getServletContext().getRequestDispatcher(jspClient);
@@ -331,6 +363,30 @@ public class AssuranceServlet extends HttpServlet {
             String hashage=gestionClient.HashageSha256(mdp);
             gestionAdmin.CreerAdministrateur(nom, prenom, mail, login, hashage);
             message = "Admin créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+    protected void doActionModifierCourtier(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String ID = request.getParameter("Idcourtier");
+        String nom = request.getParameter("NomC");
+        String prenom = request.getParameter("PrenomC");
+        String login = request.getParameter("LoginC");
+        String mdp = request.getParameter("MdpC");
+        String adresse = request.getParameter("AdresseC");
+        String mail = request.getParameter("MailC");
+        String ville = request.getParameter("VilleC");
+        String codepostal = request.getParameter("CPC");
+        String message;
+        if (nom.trim().isEmpty() || prenom.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || adresse.trim().isEmpty() || mail.trim().isEmpty() || ville.trim().isEmpty() || codepostal.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
+        } else {
+            
+            long id = Long.parseLong(ID);
+            Courtier court = gestionService.RechercherCourtier(id);
+            gestionService.ModifierInformationsCourtier(court, nom, prenom, adresse, mail, login, mdp, ville, codepostal);
+            message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
 

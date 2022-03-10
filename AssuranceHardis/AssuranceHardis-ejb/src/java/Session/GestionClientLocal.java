@@ -7,6 +7,8 @@ package Session;
 
 import Modele.ClientUnique;
 import Modele.Entreprise;
+import Modele.Offre;
+import Modele.UtilisateurClient;
 import java.util.Date;
 import javax.ejb.Local;
 
@@ -27,6 +29,8 @@ public interface GestionClientLocal {
     String HashageSha256(String mdp);
 
     void CreerEntreprise(String nom,String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte);
+
+    void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat);
 
   
 }

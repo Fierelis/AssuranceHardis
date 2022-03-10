@@ -6,13 +6,16 @@
 package Modele;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,13 +31,34 @@ public class Contrat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    @Column(nullable=false)
     private double PrixOffre;
-
+    @Column(nullable=false)
     private String DescriptionContrat;
-
+    @Column(nullable=false)
     private int DureeContrat;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date DateContrat;
+
+    /**
+     * Get the value of DateContrat
+     *
+     * @return the value of DateContrat
+     */
+    public Date getDateContrat() {
+        return DateContrat;
+    }
+
+    /**
+     * Set the value of DateContrat
+     *
+     * @param DateContrat new value of DateContrat
+     */
+    public void setDateContrat(Date DateContrat) {
+        this.DateContrat = DateContrat;
+    }
+
     @ManyToOne
     private Offre LoffreDuContrat;
 

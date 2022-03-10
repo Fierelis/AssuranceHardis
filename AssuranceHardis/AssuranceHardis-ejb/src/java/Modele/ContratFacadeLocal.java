@@ -28,5 +28,7 @@ public interface ContratFacadeLocal {
     List<Contrat> findRange(int[] range);
 
     int count();
+
+    public void CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat);
     
 }

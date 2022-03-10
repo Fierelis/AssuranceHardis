@@ -4,6 +4,7 @@
     Author     : alex_
 --%>
 
+<%@page import="Modele.Courtier"%>
 <%@page import="java.util.List"%>
 <%@page import="Modele.Offre"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,12 +12,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="Courtier" scope="request" class="Modele.Courtier"></jsp:useBean>
+        <jsp:useBean id="CourtierJSP" scope="request" class="Modele.Courtier"></jsp:useBean>
         <jsp:useBean id="ListeFiltreePartenaires" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="ListeFiltreeOffresPartenaires" scope="request" class="java.util.List"></jsp:useBean>
         <title>Page Courtier</title>
     </head>
     <body>
+        <%Courtier Court = CourtierJSP;%>
+
+        <h2>Bonjour <%=Court.getPrenomCourtier() %></h2>
         <form>
         <button class="button login__submit">
             <span class="button__text">Créer une Offre</span>
@@ -25,6 +29,33 @@
         
               <input type="hidden" name="action" value="CreerOffreCourtier">
         </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+        
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteCourtier">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
+        </form>
         <div id="TableauAssureursPartenaires">
              <h2>Assureurs Partenaires</h2>
             <table>
@@ -32,7 +63,7 @@
                     <% 
                        List<Offre> ListeFiltreeAssureurs=ListeFiltreePartenaires;
                         for(Offre OffrePartenaire : ListeFiltreeAssureurs){
-                            %>  <tr><%OffrePartenaire.getPartenariatAssurance().getRaisonSocialeAssureur();%></tr>
+                            %>  <tr><%=OffrePartenaire.getPartenariatAssurance().getRaisonSocialeAssureur()%></tr>
                        <%}%>
             </table>
         </div>
@@ -49,19 +80,15 @@
                     <% 
                        List<Offre> ListeFiltreeOffres=ListeFiltreeOffresPartenaires;
                         for(Offre OffrePartenaire : ListeFiltreeOffres){
-                    %>  <tr><td><%OffrePartenaire.getPartenariatAssurance().getRaisonSocialeAssureur();%></td>
-                            <td><%OffrePartenaire.getTypeOffre();%></td>
-                            <td><%OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit();%></td>
-                            <td><%OffrePartenaire.getDescriptionOffreContractuelle();%></td>
-                            <td><%OffrePartenaire.getPrixOffre();%></td>
+                    %>  <tr><td><%=OffrePartenaire.getPartenariatAssurance().getRaisonSocialeAssureur()%></td>
+                            <td><%=OffrePartenaire.getTypeOffre()%></td>
+                            <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit()%></td>
+                            <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
+                            <td><%=OffrePartenaire.getPrixOffre()%></td>
                         </tr>
                        <%}%>
             </table>
-            
-
-
         </div>
-
 
     </body>
 </html>

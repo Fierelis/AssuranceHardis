@@ -117,6 +117,8 @@ public class GestionService implements GestionServiceLocal {
         return courtierFacade.RechercheCourtierPartenaire(idAssurance);
     }
 
-    
+    public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier,  String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier,  String VilleCourtier, String CPCourtier) {
+        courtierFacade.ModifierInformationsCourtier(court, NomCourtier, PrenomCourtier, AdresseCourtier, MailCourtier, LoginUserServiceCourtier, PasswordUserServiceCourtier,  VilleCourtier, CPCourtier);
+    }
     
 }

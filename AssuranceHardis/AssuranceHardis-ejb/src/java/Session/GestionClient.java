@@ -7,8 +7,11 @@ package Session;
 
 import Modele.ClientUnique;
 import Modele.ClientUniqueFacadeLocal;
+import Modele.ContratFacadeLocal;
 import Modele.Entreprise;
 import Modele.EntrepriseFacadeLocal;
+import Modele.Offre;
+import Modele.UtilisateurClient;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -21,10 +24,14 @@ import javax.ejb.Stateless;
 public class GestionClient implements GestionClientLocal {
 
     @EJB
+    private ContratFacadeLocal contratFacade;
+
+    @EJB
     private EntrepriseFacadeLocal entrepriseFacade;
 
     @EJB
     private ClientUniqueFacadeLocal clientUniqueFacade;
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -58,6 +65,11 @@ public class GestionClient implements GestionClientLocal {
     @Override
     public void CreerEntreprise(String nom, String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte) {
         entrepriseFacade.CreerEntreprise(nom, login, mdp, dateCreationCompte, typeUser, raisonSocial, dateCreationEntreprise, siegeSocial, tailleEntreprise, mail);
+    }
+
+    @Override
+    public void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat) {
+        contratFacade.CreerContrat(Loffre, DureeContrat, Client);
     }
 
 }

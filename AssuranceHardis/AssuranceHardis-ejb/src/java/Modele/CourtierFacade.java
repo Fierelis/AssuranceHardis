@@ -105,6 +105,18 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
             return null;
         }
     }
-    
+    @Override
+    public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String VilleCourtier, String CPCourtier) {
+    court.setAdresseCourtier(AdresseCourtier);
+    court.setMailCourtier(MailCourtier);
+    court.setLoginUserService(LoginUserServiceCourtier);
+    court.setPasswordUserService(PasswordUserServiceCourtier);
+    court.setPrenomCourtier(PrenomCourtier);
+    court.setNomCourtier(NomCourtier);
+    court.setVilleCourtier(VilleCourtier);
+    court.setCPCourtier(CPCourtier);
+    em.merge(court);
+        
+    }
     
 }

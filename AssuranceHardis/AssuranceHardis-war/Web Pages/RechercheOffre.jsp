@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SessionClientUnique
-    Created on : 8 mars 2022, 11:00:01
+    Document   : RechercheOffre
+    Created on : 10 mars 2022, 10:28:27
     Author     : alex_
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bonjour <%%></h1>
+        <h1>C la Reushairshe</h1>
     </body>
 </html>

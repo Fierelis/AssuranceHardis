@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,19 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
 
     public ContratFacade() {
         super(Contrat.class);
+    }
+
+    @Override
+    public void CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat) {
+        Contrat NewContrat = new Contrat();
+        Date DateToday = new Date();
+        NewContrat.setDateContrat(DateToday);
+        NewContrat.setDureeContrat(DureeContrat);
+        NewContrat.setDescriptionContrat(Loffre.getDescriptionOffreContractuelle());
+        NewContrat.setPrixOffre(Loffre.getPrixOffre());
+        NewContrat.setLoffreDuContrat(Loffre);
+        NewContrat.setLeClientduContrat(ClientDuContrat);
+        em.persist(NewContrat);
     }
     
 }
