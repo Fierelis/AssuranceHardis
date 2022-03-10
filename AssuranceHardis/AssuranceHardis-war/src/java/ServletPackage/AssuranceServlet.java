@@ -160,7 +160,7 @@ public class AssuranceServlet extends HttpServlet {
                             //request.setAttribute("ListCourtier", ListCourtier);
                             
                             // liste de tous les clients souscripteur 
-                      
+                            sess.setAttribute("AssureurCreerOffre", Assur);
                             jspClient="/SessionAssureur.jsp";
 
                         }
@@ -233,6 +233,17 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                 request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                 jspClient="/SessionCourtier.jsp";
+            }
+            else if(act.equals("CreerOffreAssureur")){
+                //System.out.println("Uwu Ca sent mauvais !!!");
+                Assureur assureur=(Assureur)sess.getAttribute("AssureurCreerOffre");
+                //System.out.println(assureur.getId());
+                request.setAttribute("AssureurCreerOffreAssureur", assureur);
+                jspClient="/CreerOffreAssureur.jsp";
+            }
+            else if(act.equals("FormCreerOffreAssureur")){
+                doActionCreerOffreAssureur(request, response);
+                jspClient="/SessionAssureur.jsp";
             }
             
             
