@@ -37,7 +37,7 @@ public interface OffreFacadeLocal {
 
     public List<Offre> FiltrerOffre(String Filtre, Courtier Court, Assureur Assur);
     
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance);
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance, TypeProduit LeTypeDeProduit);
 
     List GetListOffreAll();
     

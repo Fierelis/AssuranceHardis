@@ -7,6 +7,7 @@ package Session;
 import Modele.Offre;
 import Modele.Assureur;
 import Modele.Courtier;
+import Modele.TypeProduit;
 import Modele.UtilisateurService;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +39,7 @@ public interface GestionServiceLocal {
 
     public List<Offre> FiltrerOffre(String filtre, Courtier Court, Assureur Assur);
     
-    void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance);
+    void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance, TypeProduit LeTypeDeProduit);
 
     List RechercheTypeOffre(String typeOffre);
 
@@ -47,6 +48,10 @@ public interface GestionServiceLocal {
     List GetListOffreAll();
 
     List RechercheCourtierPartenaire(long idAssurance);
+
+    void CreerTypeProduit(String nom);
+
+    TypeProduit rechercheTypeProduit(String nom);
     
     
     

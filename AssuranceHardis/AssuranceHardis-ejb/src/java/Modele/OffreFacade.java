@@ -33,7 +33,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
     }
 
     @Override
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance){
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance, TypeProduit LeTypeDeProduit){
         Offre nouvelleOffre = new Offre();
         nouvelleOffre.setDescriptionOffreContractuelle(DescriptionOffre);
         nouvelleOffre.setOffreActive(OffreActive);
@@ -41,6 +41,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         nouvelleOffre.setPrixOffre(PrixOffre);
         nouvelleOffre.setTypeOffre(TypeOffre);
         nouvelleOffre.setPartenariatAssurance(PartenariatAssurance);
+        nouvelleOffre.setTypeOffre(TypeOffre);
         em.persist(nouvelleOffre);
     }
 
@@ -129,12 +130,17 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         }
         return ListeFiltree;
     }
-@Override
+    @Override
     public List GetListOffreAll() {
-        String txt="Select o from Offre as o"
-                + "where o.OffreActive=true";
-        Query req=getEntityManager().createQuery(txt);
-        List<Offre>result = req.getResultList();
-        return result;
+        try {
+            String txt = "Select o from Offre as o"
+                    + " where o.OffreActive=:bool";
+            Query req = getEntityManager().createQuery(txt);
+            req.setParameter("bool", true);
+            List<Offre> result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+             return null;
+        }   
     }
 }
