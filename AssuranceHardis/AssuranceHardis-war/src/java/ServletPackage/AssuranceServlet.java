@@ -306,7 +306,6 @@ public class AssuranceServlet extends HttpServlet {
             Long siren=Long.valueOf(numSiren);
             java.sql.Date dateCreationAssurance = java.sql.Date.valueOf(DateCreation);
             gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
-            //    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
 
             message = "Assureur créé avec succès !";
         }
@@ -376,8 +375,6 @@ public class AssuranceServlet extends HttpServlet {
         if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
         } else {
-            //    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance, TypeProduit LeTypeDeProduit){
-
             double prix=Double.valueOf(PrixOffre);
             
             // besoin rechercher le type produit
