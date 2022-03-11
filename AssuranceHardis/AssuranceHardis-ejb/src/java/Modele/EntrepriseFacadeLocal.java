@@ -38,4 +38,6 @@ public interface EntrepriseFacadeLocal {
 
     Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
 
+    public void ModifierEntreprise(Entreprise Boite, String login, String mdp, String raisonSocial, String siegeSocial, String tailleEntreprise, String mail);
+
 }

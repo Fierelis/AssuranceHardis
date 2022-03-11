@@ -6,10 +6,12 @@
 package Session;
 
 import Modele.ClientUnique;
+import Modele.Contrat;
 import Modele.Entreprise;
 import Modele.Offre;
 import Modele.UtilisateurClient;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -31,6 +33,14 @@ public interface GestionClientLocal {
     void CreerEntreprise(String nom,String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte);
 
     void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat);
+
+    public List<Contrat> RecupererContratClient(UtilisateurClient Client);
+
+    public void ModificationClientUnique(ClientUnique Client, String prenom, String nom, String login, String mdp, String iban, String mail);
+
+    Entreprise RechercherEntreprise(long Id);
+
+    public void ModifierEntreprise(Entreprise Boite, String login, String mdp, String raisonSocial, String siegeSocial, String tailleEntreprise, String mail);
 
   
 }

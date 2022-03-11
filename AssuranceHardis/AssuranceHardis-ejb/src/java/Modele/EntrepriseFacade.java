@@ -5,12 +5,8 @@
  */
 package Modele;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -42,13 +38,11 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         entreprise.setMdp(mdp);
         entreprise.setDateCreationUser(dateCreationUser);
         entreprise.setTypeUser(typeUser);
-        entreprise.setNom(mdp);
         entreprise.setDateCreationEntreprise(dateCreationEntreprise);
-        entreprise.setRaisonSocialSocial(raisonSocial);
+        entreprise.setRaisonSocialeEntreprise(raisonSocial);
         entreprise.setSiegeSocialEntreprise(siegeSocial);
         entreprise.setTailleEntreprise(tailleEntreprise);
         entreprise.setMail(mail);
-        entreprise.setNom(nom);
         getEntityManager().persist(entreprise);
     }
 
@@ -89,5 +83,17 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
             return null;
         }
     } 
+    @Override
+    public void ModifierEntreprise(Entreprise Boite, String login, String mdp, String raisonSocial, String siegeSocial, String tailleEntreprise, String mail) {
+        Boite.setLogin(login);
+        Boite.setMdp(mdp);
+        Boite.setRaisonSocialeEntreprise(raisonSocial);
+        Boite.setSiegeSocialEntreprise(siegeSocial);
+        Boite.setTailleEntreprise(tailleEntreprise);
+        Boite.setMail(mail);    
+        em.merge(Boite);
+    }
+
     
+
 }

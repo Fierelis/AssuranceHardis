@@ -39,6 +39,8 @@ public interface ClientUniqueFacadeLocal {
     ClientUnique AuthentificationClientUnique(String LoginClientUnique, String PasswordClientUnique);
     String HashageSha256(String mdp);
 
+    public void ModificationClientUnique(ClientUnique Client, String prenom, String nom, String login, String mdp, String iban, String mail);
+
    
     
 }

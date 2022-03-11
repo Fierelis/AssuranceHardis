@@ -26,7 +26,7 @@ public class Entreprise extends UtilisateurClient implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;   
     @Column(nullable=false)
-    private String raisonSocialSocial;
+    private String raisonSocialeEntreprise;
     @Column(nullable=false)
     private String siegeSocialEntreprise;
     @Column(nullable=false)
@@ -119,8 +119,8 @@ public class Entreprise extends UtilisateurClient implements Serializable {
      *
      * @return the value of raisonSocialSocial
      */
-    public String getRaisonSocialSocial() {
-        return raisonSocialSocial;
+    public String getRaisonSocialeEntreprise() {
+        return raisonSocialeEntreprise;
     }
 
     /**
@@ -128,8 +128,8 @@ public class Entreprise extends UtilisateurClient implements Serializable {
      *
      * @param raisonSocialSocial new value of raisonSocialSocial
      */
-    public void setRaisonSocialSocial(String raisonSocialSocial) {
-        this.raisonSocialSocial = raisonSocialSocial;
+    public void setRaisonSocialeEntreprise(String raisonSocialSocial) {
+        this.raisonSocialeEntreprise = raisonSocialeEntreprise;
     }
 
 
@@ -140,26 +140,6 @@ public class Entreprise extends UtilisateurClient implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    private String nom;
-
-    /**
-     * Get the value of nom
-     *
-     * @return the value of nom
-     */
-    public String getNom() {
-        return nom;
-    }
-
-    /**
-     * Set the value of nom
-     *
-     * @param nom new value of nom
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
 
     @Override
     public int hashCode() {

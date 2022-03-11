@@ -63,7 +63,7 @@
                     <% 
                        List<Offre> ListeFiltreeAssureurs=ListeFiltreePartenaires;
                         for(Offre OffrePartenaire : ListeFiltreeAssureurs){
-                            %>  <tr><%=OffrePartenaire.getPartenariatAssurance().getRaisonSocialeAssureur()%></tr>
+                            %>  <tr><%=OffrePartenaire.getLAssurance().getRaisonSocialeAssureur()%></tr>
                        <%}%>
             </table>
         </div>
@@ -80,7 +80,7 @@
                     <% 
                        List<Offre> ListeFiltreeOffres=ListeFiltreeOffresPartenaires;
                         for(Offre OffrePartenaire : ListeFiltreeOffres){
-                    %>  <tr><td><%=OffrePartenaire.getPartenariatAssurance().getRaisonSocialeAssureur()%></td>
+                    %>  <tr><td><%=OffrePartenaire.getLAssurance().getRaisonSocialeAssureur()%></td>
                             <td><%=OffrePartenaire.getTypeOffre()%></td>
                             <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit()%></td>
                             <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>

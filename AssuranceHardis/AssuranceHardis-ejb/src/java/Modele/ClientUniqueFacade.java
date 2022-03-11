@@ -112,5 +112,14 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         return null;
 
     }
-
+    @Override
+    public void ModificationClientUnique(ClientUnique Client, String prenom, String nom, String login, String mdp, String iban, String mail){
+        Client.setLogin(login);
+        Client.setMdp(mdp);
+        Client.setNom(nom);
+        Client.setPrenom(prenom);
+        Client.setIban(iban);
+        Client.setMail(mail);
+        getEntityManager().merge(Client);
+    }
 }

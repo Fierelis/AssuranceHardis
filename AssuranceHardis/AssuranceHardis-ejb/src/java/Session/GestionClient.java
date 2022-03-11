@@ -7,12 +7,15 @@ package Session;
 
 import Modele.ClientUnique;
 import Modele.ClientUniqueFacadeLocal;
+import Modele.Contrat;
 import Modele.ContratFacadeLocal;
 import Modele.Entreprise;
 import Modele.EntrepriseFacadeLocal;
 import Modele.Offre;
 import Modele.UtilisateurClient;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -70,6 +73,26 @@ public class GestionClient implements GestionClientLocal {
     @Override
     public void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat) {
         contratFacade.CreerContrat(Loffre, DureeContrat, Client);
+    }
+
+    @Override
+    public List<Contrat> RecupererContratClient(UtilisateurClient Client) {
+        List<Contrat> ContratClient = new ArrayList();
+        ContratClient = contratFacade.RecupererContratSouscrit(Client);
+        return ContratClient;
+    }
+    @Override
+    public void ModificationClientUnique(ClientUnique Client, String prenom, String nom, String login, String mdp, String iban, String mail){
+        clientUniqueFacade.ModificationClientUnique(Client, prenom, nom, login, mdp, iban, mail);
+    }
+    @Override
+    public void ModifierEntreprise(Entreprise Boite,String login, String mdp,String raisonSocial, String siegeSocial, String tailleEntreprise, String mail) {
+        entrepriseFacade.ModifierEntreprise(Boite, login, mdp, raisonSocial,  siegeSocial, tailleEntreprise, mail);
+    }
+
+    @Override
+    public Entreprise RechercherEntreprise(long Id) {
+        return entrepriseFacade.RechercheEntreprise(Id) ;
     }
 
 }

@@ -8,6 +8,7 @@ package ServletPackage;
 import Modele.Administrateur;
 import Modele.Assureur;
 import Modele.ClientUnique;
+import Modele.Contrat;
 import Modele.Courtier;
 import Modele.Entreprise;
 import Modele.Offre;
@@ -129,11 +130,15 @@ public class AssuranceServlet extends HttpServlet {
                         if (ClientU!=null){                  
                             sess.setAttribute("ClientUnique", ClientU);
                             request.setAttribute("ClientUnique", ClientU);
+                            List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU);
+                            request.setAttribute("ListeContrat",ListeContratClient);
                             jspClient="/SessionClientUnique.jsp";
                         }
                         else if (Boite!=null){ 
                             sess.setAttribute("Entreprise", Boite);
                             request.setAttribute("Entreprise", Boite);
+                            List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(Boite);
+                            request.setAttribute("ListeContrat",ListeContratEntreprise);
                             jspClient="/SessionEntreprise.jsp";
                         }
                         else if (Court!=null){
@@ -245,8 +250,37 @@ public class AssuranceServlet extends HttpServlet {
                 doActionCreerOffreAssureur(request, response);
                 jspClient="/SessionAssureur.jsp";
             }
-            
-            
+            else if (act.equals("CompteClient")){
+                ClientUnique ClientU = (ClientUnique)sess.getAttribute("ClientUnique");
+                request.setAttribute("ClientU", ClientU);
+                jspClient = "/CompteClient.jsp";
+            }
+            else if (act.equals("ModifierInfoClient")){
+                doActionModifierClientUnique(request, response);
+                ClientUnique ClientU = (ClientUnique)sess.getAttribute("ClientUnique");
+                sess.setAttribute("ClientUnique", ClientU);
+                jspClient = "/CompteClient.jsp";
+            }
+            else if (act.equals("RetourSessionClient")){
+                ClientUnique ClientU = (ClientUnique)sess.getAttribute("ClientUnique");
+                request.setAttribute("ClientU", ClientU);
+                List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU);
+                request.setAttribute("ListeContrat",ListeContratClient);
+                jspClient = "/SessionClient.jsp";
+            }
+            else if (act.equals("RetourSessionEntreprise")){
+                Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
+                request.setAttribute("Boite", Boite);
+                List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(Boite);
+                request.setAttribute("ListeContrat",ListeContratClient);
+                jspClient = "/SessionEntreprise.jsp";
+            }
+            else if (act.equals("ModifierInfoEntreprise")){
+                doActionModifierEntreprise(request, response);
+                Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
+                sess.setAttribute("ClientUnique", Boite);
+                jspClient = "/CompteClient.jsp";
+            }
                 
             RequestDispatcher Rd;
             Rd = getServletContext().getRequestDispatcher(jspClient);
@@ -414,7 +448,7 @@ public class AssuranceServlet extends HttpServlet {
             long idAssureur=Long.valueOf(assureur);
             Assureur a=gestionService.RechercherAssureur(idAssureur);
             
-            gestionService.CreerOffre(TypeOffre, prix, Description, true, null, a, typeProduitOffre);
+            gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null);
             message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -440,6 +474,50 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             Courtier court = gestionService.RechercherCourtier(id);
             gestionService.ModifierInformationsCourtier(court, nom, prenom, adresse, mail, login, mdp, ville, codepostal);
+            message = "Informations modifiées avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+      protected void doActionModifierClientUnique(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String ID = request.getParameter("IdClient");
+        String nom = request.getParameter("NomClient");
+        String prenom = request.getParameter("PrenomClient");
+        String login = request.getParameter("LoginClient");
+        String mdp = request.getParameter("MdpClient");
+        String mail = request.getParameter("MailClient");
+        String iban = request.getParameter("IbanClient");
+        String message;
+        if (nom.trim().isEmpty() || prenom.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || iban.trim().isEmpty() || mail.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
+        } else {
+            
+            long id = Long.parseLong(ID);
+            ClientUnique ClientU = gestionClient.RechercherClientUnique(id);
+            gestionClient.ModificationClientUnique(ClientU, prenom, nom, login, mdp, iban, mail);
+            message = "Informations modifiées avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+    protected void doActionModifierEntreprise(HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        String ID = request.getParameter("IdEntreprise");
+        String raisonSociale = request.getParameter("NomEntreprise");
+        String siegeSocial = request.getParameter("SiegeSocialEntreprise");
+        String login = request.getParameter("LoginEntreprise");
+        String mdp = request.getParameter("MdpEntreprise");
+        String mail = request.getParameter("MailEntreprise");
+        String taille = request.getParameter("TailleEntreprise");
+        String message;
+        if (raisonSociale.trim().isEmpty() || siegeSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || taille.trim().isEmpty() || mail.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
+        } else {
+            
+            long id = Long.parseLong(ID);
+            Entreprise Boite = gestionClient.RechercherEntreprise(id);
+            gestionClient.ModifierEntreprise(Boite, login, mdp, raisonSociale,  siegeSocial, taille, mail);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);

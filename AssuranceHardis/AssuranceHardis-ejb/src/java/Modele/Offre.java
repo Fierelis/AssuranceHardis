@@ -45,15 +45,37 @@ public class Offre implements Serializable {
     private UtilisateurService OffreDeUtilisateurService;
     
     @ManyToOne
-    private Assureur PartenariatAssurance;
+    private Assureur LAssurance;
+    
+    @ManyToOne
+    private Courtier LeCourtier;
+
+    /**
+     * Get the value of Courtier
+     *
+     * @return the value of Courtier
+     */
+    public Courtier getLeCourtier() {
+        return LeCourtier;
+    }
+
+    /**
+     * Set the value of Courtier
+     *
+     * @param Courtier new value of Courtier
+     */
+    public void setLeCourtier(Courtier Courtier) {
+        this.LeCourtier = Courtier;
+    }
+
 
     /**
      * Get the value of PartenariatAssurance
      *
      * @return the value of PartenariatAssurance
      */
-    public Assureur getPartenariatAssurance() {
-        return PartenariatAssurance;
+    public Assureur getLAssurance() {
+        return LAssurance;
     }
 
     /**
@@ -61,8 +83,8 @@ public class Offre implements Serializable {
      *
      * @param PartenariatAssurance new value of PartenariatAssurance
      */
-    public void setPartenariatAssurance(Assureur PartenariatAssurance) {
-        this.PartenariatAssurance = PartenariatAssurance;
+    public void setLAssurance(Assureur PartenariatAssurance) {
+        this.LAssurance = PartenariatAssurance;
     }
 
     @ManyToOne
