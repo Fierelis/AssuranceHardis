@@ -29,13 +29,12 @@
         
         <form method="get" action="AssuranceServlet">
             <input type="hidden" name="action" value="CreerOffreAssureur">
-            <input type="submit" value="Créer une offre" />
-            
+            <input type="submit" value="Créer une offre" />            
         </form>
         <form method="get" action="AssuranceServlet">
             <input type="hidden" name="action" value="Deconnexion">
             <input type="submit" value="Se deconnnecter" />
-            
+    
         </form>
         
     </body>

@@ -11,10 +11,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <jsp:useBean id="Entreprise" scope="request" class="Modele.Entreprise"></jsp:useBean>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Dashboard Client</title>
         <jsp:useBean id="Boite" scope="request" class="Modele.Entreprise"></jsp:useBean>
         <jsp:useBean id="ListeContratEntreprise" scope="request" class="java.util.List"></jsp:useBean>
-        <title>JSP Page</title>
     </head>
     <body>
         <h1>Je suis une entreprise</h1>

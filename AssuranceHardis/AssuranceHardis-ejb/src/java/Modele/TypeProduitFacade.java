@@ -37,16 +37,21 @@ public class TypeProduitFacade extends AbstractFacade<TypeProduit> implements Ty
     }
     
     @Override
-    public TypeProduit RechercherTypeProduit(String NomTypeProduit){
-        TypeProduit SearchedTypeProduit = null;
-        String txt="SELECT TP FROM TypeProduit AS TP WHERE TP.NomTypeProduit =:NomTypeProduit";
-        Query req =getEntityManager().createQuery(txt);
-        req.setParameter("NomTypeProduit",NomTypeProduit);
-        List<TypeProduit>result = req.getResultList();
-        if(result.size()==1){
-            SearchedTypeProduit = (TypeProduit)result.get(0);
+    public TypeProduit RechercherTypeProduit(String NomTypeProduit) {
+        try {
+            TypeProduit SearchedTypeProduit = null;
+            String txt = "SELECT TP FROM TypeProduit AS TP WHERE TP.NomTypeProduit =:NomTypeProduit";
+            Query req = getEntityManager().createQuery(txt);
+            req.setParameter("NomTypeProduit", NomTypeProduit);
+            List<TypeProduit> result = req.getResultList();
+            if (result.size() == 1) {
+                SearchedTypeProduit = (TypeProduit) result.get(0);
+            }
+            return SearchedTypeProduit;
+        } catch (Exception e) {
+            return null;
         }
-        return SearchedTypeProduit;
+
     }
     @Override
     public void SupprimerTypeProduit(long IdTypeProduit){

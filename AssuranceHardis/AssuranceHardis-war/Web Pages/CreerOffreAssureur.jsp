@@ -37,9 +37,9 @@
                 
                 <label for="TypeProduit">Type de produit : <span class="requis"></span></label>
                 <select name="TypeProduit">                      
-                    <option value ="Santé">Santé</option>   
+                    <option value ="Sante">Santé</option>   
                     <option value ="Vie">Vie</option>    
-                    <option value ="Prévoyance">Prévoyance</option> 
+                    <option value ="Prevoyance">Prévoyance</option> 
                     <option value ="IARD">IARD</option> 
                     <option value ="Epargne">Epargne</option> 
                     <option value ="PlacementFinancier">Placement Financier</option> 

@@ -42,6 +42,9 @@ public class Offre implements Serializable {
     private boolean OffreActive;
 
     @ManyToOne
+    private TypeProduit LeTypeDeProduit;
+    
+    @ManyToOne
     private UtilisateurService OffreDeUtilisateurService;
     
     @ManyToOne
@@ -87,8 +90,7 @@ public class Offre implements Serializable {
         this.LAssurance = PartenariatAssurance;
     }
 
-    @ManyToOne
-    private TypeProduit LeTypeDeProduit;
+    
 
     /**
      * Get the value of LeTypeDeProduit
