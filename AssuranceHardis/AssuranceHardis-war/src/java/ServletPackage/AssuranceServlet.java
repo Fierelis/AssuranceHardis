@@ -12,6 +12,7 @@ import Modele.Courtier;
 import Modele.Entreprise;
 import Modele.Offre;
 import Modele.TypeProduit;
+import Modele.UtilisateurService;
 import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
@@ -73,12 +74,12 @@ public class AssuranceServlet extends HttpServlet {
             
             if ((act == null) || act.equals("vide")){  
                 /*
-                gestionService.CreerTypeProduit("Santé");
+                gestionService.CreerTypeProduit("Sante");
                 gestionService.CreerTypeProduit("Vie");
-                gestionService.CreerTypeProduit("Prévoyance");
+                gestionService.CreerTypeProduit("Prevoyance");
                 gestionService.CreerTypeProduit("IARD");
                 gestionService.CreerTypeProduit("Epargne");
-                gestionService.CreerTypeProduit("Placement Financier");
+                gestionService.CreerTypeProduit("PlacementFinancier");
                 */
                 
                 jspClient = "/Connexion.jsp";
@@ -405,7 +406,7 @@ public class AssuranceServlet extends HttpServlet {
         String assureur= request.getParameter("Assureur");
         String typeProduit = request.getParameter("TypeProduit");
 
-        System.out.println(assureur);
+        //System.out.println(typeProduit);
         String message;
         if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
@@ -414,12 +415,17 @@ public class AssuranceServlet extends HttpServlet {
             
             // besoin rechercher le type produit
             TypeProduit typeProduitOffre=gestionService.rechercheTypeProduit(typeProduit);
+            System.out.println("uwu ");
+            if(typeProduitOffre!=null){
+                System.out.println(typeProduitOffre.getId());
+                System.out.println(typeProduitOffre.getNomTypeProduit());
+            }
             // recuperer l'assureur
             long idAssureur=Long.valueOf(assureur);
             Assureur a=gestionService.RechercherAssureur(idAssureur);
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
 
-            gestionService.CreerOffre(TypeOffre, prix, Description, true, null, a, typeProduitOffre);
+            gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre);
             message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);
