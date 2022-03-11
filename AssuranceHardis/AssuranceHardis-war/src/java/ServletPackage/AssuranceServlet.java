@@ -87,23 +87,23 @@ public class AssuranceServlet extends HttpServlet {
             }
             else if(act.equals("CreerClientUnique")){
                 doActionCreerClientUnique(request, response);
-                jspClient="/CreerClientUnique.jsp";
+                jspClient="/Connexion.jsp";
             }
             else if(act.equals("CreerEntreprise")){
                 doActionCreerEntreprise(request, response);
-                jspClient="/CreerEntreprise.jsp";
+                jspClient="/Connexion.jsp";
             }
             else if(act.equals("CreerAssur")){
                 doActionCreerAssur(request, response);
-                jspClient="/CreerAssureur.jsp";;
+                jspClient="/Connexion.jsp";;
             }
             else if(act.equals("CreerCourtier")){
                 doActionCreerCourtier(request, response);
-                jspClient="/CreerCourtier.jsp";
+                jspClient="/Connexion.jsp";
             }
             else if(act.equals("CreerAdmin")){
                 doActionCreerAdmin(request, response);
-                jspClient="/CreerAdmin.jsp";
+                jspClient="/Connexion.jsp";
             }
             
         
@@ -132,7 +132,9 @@ public class AssuranceServlet extends HttpServlet {
                         }
                         else if (Boite!=null){ 
                             sess.setAttribute("Entreprise", Boite);
-                            request.setAttribute("Entreprise", Boite);
+                            Entreprise e= (Entreprise)sess.getAttribute("Entreprise");
+                            request.setAttribute("Entreprise", e);
+                       
                             jspClient="/SessionEntreprise.jsp";
                         }
                         else if (Court!=null){
@@ -244,6 +246,9 @@ public class AssuranceServlet extends HttpServlet {
                 doActionCreerOffreAssureur(request, response);
                 jspClient="/SessionAssureur.jsp";
             } 
+            else if(act.equals("CreerOffreAssureur")){  
+                jspClient="";
+            }
             
             
                 
