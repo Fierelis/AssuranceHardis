@@ -5,10 +5,13 @@
  */
 package Modele;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -40,6 +43,21 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
         NewContrat.setLoffreDuContrat(Loffre);
         NewContrat.setLeClientduContrat(ClientDuContrat);
         em.persist(NewContrat);
+    }
+
+    @Override
+    public List<Contrat> RecupererContratSouscrit(UtilisateurClient Utilisateur) {
+        List<Contrat> ListeContratsSouscrits = new ArrayList();
+        String txt = "SELECT C "
+                + "FROM Contrat as C "
+                + "WHERE C.LeClientduContrat = :Utilisateur";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("Utilisateur", Utilisateur);
+        List<Contrat> result = req.getResultList();
+        if (result.size() >= 1) {
+            ListeContratsSouscrits = req.getResultList();
+        }
+        return ListeContratsSouscrits;
     }
     
 }
