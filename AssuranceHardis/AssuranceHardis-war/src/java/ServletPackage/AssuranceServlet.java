@@ -18,11 +18,9 @@ import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.print.attribute.standard.DateTimeAtCreation;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -150,7 +148,7 @@ public class AssuranceServlet extends HttpServlet {
                             request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                             jspClient="/SessionCourtier.jsp";
                         }
-                        else if (Assur!=null){ // iciiiiiiiiiiiiiiiiiiiiiiiiii
+                        else if (Assur!=null){ 
                             sess.setAttribute("Assureur", Assur);
                             
                             Assureur a= (Assureur)sess.getAttribute("Assureur");
@@ -185,8 +183,6 @@ public class AssuranceServlet extends HttpServlet {
                 }           
             }       
             // SESSION --------------------------------------------------------------------------------------------------------------------------
-            
-            
             
             else if (act.equals("MenuCreerCompte")){ 
                 jspClient = "/MenuCreationCompte.jsp";
@@ -250,7 +246,7 @@ public class AssuranceServlet extends HttpServlet {
                 doActionCreerOffreAssureur(request, response);
                 jspClient="/SessionAssureur.jsp";
             } 
-            else if(act.equals("CreerOffreAssureur")){  
+            else if(act.equals("CreerOffreAssureur")){  // Rien de renseigné Ici -<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 jspClient="";
             }
             else if(act.equals("CreerOffreAssureur")){
@@ -353,7 +349,6 @@ public class AssuranceServlet extends HttpServlet {
         if (nom.trim().isEmpty() || raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty()|| siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerEntreprise.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une Entreprise";
         } else {
-            
             Date dateCreationCompteEntreprise = new Date();
             String typeUser="Entreprise";
             String hashage=gestionClient.HashageSha256(mdp);
@@ -533,7 +528,6 @@ public class AssuranceServlet extends HttpServlet {
         if (raisonSociale.trim().isEmpty() || siegeSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || taille.trim().isEmpty() || mail.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
-            
             long id = Long.parseLong(ID);
             Entreprise Boite = gestionClient.RechercherEntreprise(id);
             gestionClient.ModifierEntreprise(Boite, login, mdp, raisonSociale,  siegeSocial, taille, mail);
@@ -542,6 +536,8 @@ public class AssuranceServlet extends HttpServlet {
         request.setAttribute("message", message);
 
     }
+    
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

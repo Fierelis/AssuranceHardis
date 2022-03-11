@@ -23,7 +23,7 @@ import javax.persistence.Temporal;
 @Entity
 public class Assureur extends UtilisateurService implements Serializable{
 
-    @OneToMany(mappedBy = "PartenariatAssurance")
+    @OneToMany(mappedBy = "LAssurance")
     private List<Offre> LesOffresPartenaire;
 
     private static final long serialVersionUID = 1L;
