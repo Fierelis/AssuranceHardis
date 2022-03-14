@@ -18,6 +18,7 @@ import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -127,16 +128,17 @@ public class AssuranceServlet extends HttpServlet {
                     
                         if (ClientU!=null){                  
                             sess.setAttribute("ClientUnique", ClientU);
-                            request.setAttribute("ClientUnique", ClientU);
-                            List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU);
+                            request.setAttribute("ClientUniqueJSP", ClientU);
+                            System.out.println(ClientU);
+                            List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
                             request.setAttribute("ListeContrat",ListeContratClient);
                             jspClient="/SessionClientUnique.jsp";
                         }
                         else if (Boite!=null){ 
                             sess.setAttribute("Entreprise", Boite);
                             request.setAttribute("Entreprise", Boite);
-                            List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(Boite);
-                            request.setAttribute("ListeContrat",ListeContratEntreprise);
+                            //List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(Boite); ///////////////////////////////////////////////////////////////////////
+                            //request.setAttribute("ListeContrat",ListeContratEntreprise);
                             jspClient="/SessionEntreprise.jsp";
                         }
                         else if (Court!=null){
@@ -274,15 +276,15 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("RetourSessionClient")){
                 ClientUnique ClientU = (ClientUnique)sess.getAttribute("ClientUnique");
                 request.setAttribute("ClientU", ClientU);
-                List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU);
+                List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
                 request.setAttribute("ListeContrat",ListeContratClient);
                 jspClient = "/SessionClient.jsp";
             }
             else if (act.equals("RetourSessionEntreprise")){
                 Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
                 request.setAttribute("Boite", Boite);
-                List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(Boite);
-                request.setAttribute("ListeContrat",ListeContratClient);
+                //List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(Boite); //////////////////////////////////////////////////////////////////////////
+                //request.setAttribute("ListeContrat",ListeContratClient);
                 jspClient = "/SessionEntreprise.jsp";
             }
             else if (act.equals("ModifierInfoEntreprise")){
@@ -290,6 +292,13 @@ public class AssuranceServlet extends HttpServlet {
                 Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
                 sess.setAttribute("ClientUnique", Boite);
                 jspClient = "/CompteClient.jsp";
+            }
+            else if (act.equals("ResilierContrat")){
+                String Contrat = request.getParameter("contrat");
+                long IdContrat = Long.parseLong(Contrat);
+                Contrat SupprContrat = gestionClient.RechercherContrat(IdContrat);
+                request.setAttribute("Contrat",SupprContrat);
+                jspClient = "/ResilierContrat.jsp";
             }
                 
             RequestDispatcher Rd;

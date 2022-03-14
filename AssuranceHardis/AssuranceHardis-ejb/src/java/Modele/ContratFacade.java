@@ -46,18 +46,31 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
     }
 
     @Override
-    public List<Contrat> RecupererContratSouscrit(UtilisateurClient Utilisateur) {
+    public List<Contrat> RecupererContratSouscrit(ClientUnique Client, Entreprise Boite) { // il risque de jamais rien retourner 
+        long IdClient = Client.getId();
         List<Contrat> ListeContratsSouscrits = new ArrayList();
-        String txt = "SELECT C "
-                + "FROM Contrat as C "
-                + "WHERE C.LeClientduContrat = :Utilisateur";
+        String txt = "SELECT C FROM Contrat AS C WHERE C.LeClientduContrat.id =:IdClient ";
         Query req = getEntityManager().createQuery(txt);
-        req.setParameter("Utilisateur", Utilisateur);
+        req.setParameter("IdClient", IdClient);
+       // req.setParameter("Boite", Boite);
         List<Contrat> result = req.getResultList();
         if (result.size() >= 1) {
             ListeContratsSouscrits = req.getResultList();
-        }
+        }   
         return ListeContratsSouscrits;
+    }
+
+    @Override
+    public Contrat RechercherContrat(long idContrat) {
+        Contrat c = new Contrat();
+        String txt="SELECT C FROM Contrat AS C WHERE C.id =:idContrat";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("idContrat",idContrat);
+        List<Contrat>result = req.getResultList();
+        if(result.size()==1){
+            c = (Contrat)result.get(0);
+        }
+        return c;
     }
     
 }

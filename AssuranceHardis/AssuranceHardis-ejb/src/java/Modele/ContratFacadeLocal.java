@@ -31,6 +31,8 @@ public interface ContratFacadeLocal {
 
     public void CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat);
 
-    List<Contrat> RecupererContratSouscrit(UtilisateurClient Utilisateur);
+    List<Contrat> RecupererContratSouscrit(ClientUnique Utilisateur, Entreprise Boite);
+
+    Contrat RechercherContrat(long id);
     
 }

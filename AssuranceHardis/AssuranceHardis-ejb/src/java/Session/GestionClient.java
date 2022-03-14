@@ -76,9 +76,8 @@ public class GestionClient implements GestionClientLocal {
     }
 
     @Override
-    public List<Contrat> RecupererContratClient(UtilisateurClient Client) {
-        List<Contrat> ContratClient = new ArrayList();
-        ContratClient = contratFacade.RecupererContratSouscrit(Client);
+    public List<Contrat> RecupererContratClient(ClientUnique Client, Entreprise Boite) {
+        List<Contrat> ContratClient = contratFacade.RecupererContratSouscrit(Client, Boite);
         return ContratClient;
     }
     @Override
@@ -93,6 +92,11 @@ public class GestionClient implements GestionClientLocal {
     @Override
     public Entreprise RechercherEntreprise(long Id) {
         return entrepriseFacade.RechercheEntreprise(Id) ;
+    }
+
+    @Override
+    public Contrat RechercherContrat(long id) {
+        return contratFacade.RechercherContrat(id);
     }
 
 }

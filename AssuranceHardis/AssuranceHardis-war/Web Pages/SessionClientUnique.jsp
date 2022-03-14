@@ -13,13 +13,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="ClientU" scope="request" class="Modele.ClientUnique"></jsp:useBean>
-        <jsp:useBean id="ListeContratClient" scope="request" class="java.util.List"></jsp:useBean>
+        <jsp:useBean id="ClientUniqueJSP" scope="request" class="Modele.ClientUnique"></jsp:useBean>
+       <jsp:useBean id="ListeContrat" scope="request" class="java.util.List"></jsp:useBean> 
         <title>JSP Page</title>
     </head>
     <body>
-        <%ClientUnique Client = ClientU;%>
-        <h1>Bonjour <%=Client.getPrenom()%></h1>
+        <%ClientUnique ClientU = ClientUniqueJSP;
+        System.out.println(ClientU);
+        %>
+        <h1>Bonjour <%=ClientU.getPrenom()%></h1>
         <form>
         <button class="button login__submit">
             <span class="button__text">Rechercher une Offre</span>
@@ -57,7 +59,8 @@
                     <td>Durée de couverture</td>
                 </tr>
                     <% 
-                       List<Contrat> ListeContrats = ListeContratClient;
+                       List<Contrat> ListeContrats = ListeContrat;
+                       if (!ListeContrats.isEmpty()){
                         for(Contrat ContratSouscrits : ListeContrats){
                         %>  <tr>
                             <td><%=ContratSouscrits.getLoffreDuContrat().getLAssurance().getRaisonSocialeAssureur() %></td>
@@ -65,9 +68,27 @@
                             <td><%=ContratSouscrits.getLoffreDuContrat().getLeTypeDeProduit() %></td>
                             <td><%=ContratSouscrits.getDateContrat() %></td>
                             <td><%=ContratSouscrits.getDureeContrat()+" mois"%></td>
+                            <td>
+                                <form>
+                                    <button name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
+                                    <input type="hidden" name="Bouton" value="ResilierContrat">
+                                </form>
+                            </td>
                             
                             </tr>
-                       <%}%>
+                       <%   }
+                        }
+                        else { %>
+                        <tr>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>No data</td>
+                        </tr>
+                        <%}
+                       
+                       %>
             </table>
         </div>
         

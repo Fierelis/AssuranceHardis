@@ -34,13 +34,15 @@ public interface GestionClientLocal {
 
     void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat);
 
-    public List<Contrat> RecupererContratClient(UtilisateurClient Client);
+    public List<Contrat> RecupererContratClient(ClientUnique Client, Entreprise Boite);
 
     public void ModificationClientUnique(ClientUnique Client, String prenom, String nom, String login, String mdp, String iban, String mail);
 
     Entreprise RechercherEntreprise(long Id);
 
     public void ModifierEntreprise(Entreprise Boite, String login, String mdp, String raisonSocial, String siegeSocial, String tailleEntreprise, String mail);
+
+    Contrat RechercherContrat(long id);
 
   
 }
