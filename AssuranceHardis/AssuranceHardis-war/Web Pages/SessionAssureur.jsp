@@ -15,6 +15,7 @@
         <jsp:useBean id="AssureurJSP" scope="request" class="Modele.Assureur"></jsp:useBean>
         <jsp:useBean id="ListeAllOffre" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="listOffreAssureur" scope="request" class="java.util.List"></jsp:useBean>
+        <jsp:useBean id="ListCourtier" scope="request" class="java.util.List"></jsp:useBean>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DashBoard Assureur</title>
@@ -23,6 +24,7 @@
          <% Assureur a= AssureurJSP;%>
          <% List<Offre> listeOffre= ListeAllOffre;%>
          <% List<Offre> listeOffreAssureur= listOffreAssureur;%>
+         <% List<Courtier> listeCourtierPartenaire= ListCourtier;%>
          
         <h1>Bienvenue sur votre espace <%=a.getLoginUserService()%></h1>
         
@@ -59,7 +61,7 @@
         </div>
             
             <div id="TableauOffresAssureur">
-            <h2>Totalités des offre</h2>
+            <h2>Totalités des offre de l'assureur</h2>
             <table>
                 <tr><td>Type d'Offre</td>
                     <td>Description de l'offre</td>
@@ -73,6 +75,32 @@
                             <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
                             <td><%=OffrePartenaire.getPrixOffre() %></td>                       
                             <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit() %></td>
+                            
+                        </tr>
+                       <%}%>
+            </table>
+        </div>
+            
+            
+        </div>
+            
+            <div id="TableauCourtierPartenaire">
+            <h2>Totalités des courtier partenaires</h2>
+            <table>
+                <tr><td>Nom</td>
+                    <td>Prenom</td>
+                    <td>Date de naissance</td>
+                    <td>Ville</td>
+                    <td>Mail</td>
+                </tr>
+                    <% 
+                       List<Courtier> ListeCourtier=listeCourtierPartenaire;
+                        for(Courtier CourtierPartenaire : ListeCourtier){
+                    %>  <tr><td><%= CourtierPartenaire.getNomCourtier() %></td>
+                            <td><%= CourtierPartenaire.getPrenomCourtier() %></td>
+                            <td><%= CourtierPartenaire.getDateNaissanceCourtier()  %></td>                       
+                            <td><%= CourtierPartenaire.getVilleCourtier() %></td>
+                            <td><%= CourtierPartenaire.getMailCourtier() %></td>
                             
                         </tr>
                        <%}%>
