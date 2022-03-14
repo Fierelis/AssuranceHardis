@@ -132,5 +132,10 @@ public class GestionService implements GestionServiceLocal {
     public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier,  String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier,  String VilleCourtier, String CPCourtier) {
         courtierFacade.ModifierInformationsCourtier(court, NomCourtier, PrenomCourtier, AdresseCourtier, MailCourtier, LoginUserServiceCourtier, PasswordUserServiceCourtier,  VilleCourtier, CPCourtier);
     }
+
+    @Override
+    public List GetAllOffreAssureur(long idAssureur) {
+        return offreFacade.GetAllOffreAssureur(idAssureur);
+    }
     
 }

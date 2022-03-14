@@ -53,6 +53,8 @@ public interface GestionServiceLocal {
 
     TypeProduit rechercheTypeProduit(String nom);
     public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String VilleCourtier, String CPCourtier);
+
+    List GetAllOffreAssureur(long idAssureur);
     
     
     
