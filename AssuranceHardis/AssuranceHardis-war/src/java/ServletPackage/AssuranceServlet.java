@@ -156,9 +156,14 @@ public class AssuranceServlet extends HttpServlet {
                             Assureur a= (Assureur)sess.getAttribute("Assureur");
                             request.setAttribute("AssureurJSP", a);
                             
-                            // liste de toutes les offres
-                            //List<Offre>ListOffre = gestionService.GetListOffreAll();                           
-                            //request.setAttribute("ListeAllOffre", ListOffre);
+                            
+                            List<Offre> listOffreAssureur=gestionService.GetAllOffreAssureur(a.getId());
+                            request.setAttribute("listOffreAssureur", listOffreAssureur);
+                            
+                            
+                            //liste de toutes les offres
+                            List<Offre>ListOffre = gestionService.GetListOffreAll();                           
+                            request.setAttribute("ListeAllOffre", ListOffre);
                            
                             // liste de tous les courtiers partenaires
                             //List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
