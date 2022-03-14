@@ -57,7 +57,7 @@
                     <td>Produit</td>
                     <td>Date de Souscription</td>
                     <td>Durée de couverture</td>
-                </tr>
+                </tr>²
                     <% 
                        List<Contrat> ListeContrats = ListeContrat;
                        if (!ListeContrats.isEmpty()){

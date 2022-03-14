@@ -26,7 +26,10 @@
          
         <h1>Bienvenue sur votre espace <%=a.getLoginUserService()%></h1>
         
-         
+         <form method="get" action="AssuranceServlet">
+            <input type="hidden" name="action" value="RechercherOffre">
+            <input type="submit" value="Les Offres" />            
+        </form>
         
         <form method="get" action="AssuranceServlet">
             <input type="hidden" name="action" value="CreerOffreAssureur">

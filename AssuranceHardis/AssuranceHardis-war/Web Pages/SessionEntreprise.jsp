@@ -60,6 +60,7 @@
                 </tr>
                     <% 
                        List<Contrat> ListeContrats = ListeContratEntreprise;
+                       if (!ListeContrats.isEmpty()){
                         for(Contrat ContratSouscrits : ListeContrats){
                         %>  <tr>
                             <td><%=ContratSouscrits.getLoffreDuContrat().getLAssurance().getRaisonSocialeAssureur() %></td>
@@ -67,7 +68,27 @@
                             <td><%=ContratSouscrits.getLoffreDuContrat().getLeTypeDeProduit() %></td>
                             <td><%=ContratSouscrits.getDateContrat() %></td>
                             <td><%=ContratSouscrits.getDureeContrat()+" mois"%></td>
+                            <td>
+                                <form>
+                                    <button name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
+                                    <input type="hidden" name="Bouton" value="ResilierContrat">
+                                </form>
+                            </td>
                             
+                            </tr>
+                       <%   }
+                        }
+                        else { %>
+                        <tr>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>No data</td>
+                        </tr>
+                        <%}
+                       
+                       %>
                             </tr>
                        <%}%>
             </table>
