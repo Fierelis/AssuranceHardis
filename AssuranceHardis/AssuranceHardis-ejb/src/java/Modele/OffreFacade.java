@@ -93,7 +93,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
             if (Filtre.equals("PartenariatsAssureurs")) {
                 String txt =    "SELECT O " //SELECT PartenariatAssurance
                         +       "FROM Offre as O "
-                        +       "WHERE O.PartenariatAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
+                        +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
                 Query req = getEntityManager().createQuery(txt);
                 req.setParameter("IdCourtier", IdCourtier);
                 List<Long> result = req.getResultList();
@@ -104,7 +104,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
             if (Filtre.equals("OffrePartenaires")) {
                 String txt =    "SELECT O "
                         +       "FROM Offre as O "
-                        +       "WHERE O.PartenariatAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
+                        +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
                 Query req = getEntityManager().createQuery(txt);
                 req.setParameter("IdCourtier", IdCourtier);
                 List<Long> result = req.getResultList();
@@ -120,7 +120,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
             if (Filtre.equals("CourtierPartenaires")) {
                 String txt =    "SELECT O " // SELECT UtilisateurService
                         +       "FROM Offre as O "
-                        +       "WHERE O.PartenariatAssurance is not Null and O.OffreDeUtilisateurService.id =:IdAssureur";
+                        +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdAssureur";
                 Query req = getEntityManager().createQuery(txt);
                 req.setParameter("IdAssureur", IdAssureur);
                 List<Long> result = req.getResultList();

@@ -85,8 +85,6 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         } catch (Exception e) {
             return null;
         }
-        
-        
     }
 
     @Override
