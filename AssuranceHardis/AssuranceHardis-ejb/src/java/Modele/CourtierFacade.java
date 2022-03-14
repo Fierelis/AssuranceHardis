@@ -85,10 +85,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
         } catch (Exception e) {
             return null;
         }
-        
-        
-        
-        
+
     }
 
     @Override
