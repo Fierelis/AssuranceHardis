@@ -155,7 +155,7 @@ public class AssuranceServlet extends HttpServlet {
                             Assureur a= (Assureur)sess.getAttribute("Assureur");
                             request.setAttribute("AssureurJSP", a);
                             
-                            
+                            // liste offre de l'assureur
                             List<Offre> listOffreAssureur=gestionService.GetAllOffreAssureur(a.getId());
                             request.setAttribute("listOffreAssureur", listOffreAssureur);
                             
@@ -165,8 +165,17 @@ public class AssuranceServlet extends HttpServlet {
                             request.setAttribute("ListeAllOffre", ListOffre);
                            
                             // liste de tous les courtiers partenaires
-                            //List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
-                            //request.setAttribute("ListCourtier", ListCourtier);
+                            System.out.println(a.getId());
+                            
+                            List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
+                            
+                            System.out.println("taille : "+ ListCourtier.size());
+                            System.out.println("suuuuuuuuuuuu");
+                            for (int i = 0; i < ListCourtier.size(); i++) {
+                                System.out.println(ListCourtier.get(i).getNomCourtier());
+                            }
+                            System.out.println("suuuuuuuuuuuu");
+                            request.setAttribute("ListCourtier", ListCourtier);
                             
                             // liste de tous les clients souscripteur 
                             sess.setAttribute("AssureurCreerOffre", Assur);
