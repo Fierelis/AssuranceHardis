@@ -41,7 +41,7 @@
             <input type="hidden" name="action" value="Deconnexion">
             <input type="submit" value="Se deconnnecter" />   
         </form>
-        
+        <!--
         <div id="TableauOffres">
             <h2>Totalités des offre</h2>
             <table>
@@ -62,7 +62,7 @@
                        <%}%>
             </table><br>
         </div>
-            
+            -->
             <div id="TableauOffresAssureur">
             <h2>Totalités des offre de l'assureur</h2>
             <table>

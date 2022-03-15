@@ -25,7 +25,7 @@ public class Entreprise extends UtilisateurClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;   
-    @Column(nullable=false)
+    @Column
     private String raisonSocialeEntreprise;
     @Column(nullable=false)
     private String siegeSocialEntreprise;
@@ -129,7 +129,7 @@ public class Entreprise extends UtilisateurClient implements Serializable {
      * @param raisonSocialSocial new value of raisonSocialSocial
      */
     public void setRaisonSocialeEntreprise(String raisonSocialSocial) {
-        this.raisonSocialeEntreprise = raisonSocialeEntreprise;
+        this.raisonSocialeEntreprise = raisonSocialSocial;
     }
 
 

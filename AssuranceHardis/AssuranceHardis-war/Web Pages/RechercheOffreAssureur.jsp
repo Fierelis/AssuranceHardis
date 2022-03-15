@@ -18,15 +18,17 @@
     </head>
     <body>
          <%Assureur Assur = AssureurJSP;%>
-        <h1>C la Reushairshe</h1>
+        <h1>Recherche Offre</h1>
          <div id="TableauOffres">
             <h2>Totalités des offre</h2>
             <p> Filtrer : <input type="text" class="table-filter" data-table="livres"></p>
+            
             <table class="livres">
-                <tr><td>Type d'Offre</td>
-                    <td>Description de l'offre</td>
-                    <td>Prix de l'offre</td>
-                    <td>Le type de produit</td>
+                <tr>
+                    <td> Type d'Offre</td>
+                    <td> Description de l'offre</td>
+                    <td> Prix de l'offre</td>
+                    <td> Le type de produit</td>
                 </tr>
                     <% 
                        List<Offre> ListeFiltreeOffres = listeOffre;
@@ -38,6 +40,7 @@
                             <td>
                                 <form>
                                     <button name="contrat" value="<%=ExistOffre.getId()%>">Voir</button> 
+                                    <% System.out.println("hgehehe"+ ExistOffre.getId()); %>
                                     <input type="hidden" name="Bouton" value="VoirOffre">
                                 </form>
                             </td>

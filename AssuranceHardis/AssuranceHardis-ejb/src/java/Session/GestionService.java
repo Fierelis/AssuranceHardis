@@ -93,8 +93,8 @@ public class GestionService implements GestionServiceLocal {
     
     
     @Override
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit, Courtier LeCourtier) {
-        offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance, LeTypeDeProduit, LeCourtier);
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit, Courtier LeCourtier, String RSAssureurPartenaire) {
+        offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance, LeTypeDeProduit, LeCourtier, RSAssureurPartenaire);
     }
 
     @Override

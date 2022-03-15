@@ -73,8 +73,8 @@ public class AssuranceServlet extends HttpServlet {
             String act = request.getParameter("action");
             
             if ((act == null) || act.equals("vide")){  
-                
-                /*gestionService.CreerTypeProduit("Sante");
+                /*
+                gestionService.CreerTypeProduit("Sante");
                 gestionService.CreerTypeProduit("Vie");
                 gestionService.CreerTypeProduit("Prevoyance");
                 gestionService.CreerTypeProduit("IARD");
@@ -165,16 +165,17 @@ public class AssuranceServlet extends HttpServlet {
                             request.setAttribute("ListeAllOffre", ListOffre);
                            
                             // liste de tous les courtiers partenaires
-                            System.out.println(a.getId());
+                            //System.out.println(a.getId());
                             
                             List<Courtier>ListCourtier=gestionService.RechercheCourtierPartenaire(a.getId());
                             
-                            System.out.println("taille : "+ ListCourtier.size());
-                            System.out.println("suuuuuuuuuuuu");
+                            //System.out.println("taille : "+ ListCourtier.size());
+                            //System.out.println("suuuuuuuuuuuu");
+                            /*
                             for (int i = 0; i < ListCourtier.size(); i++) {
                                 System.out.println(ListCourtier.get(i).getNomCourtier());
-                            }
-                            System.out.println("suuuuuuuuuuuu");
+                            }*/
+                            //System.out.println("suuuuuuuuuuuu");
                             request.setAttribute("ListCourtier", ListCourtier);
                             
                             // liste de tous les clients souscripteur 
@@ -399,7 +400,6 @@ public class AssuranceServlet extends HttpServlet {
     
     protected void doActionCreerEntreprise(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        String nom = request.getParameter("NomEntreprise");
         String raisonSocial = request.getParameter("RaisonSocial");
         String login = request.getParameter("LoginEntreprise");
         String mdp = request.getParameter("MdpEntreprise");
@@ -407,15 +407,18 @@ public class AssuranceServlet extends HttpServlet {
         String mail = request.getParameter("Email");
         String taille = request.getParameter("TailleEntreprise");
         String siegeSocial = request.getParameter("SiegeSocial");
+        System.out.println(raisonSocial);
         String message;
-        if (nom.trim().isEmpty() || raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty()|| siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+        if (raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty()|| siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerEntreprise.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une Entreprise";
         } else {
             Date dateCreationCompteEntreprise = new Date();
             String typeUser="Entreprise";
             String hashage=gestionClient.HashageSha256(mdp);
+            System.out.println("---------------------"+ hashage);
             java.sql.Date dateCreationEntreprise = java.sql.Date.valueOf(dateCreation);
-            gestionClient.CreerEntreprise(nom,login, hashage,typeUser ,raisonSocial, dateCreationEntreprise, siegeSocial, taille,mail,dateCreationCompteEntreprise);
+            //login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
+            gestionClient.CreerEntreprise(login, hashage, dateCreationCompteEntreprise, typeUser, raisonSocial, siegeSocial, dateCreationEntreprise, taille, mail);
             message = "Entreprise créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -524,7 +527,7 @@ public class AssuranceServlet extends HttpServlet {
             long idAssureur=Long.valueOf(assureur);
             Assureur a=gestionService.RechercherAssureur(idAssureur);
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
-            gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null);
+            gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null, null);
             message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);

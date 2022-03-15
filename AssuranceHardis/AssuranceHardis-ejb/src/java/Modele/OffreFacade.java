@@ -33,7 +33,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
     }
 
     @Override
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur Assurance, TypeProduit LeTypeDeProduit, Courtier LeCourtier){
+    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur Assurance, TypeProduit LeTypeDeProduit, Courtier LeCourtier, String RSAssureurPartenaire){
         Offre nouvelleOffre = new Offre();
         nouvelleOffre.setDescriptionOffreContractuelle(DescriptionOffre);
         nouvelleOffre.setOffreActive(OffreActive);
@@ -43,6 +43,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         nouvelleOffre.setLAssurance(Assurance);
         nouvelleOffre.setTypeOffre(TypeOffre);
         nouvelleOffre.setLeCourtier(LeCourtier);
+        nouvelleOffre.setRSAssureurPartenaire(RSAssureurPartenaire);
         em.persist(nouvelleOffre);
     }
 
