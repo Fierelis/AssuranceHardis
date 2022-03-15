@@ -52,6 +52,26 @@ public class Offre implements Serializable {
     
     @ManyToOne
     private Courtier LeCourtier;
+    @Column
+    private String RSAssureurPartenaire;
+
+    /**
+     * Get the value of RSAssureurPartenaire
+     *
+     * @return the value of RSAssureurPartenaire
+     */
+    public String getRSAssureurPartenaire() {
+        return RSAssureurPartenaire;
+    }
+
+    /**
+     * Set the value of RSAssureurPartenaire
+     *
+     * @param RSAssureurPartenaire new value of RSAssureurPartenaire
+     */
+    public void setRSAssureurPartenaire(String RSAssureurPartenaire) {
+        this.RSAssureurPartenaire = RSAssureurPartenaire;
+    }
 
     /**
      * Get the value of Courtier
