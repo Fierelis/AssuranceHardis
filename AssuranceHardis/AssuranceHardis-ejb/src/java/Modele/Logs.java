@@ -6,11 +6,14 @@
 package Modele;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -23,28 +26,8 @@ public class Logs implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-        private String TypeLog;
-
-    /**
-     * Get the value of TypeLog
-     *
-     * @return the value of TypeLog
-     */
-    public String getTypeLog() {
-        return TypeLog;
-    }
-
-    /**
-     * Set the value of TypeLog
-     *
-     * @param TypeLog new value of TypeLog
-     */
-    public void setTypeLog(String TypeLog) {
-        this.TypeLog = TypeLog;
-    }
-
-    
+    @Column(nullable=false)
+    private String TypeLog;
     @ManyToOne
     private UtilisateurService LogUserService;
     
@@ -59,6 +42,27 @@ public class Logs implements Serializable {
 
     @ManyToOne
     private Administrateur LogUserAdmin;
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date DateLog;
+
+    /**
+     * Get the value of DateLog
+     *
+     * @return the value of DateLog
+     */
+    public Date getDateLog() {
+        return DateLog;
+    }
+
+    /**
+     * Set the value of DateLog
+     *
+     * @param DateLog new value of DateLog
+     */
+    public void setDateLog(Date DateLog) {
+        this.DateLog = DateLog;
+    }
 
     /**
      * Get the value of LogUserAdmin
@@ -149,6 +153,23 @@ public class Logs implements Serializable {
      */
     public void setLogUserService(UtilisateurService LogUserService) {
         this.LogUserService = LogUserService;
+    }
+ /**
+     * Get the value of TypeLog
+     *
+     * @return the value of TypeLog
+     */
+    public String getTypeLog() {
+        return TypeLog;
+    }
+
+    /**
+     * Set the value of TypeLog
+     *
+     * @param TypeLog new value of TypeLog
+     */
+    public void setTypeLog(String TypeLog) {
+        this.TypeLog = TypeLog;
     }
 
 

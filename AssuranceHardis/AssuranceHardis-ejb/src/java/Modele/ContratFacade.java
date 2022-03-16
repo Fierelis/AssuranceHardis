@@ -33,7 +33,7 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
     }
 
     @Override
-    public void CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat) {
+    public Contrat CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat) {
         Contrat NewContrat = new Contrat();
         Date DateToday = new Date();
         NewContrat.setDateContrat(DateToday);
@@ -43,6 +43,7 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
         NewContrat.setLoffreDuContrat(Loffre);
         NewContrat.setLeClientduContrat(ClientDuContrat);
         em.persist(NewContrat);
+        return NewContrat;
     }
 
     @Override
@@ -73,4 +74,15 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
         return c;
     }
     
+    @Override
+    public List<Contrat> GetListContrat(){
+        try {
+            String txt = "Select Con from Contrat as Con";
+            Query req = getEntityManager().createQuery(txt);
+            List<Contrat> result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+             return null;
+        }   
+    }
 }

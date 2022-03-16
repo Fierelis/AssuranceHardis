@@ -32,7 +32,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     }
 
     @Override
-    public void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail) {
+    public Entreprise CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail) {
         Entreprise entreprise = new Entreprise();
         entreprise.setLogin(login);
         entreprise.setMdp(mdp);
@@ -45,6 +45,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         entreprise.setTailleEntreprise(tailleEntreprise);
         entreprise.setMail(mail);
         getEntityManager().persist(entreprise);
+        return entreprise;
     }
 
     @Override

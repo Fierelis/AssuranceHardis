@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -28,5 +29,9 @@ public interface LogsFacadeLocal {
     List<Logs> findRange(int[] range);
 
     int count();
+
+    public void CreerLog(UtilisateurClient LeClient, UtilisateurService LeService, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
+
+    public List<Logs> GetAllLogs();
     
 }

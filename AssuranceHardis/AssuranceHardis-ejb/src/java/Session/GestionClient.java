@@ -39,8 +39,9 @@ public class GestionClient implements GestionClientLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override
-    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail) {
-        clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban, mail);
+    public ClientUnique CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail) {
+        ClientUnique ClientU = clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban, mail);
+        return ClientU;
     }
 
     @Override
@@ -66,15 +67,16 @@ public class GestionClient implements GestionClientLocal {
     }
 
     @Override
-    public void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail) {
+    public Entreprise CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail) {
         //String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail) {
-
-        entrepriseFacade.CreerEntreprise(login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
+        Entreprise Boite = entrepriseFacade.CreerEntreprise(login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
+        return Boite;
     }
 
     @Override
-    public void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat) {
-        contratFacade.CreerContrat(Loffre, DureeContrat, Client);
+    public Contrat CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat) {
+        Contrat con = contratFacade.CreerContrat(Loffre, DureeContrat, Client);
+        return con;
     }
 
     @Override
@@ -100,5 +102,8 @@ public class GestionClient implements GestionClientLocal {
     public Contrat RechercherContrat(long id) {
         return contratFacade.RechercherContrat(id);
     }
-
+    @Override
+    public List<Contrat> GetListContrat(){
+        return contratFacade.GetListContrat();
+    }
 }
