@@ -355,7 +355,7 @@ public class AssuranceServlet extends HttpServlet {
 
                 }
             } else if (act.equals("VoirOffre")) {
-                doActionAfficherOffre(request, response);
+                
                 jspClient = "/VoirOffre.jsp";
             }
             else if (act.equals("Souscrire")){
@@ -438,21 +438,7 @@ public class AssuranceServlet extends HttpServlet {
         request.setAttribute("message", message);
     }
 
-    protected void doActionAfficherOffre(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-        String Offre = request.getParameter("contrat");
 
-        String message;
-        if (Offre.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
-            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
-        } else {
-            long IdOffre = Long.parseLong(Offre);
-            Offre offer = gestionService.RechercherOffre(IdOffre);
-            message = "offre N° " + offer.getId();
-            request.setAttribute("offreJSP", offer);
-        }
-        request.setAttribute("message", message);
-    }
      protected void doActionAfficherContrat(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String Contrat = request.getParameter("contrat");
