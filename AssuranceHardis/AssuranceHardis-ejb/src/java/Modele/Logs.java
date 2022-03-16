@@ -24,6 +24,27 @@ public class Logs implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+        private String TypeLog;
+
+    /**
+     * Get the value of TypeLog
+     *
+     * @return the value of TypeLog
+     */
+    public String getTypeLog() {
+        return TypeLog;
+    }
+
+    /**
+     * Set the value of TypeLog
+     *
+     * @param TypeLog new value of TypeLog
+     */
+    public void setTypeLog(String TypeLog) {
+        this.TypeLog = TypeLog;
+    }
+
+    
     @ManyToOne
     private UtilisateurService LogUserService;
     

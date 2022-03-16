@@ -20,7 +20,14 @@
         <%Entreprise Boite = EntrepriseJSP;
           Offre offer = ContratJSP;
         %>
-        
+          <form>
+        <button class="button login__submit">
+            <span class="button__text">Home</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="home">
+          </form>
         <h1>Confirmez vous la souscription à cette offrea</h1>
         <form>
             <fieldset><h2>Vous</h2>

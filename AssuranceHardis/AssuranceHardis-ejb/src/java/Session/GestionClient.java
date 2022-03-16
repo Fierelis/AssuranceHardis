@@ -66,8 +66,10 @@ public class GestionClient implements GestionClientLocal {
     }
 
     @Override
-    public void CreerEntreprise(String nom, String login, String mdp, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail, Date dateCreationCompte) {
-        entrepriseFacade.CreerEntreprise(nom, login, mdp, dateCreationCompte, typeUser, raisonSocial, dateCreationEntreprise, siegeSocial, tailleEntreprise, mail);
+    public void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail) {
+        //String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail) {
+
+        entrepriseFacade.CreerEntreprise(login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
     }
 
     @Override

@@ -30,11 +30,13 @@
          <div id="TableauOffres">
             <h2>Totalités des offre</h2>
             <p> Filtrer : <input type="text" class="table-filter" data-table="livres"></p>
+            
             <table class="livres">
-                <tr><td>Type d'Offre</td>
-                    <td>Description de l'offre</td>
-                    <td>Prix de l'offre</td>
-                    <td>Le type de produit</td>
+                <tr>
+                    <td> Type d'Offre</td>
+                    <td> Description de l'offre</td>
+                    <td> Prix de l'offre</td>
+                    <td> Le type de produit</td>
                 </tr>
                     <% 
                        List<Offre> ListeFiltreeOffres = listeOffre;
@@ -45,8 +47,11 @@
                             <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit() %></td>
                             <td>
                                 <form>
-                                    <button name="contrat" value="<%=ExistOffre.getId()%>">Voir</button> 
-                                    <input type="hidden" name="Bouton" value="VoirOffre">
+                                    
+                                    
+                                    <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
+                                    <input type="Submit" value="Voir l'Offre">
+                                    <input type="hidden" name="action" value="VoirOffre">
                                 </form>
                             </td>
                         </tr>

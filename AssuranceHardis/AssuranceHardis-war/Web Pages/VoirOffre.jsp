@@ -10,9 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <jsp:useBean id="offreJSP" scope="request" class="Modele.Offre"></jsp:useBean>
-        <title>JSP Page</title>
+        <jsp:useBean id="Offre" scope="request" class="Modele.Offre"></jsp:useBean>
+
+        <title>Offre</title>
     </head>
+    <% Offre o= Offre;%>
     <body>
          <form>
         <button class="button login__submit">
