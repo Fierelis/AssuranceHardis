@@ -107,7 +107,7 @@
                                     <h2>Bienvenue sur la plateforme du groupe Hardis - Bilal FDP</h2>
                                     <p>Vous n'avez pas de compte ?</p>
                                     <form>
-                                    <button type="submit" class="form-control btn btn-white btn-outline-white">S'Inscrire</button>
+                                    <button type="submit" class="form-control btn btn-white btn-outline-white">S'inscrire</button>
                                     <input type="hidden" name="action" value="MenuCreerCompte">
                                     </form>
                                 </div>

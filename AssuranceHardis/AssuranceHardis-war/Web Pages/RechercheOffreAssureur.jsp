@@ -39,9 +39,11 @@
                             <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit() %></td>
                             <td>
                                 <form>
-                                    <button name="contrat" value="<%=ExistOffre.getId()%>">Voir</button> 
-                                    <% System.out.println("hgehehe"+ ExistOffre.getId()); %>
-                                    <input type="hidden" name="Bouton" value="VoirOffre">
+                                    
+                                    
+                                    <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
+                                    <input type="Submit" value="Voir l'Offre">
+                                    <input type="hidden" name="action" value="VoirOffre">
                                 </form>
                             </td>
                         </tr>

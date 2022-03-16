@@ -96,7 +96,7 @@ public class AssuranceServlet extends HttpServlet {
             }
             else if(act.equals("CreerAssur")){
                 doActionCreerAssur(request, response);
-                jspClient="/Connexion.jsp";;
+                jspClient="/Connexion.jsp";
             }
             else if(act.equals("CreerCourtier")){
                 doActionCreerCourtier(request, response);
@@ -313,6 +313,14 @@ public class AssuranceServlet extends HttpServlet {
                 Contrat SupprContrat = gestionClient.RechercherContrat(IdContrat);
                 request.setAttribute("Contrat",SupprContrat);
                 jspClient = "/ResilierContrat.jsp";
+            }          
+            else if (act.equals("VoirOffre")){             
+                jspClient = "/VoirOffre.jsp";
+                String id=request.getParameter("idOffre");
+                Long idOffre=Long.valueOf(id);
+                System.out.println(idOffre);
+                Offre o= gestionService.RechercheOffre(idOffre);
+                request.setAttribute("Offre",o);
             }
             
             //___________________________________RECHERCHER__OFFRE__PAR__SESSION______________________________________________________________________________________________

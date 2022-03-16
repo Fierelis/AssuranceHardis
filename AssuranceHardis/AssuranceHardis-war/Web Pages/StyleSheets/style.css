@@ -1,20 +1,10 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 15 mars 2022, 09:59:30
-    Author     : alexa
-*/
-
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -8196,7 +8186,7 @@ h1, h2, h3, h4, h5,
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
 
-.text-wrap, .login-wrap {
+.text-wrap, .login-wrap, .text-wrapp {
   width: 50%; }
   @media (max-width: 991.98px) {
     .text-wrap, .login-wrap {
@@ -8223,6 +8213,12 @@ h1, h2, h3, h4, h5,
   background: #fff; }
   .login-wrap h3 {
     font-weight: 300; }
+
+    .text-wrapp {
+      position: relative;
+      background: #fff; }
+      .text-wrapp h3 {
+        font-weight: 300; }
 
 .form-group {
   position: relative; }
