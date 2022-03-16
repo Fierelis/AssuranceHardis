@@ -16,5 +16,6 @@
     <body>
         <%Contrat Con = Contrat;%>
         <h1>Vous êtes ici pour résilier votre contrat <%=Contrat.getLoffreDuContrat().getLeTypeDeProduit() %></h1>
+        
     </body>
 </html>

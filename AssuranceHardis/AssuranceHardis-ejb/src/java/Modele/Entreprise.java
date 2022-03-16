@@ -126,9 +126,9 @@ public class Entreprise extends UtilisateurClient implements Serializable {
     /**
      * Set the value of raisonSocialSocial
      *
-     * @param raisonSocialSocial new value of raisonSocialSocial
+     * @param raisonSocialeEntreprise
      */
-    public void setRaisonSocialeEntreprise(String raisonSocialSocial) {
+    public void setRaisonSocialeEntreprise(String raisonSocialeEntreprise) {
         this.raisonSocialeEntreprise = raisonSocialeEntreprise;
     }
 

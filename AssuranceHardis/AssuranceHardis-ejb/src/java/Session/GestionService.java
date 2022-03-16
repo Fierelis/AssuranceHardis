@@ -138,5 +138,10 @@ public class GestionService implements GestionServiceLocal {
     public List GetAllOffreAssureur(long idAssureur) {
         return offreFacade.GetAllOffreAssureur(idAssureur);
     }
+
+    @Override
+    public Offre RechercherOffre(long id) {
+        return offreFacade.RechercherOffre(id);
+    }
     
 }

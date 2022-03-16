@@ -27,6 +27,14 @@
          <% List<Courtier> listeCourtierPartenaire= ListCourtier;%>
          
         <h1>Bienvenue sur votre espace <%=a.getLoginUserService()%></h1>
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Home</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="home">
+        </form>
         
          <form method="get" action="AssuranceServlet">
             <input type="hidden" name="action" value="RechercherOffre">

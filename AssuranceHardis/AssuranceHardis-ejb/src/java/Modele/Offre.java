@@ -40,7 +40,7 @@ public class Offre implements Serializable {
     private String DescriptionOffreContractuelle;
     @Column(nullable=false)
     private boolean OffreActive;
-
+    
     @ManyToOne
     private TypeProduit LeTypeDeProduit;
     
@@ -52,6 +52,7 @@ public class Offre implements Serializable {
     
     @ManyToOne
     private Courtier LeCourtier;
+    
     @Column
     private String RSAssureurPartenaire;
 
@@ -59,7 +60,7 @@ public class Offre implements Serializable {
      * Get the value of RSAssureurPartenaire
      *
      * @return the value of RSAssureurPartenaire
-     */
+     */ 
     public String getRSAssureurPartenaire() {
         return RSAssureurPartenaire;
     }

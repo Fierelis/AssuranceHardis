@@ -155,6 +155,17 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         List<Offre> result = req.getResultList();
         return result;      
     }
+
+    @Override
+    public Offre RechercherOffre(long idOffre) {
+        Offre Offer = null;
+        String txt = "Select Offre from Offre as Offre where Offre.id=:idOffre";
+        Query req = getEntityManager().createQuery(txt);
+        req.setParameter("idOffre", idOffre);
+        Offer = (Offre) req.getSingleResult();
+        return Offer;
+
+    }
     
     
 }
