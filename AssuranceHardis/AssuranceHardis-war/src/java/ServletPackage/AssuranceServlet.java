@@ -97,7 +97,11 @@ public class AssuranceServlet extends HttpServlet {
             } else if (act.equals("CreerAdmin")) {
                 doActionCreerAdmin(request, response);
                 jspClient = "/Connexion.jsp";
-            } // SESSION --------------------------------------------------------------------------------------------------------------------------
+            } 
+
+
+
+            // SESSION --------------------------------------------------------------------------------------------------------------------------
             else if (act.equals("Connexion")) {
                 String login = request.getParameter("login");
                 String mdp = request.getParameter("mdp");
