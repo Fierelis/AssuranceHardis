@@ -42,8 +42,9 @@ public class GestionService implements GestionServiceLocal {
     // "Insert Code > Add Business Method")
 
     @Override
-    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
-        assureurFacade.CreerAssureur(LoginUserService, PasswordUserService, TypeUserService, RaisonSocialeAssureur, DateCreation, MailAssurance, SiegeSocialAssureur, SIREN);
+    public Assureur CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN){
+        Assureur a = assureurFacade.CreerAssureur(LoginUserService, PasswordUserService, TypeUserService, RaisonSocialeAssureur, DateCreation, MailAssurance, SiegeSocialAssureur, SIREN);
+    return a;
     }
 
     @Override
@@ -58,8 +59,9 @@ public class GestionService implements GestionServiceLocal {
     }
 
     @Override
-    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier, String VilleCourtier, String CPCourtier) {
-        courtierFacade.CreerCourtier(NomCourtier, PrenomCourtier, DateNaissanceCourtier, AdresseCourtier, MailCourtier, LoginCourtier, PasswordCourtier, TypeUserCourtier, VilleCourtier, CPCourtier);
+    public Courtier CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier, String VilleCourtier, String CPCourtier) {
+       Courtier c=  courtierFacade.CreerCourtier(NomCourtier, PrenomCourtier, DateNaissanceCourtier, AdresseCourtier, MailCourtier, LoginCourtier, PasswordCourtier, TypeUserCourtier, VilleCourtier, CPCourtier);
+    return c;
     }
 
     @Override
@@ -93,8 +95,9 @@ public class GestionService implements GestionServiceLocal {
     
     
     @Override
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit, Courtier LeCourtier, String RSAssureurPartenaire) {
-        offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance, LeTypeDeProduit, LeCourtier, RSAssureurPartenaire);
+    public Offre CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit, Courtier LeCourtier, String RSAssureurPartenaire) {
+       Offre offer =  offreFacade.CreerOffre(TypeOffre, PrixOffre, DescriptionOffre, OffreActive, IdUtilisateurService, PartenariatAssurance, LeTypeDeProduit, LeCourtier, RSAssureurPartenaire);
+    return offer;
     }
 
     @Override

@@ -21,13 +21,13 @@ import javax.ejb.Local;
 public interface GestionServiceLocal {
 
 
-    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN);
+    public Assureur CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN);
 
     Assureur RechercherAssureur(long IdAssureur);
 
     void SupprimerAssureur(long IdAssureur);
 
-    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier, String VilleCourtier, String CPCourtier);
+    public Courtier CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String MailCourtier, String LoginCourtier, String PasswordCourtier, String TypeUserCourtier, String AdresseCourtier, String VilleCourtier, String CPCourtier);
 
     Courtier RechercherCourtier(long IdCourtier);
 
@@ -53,7 +53,7 @@ public interface GestionServiceLocal {
     
     public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String VilleCourtier, String CPCourtier);
 
-    public void CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance, TypeProduit LeTypeDeProduit, Courtier LeCourtier,String RSAssureurPartenaire);
+    public Offre CreerOffre(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance, TypeProduit LeTypeDeProduit, Courtier LeCourtier,String RSAssureurPartenaire);
     List GetAllOffreAssureur(long idAssureur);
 
     Offre RechercherOffre(long id);

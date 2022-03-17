@@ -438,8 +438,9 @@ public class AssuranceServlet extends HttpServlet {
             Date dateCreation = new Date();
             String typeUser = "Client Unique";
             String hashage = gestionClient.HashageSha256(mdp);
-
-            gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban, email);
+            ClientUnique CU = gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban, email);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(CU, null, null, null, null, TypeLog);
             message = "Client créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -496,7 +497,9 @@ public class AssuranceServlet extends HttpServlet {
             System.out.println("---------------------"+ hashage);
             java.sql.Date dateCreationEntreprise = java.sql.Date.valueOf(dateCreation);
             //login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
-            gestionClient.CreerEntreprise(login, hashage, dateCreationCompteEntreprise, typeUser, raisonSocial, siegeSocial, dateCreationEntreprise, taille, mail);
+            Entreprise boite = gestionClient.CreerEntreprise(login, hashage, dateCreationCompteEntreprise, typeUser, raisonSocial, siegeSocial, dateCreationEntreprise, taille, mail);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(boite, null, null, null, null, TypeLog);
             message = "Entreprise créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -522,7 +525,9 @@ public class AssuranceServlet extends HttpServlet {
             String hashage = gestionClient.HashageSha256(Mdp);
             Long siren = Long.valueOf(numSiren);
             java.sql.Date dateCreationAssurance = java.sql.Date.valueOf(DateCreation);
-            gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
+             Assureur Assur = gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(null, Assur, null, null, null, TypeLog);
 
             message = "Assureur créé avec succès !";
         }
@@ -549,7 +554,9 @@ public class AssuranceServlet extends HttpServlet {
             String typeUser = "Courtier";
             java.sql.Date dateNaissanceCourtier = java.sql.Date.valueOf(dateNaissance);
             String hashage = gestionClient.HashageSha256(Mdp);
-            gestionService.CreerCourtier(nom, prenom, dateNaissanceCourtier, Email, Login, hashage, typeUser, adresse, ville, cp);
+            Courtier court = gestionService.CreerCourtier(nom, prenom, dateNaissanceCourtier, Email, Login, hashage, typeUser, adresse, ville, cp);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(null, court, null, null, null, TypeLog);
 
             message = "Courtier créé avec succès !";
         }
@@ -604,7 +611,9 @@ public class AssuranceServlet extends HttpServlet {
             long idAssureur = Long.valueOf(assureur);
             Assureur a = gestionService.RechercherAssureur(idAssureur);
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
-            gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null, null);
+            Offre offer = gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null, null);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(null, null, offer, null, null, TypeLog);
             message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -630,6 +639,8 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             Courtier court = gestionService.RechercherCourtier(id);
             gestionService.ModifierInformationsCourtier(court, nom, prenom, adresse, mail, login, mdp, ville, codepostal);
+            String TypeLog = "Modify";
+            gestionAdmin.CreerLog(null, court, null, null, null, TypeLog);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
@@ -653,6 +664,8 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(id);
             gestionClient.ModificationClientUnique(ClientU, prenom, nom, login, mdp, iban, mail);
+            String TypeLog = "Modify";
+            gestionAdmin.CreerLog(ClientU, null, null, null, null, TypeLog);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
@@ -675,6 +688,8 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             Entreprise Boite = gestionClient.RechercherEntreprise(id);
             gestionClient.ModifierEntreprise(Boite, login, mdp, raisonSociale, siegeSocial, taille, mail);
+            String TypeLog = "Modify";
+            gestionAdmin.CreerLog(Boite, null, null, null, null, TypeLog);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
@@ -695,7 +710,9 @@ public class AssuranceServlet extends HttpServlet {
             int DureeContrat = Integer.parseInt(Duree);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(IdClient);
             Offre Loffre = gestionService.RechercherOffre(IdOffre);
-            gestionClient.CreerContrat(Loffre, ClientU, DureeContrat);
+            Contrat contra = gestionClient.CreerContrat(Loffre, ClientU, DureeContrat);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(ClientU, null, null, contra, null, TypeLog);
             message = "Contrat créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -715,7 +732,9 @@ public class AssuranceServlet extends HttpServlet {
             int DureeContrat = Integer.parseInt(Duree);
             Entreprise Boite = gestionClient.RechercherEntreprise(IdClient);
             Offre Loffre = gestionService.RechercherOffre(IdOffre);
-            gestionClient.CreerContrat(Loffre, Boite, DureeContrat);
+            Contrat contra = gestionClient.CreerContrat(Loffre, Boite, DureeContrat);
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(Boite, null, null, contra, null, TypeLog);
             message = "Contrat créé avec succès !";
         }
         request.setAttribute("message", message);

@@ -44,8 +44,11 @@
             
             <tr>
                 <td><%=L.getTypeLog() %></td>
-
-                   <td><% %></td>
+                <td><%if(L.getLogUserClient().getId()!=null ){%><%=L.getLogUserClient().getId() %> <%} %></td> <!-- NULL POINT, il faut trouver une solution-->
+                 <td><%if(L.getLogUserService().getId()!=null ){%><%=L.getLogUserService().getId() %><% } %></td>
+                 <td><%if(L.getLogOffre().getId() !=null ){%><%=L.getLogUserClient().getId() %><% } %></td>
+                   <td><%if(L.getLogContrat().getId() !=null ){%><%=L.getLogUserClient().getId() %><% } %></td>
+                   <td><%=L.getDateLog() %></td>
                   
             </tr>
         </table>

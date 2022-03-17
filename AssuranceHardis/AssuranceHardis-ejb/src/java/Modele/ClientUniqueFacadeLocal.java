@@ -30,7 +30,7 @@ public interface ClientUniqueFacadeLocal {
 
     int count();
 
-    void CreationClientUnique(String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail);
+    ClientUnique CreationClientUnique(String prenom, String nom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail);
 
     ClientUnique RechercheClientUnique(long id);
 

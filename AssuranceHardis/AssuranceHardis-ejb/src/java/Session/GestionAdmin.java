@@ -7,6 +7,11 @@ package Session;
 
 import Modele.Administrateur;
 import Modele.AdministrateurFacadeLocal;
+import Modele.Contrat;
+import Modele.LogsFacadeLocal;
+import Modele.Offre;
+import Modele.UtilisateurClient;
+import Modele.UtilisateurService;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -16,6 +21,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestionAdmin implements GestionAdminLocal {
+
+    @EJB
+    private LogsFacadeLocal logsFacade;
 
     @EJB
     private AdministrateurFacadeLocal administrateurFacade;
@@ -44,7 +52,10 @@ public class GestionAdmin implements GestionAdminLocal {
         Administrateur Admin = administrateurFacade.AuthentificationAdmin(LoginAdmin, PasswordAdmin);
         return Admin;
     }
-    
+    @Override
+    public void CreerLog(UtilisateurClient LeClient, UtilisateurService LeService, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog) {
+        logsFacade.CreerLog(LeClient, LeService, Loffre, LeContrat, LAdmin, TypeLog);
+    }
     
     
     

@@ -32,7 +32,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
     }
 
     @Override
-    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN) {
+    public Assureur CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN) {
         Assureur Assur = new Assureur();
         Assur.setLoginUserService(LoginUserService);
         Assur.setPasswordUserService(PasswordUserService);
@@ -42,7 +42,9 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         Assur.setSiegeSocialAssureur(SiegeSocialAssureur);
         Assur.setSirenAssureur(SIREN);
         Assur.setRaisonSocialeAssureur(RaisonSocialeAssureur);
+        Assur.setActivationUser(false);
         em.persist(Assur);
+        return Assur;
     }
 
     @Override

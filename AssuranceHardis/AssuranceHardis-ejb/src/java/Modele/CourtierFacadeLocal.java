@@ -30,7 +30,7 @@ public interface CourtierFacadeLocal {
 
     int count();
 
-    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier, String VilleCourtier, String CPCourtier);
+    public Courtier CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier, String VilleCourtier, String CPCourtier);
 
     public Courtier RechercherCourtier(long IdCourtier);
 

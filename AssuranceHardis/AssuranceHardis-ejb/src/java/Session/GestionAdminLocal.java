@@ -6,6 +6,10 @@
 package Session;
 
 import Modele.Administrateur;
+import Modele.Contrat;
+import Modele.Offre;
+import Modele.UtilisateurClient;
+import Modele.UtilisateurService;
 import javax.ejb.Local;
 
 /**
@@ -22,5 +26,7 @@ public interface GestionAdminLocal {
     void SupprimerAdministrateur(long IdAdmin);
 
     Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin);
+
+    public void CreerLog(UtilisateurClient LeClient, UtilisateurService LeService, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
     
 }
