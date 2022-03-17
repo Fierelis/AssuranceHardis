@@ -18,7 +18,7 @@
     </head>
     <body>
          <%Assureur Assur = AssureurJSP;%>
-        <h1>Recherche d'offre</h1
+         <h1>Recherche d'offre</h1>
         <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
@@ -27,6 +27,7 @@
             
               <input type="hidden" name="action" value="home">
         </form>
+            
          <div id="TableauOffres">
             <h2>Totalités des offre</h2>
             <p> Filtrer : <input type="text" class="table-filter" data-table="livres"></p>

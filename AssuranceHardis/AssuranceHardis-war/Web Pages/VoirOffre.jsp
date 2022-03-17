@@ -24,17 +24,17 @@
             
               <input type="hidden" name="action" value="home">
         </form>
-        <h1>Afficher ICI toutes les informations sur une Offre</h1>
+        <h1>Information sur l'offre numéro <%=o.getId() %></h1>
         
         
         
         <table>
-            <tr> <td>Type de Produit</td><td><%=o.getLeTypeDeProduit() %></td></tr>
+            <tr> <td>Type de Produit</td><td><%=o.getLeTypeDeProduit().getNomTypeProduit() %></td></tr>
             <tr> <td>Type de Contrat</td><td><%=o.getTypeOffre() %></td></tr>
             <tr> <td>Description Contrat</td><td><%=o.getDescriptionOffreContractuelle() %></td></tr>
             <tr> <td>Assureur</td><td><%=o.getLAssurance().getRaisonSocialeAssureur() %></td></tr>
             <tr> <td>Courtier</td>  <td><%=o.getLeCourtier().getNomCourtier() %></td></tr>
-            <tr> <td>Prix de l'Offre</td><td><%=o.getPrixOffre() %></td></tr>
+            <tr> <td>Prix de l'Offre</td><td><%=o.getPrixOffre() %> €</td></tr>
             <form>
                 <button name="contrat" value="<%=o.getId()%>">Souscrire</button> 
                 <input type="hidden" name="Bouton" value="Souscrire">
