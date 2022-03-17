@@ -29,12 +29,10 @@ public interface ContratFacadeLocal {
 
     int count();
 
-    public Contrat CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat);
+    public void CreerContrat(Offre Loffre, int DureeContrat, UtilisateurClient ClientDuContrat);
 
     List<Contrat> RecupererContratSouscrit(ClientUnique Utilisateur, Entreprise Boite);
 
     Contrat RechercherContrat(long id);
-
-    public List<Contrat> GetListContrat();
     
 }

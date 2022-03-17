@@ -25,7 +25,7 @@
                     <input type="text" name="PrenomAdmin" Value="" size="40" maxlength="100" /> <br />
                     
                     <label for="MailAdmin">Mail : <span class="requis"></span></label>
-                    <input type="text" name="MailAdmin" value="" size="40" maxlength="45" /><br />
+                    <input type="password" name="MailAdmin" value="" size="40" maxlength="45" /><br />
                     
                     <label for="LoginAdmin"> Login : <span class="requis"></span></label>
                     <input type="text" name="LoginAdmin" value="" size="40" maxlength="45" /><br />

@@ -30,7 +30,7 @@ public interface EntrepriseFacadeLocal {
 
     int count();
 
-    Entreprise CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail);
+    void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail);
 
     Entreprise RechercheEntreprise(long id);
 

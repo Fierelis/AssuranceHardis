@@ -32,7 +32,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
     }
 
     @Override
-    public Assureur CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN) {
+    public void CreerAssureur(String LoginUserService, String PasswordUserService, String TypeUserService, String RaisonSocialeAssureur, Date DateCreation, String MailAssurance, String SiegeSocialAssureur, long SIREN) {
         Assureur Assur = new Assureur();
         Assur.setLoginUserService(LoginUserService);
         Assur.setPasswordUserService(PasswordUserService);
@@ -43,7 +43,6 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         Assur.setSirenAssureur(SIREN);
         Assur.setRaisonSocialeAssureur(RaisonSocialeAssureur);
         em.persist(Assur);
-        return Assur;
     }
 
     @Override
@@ -89,15 +88,5 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         }
 
     }
-    @Override
-    public List<Assureur> GetListAssureurs(){
-         try {
-            String txt = "Select A from Assureur as A";
-            Query req = getEntityManager().createQuery(txt);
-            List<Assureur> result = req.getResultList();
-            return result;
-        } catch (Exception e) {
-             return null;
-        }   
-    }
+
 }

@@ -56,11 +56,11 @@
         </form>
             <form>
                 <button class="button login__submit">
-                    <span class="button__text">Home</span>
+                    <span class="button__text">Retour</span>
                      <i class="button__icon fas fa-chevron-right"></i>
                 </button>
         
-              <input type="hidden" name="action" value="home">
+              <input type="hidden" name="action" value="RetourSessionClient">
             </form>
     </body>
 </html>

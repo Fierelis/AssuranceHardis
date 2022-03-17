@@ -32,7 +32,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     }
 
     @Override
-    public Courtier CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier, String VilleCourtier, String CPCourtier) {
+    public void CreerCourtier(String NomCourtier, String PrenomCourtier, Date DateNaissanceCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String TypeUserServiceCourtier, String VilleCourtier, String CPCourtier) {
     Courtier NouveauCourtier = new Courtier();
     NouveauCourtier.setAdresseCourtier(AdresseCourtier);
     NouveauCourtier.setDateNaissanceCourtier(DateNaissanceCourtier);
@@ -45,8 +45,6 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     NouveauCourtier.setCPCourtier(CPCourtier);
     NouveauCourtier.setTypeUserService("Courtier");
     em.persist(NouveauCourtier);
-    return NouveauCourtier;
-    
     }
     
     @Override
@@ -116,15 +114,5 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     em.merge(court);
         
     }
-    @Override
-    public List<Courtier> GetListCourtier(){
-         try {
-            String txt = "Select Court from Courtier as Court";
-            Query req = getEntityManager().createQuery(txt);
-            List<Courtier> result = req.getResultList();
-            return result;
-        } catch (Exception e) {
-             return null;
-        }   
-    }
+    
 }

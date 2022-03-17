@@ -21,7 +21,7 @@ import javax.ejb.Local;
 @Local
 public interface GestionClientLocal {
 
-    public ClientUnique CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail);
+    public void CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail);
 
     ClientUnique RechercherClientUnique(long IdclientUnique);
 
@@ -30,9 +30,9 @@ public interface GestionClientLocal {
     public Entreprise AuthentificationEntreprise(String LoginEntreprise, String PasswordEntreprise);
     String HashageSha256(String mdp);
 
-    Entreprise CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail);
+    void CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail);
 
-    Contrat CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat);
+    void CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat);
 
     public List<Contrat> RecupererContratClient(ClientUnique Client, Entreprise Boite);
 
@@ -43,8 +43,6 @@ public interface GestionClientLocal {
     public void ModifierEntreprise(Entreprise Boite, String login, String mdp, String raisonSocial, String siegeSocial, String tailleEntreprise, String mail);
 
     Contrat RechercherContrat(long id);
-
-    public List<Contrat> GetListContrat();
 
   
 }
