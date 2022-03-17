@@ -34,6 +34,7 @@
          <table>
             <tr>
                 <td>Type</td>
+                <td>Utilisateur</td>
                 <td>Date</td>
                 <td>Statut</td>
             </tr>

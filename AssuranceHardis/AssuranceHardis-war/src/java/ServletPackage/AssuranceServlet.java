@@ -72,11 +72,6 @@ public class AssuranceServlet extends HttpServlet {
             String act = request.getParameter("action");
 
             if ((act == null) || act.equals("vide")) {
-                sess.setAttribute("Courtier", null);
-                sess.setAttribute("Entreprise", null);
-                sess.setAttribute("ClientUnique", null);
-                sess.setAttribute("Assureur", null);
-                sess.setAttribute("Admin", null);
                 /*gestionService.CreerTypeProduit("Sante");
                 gestionService.CreerTypeProduit("Vie");
                 gestionService.CreerTypeProduit("Prevoyance");
