@@ -123,4 +123,11 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         Client.setMail(mail);
         getEntityManager().merge(Client);
     }
+
+    @Override
+    public void ValiderInscription(ClientUnique client) {
+        client.setActivationUser(true);
+        em.merge(client);
+    }
+    
 }

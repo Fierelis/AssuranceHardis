@@ -146,5 +146,12 @@ public class GestionService implements GestionServiceLocal {
     public Offre RechercherOffre(long id) {
         return offreFacade.RechercherOffre(id);
     }
-    
+    @Override
+    public void ValiderInscriptionCourtier(Courtier court) {
+        courtierFacade.ValiderInscription(court);
+    }
+    @Override
+    public void ValiderInscriptionAssureur(Assureur Assur) {
+        assureurFacade.ValiderInscription(Assur);
+    }
 }

@@ -30,7 +30,7 @@ public interface FactureFacadeLocal {
 
     int count();
 
-    void CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement);
+    Facture CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement);
 
     Facture RechercherFacture(long id);
 

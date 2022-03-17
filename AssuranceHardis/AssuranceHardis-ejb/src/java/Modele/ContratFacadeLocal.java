@@ -34,5 +34,7 @@ public interface ContratFacadeLocal {
     List<Contrat> RecupererContratSouscrit(ClientUnique Utilisateur, Entreprise Boite);
 
     Contrat RechercherContrat(long id);
+
+    public List<Contrat> GetListContrat();
     
 }

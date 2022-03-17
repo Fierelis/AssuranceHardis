@@ -23,6 +23,9 @@ import javax.persistence.Temporal;
 @Entity
 public class Assureur extends UtilisateurService implements Serializable{
 
+    @OneToMany(mappedBy = "LogAssureur")
+    private List<Logs> Leslogs;
+
     @OneToMany(mappedBy = "LAssurance")
     private List<Offre> LesOffresPartenaire;
 

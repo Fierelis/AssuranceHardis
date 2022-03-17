@@ -74,4 +74,15 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
         return c;
     }
     
+    @Override
+    public List<Contrat> GetListContrat(){
+        try {
+            String txt = "Select Con from Contrat as Con";
+            Query req = getEntityManager().createQuery(txt);
+            List<Contrat> result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+             return null;
+        }   
+    }
 }

@@ -32,49 +32,6 @@ public class Logs implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date DateLog;
 
-    /**
-     * Get the value of DateLog
-     *
-     * @return the value of DateLog
-     */
-    public Date getDateLog() {
-        return DateLog;
-    }
-
-    /**
-     * Set the value of DateLog
-     *
-     * @param DateLog new value of DateLog
-     */
-    public void setDateLog(Date DateLog) {
-        this.DateLog = DateLog;
-    }
-
-    /**
-     * Get the value of TypeLog
-     *
-     * @return the value of TypeLog
-     */
-    public String getTypeLog() {
-        return TypeLog;
-    }
-
-    /**
-     * Set the value of TypeLog
-     *
-     * @param TypeLog new value of TypeLog
-     */
-    public void setTypeLog(String TypeLog) {
-        this.TypeLog = TypeLog;
-    }
-
-    
-    @ManyToOne
-    private UtilisateurService LogUserService;
-    
-    @ManyToOne
-    private UtilisateurClient LogUserClient;
-
     @ManyToOne
     private Contrat LogContrat;
 
@@ -84,6 +41,91 @@ public class Logs implements Serializable {
     @ManyToOne
     private Administrateur LogUserAdmin;
 
+    @ManyToOne
+    private Courtier LogCourtier;
+
+    @ManyToOne
+    private Assureur LogAssureur;
+
+    @ManyToOne
+    private ClientUnique LogClientUnique;
+
+    @ManyToOne
+    private Entreprise LogEntreprise;
+
+    /**
+     * Get the value of LogEntreprise
+     *
+     * @return the value of LogEntreprise
+     */
+    public Entreprise getLogEntreprise() {
+        return LogEntreprise;
+    }
+
+    /**
+     * Set the value of LogEntreprise
+     *
+     * @param LogEntreprise new value of LogEntreprise
+     */
+    public void setLogEntreprise(Entreprise LogEntreprise) {
+        this.LogEntreprise = LogEntreprise;
+    }
+
+    /**
+     * Get the value of LogClientUnique
+     *
+     * @return the value of LogClientUnique
+     */
+    public ClientUnique getLogClientUnique() {
+        return LogClientUnique;
+    }
+
+    /**
+     * Set the value of LogClientUnique
+     *
+     * @param LogClientUnique new value of LogClientUnique
+     */
+    public void setLogClientUnique(ClientUnique LogClientUnique) {
+        this.LogClientUnique = LogClientUnique;
+    }
+
+    /**
+     * Get the value of LogAssureur
+     *
+     * @return the value of LogAssureur
+     */
+    public Assureur getLogAssureur() {
+        return LogAssureur;
+    }
+
+    /**
+     * Set the value of LogAssureur
+     *
+     * @param LogAssureur new value of LogAssureur
+     */
+    public void setLogAssureur(Assureur LogAssureur) {
+        this.LogAssureur = LogAssureur;
+    }
+
+    /**
+     * Get the value of LogCourtier
+     *
+     * @return the value of LogCourtier
+     */
+    public Courtier getLogCourtier() {
+        return LogCourtier;
+    }
+
+    /**
+     * Set the value of LogCourtier
+     *
+     * @param LogCourtier new value of LogCourtier
+     */
+    public void setLogCourtier(Courtier LogCourtier) {
+        this.LogCourtier = LogCourtier;
+    }
+
+    
     /**
      * Get the value of LogUserAdmin
      *
@@ -138,41 +180,40 @@ public class Logs implements Serializable {
         this.LogContrat = LogContrat;
     }
 
-    /**
-     * Get the value of LogUserClient
+      /**
+     * Get the value of DateLog
      *
-     * @return the value of LogUserClient
+     * @return the value of DateLog
      */
-    public UtilisateurClient getLogUserClient() {
-        return LogUserClient;
+    public Date getDateLog() {
+        return DateLog;
     }
 
     /**
-     * Set the value of LogUserClient
+     * Set the value of DateLog
      *
-     * @param LogUserClient new value of LogUserClient
+     * @param DateLog new value of DateLog
      */
-    public void setLogUserClient(UtilisateurClient LogUserClient) {
-        this.LogUserClient = LogUserClient;
-    }
-
-
-    /**
-     * Get the value of LogUserService
-     *
-     * @return the value of LogUserService
-     */
-    public UtilisateurService getLogUserService() {
-        return LogUserService;
+    public void setDateLog(Date DateLog) {
+        this.DateLog = DateLog;
     }
 
     /**
-     * Set the value of LogUserService
+     * Get the value of TypeLog
      *
-     * @param LogUserService new value of LogUserService
+     * @return the value of TypeLog
      */
-    public void setLogUserService(UtilisateurService LogUserService) {
-        this.LogUserService = LogUserService;
+    public String getTypeLog() {
+        return TypeLog;
+    }
+
+    /**
+     * Set the value of TypeLog
+     *
+     * @param TypeLog new value of TypeLog
+     */
+    public void setTypeLog(String TypeLog) {
+        this.TypeLog = TypeLog;
     }
 
 

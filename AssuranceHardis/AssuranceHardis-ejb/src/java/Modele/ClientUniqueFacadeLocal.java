@@ -41,6 +41,8 @@ public interface ClientUniqueFacadeLocal {
 
     public void ModificationClientUnique(ClientUnique Client, String prenom, String nom, String login, String mdp, String iban, String mail);
 
+    void ValiderInscription(ClientUnique client);
+
    
     
 }

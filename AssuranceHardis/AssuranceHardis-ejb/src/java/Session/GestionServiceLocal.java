@@ -57,6 +57,11 @@ public interface GestionServiceLocal {
     List GetAllOffreAssureur(long idAssureur);
 
     Offre RechercherOffre(long id);
+
+
+    public void ValiderInscriptionCourtier(Courtier court);
+
+    public void ValiderInscriptionAssureur(Assureur Assur);
     
     
     

@@ -37,4 +37,8 @@ public interface AssureurFacadeLocal {
     void SupprimerAssureur(long IdAssureur);
 
     Assureur AuthentificationAssureur(String LoginAssureur, String PasswordAssureur);
+
+    public List<Assureur> GetListAssureurs();
+
+    public void ValiderInscription(Assureur Assur);
 }

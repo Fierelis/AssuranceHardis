@@ -42,7 +42,6 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         Assur.setSiegeSocialAssureur(SiegeSocialAssureur);
         Assur.setSirenAssureur(SIREN);
         Assur.setRaisonSocialeAssureur(RaisonSocialeAssureur);
-        Assur.setActivationUser(false);
         em.persist(Assur);
         return Assur;
     }
@@ -90,5 +89,20 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         }
 
     }
-
+    @Override
+    public List<Assureur> GetListAssureurs(){
+         try {
+            String txt = "Select A from Assureur as A";
+            Query req = getEntityManager().createQuery(txt);
+            List<Assureur> result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+             return null;
+        }   
+    }
+     @Override
+    public void ValiderInscription(Assureur Assur) {
+        Assur.setActivationUser(true);
+        em.merge(Assur);
+    }
 }

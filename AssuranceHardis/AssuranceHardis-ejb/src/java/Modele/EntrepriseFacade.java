@@ -96,6 +96,10 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         em.merge(Boite);
     }
 
-    
+         @Override
+    public void ValiderInscription(Entreprise boite) {
+        boite.setActivationUser(true);
+        em.merge(boite);
+    }
 
 }

@@ -29,8 +29,10 @@ public interface LogsFacadeLocal {
 
     int count();
 
-    public void CreerLog(UtilisateurClient LeClient, UtilisateurService LeService, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
-
     public List<Logs> GetAllLogs();
+
+    public List<Logs> RecupLogByType(String TypeLog);
+
+    public void CreerLog(ClientUnique LeClient, Entreprise LEntreprise, Courtier LeCourtier, Assureur Lassureur, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
     
 }

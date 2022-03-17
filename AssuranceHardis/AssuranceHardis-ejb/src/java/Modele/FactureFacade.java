@@ -31,12 +31,13 @@ public class FactureFacade extends AbstractFacade<Facture> implements FactureFac
     }
 
     @Override
-    public void CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement) {
+    public Facture CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement) {
         Facture facture = new Facture();
         facture.setDatePaiement(datePaiement);
         facture.setTypePaiement(typePaiement);
         facture.setValidationPaiement(validationPaiement);
         getEntityManager().persist(facture);
+        return facture;
     }
 
     @Override

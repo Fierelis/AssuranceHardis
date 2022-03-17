@@ -44,9 +44,9 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     NouveauCourtier.setVilleCourtier(VilleCourtier);
     NouveauCourtier.setCPCourtier(CPCourtier);
     NouveauCourtier.setTypeUserService("Courtier");
-    NouveauCourtier.setActivationUser(false);
     em.persist(NouveauCourtier);
     return NouveauCourtier;
+    
     }
     
     @Override
@@ -116,5 +116,20 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     em.merge(court);
         
     }
-    
+    @Override
+    public List<Courtier> GetListCourtier(){
+         try {
+            String txt = "Select Court from Courtier as Court";
+            Query req = getEntityManager().createQuery(txt);
+            List<Courtier> result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+             return null;
+        }   
+    }
+         @Override
+    public void ValiderInscription(Courtier Court) {
+        Court.setActivationUser(true);
+        em.merge(Court);
+    }
 }

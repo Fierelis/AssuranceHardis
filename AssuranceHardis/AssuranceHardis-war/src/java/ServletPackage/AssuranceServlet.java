@@ -11,6 +11,7 @@ import Modele.ClientUnique;
 import Modele.Contrat;
 import Modele.Courtier;
 import Modele.Entreprise;
+import Modele.Facture;
 import Modele.Logs;
 import Modele.Mailer;
 import Modele.Offre;
@@ -99,11 +100,7 @@ public class AssuranceServlet extends HttpServlet {
             } else if (act.equals("CreerAdmin")) {
                 doActionCreerAdmin(request, response);
                 jspClient = "/Connexion.jsp";
-            } 
-
-
-
-            // SESSION --------------------------------------------------------------------------------------------------------------------------
+            } // SESSION --------------------------------------------------------------------------------------------------------------------------
             else if (act.equals("Connexion")) {
                 String login = request.getParameter("login");
                 String mdp = request.getParameter("mdp");
@@ -122,17 +119,25 @@ public class AssuranceServlet extends HttpServlet {
 
                     if (ClientU != null) {
                         //doSendMailConfirmationInscription(request, response, "alex_pr01@hotmail.fr", "test", "ça fonctionne bieng"); ---> à voir comment faire
-                        sess = request.getSession(true);
                         sess.setAttribute("ClientUnique", ClientU);
                         request.setAttribute("ClientUniqueJSP", ClientU);
                         List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
                         request.setAttribute("ListeContrat", ListeContratClient);
+                        sess.setAttribute("Entreprise", null);
+                        sess.setAttribute("Courtier", null);
+                        sess.setAttribute("Assureur", null);
+                        sess.setAttribute("Administrateur", null);
+
                         jspClient = "/SessionClientUnique.jsp";
                     } else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
                         request.setAttribute("Entreprise", Boite);
                         List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(null, Boite);
                         request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
+                        sess.setAttribute("ClientUnique", null);
+                        sess.setAttribute("Courtier", null);
+                        sess.setAttribute("Assureur", null);
+                        sess.setAttribute("Administrateur", null);
                         jspClient = "/SessionEntreprise.jsp";
                     } else if (Court != null) {
                         sess.setAttribute("Courtier", Court);
@@ -141,6 +146,10 @@ public class AssuranceServlet extends HttpServlet {
                         request.setAttribute("CourtierJSP", Court);
                         request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                         request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
+                        sess.setAttribute("Entreprise", null);
+                        sess.setAttribute("ClientUnique", null);
+                        sess.setAttribute("Assureur", null);
+                        sess.setAttribute("Administrateur", null);
                         jspClient = "/SessionCourtier.jsp";
                     } else if (Assur != null) {
                         sess.setAttribute("Assureur", Assur);
@@ -174,6 +183,16 @@ public class AssuranceServlet extends HttpServlet {
                     } else if (Admin != null) {
                         sess.setAttribute("Admin", Admin);
                         request.setAttribute("Admin", Admin);
+                        List<Courtier> ListeCourtier = gestionAdmin.GetListCourtier();
+                        request.setAttribute("Courtier", ListeCourtier);
+                        List<Assureur> ListeAssureur = gestionAdmin.GetListAssureur();
+                        request.setAttribute("Assureur", ListeAssureur);
+                        List<Contrat> ListeContrat = gestionClient.GetListContrat();
+                        request.setAttribute("contrat", ListeContrat);
+                        sess.setAttribute("Entreprise", null);
+                        sess.setAttribute("Courtier", null);
+                        sess.setAttribute("ClientUnique", null);
+                        sess.setAttribute("ClientUnique", null);
                         jspClient = "/SessionAdmin.jsp";
                     } else {
                         jspClient = "/Connexion.jsp";
@@ -359,52 +378,83 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/SessionAssureur.jsp";
 
                 } else if (Admin != null) {
-
+                    sess.setAttribute("Admin", Admin);
+                        request.setAttribute("Admin", Admin);
+                        List<Courtier> ListeCourtier = gestionAdmin.GetListCourtier();
+                        request.setAttribute("Courtier", ListeCourtier);
+                        List<Assureur> ListeAssureur = gestionAdmin.GetListAssureur();
+                        request.setAttribute("Assureur", ListeAssureur);
+                        List<Contrat> ListeContrat = gestionClient.GetListContrat();
+                        request.setAttribute("contrat", ListeContrat);
+                        jspClient = "/SessionAdmin.jsp";
                 }
             } else if (act.equals("VoirOffre")) {
                 doActionAfficherOffre(request, response);
                 jspClient = "/VoirOffre.jsp";
-            }
-            else if (act.equals("Souscrire")){
+            } else if (act.equals("Souscrire")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
-                if (ClientU!=null){
+                if (ClientU != null) {
                     request.setAttribute("ClientUniqueJSP", ClientU);
                     doActionAfficherContrat(request, response);
                     jspClient = "SouscriptionContratCU.jsp";
-                }
-                else if (Boite!=null){
+                } else if (Boite != null) {
                     request.setAttribute("EntrepriseJSP", Boite);
                     doActionAfficherContrat(request, response);
-                    jspClient="SouscriptionContratEntreprise.jsp";
+                    jspClient = "SouscriptionContratEntreprise.jsp";
                 }
-            }
-            else if (act.equals("validerSouscription")){
+            } else if (act.equals("validerSouscription")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
-                if (ClientU!=null){
+                if (ClientU != null) {
                     doActionSouscrireContratClientUnique(request, response);
                     request.setAttribute("ClientUniqueJSP", ClientU);
                     List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
                     request.setAttribute("ListeContrat", ListeContratClient);
                     jspClient = "/SessionClientUnique.jsp";
-                }
-                else if (Boite!=null){
+                } else if (Boite != null) {
                     doActionSouscrireContratEntreprise(request, response);
                     request.setAttribute("Entreprise", Boite);
                     List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(null, Boite);
                     request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                     jspClient = "/SessionEntreprise.jsp";
                 }
-                
+            } else if (act.equals("ValidationUser")) {
+                String TypeLog="Create";
+                List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog) ;
+                request.setAttribute("logs", Listlog);
+                jspClient = "/ValidationUser.jsp";
             }
             else if (act.equals("AccesLogs")){
-              // List<Logs> Listlog = gestionAdmin.GetAllLogs();
-              //  request.setAttribute("logs", Listlog);
+                List<Logs> Listlog = gestionAdmin.GetAllLogs() ;
+                request.setAttribute("logs", Listlog);
                 jspClient = "/AccesLogs.jsp";
             }
+            else if (act.equals("ValiderInscriptionClientUnique")){
+                String id = request.getParameter("IdClientUnique");
+                long idl = Long.parseLong(id);
+                ClientUnique ClientU = gestionClient.RechercherClientUnique(idl);
+                gestionClient.ValiderInscriptionClientUnique(ClientU);
+            }
+            else if (act.equals("ValiderInscriptionEntreprise")){
+                String id = request.getParameter("IdEntreprise");
+                long idl = Long.parseLong(id);
+                Entreprise boite = gestionClient.RechercherEntreprise(idl);
+                gestionClient.ValiderInscriptionEntreprise(boite);
+            }
+            else if (act.equals("ValiderInscriptionCourtier")){
+                String id = request.getParameter("IdCourtier");
+                long idl = Long.parseLong(id);
+                Courtier court = gestionService.RechercherCourtier(idl);
+                gestionService.ValiderInscriptionCourtier(court);
+            }
+            else if (act.equals("ValiderInscriptionAssureur")){
+                String id = request.getParameter("IdAssureur");
+                long idl = Long.parseLong(id);
+                Assureur Assur = gestionService.RechercherAssureur(idl);
+                gestionService.ValiderInscriptionAssureur(Assur);
+            }
 
-       
             RequestDispatcher Rd;
             Rd = getServletContext().getRequestDispatcher(jspClient);
             Rd.forward(request, response);
@@ -440,7 +490,7 @@ public class AssuranceServlet extends HttpServlet {
             String hashage = gestionClient.HashageSha256(mdp);
             ClientUnique CU = gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban, email);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(CU, null, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(CU, null, null, null, null, null, null, TypeLog);
             message = "Client créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -461,7 +511,8 @@ public class AssuranceServlet extends HttpServlet {
         }
         request.setAttribute("message", message);
     }
-     protected void doActionAfficherContrat(HttpServletRequest request,
+
+    protected void doActionAfficherContrat(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String Contrat = request.getParameter("contrat");
 
@@ -488,18 +539,18 @@ public class AssuranceServlet extends HttpServlet {
         String siegeSocial = request.getParameter("SiegeSocial");
         System.out.println(raisonSocial);
         String message;
-        if (raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty()|| siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+        if (raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty() || siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerEntreprise.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une Entreprise";
         } else {
             Date dateCreationCompteEntreprise = new Date();
-            String typeUser="Entreprise";
-            String hashage=gestionClient.HashageSha256(mdp);
-            System.out.println("---------------------"+ hashage);
+            String typeUser = "Entreprise";
+            String hashage = gestionClient.HashageSha256(mdp);
+            System.out.println("---------------------" + hashage);
             java.sql.Date dateCreationEntreprise = java.sql.Date.valueOf(dateCreation);
             //login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
             Entreprise boite = gestionClient.CreerEntreprise(login, hashage, dateCreationCompteEntreprise, typeUser, raisonSocial, siegeSocial, dateCreationEntreprise, taille, mail);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(boite, null, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(null, boite,null, null, null, null, null, TypeLog);
             message = "Entreprise créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -525,9 +576,9 @@ public class AssuranceServlet extends HttpServlet {
             String hashage = gestionClient.HashageSha256(Mdp);
             Long siren = Long.valueOf(numSiren);
             java.sql.Date dateCreationAssurance = java.sql.Date.valueOf(DateCreation);
-             Assureur Assur = gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
+            Assureur Assur = gestionService.CreerAssureur(Login, hashage, typeUser, RaisonSociale, dateCreationAssurance, Email, SiegeSocial, siren);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(null, Assur, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(null, null,null ,Assur,null, null, null, TypeLog);
 
             message = "Assureur créé avec succès !";
         }
@@ -556,7 +607,7 @@ public class AssuranceServlet extends HttpServlet {
             String hashage = gestionClient.HashageSha256(Mdp);
             Courtier court = gestionService.CreerCourtier(nom, prenom, dateNaissanceCourtier, Email, Login, hashage, typeUser, adresse, ville, cp);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(null, court, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(null,null, court,null, null, null, null, TypeLog);
 
             message = "Courtier créé avec succès !";
         }
@@ -613,7 +664,7 @@ public class AssuranceServlet extends HttpServlet {
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
             Offre offer = gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null, null);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(null, null, offer, null, null, TypeLog);
+            gestionAdmin.CreerLog(null, null, null,null,offer, null, null, TypeLog);
             message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -640,7 +691,7 @@ public class AssuranceServlet extends HttpServlet {
             Courtier court = gestionService.RechercherCourtier(id);
             gestionService.ModifierInformationsCourtier(court, nom, prenom, adresse, mail, login, mdp, ville, codepostal);
             String TypeLog = "Modify";
-            gestionAdmin.CreerLog(null, court, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(null, null,court, null,null, null, null, TypeLog);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
@@ -665,7 +716,7 @@ public class AssuranceServlet extends HttpServlet {
             ClientUnique ClientU = gestionClient.RechercherClientUnique(id);
             gestionClient.ModificationClientUnique(ClientU, prenom, nom, login, mdp, iban, mail);
             String TypeLog = "Modify";
-            gestionAdmin.CreerLog(ClientU, null, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(ClientU,null,null, null, null, null, null, TypeLog);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
@@ -689,34 +740,46 @@ public class AssuranceServlet extends HttpServlet {
             Entreprise Boite = gestionClient.RechercherEntreprise(id);
             gestionClient.ModifierEntreprise(Boite, login, mdp, raisonSociale, siegeSocial, taille, mail);
             String TypeLog = "Modify";
-            gestionAdmin.CreerLog(Boite, null, null, null, null, TypeLog);
+            gestionAdmin.CreerLog(null,Boite, null,null, null, null, null, TypeLog);
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
 
     }
+
     protected void doActionSouscrireContratClientUnique(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String numClient = request.getParameter("numClient");
         String numOffre = request.getParameter("numOffre");
         String Duree = request.getParameter("combo");
+        String TypePaiement = request.getParameter("TypePaiement");
+        String iban = request.getParameter("Iban");
 
         String message;
-        if (numClient.trim().isEmpty() || numOffre.trim().isEmpty()|| Duree.trim().isEmpty() ) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+        if (numClient.trim().isEmpty() || numOffre.trim().isEmpty() || Duree.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
+
             long IdClient = Long.parseLong(numClient);
             long IdOffre = Long.parseLong(numOffre);
             int DureeContrat = Integer.parseInt(Duree);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(IdClient);
-            Offre Loffre = gestionService.RechercherOffre(IdOffre);
-            Contrat contra = gestionClient.CreerContrat(Loffre, ClientU, DureeContrat);
-            String TypeLog = "Create";
-            gestionAdmin.CreerLog(ClientU, null, null, contra, null, TypeLog);
-            message = "Contrat créé avec succès !";
+            if (iban.equals(ClientU.getIban())) {
+                Offre Loffre = gestionService.RechercherOffre(IdOffre);
+                Contrat contra = gestionClient.CreerContrat(Loffre, ClientU, DureeContrat);
+                String TypeLog = "Create";
+                gestionAdmin.CreerLog(ClientU,null,null, null, null, contra, null, TypeLog);
+                Date d = new Date();
+                gestionClient.CreerFacture(TypePaiement, d, true);
+                message = "Contrat créé avec succès !";
+            } else {
+                message = "Information bancaires erronées, veuillez recommencer";
+            }
+
         }
         request.setAttribute("message", message);
     }
+
     protected void doActionSouscrireContratEntreprise(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String numClient = request.getParameter("numEntreprise");
@@ -724,7 +787,7 @@ public class AssuranceServlet extends HttpServlet {
         String Duree = request.getParameter("combo");
 
         String message;
-        if (numClient.trim().isEmpty() || numOffre.trim().isEmpty()|| Duree.trim().isEmpty() ) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+        if (numClient.trim().isEmpty() || numOffre.trim().isEmpty() || Duree.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
             long IdClient = Long.parseLong(numClient);
@@ -734,7 +797,7 @@ public class AssuranceServlet extends HttpServlet {
             Offre Loffre = gestionService.RechercherOffre(IdOffre);
             Contrat contra = gestionClient.CreerContrat(Loffre, Boite, DureeContrat);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(Boite, null, null, contra, null, TypeLog);
+            gestionAdmin.CreerLog(null,Boite,null, null, null, contra, null, TypeLog);
             message = "Contrat créé avec succès !";
         }
         request.setAttribute("message", message);

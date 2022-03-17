@@ -8,6 +8,7 @@ package Session;
 import Modele.ClientUnique;
 import Modele.Contrat;
 import Modele.Entreprise;
+import Modele.Facture;
 import Modele.Offre;
 import Modele.UtilisateurClient;
 import java.util.Date;
@@ -43,6 +44,14 @@ public interface GestionClientLocal {
     public void ModifierEntreprise(Entreprise Boite, String login, String mdp, String raisonSocial, String siegeSocial, String tailleEntreprise, String mail);
 
     Contrat RechercherContrat(long id);
+
+    public List<Contrat> GetListContrat();
+
+    public Facture CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement);
+
+    void ValiderInscriptionClientUnique(ClientUnique client);
+
+    public void ValiderInscriptionEntreprise(Entreprise boite);
 
   
 }

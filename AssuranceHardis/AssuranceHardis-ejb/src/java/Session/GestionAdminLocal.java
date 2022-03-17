@@ -6,10 +6,16 @@
 package Session;
 
 import Modele.Administrateur;
+import Modele.Assureur;
+import Modele.ClientUnique;
 import Modele.Contrat;
+import Modele.Courtier;
+import Modele.Entreprise;
+import Modele.Logs;
 import Modele.Offre;
 import Modele.UtilisateurClient;
 import Modele.UtilisateurService;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -19,7 +25,7 @@ import javax.ejb.Local;
 @Local
 public interface GestionAdminLocal {
 
-    void CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin);
+    Administrateur CreerAdministrateur(String NomAdmin, String PrenomAdmin, String MailAdmin, String LoginAdmin, String PasswordAdmin);
 
     Administrateur RechercherAdministrateur(long IdAdmin);
 
@@ -27,6 +33,14 @@ public interface GestionAdminLocal {
 
     Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin);
 
-    public void CreerLog(UtilisateurClient LeClient, UtilisateurService LeService, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
+    public List<Logs> GetAllLogs();
+
+    public List<Assureur> GetListAssureur();
+
+    public List<Courtier> GetListCourtier();
+
+    public List<Logs> RecupLogByType(String TypeLog);
+
+    public void CreerLog(ClientUnique LeClient, Entreprise Lentreprise, Courtier LeCourtier, Assureur Lassureur, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
     
 }

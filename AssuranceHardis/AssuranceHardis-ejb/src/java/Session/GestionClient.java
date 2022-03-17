@@ -11,6 +11,8 @@ import Modele.Contrat;
 import Modele.ContratFacadeLocal;
 import Modele.Entreprise;
 import Modele.EntrepriseFacadeLocal;
+import Modele.Facture;
+import Modele.FactureFacadeLocal;
 import Modele.Offre;
 import Modele.UtilisateurClient;
 import java.util.ArrayList;
@@ -27,6 +29,9 @@ import javax.ejb.Stateless;
 public class GestionClient implements GestionClientLocal {
 
     @EJB
+    private FactureFacadeLocal factureFacade;
+
+    @EJB
     private ContratFacadeLocal contratFacade;
 
     @EJB
@@ -40,8 +45,8 @@ public class GestionClient implements GestionClientLocal {
     // "Insert Code > Add Business Method")
     @Override
     public ClientUnique CreerClientUnique(String nom, String prenom, String login, String mdp, Date dateCreationUser, String typeUser, String iban, String mail) {
-        ClientUnique cu = clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban, mail);
-    return cu;
+        ClientUnique ClientU = clientUniqueFacade.CreationClientUnique(prenom, nom, login, mdp, dateCreationUser, typeUser, iban, mail);
+        return ClientU;
     }
 
     @Override
@@ -69,15 +74,14 @@ public class GestionClient implements GestionClientLocal {
     @Override
     public Entreprise CreerEntreprise(String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial,String siegeSocial, Date dateCreationEntreprise, String tailleEntreprise, String mail) {
         //String login, String mdp, Date dateCreationUser, String typeUser, String raisonSocial, Date dateCreationEntreprise, String siegeSocial, String tailleEntreprise, String mail) {
-
-        Entreprise boite = entrepriseFacade.CreerEntreprise(login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
-    return boite;
+        Entreprise Boite = entrepriseFacade.CreerEntreprise(login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
+        return Boite;
     }
 
     @Override
     public Contrat CreerContrat(Offre Loffre, UtilisateurClient Client, int DureeContrat) {
-       Contrat cc=  contratFacade.CreerContrat(Loffre, DureeContrat, Client);
-    return cc;
+        Contrat con = contratFacade.CreerContrat(Loffre, DureeContrat, Client);
+        return con;
     }
 
     @Override
@@ -103,5 +107,23 @@ public class GestionClient implements GestionClientLocal {
     public Contrat RechercherContrat(long id) {
         return contratFacade.RechercherContrat(id);
     }
+    @Override
+    public List<Contrat> GetListContrat(){
+        return contratFacade.GetListContrat();
+    }
+    
+    @Override
+     public Facture CreerFacture(String typePaiement, Date datePaiement, boolean validationPaiement) {
+         Facture f = factureFacade.CreerFacture(typePaiement, datePaiement, validationPaiement);
+         return f;
+     }
 
+    @Override
+    public void ValiderInscriptionClientUnique(ClientUnique client) {
+        clientUniqueFacade.ValiderInscription(client);
+    }
+     @Override
+    public void ValiderInscriptionEntreprise(Entreprise boite) {
+        entrepriseFacade.ValiderInscription(boite);
+    }
 }

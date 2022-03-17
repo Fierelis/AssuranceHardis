@@ -47,8 +47,6 @@
                             <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit() %></td>
                             <td>
                                 <form>
-                                    
-                                    
                                     <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
                                     <input type="Submit" value="Voir l'Offre">
                                     <input type="hidden" name="action" value="VoirOffre">
