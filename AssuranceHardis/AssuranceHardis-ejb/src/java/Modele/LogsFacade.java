@@ -51,12 +51,4 @@ public class LogsFacade extends AbstractFacade<Logs> implements LogsFacadeLocal 
             List<Logs> result = req.getResultList();
             return result;  
     }
-    
-    public List<Logs> GetLogsByType(String TypeLog){
-            String txt = "Select L from Logs as L WHERE TypeLog =:TypeLog";
-            Query req = getEntityManager().createQuery(txt);
-            req.setParameter("TypeLog", TypeLog);
-            List<Logs> result = req.getResultList();
-            return result;  
-    }
 }

@@ -44,7 +44,6 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     NouveauCourtier.setVilleCourtier(VilleCourtier);
     NouveauCourtier.setCPCourtier(CPCourtier);
     NouveauCourtier.setTypeUserService("Courtier");
-    NouveauCourtier.setActivationUser(false);
     em.persist(NouveauCourtier);
     return NouveauCourtier;
     

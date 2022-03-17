@@ -496,7 +496,7 @@ public class AssuranceServlet extends HttpServlet {
             String typeUser = "Client Unique";
             String hashage = gestionClient.HashageSha256(mdp);
             ClientUnique CU = gestionClient.CreerClientUnique(nom, prenom, login, hashage, dateCreation, typeUser, iban, email);
-            String TypeLog = "Create User";
+            String TypeLog = "Create";
             gestionAdmin.CreerLog(CU, null, null, null, null, TypeLog);
             message = "Client créé avec succès !";
         }
@@ -753,7 +753,7 @@ public class AssuranceServlet extends HttpServlet {
             Offre Loffre = gestionService.RechercherOffre(IdOffre);
             Contrat contra = gestionClient.CreerContrat(Loffre, ClientU, DureeContrat);
             String TypeLog = "Create";
-            gestionAdmin.CreerLog(null, null, null, contra, null, TypeLog);
+            gestionAdmin.CreerLog(ClientU, null, Loffre, contra, null, TypeLog);
             message = "Contrat créé avec succès !";
         }
         request.setAttribute("message", message);

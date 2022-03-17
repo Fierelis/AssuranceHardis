@@ -28,7 +28,7 @@
         <%
         List<Logs> log = logs;
         %>
-        <h1> Logs de Création d'utilisateur</h1>
+        <h1> Logs de l'application</h1>
          <% for (Logs L : log){ %>
         
          <table>
@@ -36,13 +36,16 @@
                 <td>Type</td>
                 <td>Utilisateur</td>
                 <td>Date</td>
-                <td>Statut</td>
             </tr>
             
             <tr>
                 <td><%=L.getTypeLog() %></td>
+                <td><%if(L.getLogUserClient().getId()!=null ){%><%=L.getLogUserClient().getId() %> <%} %></td> <!-- NULL POINT, il faut trouver une solution-->
+                 <td><%if(L.getLogUserService().getId()!=null ){%><%=L.getLogUserService().getId() %><% } %></td>
+                 <td><%if(L.getLogOffre().getId() !=null ){%><%=L.getLogUserClient().getId() %><% } %></td>
+                   <td><%if(L.getLogContrat().getId() !=null ){%><%=L.getLogUserClient().getId() %><% } %></td>
                    <td><%=L.getDateLog() %></td>
-                   <td><% %></td>
+                  
             </tr>
         </table>
         <% } %>
