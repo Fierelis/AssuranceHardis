@@ -28,28 +28,20 @@
         <%
         List<Logs> log = logs;
         %>
-        <h1> Logs de l'application</h1>
+        <h1> Logs de Création d'utilisateur</h1>
          <% for (Logs L : log){ %>
         
          <table>
             <tr>
                 <td>Type</td>
-                <td>Utilisateur Client N°</td>
-                <td>Utilisateur Service N°</td>
-                <td>Administrateur</td>
-                <td>Offre N°</td>
-                <td>Contrat N°</td>
                 <td>Date</td>
+                <td>Statut</td>
             </tr>
             
             <tr>
                 <td><%=L.getTypeLog() %></td>
-                <td><%if(L.getLogUserClient().getId()!=null ){%><%=L.getLogUserClient().getId() %> <%} %></td> <!-- NULL POINT, il faut trouver une solution-->
-                 <td><%if(L.getLogUserService().getId()!=null ){%><%=L.getLogUserService().getId() %><% } %></td>
-                 <td><%if(L.getLogOffre().getId() !=null ){%><%=L.getLogUserClient().getId() %><% } %></td>
-                   <td><%if(L.getLogContrat().getId() !=null ){%><%=L.getLogUserClient().getId() %><% } %></td>
                    <td><%=L.getDateLog() %></td>
-                  
+                   <td><% %></td>
             </tr>
         </table>
         <% } %>

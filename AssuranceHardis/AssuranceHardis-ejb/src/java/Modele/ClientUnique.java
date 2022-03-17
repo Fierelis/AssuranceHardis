@@ -31,7 +31,28 @@ public class ClientUnique extends UtilisateurClient implements Serializable {
     private String iban;
     @Column(nullable=false)
     private String mail;
+    @Column(nullable=false)
+    private boolean ActivationUser;
 
+    /**
+     * Get the value of ActivationUser
+     *
+     * @return the value of ActivationUser
+     */
+    public boolean isActivationUser() {
+        return ActivationUser;
+    }
+
+    /**
+     * Set the value of ActivationUser
+     *
+     * @param ActivationUser new value of ActivationUser
+     */
+    public void setActivationUser(boolean ActivationUser) {
+        this.ActivationUser = ActivationUser;
+    }
+
+    
     /**
      * Get the value of mail
      *
