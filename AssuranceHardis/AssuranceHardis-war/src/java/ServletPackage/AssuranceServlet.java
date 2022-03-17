@@ -17,6 +17,7 @@ import Modele.TypeProduit;
 import Modele.UtilisateurService;
 import Session.GestionAdminLocal;
 import Session.GestionClientLocal;
+import Session.GestionServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -38,13 +39,14 @@ import javax.servlet.http.HttpSession;
 public class AssuranceServlet extends HttpServlet {
 
     @EJB
-    private GestionAdminLocal gestionAdmin;
-
-    @EJB
-    private Session.GestionServiceLocal gestionService;
+    private GestionServiceLocal gestionService;
 
     @EJB
     private GestionClientLocal gestionClient;
+
+    @EJB
+    private GestionAdminLocal gestionAdmin;
+
 
     /*
     protected void Test(HttpServletRequest request, HttpServletResponse response){
@@ -66,7 +68,7 @@ public class AssuranceServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
 
-            HttpSession sess = request.getSession(true);
+            HttpSession sess = request.getSession();
             String jspClient = null;
             String act = request.getParameter("action");
 
@@ -119,6 +121,7 @@ public class AssuranceServlet extends HttpServlet {
 
                     if (ClientU != null) {
                         //doSendMailConfirmationInscription(request, response, "alex_pr01@hotmail.fr", "test", "ça fonctionne bieng"); ---> à voir comment faire
+                        sess = request.getSession(true);
                         sess.setAttribute("ClientUnique", ClientU);
                         request.setAttribute("ClientUniqueJSP", ClientU);
                         List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
