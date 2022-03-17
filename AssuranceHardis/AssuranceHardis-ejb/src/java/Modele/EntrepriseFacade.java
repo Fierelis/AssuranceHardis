@@ -38,7 +38,6 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         entreprise.setMdp(mdp);
         entreprise.setDateCreationUser(dateCreationUser);
         entreprise.setTypeUser(typeUser);
-        
         entreprise.setRaisonSocialeEntreprise(raisonSocial);
         entreprise.setSiegeSocialEntreprise(siegeSocial);
         entreprise.setDateCreationEntreprise(dateCreationEntreprise);

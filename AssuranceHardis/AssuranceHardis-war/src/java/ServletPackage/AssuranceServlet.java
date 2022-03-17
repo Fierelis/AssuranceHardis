@@ -11,6 +11,7 @@ import Modele.ClientUnique;
 import Modele.Contrat;
 import Modele.Courtier;
 import Modele.Entreprise;
+import Modele.Logs;
 import Modele.Mailer;
 import Modele.Offre;
 import Modele.TypeProduit;
@@ -398,8 +399,8 @@ public class AssuranceServlet extends HttpServlet {
                 
             }
             else if (act.equals("AccesLogs")){
-                List<Logs> Listlog = gestionAdmin.GetAllLogs();
-                request.setAttribute("logs", Listlog);
+              // List<Logs> Listlog = gestionAdmin.GetAllLogs();
+              //  request.setAttribute("logs", Listlog);
                 jspClient = "/AccesLogs.jsp";
             }
 
