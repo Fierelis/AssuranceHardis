@@ -223,8 +223,6 @@ exists or setup the property manually. For example like this:
     <target depends="init,deps-jar,pre-pre-compile,pre-compile" name="-do-compile-deps">
         <copyfiles files="${reference.AssuranceHardis-war.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.AssuranceHardis-ejb.dist-ear}" todir="${build.dir}//"/>
-        <copyfiles files="${file.reference.activation.jar}" todir="${build.dir}//"/>
-        <copyfiles files="${file.reference.mail.jar}" todir="${build.dir}//"/>
     </target>
     <target name="post-compile">
         <!-- Empty placeholder for easier customization. -->

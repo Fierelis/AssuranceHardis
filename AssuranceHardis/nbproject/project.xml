@@ -15,14 +15,6 @@
                     <file>${reference.AssuranceHardis-ejb.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
-                <library>
-                    <file>${file.reference.activation.jar}</file>
-                    <path-in-war>/</path-in-war>
-                </library>
-                <library>
-                    <file>${file.reference.mail.jar}</file>
-                    <path-in-war>/</path-in-war>
-                </library>
             </web-module-additional-libraries>
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
