@@ -22,7 +22,7 @@
     </head>
     <body>
          <% Assureur a= AssureurJSP;%>
-         <% List<Offre> listeOffre= ListeAllOffre;%>
+         
          <% List<Offre> listeOffreAssureur= listOffreAssureur;%>
          <% List<Courtier> listeCourtierPartenaire= ListCourtier;%>
          
@@ -50,26 +50,6 @@
             <input type="submit" value="Se deconnnecter" />   
         </form>
         
-        <div id="TableauOffres">
-            <h2>Totalités des offre</h2>
-            <table>
-                <tr><td>Type d'Offre</td>
-                    <td>Description de l'offre</td>
-                    <td>Prix de l'offre</td>
-                    <td>Le type de produit</td>
-                </tr>
-                    <% 
-                       List<Offre> ListeFiltreeOffres=listeOffre;
-                        for(Offre OffrePartenaire : ListeFiltreeOffres){
-                    %>  <tr><td><%=OffrePartenaire.getTypeOffre() %></td>
-                            <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
-                            <td><%=OffrePartenaire.getPrixOffre() %></td>                       
-                            <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit() %></td>
-                            
-                        </tr>
-                       <%}%>
-            </table><br>
-        </div>
             
             <div id="TableauOffresAssureur">
             <h2>Totalités des offre de l'assureur</h2>
