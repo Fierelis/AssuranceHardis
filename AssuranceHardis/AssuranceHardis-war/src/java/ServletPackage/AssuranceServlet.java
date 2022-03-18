@@ -125,13 +125,16 @@ public class AssuranceServlet extends HttpServlet {
                         sess = request.getSession(true);
                         sess.setAttribute("ClientUnique", ClientU);
                         request.setAttribute("ClientUniqueJSP", ClientU);
-                        List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
+                        List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                         request.setAttribute("ListeContrat", ListeContratClient);
                         jspClient = "/SessionClientUnique.jsp";
                     } else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
+                        //System.out.println("connexion entreprise");
                         request.setAttribute("Entreprise", Boite);
-                        List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(null, Boite);
+                        //System.out.println("connexion entreprise 2");
+                        List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
+                        System.out.println("liste contrat vide ");
                         request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                         jspClient = "/SessionEntreprise.jsp";
                     } else if (Court != null) {
@@ -247,7 +250,7 @@ public class AssuranceServlet extends HttpServlet {
             } else if (act.equals("RetourSessionClient")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 request.setAttribute("ClientU", ClientU);
-                List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
+                List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                 request.setAttribute("ListeContrat", ListeContratClient);
                 jspClient = "/SessionClient.jsp";
             } else if (act.equals("RetourSessionEntreprise")) {
@@ -316,12 +319,12 @@ public class AssuranceServlet extends HttpServlet {
 
                 if (ClientU != null) {
                     request.setAttribute("ClientUniqueJSP", ClientU);
-                    List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
+                    List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                     request.setAttribute("ListeContrat", ListeContratClient);
                     jspClient = "/SessionClientUnique.jsp";
                 } else if (Boite != null) {
                     request.setAttribute("Entreprise", Boite);
-                    List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(null, Boite);
+                    List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
                     request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                     jspClient = "/SessionEntreprise.jsp";
 
@@ -385,14 +388,14 @@ public class AssuranceServlet extends HttpServlet {
                 if (ClientU!=null){
                     doActionSouscrireContratClientUnique(request, response);
                     request.setAttribute("ClientUniqueJSP", ClientU);
-                    List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(ClientU, null);
+                    List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                     request.setAttribute("ListeContrat", ListeContratClient);
                     jspClient = "/SessionClientUnique.jsp";
                 }
                 else if (Boite!=null){
                     doActionSouscrireContratEntreprise(request, response);
                     request.setAttribute("Entreprise", Boite);
-                    List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratClient(null, Boite);
+                    List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
                     request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                     jspClient = "/SessionEntreprise.jsp";
                 }
