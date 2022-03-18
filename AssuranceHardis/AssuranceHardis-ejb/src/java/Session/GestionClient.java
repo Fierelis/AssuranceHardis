@@ -85,8 +85,8 @@ public class GestionClient implements GestionClientLocal {
     }
 
     @Override
-    public List<Contrat> RecupererContratClient(ClientUnique Client, Entreprise Boite) {
-        List<Contrat> ContratClient = contratFacade.RecupererContratSouscrit(Client, Boite);
+    public List<Contrat> RecupererContratClientUnique(ClientUnique Client) {
+        List<Contrat> ContratClient = contratFacade.RecupererContratSouscritClient(Client);
         return ContratClient;
     }
     @Override
@@ -126,4 +126,9 @@ public class GestionClient implements GestionClientLocal {
     public void ValiderInscriptionEntreprise(Entreprise boite) {
         entrepriseFacade.ValiderInscription(boite);
     }
+
+    public List RecupererContratSouscritEntreprise(Entreprise entreprise) {
+        return contratFacade.RecupererContratSouscritEntreprise(entreprise);
+    }
+
 }

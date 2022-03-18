@@ -29,86 +29,84 @@
     </header01>
     <body>
         <div class ="container">
+            <div class ="row justify-content-md-center"> 
+                <h3>  Choix Utilisateur </h3> <br/> <br/> 
+                <p class ="text-center"> TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS <br> tessssssssssssssssssssssssssssssssssssssssssssss <br> tesssssssssssssssssssssss <P>
+            </div> <br/>
             <div class = "row">
-                
-                <div class="col-sm-6">
-                    
+                <div class="col-sm-3">
                     <div class="card1">
                         <div class="image">
+                            <img src="img/Picto_Assureur_V11.jpg" alt=""/>
                             
-                            <img src="img/Picto_Assureur2.png" alt=""/>
                         </div>
                         <div class="card-inner">
                             <div class="header01">
-                                <h2>Assureur</h2>
+                                <h2 class ="text-center">Assureur</h2>
                                
                             </div>
                             <div class="content">
-                                <p>Content area</p>
+                                <p class ="text-center">Content area</p>
                                 <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationAssureur"> </form>
                             </div>
                         </div>
-                        
                     </div>
-                       
-                        
-                </div>
-                <div class="col-sm-6">
+                </div><div class="col-sm-3">
                     <div class="card1">
                         <div class="image">
-                         
-                            <img src="img/Picto_Clients.png" alt=""/>
+                            <img src="img/Picto_Clients_v11.jpg" alt=""/>
+                            
                         </div>
                         <div class="card-inner">
                             <div class="header01">
-                                <h2>Client</h2>
-                              
+                                <h2 class ="text-center">Client</h2>
+                                
                             </div>
                             <div class="content">
-                                <p>Content area</p>
+                                <p class ="text-center">Content area</p>
                                 <form>
-                                 <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
+                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationClientUnique"> </form>
                             </div>
                         </div>
 
                     </div>
-                </div><div class="col-sm-6">
+                </div><div class="col-sm-3">
                     <div class="card1">
                         <div class="image">
-                            <img src="img/Picto_Courtier2.png" alt=""/>
                             
+                            <img src="img/Picto_Courtier_v11.jpg" alt=""/>
                         </div>
                         <div class="card-inner">
                             <div class="header01">
-                                <h2>Courtier</h2>
+                                <h2 class ="text-center">Courtier</h2>
                                
                             </div>
                             <div class="content">
-                                <p>Content area</p>
-                                <form>
+                                <p class ="text-center">Content area</p>
+                                 <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationCourtier"> </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <div class="card1">
                         <div class="image">
-                            <img src="img/Picto_Entreprise2.png" alt=""/>
                             
+                            <img src="img/Picto_Entreprise2.jpg" alt=""/>
                         </div>
                         <div class="card-inner">
                             <div class="header01">
-                                <h2>Entreprise</h2>
-                           
+                                <h2 class ="text-center">Entreprise</h2>
+                              
                                
                             </div>
                             <div class="content">
-                                <p>Content area</p>
+                                <p class ="text-center">Content area</p> 
                                 <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationEntreprise"> </form>
