@@ -162,17 +162,17 @@ public class AssuranceServlet extends HttpServlet {
                         List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(a.getId());
                         request.setAttribute("listOffreAssureur", listOffreAssureur);
                         //liste de toutes les offres
-                        List<Offre> ListOffre = gestionService.GetListOffreAll();
-                        request.setAttribute("ListeAllOffre", ListOffre);
+                        //List<Offre> ListOffre = gestionService.GetListOffreAll();
+                        //request.setAttribute("ListeAllOffre", ListOffre);
                         // liste de tous les courtiers partenaires
-                        System.out.println(a.getId());
+                        //System.out.println(a.getId());
                         List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(a.getId());
-                        System.out.println("taille : " + ListCourtier.size());
+                        /*System.out.println("taille : " + ListCourtier.size());
                         System.out.println("suuuuuuuuuuuu");
                         for (int i = 0; i < ListCourtier.size(); i++) {
                             System.out.println(ListCourtier.get(i).getNomCourtier());
                         }
-                        System.out.println("suuuuuuuuuuuu");
+                        System.out.println("suuuuuuuuuuuu");*/
                         request.setAttribute("ListCourtier", ListCourtier);
 
                         // liste de tous les clients souscripteur 
@@ -499,16 +499,24 @@ public class AssuranceServlet extends HttpServlet {
 
     protected void doActionAfficherOffre(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        String Offre = request.getParameter("contrat");
+        String Offre = request.getParameter("idOffre");
 
         String message;
         if (Offre.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
             long IdOffre = Long.parseLong(Offre);
+            System.out.println("--------------------------------------------------------");
             Offre offer = gestionService.RechercherOffre(IdOffre);
+            //System.out.println(offer.getTypeOffre());
+            System.out.println("1 "+offer.getLeTypeDeProduit().getNomTypeProduit()); 
+            System.out.println("2 "+offer.getTypeOffre()); 
+            System.out.println("3 "+offer.getDescriptionOffreContractuelle()); 
+            System.out.println("4 "+offer.getLAssurance().getRaisonSocialeAssureur()); 
+            System.out.println("5 "+offer.getLeCourtier().getNomCourtier() ); 
+            System.out.println("6 "+offer.getPrixOffre()); 
             message = "offre N° " + offer.getId();
-            request.setAttribute("offreJSP", offer);
+            request.setAttribute("Offre", offer);
         }
         request.setAttribute("message", message);
     }

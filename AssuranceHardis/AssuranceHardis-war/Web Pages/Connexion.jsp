@@ -104,7 +104,7 @@
                         <div class="wrap d-md-flex">
                             <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
                                 <div class="text w-100">
-                                    <h2>Bienvenue sur la plateforme du groupe Hardis - Bilal FDP</h2>
+                                    <h2>Bienvenue sur la plateforme du groupe Hardis</h2>
                                     <p>Vous n'avez pas de compte ?</p>
                                     <form>
                                     <button type="submit" class="form-control btn btn-white btn-outline-white">S'inscrire</button>
