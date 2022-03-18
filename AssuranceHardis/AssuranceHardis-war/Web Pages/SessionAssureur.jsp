@@ -13,7 +13,6 @@
 <html>
     <head>
         <jsp:useBean id="AssureurJSP" scope="session" class="Modele.Assureur"></jsp:useBean>
-        <jsp:useBean id="ListeAllOffre" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="listOffreAssureur" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="ListCourtier" scope="request" class="java.util.List"></jsp:useBean>
         
