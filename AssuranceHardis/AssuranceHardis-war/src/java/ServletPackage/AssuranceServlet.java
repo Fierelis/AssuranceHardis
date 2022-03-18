@@ -221,12 +221,12 @@ public class AssuranceServlet extends HttpServlet {
             } else if (act.equals("CreerOffreCourtier")) {
                 jspClient = "/CreerOffreCourtier.jsp";
             } else if (act.equals("Deconnexion")) {
-               /* sess.setAttribute("Courtier", new Courtier());
+                sess.setAttribute("Courtier", new Courtier());
                 sess.setAttribute("Entreprise", new Entreprise());
                 sess.setAttribute("ClientUnique", new ClientUnique());
                 sess.setAttribute("Assureur", new Assureur());
                 sess.setAttribute("Administrateur", new Administrateur());
-                jspClient = "/Connexion.jsp";*/
+                jspClient = "/Connexion.jsp";
                sess.invalidate();
                sess = request.getSession(false);
                jspClient = "/Connexion.jsp";
