@@ -292,12 +292,15 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/ResilierContrat.jsp";
             } //___________________________________RECHERCHER__OFFRE__PAR__SESSION______________________________________________________________________________________________
             else if (act.equals("RechercherOffre")) {
+                System.out.println("------------wowowowow-----------");
                 ClientUnique Client = (ClientUnique) sess.getAttribute("ClientUnique");
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 Assureur Assur = (Assureur) sess.getAttribute("Assureur");
                 Administrateur Admin = (Administrateur) sess.getAttribute("Administrateur");
                 System.out.println(sess.getAttribute("Administrateur"));
+                System.out.println("------------wowowowow2-----------");
+
                 if (Client != null) {
                     request.setAttribute("ClientUnique", Client);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
@@ -317,6 +320,7 @@ public class AssuranceServlet extends HttpServlet {
 
                 } else if (Assur != null) {
                     request.setAttribute("AssureurJSP", Assur);
+                    System.out.println("------------wowowowow-----------");
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreAssureur.jsp";

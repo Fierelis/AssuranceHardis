@@ -17,6 +17,7 @@
             <title>Recherche d'offre</title>
         </head>
         <body>
+        <%System.out.println("------------wowowowow-----------"); %>
         <%Assureur Assur = AssureurJSP;%>
         <h1>Recherche d'offre </h1>
         <form>
