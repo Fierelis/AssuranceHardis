@@ -26,8 +26,6 @@ import javax.persistence.Temporal;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class UtilisateurClient implements Serializable {
 
-    @OneToMany(mappedBy = "LogUserClient")
-    private List<Logs> AssociatedLogs;
 
     @OneToMany(mappedBy = "LeClientduContrat")
     private List<Contrat> LesContrats;

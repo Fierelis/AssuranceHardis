@@ -17,6 +17,7 @@
         
     </head>
     <body>
+        <form>
          <button class="button login__submit">
             <span class="button__text">Home</span>
             <i class="button__icon fas fa-chevron-right"></i>
