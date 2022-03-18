@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="Admin" scope="request" class="Modele.Administrateur"></jsp:useBean>
+        <jsp:useBean id="Admin" scope="session" class="Modele.Administrateur"></jsp:useBean>
         <jsp:useBean id="contrat" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="Assureur" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="Courtier" scope="request" class="java.util.List"></jsp:useBean>
@@ -57,11 +57,19 @@
          
          <form>
         <button class="button login__submit">
-            <span class="button__text">Rechercher Offres</span>
+            <span class="button__text">Rechercher Offre</span>
             <i class="button__icon fas fa-chevron-right"></i>
 	</button>
             
               <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+            <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
         </form>
         <h1>Espace Administrateur</h1>
         

@@ -15,6 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
             <i class="button__icon fas fa-chevron-right"></i>
@@ -22,25 +23,52 @@
             
               <input type="hidden" name="action" value="home">
         </form>
-        
+           
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Inscriptions en Attente</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="ValidationUser">
+        </form>
+         
+          <form>
+        <button class="button login__submit">
+            <span class="button__text">Log Application</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="AccesLogs">
+        </form>
+         
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher Offres</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
         <%
         List<Logs> log = logs;
         %>
         <h1> Création de Client en attente</h1>
-         <% for (Logs L : log){ %>
+         
         
          <table>
             <tr>
                 <td>Type</td>
                 <td>Date</td>
             </tr>
-            
+            <% for (Logs L : log){ %>
             <tr>
                 <td><%=L.getTypeLog() %></td>
                 <td><%=L.getDateLog() %></td>
 
             </tr>
+            <% } %>
         </table>
-        <% } %>
+        
     </body>
 </html>

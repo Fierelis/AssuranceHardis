@@ -13,12 +13,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="ClientUniqueJSP" scope="request" class="Modele.ClientUnique"></jsp:useBean>
+        <jsp:useBean id="ClientUnique" scope="session" class="Modele.ClientUnique"></jsp:useBean>
        <jsp:useBean id="ListeContrat" scope="request" class="java.util.List"></jsp:useBean> 
         <title>JSP Page</title>
     </head>
     <body>
-        <%ClientUnique ClientU = ClientUniqueJSP;
+        <%ClientUnique ClientU = ClientUnique;
         System.out.println(ClientU);
         %>
         <h1>Bonjour <%=ClientU.getPrenom()%></h1>

@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="CourtierJSP" scope="request" class="Modele.Courtier"></jsp:useBean>
+        <jsp:useBean id="CourtierJSP" scope="session" class="Modele.Courtier"></jsp:useBean>
         <jsp:useBean id="ListeFiltreePartenaires" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="ListeFiltreeOffresPartenaires" scope="request" class="java.util.List"></jsp:useBean>
         <title>Page Courtier</title>

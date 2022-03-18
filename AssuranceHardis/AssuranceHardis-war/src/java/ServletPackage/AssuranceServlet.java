@@ -116,11 +116,11 @@ public class AssuranceServlet extends HttpServlet {
                     Court = gestionService.AuthentificationCourtier(login, mdpHache);
                     Assur = gestionService.AuthentificationAssureur(login, mdpHache);
                     Admin = gestionAdmin.AuthentificationAdmin(login, mdpHache);
-
+                    sess = request.getSession(true);
                     if (ClientU != null) {
                         //doSendMailConfirmationInscription(request, response, "alex_pr01@hotmail.fr", "test", "ça fonctionne bieng"); ---> à voir comment faire
                         sess.setAttribute("ClientUnique", ClientU);
-                        request.setAttribute("ClientUniqueJSP", ClientU);
+                        request.setAttribute("ClientUnique", sess.getAttribute("ClientUnique"));
                         List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                         request.setAttribute("ListeContrat", ListeContratClient);
                         sess.setAttribute("Entreprise", null);
@@ -132,7 +132,7 @@ public class AssuranceServlet extends HttpServlet {
                     } else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
                         //System.out.println("connexion entreprise");
-                        request.setAttribute("Entreprise", Boite);
+                        request.setAttribute("Entreprise",sess.getAttribute("Entreprise"));
                         //System.out.println("connexion entreprise 2");
                         List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
                         System.out.println("liste contrat vide ");
@@ -146,7 +146,7 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("Courtier", Court);
                         List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
                         List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, Assur);
-                        request.setAttribute("CourtierJSP", Court);
+                        request.setAttribute("CourtierJSP", sess.getAttribute("Courtier"));
                         request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                         request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                         sess.setAttribute("Entreprise", null);
@@ -157,7 +157,7 @@ public class AssuranceServlet extends HttpServlet {
                     } else if (Assur != null) {
                         sess.setAttribute("Assureur", Assur);
                         Assureur a = (Assureur) sess.getAttribute("Assureur");
-                        request.setAttribute("AssureurJSP", a);
+                        request.setAttribute("AssureurJSP", sess.getAttribute("Assureur"));
                         // liste offre de l'assureur
                         List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(a.getId());
                         request.setAttribute("listOffreAssureur", listOffreAssureur);
@@ -184,8 +184,8 @@ public class AssuranceServlet extends HttpServlet {
                         jspClient = "/SessionAssureur.jsp";
 
                     } else if (Admin != null) {
-                        sess.setAttribute("Admin", Admin);
-                        request.setAttribute("Admin", Admin);
+                        sess.setAttribute("Administrateur", Admin);
+                        request.setAttribute("Admin", sess.getAttribute("Administrateur"));
                         List<Courtier> ListeCourtier = gestionAdmin.GetListCourtier();
                         request.setAttribute("Courtier", ListeCourtier);
                         List<Assureur> ListeAssureur = gestionAdmin.GetListAssureur();
@@ -221,12 +221,15 @@ public class AssuranceServlet extends HttpServlet {
             } else if (act.equals("CreerOffreCourtier")) {
                 jspClient = "/CreerOffreCourtier.jsp";
             } else if (act.equals("Deconnexion")) {
-                sess.setAttribute("Courtier", null);
-                sess.setAttribute("Entreprise", null);
-                sess.setAttribute("ClientUnique", null);
-                sess.setAttribute("Assureur", null);
-                sess.setAttribute("Admin", null);
-                jspClient = "/Connexion.jsp";
+               /* sess.setAttribute("Courtier", new Courtier());
+                sess.setAttribute("Entreprise", new Entreprise());
+                sess.setAttribute("ClientUnique", new ClientUnique());
+                sess.setAttribute("Assureur", new Assureur());
+                sess.setAttribute("Administrateur", new Administrateur());
+                jspClient = "/Connexion.jsp";*/
+               sess.invalidate();
+               sess = request.getSession(false);
+               jspClient = "/Connexion.jsp";
             } else if (act.equals("CompteCourtier")) {
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 request.setAttribute("Courtier", Court);
@@ -294,6 +297,7 @@ public class AssuranceServlet extends HttpServlet {
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 Assureur Assur = (Assureur) sess.getAttribute("Assureur");
                 Administrateur Admin = (Administrateur) sess.getAttribute("Administrateur");
+                System.out.println(sess.getAttribute("Administrateur"));
                 if (Client != null) {
                     request.setAttribute("ClientUnique", Client);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
@@ -306,7 +310,7 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/RechercheOffreEntreprise.jsp";
 
                 } else if (Court != null) {
-                    request.setAttribute("ClientUnique", Client);
+                    request.setAttribute("Courtier", Client);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreCourtier.jsp";
@@ -318,7 +322,8 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/RechercheOffreAssureur.jsp";
 
                 } else if (Admin != null) {
-                    request.setAttribute("ClientUnique", Client);
+                    request.setAttribute("AdministrateurJSP", Admin);
+                    System.out.println(sess.getAttribute("Administrateur"));
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreAdmin.jsp";
@@ -379,7 +384,7 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/SessionAssureur.jsp";
 
                 } else if (Admin != null) {
-                    sess.setAttribute("Admin", Admin);
+                    sess.setAttribute("Administrateur", Admin);
                         request.setAttribute("Admin", Admin);
                         List<Courtier> ListeCourtier = gestionAdmin.GetListCourtier();
                         request.setAttribute("Courtier", ListeCourtier);

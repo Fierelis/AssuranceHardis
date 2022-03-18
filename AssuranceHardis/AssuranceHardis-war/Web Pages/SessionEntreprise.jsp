@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dashboard Client</title>
         <%System.out.println("FDPPPPPPPPPPPPPPP");%>
-        <jsp:useBean id="Entreprise" scope="request" class="Modele.Entreprise"></jsp:useBean>
+        <jsp:useBean id="Entreprise" scope="session" class="Modele.Entreprise"></jsp:useBean>
         <%System.out.println("gggggggggggggggggggggggggg");%>
         <jsp:useBean id="ListeContratEntreprise" scope="request" class="java.util.List"></jsp:useBean>
         </head>
