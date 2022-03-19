@@ -91,7 +91,7 @@
                             <td><%= CourtierPartenaire.getMailCourtier() %></td>
                             
                         </tr>
-                       <%}%>
+                       <% } %>
             </table>
         </div>
         

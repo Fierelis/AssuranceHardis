@@ -82,24 +82,24 @@ public class AssuranceServlet extends HttpServlet {
                 gestionService.CreerTypeProduit("Epargne");
                 gestionService.CreerTypeProduit("PlacementFinancier");
                  */
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Inscription/Connexion.jsp";
                 //jspClient = "/CreerAssureur.jsp";
 
             } else if (act.equals("CreerClientUnique")) {
                 doActionCreerClientUnique(request, response);
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Inscription/Connexion.jsp";
             } else if (act.equals("CreerEntreprise")) {
                 doActionCreerEntreprise(request, response);
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Inscription/Connexion.jsp";
             } else if (act.equals("CreerAssur")) {
                 doActionCreerAssur(request, response);
-                jspClient = "/Connexion.jsp";;
+                jspClient = "/Inscription/Connexion.jsp";;
             } else if (act.equals("CreerCourtier")) {
                 doActionCreerCourtier(request, response);
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Inscription/Connexion.jsp";
             } else if (act.equals("CreerAdmin")) {
                 doActionCreerAdmin(request, response);
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Inscription/Connexion.jsp";
             } // SESSION --------------------------------------------------------------------------------------------------------------------------
             else if (act.equals("Connexion")) {
                 String login = request.getParameter("login");
@@ -128,7 +128,7 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("Assureur", null);
                         sess.setAttribute("Administrateur", null);
 
-                        jspClient = "/SessionClientUnique.jsp";
+                        jspClient = "/UserClient/SessionClientUnique.jsp";
                     } else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
                         //System.out.println("connexion entreprise");
@@ -141,7 +141,7 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("Courtier", null);
                         sess.setAttribute("Assureur", null);
                         sess.setAttribute("Administrateur", null);
-                        jspClient = "/SessionEntreprise.jsp";
+                        jspClient = "/UserClient/SessionEntreprise.jsp";
                     } else if (Court != null) {
                         sess.setAttribute("Courtier", Court);
                         List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
@@ -153,7 +153,7 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("ClientUnique", null);
                         sess.setAttribute("Assureur", null);
                         sess.setAttribute("Administrateur", null);
-                        jspClient = "/SessionCourtier.jsp";
+                        jspClient = "/UserService/SessionCourtier.jsp";
                     } else if (Assur != null) {
                         sess.setAttribute("Assureur", Assur);
                         Assureur a = (Assureur) sess.getAttribute("Assureur");
@@ -181,7 +181,7 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("Courtier", null);
                         sess.setAttribute("ClientUnique", null);
                         sess.setAttribute("Administrateur", null);
-                        jspClient = "/SessionAssureur.jsp";
+                        jspClient = "/UserService/SessionAssureur.jsp";
 
                     } else if (Admin != null) {
                         sess.setAttribute("Administrateur", Admin);
@@ -198,7 +198,7 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("ClientUnique", null);
                         jspClient = "/SessionAdmin.jsp";
                     } else {
-                        jspClient = "/Connexion.jsp";
+                        jspClient = "/Inscription/Connexion.jsp";
                         request.setAttribute("message", "Aucun utilisateur enregistré à ce nom");
                     }
                 } else {
@@ -207,83 +207,90 @@ public class AssuranceServlet extends HttpServlet {
                 }
             } // SESSION --------------------------------------------------------------------------------------------------------------------------
             else if (act.equals("MenuCreerCompte")) {
-                jspClient = "/MenuCreationCompte.jsp";
+                jspClient = "/Inscription/MenuCreationCompte.jsp";
             } else if (act.equals("SelectionnerCreationClientUnique")) {
-                jspClient = "/CreerClientUnique.jsp";
+                jspClient = "/Inscription/CreerClientUnique.jsp";
             } else if (act.equals("SelectionnerCreationEntreprise")) {
-                jspClient = "/CreerEntreprise.jsp";
+                jspClient = "/Inscription/CreerEntreprise.jsp";
             } else if (act.equals("SelectionnerCreationCourtier")) {
-                jspClient = "/CreerCourtier.jsp";
+                jspClient = "/Inscription/CreerCourtier.jsp";
             } else if (act.equals("SelectionnerCreationAssureur")) {
-                jspClient = "/CreerAssureur.jsp";
+                jspClient = "/Inscription/CreerAssureur.jsp";
             } else if (act.equals("SelectionnerCreationAdmin")) {
-                jspClient = "/CreerAdmin.jsp";
-            } else if (act.equals("CreerOffreCourtier")) {
-                jspClient = "/CreerOffreCourtier.jsp";
-            } else if (act.equals("Deconnexion")) {
+                jspClient = "/Inscription/CreerAdmin.jsp";
+            } 
+            
+            else if (act.equals("CreerOffreCourtier")) {
+                jspClient = "/UserService/CreerOffreCourtier.jsp";
+            }
+            
+            else if (act.equals("Deconnexion")) {
                 sess.setAttribute("Courtier", new Courtier());
                 sess.setAttribute("Entreprise", new Entreprise());
                 sess.setAttribute("ClientUnique", new ClientUnique());
                 sess.setAttribute("Assureur", new Assureur());
                 sess.setAttribute("Administrateur", new Administrateur());
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Inscription/Connexion.jsp";
                sess.invalidate();
                sess = request.getSession(false);
-               jspClient = "/Connexion.jsp";
+               jspClient = "/Inscription/Connexion.jsp";
+               
+               //____________________________SESSION____FIN_________________________________
+               
             } else if (act.equals("CompteCourtier")) {
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 request.setAttribute("Courtier", Court);
-                jspClient = "/CompteCourtier.jsp";
+                jspClient = "/UserService/CompteCourtier.jsp";
             } else if (act.equals("ModifierInfoCourtier")) {
                 doActionModifierCourtier(request, response);
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 sess.setAttribute("Courtier", Court);
-                jspClient = "/CompteCourtier.jsp";
+                jspClient = "/UserService/CompteCourtier.jsp";
 
             } else if (act.equals("CreerOffreAssureur")) {
                 //System.out.println("Uwu Ca sent mauvais !!!");
                 Assureur assureur = (Assureur) sess.getAttribute("AssureurCreerOffre");
                 //System.out.println(assureur.getId());
                 request.setAttribute("AssureurCreerOffreAssureur", assureur);
-                jspClient = "/CreerOffreAssureur.jsp";
+                jspClient = "/UserService/CreerOffreAssureur.jsp";
             } else if (act.equals("FormCreerOffreAssureur")) {
                 doActionCreerOffreAssureur(request, response);
-                jspClient = "/SessionAssureur.jsp";
+                jspClient = "/UserService/SessionAssureur.jsp";
             } else if (act.equals("CreerOffreAssureur")) {
                 //System.out.println("Uwu Ca sent mauvais !!!");
                 Assureur assureur = (Assureur) sess.getAttribute("AssureurCreerOffre");
                 //System.out.println(assureur.getId());
                 request.setAttribute("AssureurCreerOffreAssureur", assureur);
-                jspClient = "/CreerOffreAssureur.jsp";
+                jspClient = "/UserService/CreerOffreAssureur.jsp";
             } else if (act.equals("FormCreerOffreAssureur")) {
                 doActionCreerOffreAssureur(request, response);
-                jspClient = "/SessionAssureur.jsp";
+                jspClient = "/UserService/SessionAssureur.jsp";
             } else if (act.equals("CompteClient")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 request.setAttribute("ClientU", ClientU);
-                jspClient = "/CompteClient.jsp";
+                jspClient = "/UserClient/CompteClient.jsp";
             } else if (act.equals("ModifierInfoClient")) {
                 doActionModifierClientUnique(request, response);
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 sess.setAttribute("ClientUnique", ClientU);
-                jspClient = "/CompteClient.jsp";
+                jspClient = "/UserClient/CompteClient.jsp";
             } else if (act.equals("RetourSessionClient")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 request.setAttribute("ClientU", ClientU);
                 List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                 request.setAttribute("ListeContrat", ListeContratClient);
-                jspClient = "/SessionClient.jsp";
+                jspClient = "/UserClient/SessionClient.jsp";
             } else if (act.equals("RetourSessionEntreprise")) {
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
                 request.setAttribute("Boite", Boite);
                 //List<Contrat> ListeContratClient = gestionClient.RecupererContratClient(Boite); //////////////////////////////////////////////////////////////////////////
                 //request.setAttribute("ListeContrat",ListeContratClient);
-                jspClient = "/SessionEntreprise.jsp";
+                jspClient = "/UserClient/SessionEntreprise.jsp";
             } else if (act.equals("ModifierInfoEntreprise")) {
                 doActionModifierEntreprise(request, response);
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
                 sess.setAttribute("ClientUnique", Boite);
-                jspClient = "/CompteClient.jsp";
+                jspClient = "/UserClient/CompteClient.jsp";
             } else if (act.equals("ResilierContrat")) {
                 String Contrat = request.getParameter("contrat");
                 long IdContrat = Long.parseLong(Contrat);
@@ -298,32 +305,30 @@ public class AssuranceServlet extends HttpServlet {
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 Assureur Assur = (Assureur) sess.getAttribute("Assureur");
                 Administrateur Admin = (Administrateur) sess.getAttribute("Administrateur");
-                System.out.println(sess.getAttribute("Administrateur"));
-                System.out.println("------------wowowowow2-----------");
 
                 if (Client != null) {
                     request.setAttribute("ClientUnique", Client);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
-                    jspClient = "/RechercheOffreClientUnique.jsp";
+                    jspClient = "/UserClient/RechercheOffreClientUnique.jsp";
                 } else if (Boite != null) {
                     request.setAttribute("ClientUnique", Client);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
-                    jspClient = "/RechercheOffreEntreprise.jsp";
+                    jspClient = "/UserClient/RechercheOffreEntreprise.jsp";
 
                 } else if (Court != null) {
                     request.setAttribute("Courtier", Client);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
-                    jspClient = "/RechercheOffreCourtier.jsp";
+                    jspClient = "/UserService/RechercheOffreCourtier.jsp";
 
                 } else if (Assur != null) {
                     request.setAttribute("AssureurJSP", Assur);
                     System.out.println("------------wowowowow-----------");
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
-                    jspClient = "/RechercheOffreAssureur.jsp";
+                    jspClient = "/UserService/RechercheOffreAssureur.jsp";
 
                 } else if (Admin != null) {
                     request.setAttribute("AdministrateurJSP", Admin);
@@ -347,12 +352,12 @@ public class AssuranceServlet extends HttpServlet {
                     request.setAttribute("ClientUniqueJSP", ClientU);
                     List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                     request.setAttribute("ListeContrat", ListeContratClient);
-                    jspClient = "/SessionClientUnique.jsp";
+                    jspClient = "/UserClient/SessionClientUnique.jsp";
                 } else if (Boite != null) {
                     request.setAttribute("Entreprise", Boite);
                     List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
                     request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
-                    jspClient = "/SessionEntreprise.jsp";
+                    jspClient = "/UserClient/SessionEntreprise.jsp";
 
                 } else if (Court != null) {
                     Assur = null;
@@ -362,7 +367,7 @@ public class AssuranceServlet extends HttpServlet {
                     request.setAttribute("CourtierJSP", Court);
                     request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                     request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
-                    jspClient = "/SessionCourtier.jsp";
+                    jspClient = "/UserService/SessionCourtier.jsp";
 
                 } else if (Assur != null) {
                     request.setAttribute("AssureurJSP", Assur);
@@ -385,7 +390,7 @@ public class AssuranceServlet extends HttpServlet {
 
                     // liste de tous les clients souscripteur 
                     sess.setAttribute("AssureurCreerOffre", Assur);
-                    jspClient = "/SessionAssureur.jsp";
+                    jspClient = "/UserService/SessionAssureur.jsp";
 
                 } else if (Admin != null) {
                     sess.setAttribute("Administrateur", Admin);
@@ -421,13 +426,13 @@ public class AssuranceServlet extends HttpServlet {
                     request.setAttribute("ClientUniqueJSP", ClientU);
                     List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                     request.setAttribute("ListeContrat", ListeContratClient);
-                    jspClient = "/SessionClientUnique.jsp";
+                    jspClient = "/UserService/SessionClientUnique.jsp";
                 } else if (Boite != null) {
                     doActionSouscrireContratEntreprise(request, response);
                     request.setAttribute("Entreprise", Boite);
                     List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
                     request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
-                    jspClient = "/SessionEntreprise.jsp";
+                    jspClient = "/UserService/SessionEntreprise.jsp";
                 }
             } else if (act.equals("ValidationUser")) {
                 String TypeLog="Create";
