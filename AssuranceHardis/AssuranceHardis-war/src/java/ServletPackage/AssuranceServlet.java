@@ -102,6 +102,7 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/Connexion.jsp";
             } // SESSION --------------------------------------------------------------------------------------------------------------------------
             else if (act.equals("Connexion")) {
+                sess = request.getSession(true);
                 String login = request.getParameter("login");
                 String mdp = request.getParameter("mdp");
                 String mdpHache = gestionClient.HashageSha256(mdp);
@@ -116,7 +117,7 @@ public class AssuranceServlet extends HttpServlet {
                     Court = gestionService.AuthentificationCourtier(login, mdpHache);
                     Assur = gestionService.AuthentificationAssureur(login, mdpHache);
                     Admin = gestionAdmin.AuthentificationAdmin(login, mdpHache);
-                    sess = request.getSession(true);
+                    
                     if (ClientU != null) {
                         //doSendMailConfirmationInscription(request, response, "alex_pr01@hotmail.fr", "test", "ça fonctionne bieng"); ---> à voir comment faire
                         sess.setAttribute("ClientUnique", ClientU);
@@ -182,7 +183,6 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("ClientUnique", null);
                         sess.setAttribute("Administrateur", null);
                         jspClient = "/SessionAssureur.jsp";
-
                     } else if (Admin != null) {
                         sess.setAttribute("Administrateur", Admin);
                         request.setAttribute("Admin", sess.getAttribute("Administrateur"));
@@ -202,7 +202,7 @@ public class AssuranceServlet extends HttpServlet {
                         request.setAttribute("message", "Aucun utilisateur enregistré à ce nom");
                     }
                 } else {
-                    jspClient = "/Menu.jsp";
+                    jspClient = "/Connexion.jsp";
                     request.setAttribute("message", "Identifiant ou mot de passe incorrect");
                 }
             } // SESSION --------------------------------------------------------------------------------------------------------------------------
@@ -228,9 +228,8 @@ public class AssuranceServlet extends HttpServlet {
                 sess.setAttribute("ClientUnique", new ClientUnique());
                 sess.setAttribute("Assureur", new Assureur());
                 sess.setAttribute("Administrateur", new Administrateur());
-                jspClient = "/Connexion.jsp";
-               sess.invalidate();
                sess = request.getSession(false);
+               sess.invalidate();
                jspClient = "/Connexion.jsp";
                
                //____________________________SESSION____FIN_________________________________
@@ -443,26 +442,44 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("ValiderInscriptionClientUnique")){
                 String id = request.getParameter("IdClientUnique");
                 long idl = Long.parseLong(id);
+                System.out.println(idl+"______________________________________________________________________________________UVLBINOP?ENBKHVJBKNK?P%NMOBVHKUYGIHOJ");
                 ClientUnique ClientU = gestionClient.RechercherClientUnique(idl);
+                System.out.println(ClientU);
                 gestionClient.ValiderInscriptionClientUnique(ClientU);
+                String TypeLog="Create";
+                List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog) ;
+                request.setAttribute("logs", Listlog);
+                jspClient = "/ValidationUser.jsp";
             }
             else if (act.equals("ValiderInscriptionEntreprise")){
                 String id = request.getParameter("IdEntreprise");
                 long idl = Long.parseLong(id);
                 Entreprise boite = gestionClient.RechercherEntreprise(idl);
                 gestionClient.ValiderInscriptionEntreprise(boite);
+                String TypeLog="Create";
+                List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog) ;
+                request.setAttribute("logs", Listlog);
+                jspClient = "/ValidationUser.jsp";
             }
             else if (act.equals("ValiderInscriptionCourtier")){
                 String id = request.getParameter("IdCourtier");
                 long idl = Long.parseLong(id);
                 Courtier court = gestionService.RechercherCourtier(idl);
                 gestionService.ValiderInscriptionCourtier(court);
+                String TypeLog="Create";
+                List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog) ;
+                request.setAttribute("logs", Listlog);
+                jspClient = "/ValidationUser.jsp";
             }
             else if (act.equals("ValiderInscriptionAssureur")){
                 String id = request.getParameter("IdAssureur");
                 long idl = Long.parseLong(id);
                 Assureur Assur = gestionService.RechercherAssureur(idl);
                 gestionService.ValiderInscriptionAssureur(Assur);
+                String TypeLog="Create";
+                List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog) ;
+                request.setAttribute("logs", Listlog);
+                jspClient = "/ValidationUser.jsp";
             }
 
             RequestDispatcher Rd;

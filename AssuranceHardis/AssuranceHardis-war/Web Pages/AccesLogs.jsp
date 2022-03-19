@@ -53,9 +53,8 @@
         <%
         List<Logs> log = logs;
         %>
-        <h1> Création de Client en attente</h1>
+        <h1>Logs de l'application</h1>
          
-        
          <table>
             <tr>
                 <td>Type</td>

@@ -74,7 +74,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     public Courtier AuthentificationCourtier(String LoginCourtier, String PasswordCourtier) {
         try {
         Courtier Court = null;
-        String txt="Select Court from UtilisateurService as Court where Court.LoginUserService=:LoginCourtier and Court.PasswordUserService=:PasswordCourtier and Court.TypeUserService=:Courtier";
+        String txt="Select Court from UtilisateurService as Court where Court.LoginUserService=:LoginCourtier and Court.PasswordUserService=:PasswordCourtier and Court.TypeUserService=:Courtier and Court.ActivationUser=true";
         Query req=getEntityManager().createQuery(txt);
         req=req.setParameter("LoginCourtier",LoginCourtier);
         req=req.setParameter("PasswordCourtier", PasswordCourtier);

@@ -71,7 +71,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         
         try {
             Entreprise Boite = null;
-        String txt="Select Boite from UtilisateurClient as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise and Boite.typeUser=:entreprise";
+        String txt="Select Boite from UtilisateurClient as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise and Boite.typeUser=:entreprise and Boite.ActivationUser=true";
         Query req=getEntityManager().createQuery(txt);
         req=req.setParameter("LoginEntreprise",LoginEntreprise);
         req=req.setParameter("PasswordEntreprise", PasswordEntreprise);

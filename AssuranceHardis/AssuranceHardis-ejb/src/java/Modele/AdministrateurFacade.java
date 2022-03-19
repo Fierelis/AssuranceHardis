@@ -69,7 +69,7 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
 
         try {
             Administrateur Admin = null;
-            String txt = "Select Admin from Administrateur as Admin where Admin.LoginAdmin=:LoginAdmin and Admin.PasswordAdmin=:PasswordAdmin";
+            String txt = "Select Admin from Administrateur as Admin where Admin.LoginAdmin =:LoginAdmin and Admin.PasswordAdmin =:PasswordAdmin";
             Query req = getEntityManager().createQuery(txt);
             req = req.setParameter("LoginAdmin", LoginAdmin);
             req = req.setParameter("PasswordAdmin", PasswordAdmin);

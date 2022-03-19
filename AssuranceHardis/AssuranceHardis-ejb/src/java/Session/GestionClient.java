@@ -51,7 +51,8 @@ public class GestionClient implements GestionClientLocal {
 
     @Override
     public ClientUnique RechercherClientUnique(long IdclientUnique) {
-        return null;
+        ClientUnique ClientU = clientUniqueFacade.RechercheClientUnique(IdclientUnique);
+        return ClientU;
     }
 
     @Override

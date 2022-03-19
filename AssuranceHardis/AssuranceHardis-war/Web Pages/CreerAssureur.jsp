@@ -40,12 +40,10 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-10">
-                        <form action="#" class="signin-form">
+                        <form method="post" action="#" class="signin-form">
 
                             <div class="wrap d-md-flex">
                                 <div class="text-wrapp p-4 p-lg-5">
-
-
 
                                     <div class="form-group mb-3">
                                         <label class="label" for="LoginAssur">Identifiant</label>

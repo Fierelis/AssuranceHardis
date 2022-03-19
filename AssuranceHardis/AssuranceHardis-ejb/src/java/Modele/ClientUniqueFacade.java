@@ -53,13 +53,16 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
     }
 
     @Override
-    public ClientUnique RechercheClientUnique(long id) {
-        ClientUnique clientUnique = null;
-        String txt = "Select clientUnique from ClientUnique as cu where cu.id=:i";
+    public ClientUnique RechercheClientUnique(long idClient) {
+        ClientUnique ClientU = null;
+        String txt = "SELECT Client FROM ClientUnique AS Client WHERE Client.id =:idClient";
         Query req = getEntityManager().createQuery(txt);
-        req.setParameter("i", id);
-        clientUnique = (ClientUnique) req.getSingleResult();
-        return clientUnique;
+        req.setParameter("idClient", idClient);
+        List<ClientUnique> result = req.getResultList();
+        if (result.size() == 1) {
+            ClientU = (ClientUnique) result.get(0);
+        }
+        return ClientU;
     }
 
     @Override
@@ -75,8 +78,10 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
        
         try {
            ClientUnique ClientU = null;
-        String txt = "Select ClientU from UtilisateurClient as ClientU where ClientU.login=:LoginClientUnique and ClientU.mdp=:PasswordClientUnique and ClientU.typeUser=:ClientUnique";
+           //boolean bool = true;
+        String txt = "Select ClientU from UtilisateurClient as ClientU where ClientU.login=:LoginClientUnique and ClientU.mdp=:PasswordClientUnique and ClientU.typeUser=:ClientUnique" ;
         Query req = getEntityManager().createQuery(txt);
+        //req = req.setParameter("au",bool);
         req = req.setParameter("LoginClientUnique", LoginClientUnique);
         req = req.setParameter("PasswordClientUnique", PasswordClientUnique);
         req = req.setParameter("ClientUnique", "Client Unique");
@@ -84,6 +89,7 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         if (result.size() == 1) {
             ClientU = (ClientUnique) result.get(0);
         }
+        System.out.println(ClientU);
         return ClientU; 
         } catch (Exception e) {
             return null;

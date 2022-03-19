@@ -23,7 +23,7 @@
             
               <input type="hidden" name="action" value="home">
         </form>
-        <form method="get" action="AssuranceServlet">
+        <form method="post" action="AssuranceServlet">
             <fieldset>
                 <legend>Informations Offre</legend>     
                 <label for="TypeOffre">Type d'offre : <span class="requis"></span></label>

@@ -47,7 +47,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p>
-                                <form>
+                                <form method="post" action="#">
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationAssureur"> </form>
                             </div>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p>
-                                <form>
+                                <form method="post" action="#">
                                   <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationClientUnique"> </form>
                             </div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p>
-                                 <form>
+                                 <form method="post" action="#">
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationCourtier"> </form>
                             </div>
@@ -107,7 +107,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p> 
-                                <form>
+                                <form method="post" action="#">
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationEntreprise"> </form>
                             </div>
