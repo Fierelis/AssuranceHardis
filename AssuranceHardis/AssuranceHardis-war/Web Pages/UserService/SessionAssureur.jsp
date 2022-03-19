@@ -59,8 +59,7 @@
                     <td>Le type de produit</td>
                 </tr>
                     <% 
-                       List<Offre> ListeOffreAssureur=listeOffreAssureur;
-                        for(Offre OffrePartenaire : ListeOffreAssureur){
+                        for(Offre OffrePartenaire : listeOffreAssureur){
                     %>  <tr><td><%=OffrePartenaire.getTypeOffre() %></td>
                             <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
                             <td><%=OffrePartenaire.getPrixOffre() %></td>                       
@@ -84,8 +83,7 @@
                     <td>Mail</td>
                 </tr>
                     <% 
-                       List<Courtier> ListeCourtier=listeCourtierPartenaire;
-                        for(Courtier CourtierPartenaire : ListeCourtier){
+                        for(Courtier CourtierPartenaire : listeCourtierPartenaire){
                     %>  <tr><td><%= CourtierPartenaire.getNomCourtier() %></td>
                             <td><%= CourtierPartenaire.getPrenomCourtier() %></td>
                             <td><%= CourtierPartenaire.getDateNaissanceCourtier()  %></td>                       
@@ -93,7 +91,7 @@
                             <td><%= CourtierPartenaire.getMailCourtier() %></td>
                             
                         </tr>
-                       <%}%>
+                       <% } %>
             </table>
         </div>
         
