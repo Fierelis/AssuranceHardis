@@ -17,7 +17,40 @@
         <h1>Informations courtier</h1>
         
         <%Entreprise EBoite = Boite;  %>
-        
+                <form>
+            <button class="button login__submit">
+                <span class="button__text">Home</span>
+                <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+
+            <input type="hidden" name="action" value="home">
+        </form>
+        <form>
+            <button class="button login__submit">
+                <span class="button__text">Rechercher une Offre</span>
+                <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+
+            <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+
+        <form>
+            <button class="button login__submit">
+                <span class="button__text">Compte Entreprise</span>
+                <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+
+            <input type="hidden" name="action" value="CompteEntreprise">
+        </form>
+
+        <form>
+            <button class="button login__submit">
+                <span class="button__text">Se deconnecter</span>
+                <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+
+            <input type="hidden" name="action" value="Deconnexion">
+        </form>
         <form>
         <table>
             <tr>
@@ -59,13 +92,5 @@
             <input type="hidden" name="action" value="ModifierInfoEntreprise">
             <input id="valid" type="submit" name="Valider" value="Valider les changements">
         </form>
-            <form>
-                <button class="button login__submit">
-                    <span class="button__text">Retour</span>
-                     <i class="button__icon fas fa-chevron-right"></i>
-                </button>
-        
-              <input type="hidden" name="action" value="RetourSessionEntreprise">
-            </form>
     </body>
 </html>

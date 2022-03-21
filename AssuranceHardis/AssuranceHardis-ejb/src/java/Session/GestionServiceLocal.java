@@ -62,6 +62,8 @@ public interface GestionServiceLocal {
     public void ValiderInscriptionCourtier(Courtier court);
 
     public void ValiderInscriptionAssureur(Assureur Assur);
+
+    public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail);
     
     
     

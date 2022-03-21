@@ -53,7 +53,7 @@
                 
                 
                 
-                <input type="hidden" name="action" value="CreerOffre">
+                <input type="hidden" name="action" value=">FormCreerOffreCourtier">
             </fieldset>
             <input type="submit" value="Valider" />
             <input type="reset" value="Remettre à zéro" /> <br />

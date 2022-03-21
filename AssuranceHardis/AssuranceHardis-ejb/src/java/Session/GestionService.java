@@ -154,4 +154,8 @@ public class GestionService implements GestionServiceLocal {
     public void ValiderInscriptionAssureur(Assureur Assur) {
         assureurFacade.ValiderInscription(Assur);
     }
+    @Override
+    public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail) {
+        assureurFacade.ModifierAssureur(Assur, Login, mdp, RaisonSociale, SiegeSocial, Mail);
+    }
 }

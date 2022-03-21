@@ -73,7 +73,6 @@
             <input type='hidden' name='action' value='validerSouscription'>
             <button name='Souscrire' value='Souscrire'>
 
-
         </form>
     </body>
 </html>

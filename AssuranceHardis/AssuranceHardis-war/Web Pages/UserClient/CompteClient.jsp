@@ -17,7 +17,41 @@
          <h1>Informations Client</h1>
         
         <%ClientUnique Client = ClientU;  %>
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Home</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="home">
+        </form>
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
         
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteClient">
+        </form>
+        
+        
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
+        </form>
         <form>
         <table>
             <tr>
@@ -54,13 +88,6 @@
             <input type="hidden" name="action" value="ModifierInfoClient">
             <input id="valid" type="submit" name="Valider" value="Valider les changements">
         </form>
-            <form>
-                <button class="button login__submit">
-                    <span class="button__text">Retour</span>
-                     <i class="button__icon fas fa-chevron-right"></i>
-                </button>
-        
-              <input type="hidden" name="action" value="RetourSessionClient">
-            </form>
+
     </body>
 </html>

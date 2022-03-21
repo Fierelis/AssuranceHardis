@@ -66,13 +66,6 @@
             <input type="hidden" name="action" value="ModifierInfoCourtier">
             <input id="valid" type="submit" name="Valider" value="Valider les changements">
         </form>
-            <form>
-                <button class="button login__submit">
-                    <span class="button__text">Retour</span>
-                     <i class="button__icon fas fa-chevron-right"></i>
-                </button>
-        
-              <input type="hidden" name="action" value="RetourSessionCourtier">
-            </form>
+
     </body>
 </html>

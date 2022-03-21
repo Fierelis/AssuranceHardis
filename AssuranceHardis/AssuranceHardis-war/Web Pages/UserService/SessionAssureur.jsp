@@ -39,7 +39,14 @@
             <input type="hidden" name="action" value="RechercherOffre">
             <input type="submit" value="Les Offres" />            
         </form>
-        
+              <form>
+            <button class="button login__submit">
+                <span class="button__text">Compte Assureur</span>
+                <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+
+            <input type="hidden" name="action" value="CompteAssureur">
+        </form>
         <form method="get" action="AssuranceServlet">
             <input type="hidden" name="action" value="CreerOffreAssureur">
             <input type="submit" value="Créer une offre" />            
