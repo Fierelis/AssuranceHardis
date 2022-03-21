@@ -33,8 +33,7 @@ public class pdf {
          document.open();
          document.add(new Paragraph("A Hello World PDF document."));
          
-         
-          PdfPTable table = new PdfPTable(3); // 3 columns.
+         PdfPTable table = new PdfPTable(3); // 3 columns.
         table.setWidthPercentage(100); //Width 100%
         table.setSpacingBefore(10f); //Space before table
         table.setSpacingAfter(10f); //Space after table
@@ -71,8 +70,7 @@ public class pdf {
         table.addCell(cell3);
  
         document.add(table);
-        
-        
+         
          document.addAuthor("Lokesh Gupta");
          document.addCreationDate();
             document.addCreator("HowToDoInJava.com");
