@@ -85,6 +85,8 @@ public class AssuranceServlet extends HttpServlet {
                  */
                 jspClient = "/Inscription/Connexion.jsp";
                 //jspClient = "/CreerAssureur.jsp";
+                Mailer mailTest=new Mailer();
+               //mailTest.envoyerMailSMTP("10.10.50.8",true);
 
             } else if (act.equals("CreerClientUnique")) {
                 doActionCreerClientUnique(request, response);
