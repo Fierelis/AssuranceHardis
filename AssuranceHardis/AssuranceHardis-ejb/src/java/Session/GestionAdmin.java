@@ -92,4 +92,9 @@ public class GestionAdmin implements GestionAdminLocal {
          List<Logs> LesLogs = logsFacade.RecupLogByType(TypeLog);
          return LesLogs;
      }
+
+    @Override
+    public List getAllAdmin() {
+        return administrateurFacade.getAllAdmin();
+    }
 }

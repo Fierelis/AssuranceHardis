@@ -49,44 +49,124 @@ public class Mailer {
 
     }
 
+    public void envoyerMailSMTPCreationCompte(String username, String password) {
+        // Recipient's email ID needs to be mentioned.
+        String to = username;
 
-    public void envoyerMailSMTP() {
-        final String username = "twistiz.99@gmail.com";
-        final String password = "alexandre";
+        // Sender's email ID needs to be mentioned
+        String from = username;
 
-        Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "465");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.socketFactory.port", "465");
-        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        
-        Session session = Session.getInstance(prop,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
+        // Assuming you are sending email from through gmails smtp
+        String host = "smtp.gmail.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication(username, password);
+
+            }
+
+        });
+
+        // Used to debug SMTP issues
+        session.setDebug(true);
 
         try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("from@gmail.com"));
-            message.setRecipients(
-                    Message.RecipientType.TO,
-                    InternetAddress.parse("to_username_a@gmail.com, to_username_b@yahoo.com")
-            );
-            message.setSubject("Testing Gmail SSL");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
 
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Création de compte");
+
+            // Now set the actual message
+            message.setText("Ce mail confirme que vous avez créez un compte sur notre plateforme Sombrero. \r"
+                    + "Nous vous souhaitons la bienvenue parmis nous ! Vous êtes désormais un Sombrebro.\r"
+                    + "\r \r"
+                    + "Cordialement Sombrero");
+
+            System.out.println("sending...");
+            // Send message
             Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
 
-            System.out.println("Done");
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } 
     }
 
+    public void envoyerMailSMTPAdmin(String username, String password) {
+        // Recipient's email ID needs to be mentioned.
+        String to = username;
+
+        // Sender's email ID needs to be mentioned
+        String from = username;
+
+        // Assuming you are sending email from through gmails smtp
+        String host = "smtp.gmail.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication(username, password);
+
+            }
+
+        });
+
+        // Used to debug SMTP issues
+        session.setDebug(true);
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Admin : notification de création de compte");
+
+            // Now set the actual message
+            message.setText("Un compte vient d'être créé sur la plateforme Sombrero.");
+
+            System.out.println("sending...");
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+
+    }
 }

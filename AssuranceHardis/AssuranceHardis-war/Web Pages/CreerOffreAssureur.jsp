@@ -1,3 +1,5 @@
+
+
 <%-- 
     Document   : CreerOffre
     Created on : 9 mars 2022, 16:41:18
@@ -45,12 +47,12 @@
                 
                 <label for="TypeProduit">Type de produit : <span class="requis"></span></label>
                 <select name="TypeProduit">                      
-                    <option value ="Sante">Santé</option>   
-                    <option value ="Vie">Vie</option>    
-                    <option value ="Prevoyance">Prévoyance</option> 
-                    <option value ="IARD">IARD</option> 
-                    <option value ="Epargne">Epargne</option> 
-                    <option value ="PlacementFinancier">Placement Financier</option> 
+                    <option value="Sante">Santé</option>   
+                    <option value="Vie">Vie</option>    
+                    <option value="Prevoyance">Prévoyance</option> 
+                    <option value="IARD">IARD</option> 
+                    <option value="Epargne">Epargne</option> 
+                    <option value="PlacementFinancier">Placement Financier</option> 
                 </select><br />
                 
                 <input type="hidden" name="Assureur" value="<%=a.getId()%>">
@@ -62,3 +64,4 @@
         </form>
     </body>
 </html>
+

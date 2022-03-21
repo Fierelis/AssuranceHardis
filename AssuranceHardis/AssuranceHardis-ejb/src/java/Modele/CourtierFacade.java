@@ -92,7 +92,7 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
 
     @Override
     public List RechercheCourtierPartenaire(long idAssurance) {
-        
+            try {
             System.out.println("1 ---");
             String txt="Select distinct c from Courtier as c "
                     + "inner join Offre as o on o.LeCourtier.id=c.id "
@@ -101,6 +101,10 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
             req=req.setParameter("idAssurance",idAssurance);
             List<Courtier>result = req.getResultList();
             return result;
+        } catch (Exception e) {
+            return null;
+        }
+            
         
     }
     @Override
