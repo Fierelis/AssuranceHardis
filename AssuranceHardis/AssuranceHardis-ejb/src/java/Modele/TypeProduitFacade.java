@@ -46,6 +46,7 @@ public class TypeProduitFacade extends AbstractFacade<TypeProduit> implements Ty
             List<TypeProduit> result = req.getResultList();
             if (result.size() == 1) {
                 SearchedTypeProduit = (TypeProduit) result.get(0);
+                System.out.println("prrrrrrrrrrrrrrrrrrrr"+ SearchedTypeProduit);
             }
             return SearchedTypeProduit;
         } catch (Exception e) {

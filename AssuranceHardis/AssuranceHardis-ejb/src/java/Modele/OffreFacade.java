@@ -149,13 +149,19 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
 
     @Override
     public List GetAllOffreAssureur(long idAssureur) {
-        String txt = "Select o from Offre as o"
+        try {
+            String txt = "Select o from Offre as o"
                     + " where o.OffreActive=:bool and o.OffreDeUtilisateurService.id=:idAssureur";
         Query req = getEntityManager().createQuery(txt);
         req.setParameter("bool", true);
         req.setParameter("idAssureur", idAssureur);
         List<Offre> result = req.getResultList();
-        return result;      
+        return result; 
+        } catch (Exception e) {
+            return null;
+        }
+        
+             
     }
 
     @Override
