@@ -36,5 +36,7 @@ public interface AdministrateurFacadeLocal {
     public Administrateur RechercherAdministrateur(long IdAdmin);
 
     Administrateur AuthentificationAdmin(String LoginAdmin, String PasswordAdmin);
+
+    List getAllAdmin();
     
 }

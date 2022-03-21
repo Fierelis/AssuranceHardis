@@ -50,7 +50,8 @@ public class AssuranceServlet extends HttpServlet {
     @EJB
     private GestionAdminLocal gestionAdmin;
 
-
+    String mailAdmin="test.ferme99@gmail.com";
+    String PassAdmin="Ferme99?Uwu";
     /*
     protected void Test(HttpServletRequest request, HttpServletResponse response){
         Date d = new Date();
@@ -69,6 +70,7 @@ public class AssuranceServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        
         try (PrintWriter out = response.getWriter()) {
 
             HttpSession sess = request.getSession();
@@ -85,7 +87,8 @@ public class AssuranceServlet extends HttpServlet {
                  */
                 jspClient = "/Inscription/Connexion.jsp";
                 //jspClient = "/CreerAssureur.jsp";
-                Mailer mailTest=new Mailer();
+                //Mailer mailTest=new Mailer();
+                //mailTest.envoyerMailSMTPCreationCompte("test.ferme99@gmail.com", "alexandre69");
                //mailTest.envoyerMailSMTP("10.10.50.8",true);
 
             } else if (act.equals("CreerClientUnique")) {
@@ -582,6 +585,11 @@ public class AssuranceServlet extends HttpServlet {
             String TypeLog = "Create";
             gestionAdmin.CreerLog(CU, null, null, null, null, null, null, TypeLog);
             message = "Client créé avec succès !";
+            Mailer mailClient=new Mailer();
+            mailClient.envoyerMailSMTPCreationCompte(email, mdp);
+            mailClient.envoyerMailSMTPAdmin(mailAdmin, PassAdmin);
+        
+            
         }
         request.setAttribute("message", message);
     }
@@ -650,6 +658,9 @@ public class AssuranceServlet extends HttpServlet {
             String TypeLog = "Create";
             gestionAdmin.CreerLog(null, boite, null, null, null, null, null, TypeLog);
             message = "Entreprise créé avec succès !";
+            Mailer mailClient=new Mailer();
+            mailClient.envoyerMailSMTPCreationCompte(mail, mdp);
+            mailClient.envoyerMailSMTPAdmin(mailAdmin, PassAdmin);
         }
         request.setAttribute("message", message);
 
@@ -679,6 +690,9 @@ public class AssuranceServlet extends HttpServlet {
             gestionAdmin.CreerLog(null, null, null, Assur, null, null, null, TypeLog);
 
             message = "Assureur créé avec succès !";
+            Mailer mailClient=new Mailer();
+            mailClient.envoyerMailSMTPCreationCompte(Email, Mdp);
+            mailClient.envoyerMailSMTPAdmin(mailAdmin, PassAdmin);
         }
         request.setAttribute("message", message);
     }
@@ -708,6 +722,9 @@ public class AssuranceServlet extends HttpServlet {
             gestionAdmin.CreerLog(null, null, court, null, null, null, null, TypeLog);
 
             message = "Courtier créé avec succès !";
+            Mailer mailClient=new Mailer();
+            mailClient.envoyerMailSMTPCreationCompte(Email, Mdp);
+            mailClient.envoyerMailSMTPAdmin(mailAdmin, PassAdmin);
         }
         request.setAttribute("message", message);
 

@@ -85,4 +85,16 @@ public class AdministrateurFacade extends AbstractFacade<Administrateur> impleme
 
     }
 
+    @Override
+    public List getAllAdmin() {
+        try {
+            String txt = "Select a from Admin as a";
+            Query req = getEntityManager().createQuery(txt);
+            List<Administrateur> result = req.getResultList();
+            return result;
+        } catch (Exception e) {
+             return null;
+        }   
+    }
+
 }

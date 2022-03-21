@@ -42,6 +42,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         Assur.setSiegeSocialAssureur(SiegeSocialAssureur);
         Assur.setSirenAssureur(SIREN);
         Assur.setRaisonSocialeAssureur(RaisonSocialeAssureur);
+        Assur.setActivationUser(false);
         em.persist(Assur);
         return Assur;
     }

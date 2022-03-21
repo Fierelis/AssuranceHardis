@@ -42,5 +42,7 @@ public interface GestionAdminLocal {
     public List<Logs> RecupLogByType(String TypeLog);
 
     public void CreerLog(ClientUnique LeClient, Entreprise Lentreprise, Courtier LeCourtier, Assureur Lassureur, Offre Loffre, Contrat LeContrat, Administrateur LAdmin, String TypeLog);
+
+    List getAllAdmin();
     
 }

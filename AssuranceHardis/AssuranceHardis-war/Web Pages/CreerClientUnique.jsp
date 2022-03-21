@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Mot de passe</label>
-                                        <input type="text" class="form-control" name ="MdpClient" placeholder="Mot de passe" required>
+                                        <input type="password" class="form-control" name ="MdpClient" placeholder="Mot de passe" required>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Adresse mail</label>
