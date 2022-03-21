@@ -80,7 +80,7 @@
                             <td>
                                 <form>
                                     <button name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
-                                    <input type="hidden" name="Bouton" value="ResilierContrat">
+                                    <input type="hidden" name="Bouton" value="ResilierContratClient">
                                 </form>
                             </td>
                             

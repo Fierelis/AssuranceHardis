@@ -101,5 +101,11 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         boite.setActivationUser(true);
         em.merge(boite);
     }
-
+        @Override
+        public void ResilierContratEntreprise(Long numContrat) {
+        String txt="DELETE FROM Contrat as C WHERE R.id = :numContrat ";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("numContrat",numContrat);
+        req.executeUpdate();
+    }
 }

@@ -313,14 +313,39 @@ public class AssuranceServlet extends HttpServlet {
                 sess.setAttribute("Entreprise", Boite);
                 jspClient = "/UserClient/SessionEntreprise.jsp";
             } 
-            else if (act.equals("ResilierContrat")) {
+            
+            // Résiliation des contrats du client et de l'entreprise ________________________________
+            else if (act.equals("ResilierContratClient")) {
                 String Contrat = request.getParameter("contrat");
                 long IdContrat = Long.parseLong(Contrat);
                 Contrat SupprContrat = gestionClient.RechercherContrat(IdContrat);
                 request.setAttribute("Contrat", SupprContrat);
-                jspClient = "/ResilierContrat.jsp";
+                jspClient = "/ResilierContratClient.jsp";
+            } 
+            else if (act.equals("ResilierContratEntreprise")) {
+                String Contrat = request.getParameter("contrat");
+                long IdContrat = Long.parseLong(Contrat);
+                Contrat SupprContrat = gestionClient.RechercherContrat(IdContrat);
+                request.setAttribute("Contrat", SupprContrat);
+                jspClient = "/ResilierContratEntreprise.jsp";
 
-            } //___________________________________RECHERCHER__OFFRE__PAR__SESSION______________________________________________________________________________________________
+            } 
+            else if (act.equals("validerResiliationClient")){
+                String numC = request.getParameter("IdContrat");
+                long numContrat = Long.parseLong(numC);
+                gestionClient.ResilierContratClient(numContrat);
+                jspClient = "/UserClient/SessionClient.jsp";
+            }
+            else if (act.equals("validerResiliationEntreprise")){
+                String numC = request.getParameter("IdContrat");
+                long numContrat = Long.parseLong(numC);
+                gestionClient.ResilierContratEntreprise(numContrat);
+                jspClient = "/UserClient/SessionEntreprise.jsp";
+            }
+            //________________________________________________________________________________________
+            
+            
+//___________________________________RECHERCHER__OFFRE__PAR__SESSION______________________________________________________________________________________________
             else if (act.equals("CompteAssureur")) {
                 Assureur Assur = (Assureur) sess.getAttribute("Assureur");
                 request.setAttribute("Assureur", Assur);
@@ -539,6 +564,8 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("logs", Listlog);
                 jspClient = "/ValidationUser.jsp";
             } 
+
+            
             else if (act.equals("print")) {
                 String message = "nnn";             // PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDEPUTAIN DE MERDEv
                 String fje = "try";                 // PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDEPUTAIN DE MERDEv PUTAIN DE MERDE PUTAIN DE MERDE 

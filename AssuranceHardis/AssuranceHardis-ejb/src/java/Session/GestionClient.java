@@ -131,5 +131,12 @@ public class GestionClient implements GestionClientLocal {
     public List RecupererContratSouscritEntreprise(Entreprise entreprise) {
         return contratFacade.RecupererContratSouscritEntreprise(entreprise);
     }
-
+    @Override
+    public void ResilierContratClient(Long numContrat) {
+    clientUniqueFacade.ResilierContratClient(numContrat);
+}
+    @Override
+    public void ResilierContratEntreprise(Long numContrat) {
+    entrepriseFacade.ResilierContratEntreprise(numContrat);
+}
 }

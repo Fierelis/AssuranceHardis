@@ -54,5 +54,9 @@ public interface GestionClientLocal {
     public void ValiderInscriptionEntreprise(Entreprise boite);
     List RecupererContratSouscritEntreprise(Entreprise entreprise);
 
+    public void ResilierContratEntreprise(Long numContrat);
+
+    public void ResilierContratClient(Long numContrat);
+
   
 }

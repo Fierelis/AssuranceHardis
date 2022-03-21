@@ -89,6 +89,11 @@
                                                 </select>
                                             </div>
 
+                                            <input type='checkbox' name='rgpd' value=''>
+                                        <p>En confirmant mon inscription, j'accepte que mes données puissent être utilisées dans le cadre de l'application et à des fins commerciales. Elles ne seront pas communiquées</p>
+                                        
+
+                                            
                                             <div class="form-group">
                                                 <div class ="row justify content-center">
                                                     <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>

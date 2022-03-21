@@ -135,5 +135,11 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
         client.setActivationUser(true);
         em.merge(client);
     }
-    
+        @Override
+        public void ResilierContratClient(Long numContrat) {
+        String txt="DELETE FROM Contrat as C WHERE R.id = :numContrat ";
+        Query req =getEntityManager().createQuery(txt);
+        req.setParameter("numContrat",numContrat);
+        req.executeUpdate();
+    }
 }

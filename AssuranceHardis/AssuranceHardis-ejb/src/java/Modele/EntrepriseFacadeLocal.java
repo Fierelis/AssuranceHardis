@@ -42,4 +42,6 @@ public interface EntrepriseFacadeLocal {
 
     public void ValiderInscription(Entreprise boite);
 
+    public void ResilierContratEntreprise(Long numContrat);
+
 }

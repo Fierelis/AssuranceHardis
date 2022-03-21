@@ -91,6 +91,11 @@
                                                 <input type="number" class="form-control" name ="CPCourtier" placeholder="N° de rue, nom de rue" required>
                                             </div>
                                             <br>
+                                        
+                                            
+                                            <input type='checkbox' name='rgpd' value=''>
+                                        <p>En confirmant mon inscription, j'accepte que mes données puissent être utilisées dans le cadre de l'application et à des fins commerciales. Elles ne seront pas communiquées</p>
+                                        
 
 
                                             <div class="form-group">

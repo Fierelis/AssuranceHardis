@@ -43,6 +43,8 @@ public interface ClientUniqueFacadeLocal {
 
     void ValiderInscription(ClientUnique client);
 
+    public void ResilierContratClient(Long numContrat);
+
    
     
 }
