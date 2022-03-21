@@ -72,7 +72,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
 
         try {
             Assureur Assur = null;
-            String txt = "Select Assur from UtilisateurService as Assur where Assur.LoginUserService=:LoginAssureur and Assur.PasswordUserService=:PasswordAssureur and Assur.TypeUserService=:Assureur and Assur.ActivationUser=true";
+            String txt = "Select Assur from UtilisateurService as Assur where Assur.LoginUserService=:LoginAssureur and Assur.PasswordUserService=:PasswordAssureur and Assur.TypeUserService=:Assureur";
             Query req = getEntityManager().createQuery(txt);
             req = req.setParameter("LoginAssureur", LoginAssureur);
             req = req.setParameter("PasswordAssureur", PasswordAssureur);
