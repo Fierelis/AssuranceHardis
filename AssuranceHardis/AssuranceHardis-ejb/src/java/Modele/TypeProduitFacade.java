@@ -40,13 +40,12 @@ public class TypeProduitFacade extends AbstractFacade<TypeProduit> implements Ty
     public TypeProduit RechercherTypeProduit(String NomTypeProduit) {
         try {
             TypeProduit SearchedTypeProduit = null;
-            String txt = "SELECT TP FROM TypeProduit AS TP WHERE TP.NomTypeProduit =:NomTypeProduit";
+            String txt = "SELECT T FROM TypeProduit AS T WHERE T.NomTypeProduit =:NomTypeProduit";
             Query req = getEntityManager().createQuery(txt);
             req.setParameter("NomTypeProduit", NomTypeProduit);
             List<TypeProduit> result = req.getResultList();
             if (result.size() == 1) {
                 SearchedTypeProduit = (TypeProduit) result.get(0);
-                System.out.println("prrrrrrrrrrrrrrrrrrrr"+ SearchedTypeProduit);
             }
             return SearchedTypeProduit;
         } catch (Exception e) {

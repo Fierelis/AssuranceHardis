@@ -18,7 +18,7 @@
         </head>
         <body>
         <%Assureur Assur = Assureur;
-        Assur.getId();
+        //Assur.getId();
         %>
         <h1>Recherche d'offre </h1>
         <form>

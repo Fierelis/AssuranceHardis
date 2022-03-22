@@ -5,7 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>AssuranceHardis-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <included-library dirs="200">file.reference.activation.jar-1</included-library>
+            <included-library dirs="200">file.reference.activation.jar</included-library>
             <included-library dirs="200">file.reference.itext.jar</included-library>
             <included-library dirs="200">file.reference.javax.mail.jar</included-library>
             <source-roots>

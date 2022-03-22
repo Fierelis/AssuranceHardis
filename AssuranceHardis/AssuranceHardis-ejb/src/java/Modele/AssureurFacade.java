@@ -109,6 +109,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
 
     @Override
     public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail) {
+        System.out.println("beurkkkkk" +Login);
         Assur.setLoginUserService(Login);
         Assur.setMailAssureur(Mail);
         Assur.setSiegeSocialAssureur(SiegeSocial);
@@ -116,5 +117,26 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
         Assur.setPasswordUserService(mdp);
         em.merge(Assur);
     }
+
+    @Override
+    public List RechercheAssureurPartenaire(long id) {
+         try {
+            System.out.println("-------------"+id);
+            String txt="Select distinct a from Assurance as a "
+                    + "inner join Offre as o on o.LAssurance.id=a.id "
+                    + "where o.UtilisateurService.id=:id";                     
+            Query req=getEntityManager().createQuery(txt);
+            req=req.setParameter("id",id);
+            List<Assureur>result = req.getResultList();
+            System.out.println("-------------bipboop");
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    
+
+    
     
 }

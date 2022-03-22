@@ -156,6 +156,17 @@ public class GestionService implements GestionServiceLocal {
     }
     @Override
     public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail) {
+        System.out.println("Je passe ici");
         assureurFacade.ModifierAssureur(Assur, Login, mdp, RaisonSociale, SiegeSocial, Mail);
+    }
+
+    @Override
+    public List GetListAssureurs() {
+        return assureurFacade.GetListAssureurs();
+    }
+
+    @Override
+    public List RechercheAssureurPartenaire(long id) {
+        return assureurFacade.RechercheAssureurPartenaire(id);
     }
 }

@@ -4,64 +4,9 @@
     Author     : alex_
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-- <!DOCTYPE html> -->
-<!-- <html>
-    <head>
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
-<!--  <link href="StyleSheets/LoginCSS.css" rel="stylesheet" type="text/css"/> -->
-<!--  <title>Connexion</title>
-</head>
-<body>
 
-<!--   <div class="container"> 
- <div class="screen">
-         <div class="screen__content">
-                 <form class="login">
-                         <div class="login__field">
-                                 <i class="login__icon fas fa-user"></i>
-                                 <input type="text" class="login__input" name="login" placeholder="User login">
-                            
-                         </div>
-                         <div class="login__field">
-                                 <i class="login__icon fas fa-lock"></i>
-                                 <input type="password" class="login__input" name="mdp" placeholder="Password">
-                         </div>
-                         <button type="submit" class="button login__submit" name="Connexion"
-                                 <span class="button__text">Log In Now</span>
-                                 <i class="button__icon fas fa-chevron-right"></i>
-                         </button><br>  
-                         
-                        
-                         <input type="hidden" name="action" value="Connexion">
-                 </form>
-             <form>
-                         <button class="button login__submit">
-                             <span class="button__text">Create Account</span>
-                             <i class="button__icon fas fa-chevron-right"></i>
-                         </button>
-                         <input type="hidden" name="action" value="MenuCreerCompte">
-             </form>
-         </div>
-         <div class="screen__background">
-                 <span class="screen__background__shape screen__background__shape4"></span>
-                 <span class="screen__background__shape screen__background__shape3"></span>		
-                 <span class="screen__background__shape screen__background__shape2"></span>
-                 <span class="screen__background__shape screen__background__shape1"></span>
-         </div>		
- </div>
-     </div>
 
-<div id="login">
-    <h3 class="text-center text-white pt-5">Connexion</h3>
-    <div class="container">
-        <div>
-        d
-    </div>
-</div>
-</body> 
-</html> -->
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -72,34 +17,35 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
         <link href="StyleSheets/style.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        
 
 
     </head>
-    <header>
-        <div class = "col-12" id = "navbar">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Assurance Hardis</a>
-                <!-- <img src = ".jpg" style = "height : 70px">  </img> -->
+    <header class ="header1">
+        <div class = "" id = "navbar">
+            <nav class="navbar navbar-expand-lg">
+                
+                 <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                <a class="navbar-brand" href="#">Sombrero</a>
+
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav"  style="display: flex; justify-content: flex-end">
                     <ul class="navbar-nav">
 
+                        
                     </ul>
                 </div>
             </nav>
         </div>
-    </header>
+            
+            
+        </header>
     <body>
         <section class="ftco-section">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 text-center mb-5">
-
-                    </div>
-                </div>
+                
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-10">
                         <div class="wrap d-md-flex">
@@ -107,7 +53,7 @@
                                 <div class="text w-100">
                                     <h2>Bienvenue sur la plateforme du groupe Hardis</h2>
                                     <p>Vous n'avez pas de compte ?</p>
-                                    <form>
+                                    <form> <br/>
                                     <button type="submit" class="form-control btn btn-white btn-outline-white">S'inscrire</button>
                                     <input type="hidden" name="action" value="MenuCreerCompte">
                                     </form>
@@ -120,14 +66,15 @@
                                     </div>
 
                                 </div>
-                                <form class="signin-form">
+                                <form action="#" class="signin-form">
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Identifiant</label>
                                         <input type="text" class="form-control" name="login" placeholder="Identifiant" required>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label class="label" for="password">Mot de passe</label>
-                                        <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" required>
+                                        <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" id ="monmdp" required>
+                                        <input type="checkbox" onclick="myFunctionP()"> Voir le mot de passe
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary submit px-3">Connexion</button>
@@ -151,30 +98,71 @@
         <script src="js/popper.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
+         <script>
+                    function myFunctionP() {
+  var x = document.getElementById("monmdp");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} </script>
 
     </body>
-    <footer class = "footer" style="background-color: #f75959;">
-        <hr style = "height : 30px ;">
-        <p><b class="text-light"> BESOIN D'AIDE ?</b></p>
-        <div class = "d-flex justify-content-between">
-            <div>
-                <a href="lien.jsp" class="btn btn-light" role="button">formulaire de contact</a>
-            </div>
-            <div>
-                <a href="lien.jsp" class="btn btn-dark" role="button">F.A.Q</a>
-            </div>
-            <div>
-                <button class = "btn btn-light" onclick = "affichernum()" id = "boutonassistance"> ligne assistance </button>
-                <p id = "num"></p>
-            </div>
-        </div>
-    </footer>
-    <script> function affichernum() {
-            document.getElementById("boutonassistance").hidden = true;
-            document.getElementById("num").innerHTML = "04.00.00.00.00";
-            document.getElementById("num").style.color = "black";
-        }
-    </script>
+    <footer class="footer-1">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 pr-md-5">
+                <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
+                <p>Comparateur d'assurance depuis approximativement 2 semaines / situé nul part car l'appli est trash</p>
+              </div>
+              <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">A propos</a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+              <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                  <li><a href="#">Nos clients</a></li>
+                  <li><a href="#">Nos courtiers</a></li>
+                  <li><a href="#">Nos assureurs</a></li>
+                  <li><a href="#">Nos avantages</a></li>
+                  <li><a href="#">Actus</a></li>
+                </ul>
+              </div>
+              <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms &amp; Conditions</a></li>
+                  <li><a href="#">Partners</a></li>
+                </ul>
+              </div>
+              <div class="col-md text-md-center">
+                <ul class="social list-unstyled">
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                  <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                  <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                </ul>
+                <p class=""><a href="#" class="btn btn-tertiary">Contactez-nous :)</a></p>
+              </div>
+            </div> 
+    
+            <div class="row ">
+              <div class="col-12 text-center">
+                <div class="copyright mt-5 pt-5">
+                  <p><small>&copy; 2022 All Rights Reserved.</small></p>
+                </div>
+              </div>
+            </div> 
+          </div>
+          
+        </footer>
 
 </html>
-

@@ -64,6 +64,10 @@ public interface GestionServiceLocal {
     public void ValiderInscriptionAssureur(Assureur Assur);
 
     public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail);
+
+    List GetListAssureurs();
+
+    List RechercheAssureurPartenaire(long id);
     
     
     

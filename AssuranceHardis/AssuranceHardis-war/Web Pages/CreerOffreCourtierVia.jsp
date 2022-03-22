@@ -46,6 +46,7 @@
                    <label for="PrixOffre">Prix négocié auprès de l'assureur <span class="requis"></span></label>
                 <input type="text" name="PrixOffre" Value="" size="40" maxlength="100" /> <br />
             
+                
                 <input type="hidden" name="action" value="FormCreerOffreCourtierVia">
             </fieldset>
             <input type="submit" value="Valider" />

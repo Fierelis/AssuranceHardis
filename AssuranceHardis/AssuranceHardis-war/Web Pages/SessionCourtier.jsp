@@ -4,6 +4,7 @@
     Author     : alex_
 --%>
 
+<%@page import="Modele.Assureur"%>
 <%@page import="Modele.Courtier"%>
 <%@page import="java.util.List"%>
 <%@page import="Modele.Offre"%>
@@ -19,7 +20,7 @@
     </head>
     <body>
         <%Courtier Court = CourtierJSP;%>
-
+        <%System.out.println("****************************");%>
         <h2>Bonjour <%=Court.getPrenomCourtier() %></h2>
         <form>
         <button class="button login__submit">
@@ -40,10 +41,9 @@
         
         <form>
         <button class="button login__submit">
-            <span class="button__text">Rechercher une Offre</span>
+            <span class="button__text">Rechercher offre</span>
             <i class="button__icon fas fa-chevron-right"></i>
 	</button>
-        
               <input type="hidden" name="action" value="RechercherOffre">
         </form>
         
@@ -67,12 +67,15 @@
         <div id="TableauAssureursPartenaires">
              <h2>Assureurs Partenaires</h2>
             <table>
-                <tr><td>Nom Assureur</td></tr>
+                <td>Nom Assureur</td>
                     <% 
                        List<Offre> ListeFiltreeAssureurs=ListeFiltreePartenaires;
-                        for(Offre OffrePartenaire : ListeFiltreeAssureurs){
-                            %>  <tr><%=OffrePartenaire.getLAssurance().getRaisonSocialeAssureur()%></tr>
-                       <%}%>
+                        for(Offre Partenaire : ListeFiltreeAssureurs){
+                            %>  
+                        <tr>
+                            <td><%=Partenaire.getLAssurance().getRaisonSocialeAssureur() %></td>
+                       </tr>
+                            <%}%>
             </table>
         </div>
             
@@ -87,12 +90,14 @@
                 </tr>
                     <% 
                        List<Offre> ListeFiltreeOffres=ListeFiltreeOffresPartenaires;
+                       
                         for(Offre OffrePartenaire : ListeFiltreeOffres){
                     %>  <tr><td><%=OffrePartenaire.getLAssurance().getRaisonSocialeAssureur()%></td>
                             <td><%=OffrePartenaire.getTypeOffre()%></td>
                             <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit()%></td>
                             <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
                             <td><%=OffrePartenaire.getPrixOffre()%></td>
+                            <%System.out.println("****************************");%>
                         </tr>
                        <%}%>
             </table>

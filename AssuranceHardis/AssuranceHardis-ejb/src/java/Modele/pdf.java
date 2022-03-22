@@ -33,14 +33,15 @@ public class pdf {
          PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\alex_\\Downloads\\FactureContrat_"+ RSAssureur +".pdf"));
          document.open();
          Date d = new Date();
-          document.addTitle("Facture N°"+C.getId());
+          document.add(new Paragraph("Facture N°"+C.getId()));
          document.add(new Paragraph(" "));
          document.add(new Paragraph("Client : "+NomClient));
          document.add(new Paragraph(" "));
          document.add(new Paragraph("Assureur : "+RSAssureur));
+         document.add(new Paragraph("Siège : "+C.getLoffreDuContrat().getLAssurance().getSiegeSocialAssureur()));
          document.add(new Paragraph("Date du contrat : "+ d));
         
-         
+    
          
          PdfPTable table = new PdfPTable(2); // 3 columns.
         table.setWidthPercentage(100); //Width 100%
@@ -70,7 +71,11 @@ public class pdf {
         cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
  
-        PdfPCell cell3 = new PdfPCell(new Paragraph("Contrat "+ TypeProduit + ", offre : " + TypeOffre));
+        PdfPCell cell3 = new PdfPCell(new Paragraph("      "
+                + "                                                        "
+                + "                                                      "
+                + "Contrat "+ TypeProduit + ", offre : " + TypeOffre +""));
+        cell3.setRowspan(2);
         cell3.setPaddingLeft(10);
         cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell3.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -85,8 +90,7 @@ public class pdf {
         cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell4.setVerticalAlignment(Element.ALIGN_MIDDLE);
         
-         PdfPCell cell5 = new PdfPCell(new Paragraph("                                "));
-        cell5.setBorderColor(BaseColor.RED);
+         PdfPCell cell5 = new PdfPCell(new Paragraph("TVA : 20%" ));
         cell5.setPaddingLeft(10);
         cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell5.setVerticalAlignment(Element.ALIGN_MIDDLE);

@@ -56,11 +56,11 @@
 
             <tr>
                 <td>Date Création</td>
-                <td><input type="text" name="DateCreationAssur" readonly="readonly" value="<%=Assur.getDateCreation() %>"></td>
+                <td><input type="date" name="DateCreationAssur" readonly="readonly" value="<%=Assur.getDateCreation() %>"></td>
             </tr>
             <tr>
                 <td>SIREN</td>
-                <td><input type="date" name="SirenAssur" readonly="readonly" value="<%=Assur.getSirenAssureur() %>"></td>
+                <td><input type="number" name="SirenAssur" readonly="readonly" value="<%=Assur.getSirenAssureur() %>"></td>
             </tr>
             <tr>
                 <td>Mail</td>
