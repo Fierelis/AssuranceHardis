@@ -24,7 +24,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: flex-end">
                     <ul class="navbar-nav">
-
+                        
                         <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">home</button>
                             <input type="hidden" name="action" value="home"></form></li>
                         <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Recherche</button>
@@ -43,7 +43,7 @@
     <body>
         <% Assureur a= AssureurCreerOffreAssureur;%>
         
-        <h1>Création d'une offre</h1>
+        
         
           <section class="ftco-section">
 

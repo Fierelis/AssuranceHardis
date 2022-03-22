@@ -93,7 +93,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         if (Court != null) {
             long IdCourtier = Court.getId();
             if (Filtre.equals("PartenariatsAssureurs")) {
-                String txt =    "SELECT O " //SELECT PartenariatAssurance
+                String txt =    "SELECT distinct O " //SELECT PartenariatAssurance
                         +       "FROM Offre as O "
                         +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
                 Query req = getEntityManager().createQuery(txt);
@@ -104,7 +104,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
                 }
             }
             if (Filtre.equals("OffrePartenaires")) {
-                String txt =    "SELECT O "
+                String txt =    "SELECT distinct O "
                         +       "FROM Offre as O "
                         +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
                 Query req = getEntityManager().createQuery(txt);
@@ -120,7 +120,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         if (Assur != null) {
             long IdAssureur = Assur.getId();
             if (Filtre.equals("CourtierPartenaires")) {
-                String txt =    "SELECT O " // SELECT UtilisateurService
+                String txt =    "SELECT distinct O " // SELECT UtilisateurService
                         +       "FROM Offre as O "
                         +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdAssureur";
                 Query req = getEntityManager().createQuery(txt);

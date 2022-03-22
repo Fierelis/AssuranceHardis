@@ -43,4 +43,8 @@ public interface AssureurFacadeLocal {
     public void ValiderInscription(Assureur Assur);
 
     public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail);
+
+    List RechercheAssureurPartenaire(long id);
+
+    
 }

@@ -4,16 +4,21 @@
     Author     : alexa
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Modele.Assureur"%>
+<%@page import="Modele.Courtier"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Creation d'offre</title>
-        <jsp:useBean id="ListeAllOffre" scope="request" class="java.util.List"></jsp:useBean>
-
+        <jsp:useBean id="ListeAllAssureur" scope="request" class="java.util.List"></jsp:useBean>
+        <jsp:useBean id="courtier" scope="request" class="Modele.Courtier"></jsp:useBean>
     </head>
     <body>
+        <%Courtier Court = courtier;%>
+        <% List<Assureur>listeAssureur=ListeAllAssureur;%>
         <h1>Création d'une offre</h1>
 <form>
         <button class="button login__submit">
@@ -38,22 +43,28 @@
                 <label for="Description">Description : <span class="requis"></span></label>
                 <input type="text" name="Description" value="" size="40" maxlength="45" /><br />
 
-                <label for="Password">Description : <span class="requis"></span></label>
-                <input type="password" name="Password" value="" size="40" maxlength="45" /><br />
+                <label for="AsuureurPartenaire">AssureurPartenaire: <span class="requis"></span></label>
+                <select name="Partenaire">                  
+                    <%
+                    for (Assureur a : listeAssureur) {
+                    %>  
+                    <option value ="<%=a.getId() %>"><%=a.getRaisonSocialeAssureur() %></option>   
+                    <%} %>
+                </select><br />
                 
                 <label for="TypeProduit">Type de produit : <span class="requis"></span></label>
                 <select name="TypeProduit">                  
-                    <option value ="Santé">Santé</option>   
-                    <option value ="Vie">Vie</option>    
-                    <option value ="Prévoyance">Prévoyance</option> 
-                    <option value ="IARD">IARD</option> 
-                    <option value ="Epargne">Epargne</option> 
-                    <option value ="PlacementFinancier">Placement Financier</option> 
+                     <option value ="Sante">Santé</option>   
+                     <option value ="Vie">Vie</option>    
+                     <option value ="Prevoyance">Prévoyance</option> 
+                     <option value ="IARD">IARD</option> 
+                     <option value ="Epargne">Epargne</option> 
+                     <option value ="PlacementFinancier">Placement Financier</option> 
                 </select><br />
                 
                 
-                
-                <input type="hidden" name="action" value="CreerOffre">
+                <input type="hidden" name="Courtier" value="<%=Court.getId()%>">
+                <input type="hidden" name="action" value="FormCreerOffreCourtier">
             </fieldset>
             <input type="submit" value="Valider" />
             <input type="reset" value="Remettre à zéro" /> <br />
