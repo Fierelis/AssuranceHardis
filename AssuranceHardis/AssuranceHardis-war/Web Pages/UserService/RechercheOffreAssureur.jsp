@@ -18,7 +18,9 @@
         </head>
         <body>
         <%System.out.println("------------wowowowow-----------"); %>
-        <%Assureur Assur = AssureurJSP;%>
+        <%Assureur Assur = AssureurJSP;
+        System.out.println("_________________________________"+Assur);
+        %>
         <h1>Recherche d'offre </h1>
         <form>
             <button class="button login__submit">
@@ -48,7 +50,7 @@
                 <tr><td><%=ExistOffre.getTypeOffre()%></td>
                     <td><%=ExistOffre.getDescriptionOffreContractuelle()%></td>
                     <td><%=ExistOffre.getPrixOffre()%></td>
-                    <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit()%></td>
+                <!--    <td><%//=ExistOffre.getLeTypeDeProduit().getNomTypeProduit()%></td>  -->
                     <td>
                         <form>
                             <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">

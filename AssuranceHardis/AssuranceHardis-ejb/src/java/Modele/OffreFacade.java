@@ -39,7 +39,7 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
         nouvelleOffre.setOffreActive(OffreActive);
         nouvelleOffre.setOffreDeUtilisateurService(IdUtilisateurService);
         nouvelleOffre.setPrixOffre(PrixOffre);
-        nouvelleOffre.setTypeOffre(TypeOffre);
+        nouvelleOffre.setLeTypeDeProduit(LeTypeDeProduit);
         nouvelleOffre.setLAssurance(Assurance);
         nouvelleOffre.setTypeOffre(TypeOffre);
         nouvelleOffre.setLeCourtier(LeCourtier);

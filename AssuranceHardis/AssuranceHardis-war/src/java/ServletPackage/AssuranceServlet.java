@@ -105,6 +105,7 @@ public class AssuranceServlet extends HttpServlet {
                 doActionCreerAdmin(request, response);
                 jspClient = "/Inscription/Connexion.jsp";
             } // SESSION --------------------------------------------------------------------------------------------------------------------------
+            
             else if (act.equals("Connexion")) {
                 sess = request.getSession(true);
                 String login = request.getParameter("login");
@@ -123,7 +124,6 @@ public class AssuranceServlet extends HttpServlet {
                     Admin = gestionAdmin.AuthentificationAdmin(login, mdpHache);
 
                     if (ClientU != null) {
-                        //doSendMailConfirmationInscription(request, response, "alex_pr01@hotmail.fr", "test", "ça fonctionne bieng"); ---> à voir comment faire
                         sess.setAttribute("ClientUnique", ClientU);
                         request.setAttribute("ClientUnique", sess.getAttribute("ClientUnique"));
                         List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
@@ -270,12 +270,18 @@ public class AssuranceServlet extends HttpServlet {
             } 
             else if (act.equals("FormCreerOffreAssureur")) {
                 doActionCreerOffreAssureur(request, response);
-                
-               /* Assureur a=(Assureur)request.getAttribute("AssureurOffre");          
-                List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(a.getId());
-                request.setAttribute("listOffreAssureur", listOffreAssureur);
-                List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(a.getId());
-                request.setAttribute("ListCourtier", ListCourtier);*/
+                Assureur Assur = (Assureur)sess.getAttribute("Assureur");
+                 sess.setAttribute("Assureur", Assur);
+                        //Assureur a = (Assureur) sess.getAttribute("Assureur");
+                        request.setAttribute("Assureur", sess.getAttribute("Assureur"));
+                        // liste offre de l'assureur
+                        List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(Assur.getId());
+                        request.setAttribute("listOffreAssureur", listOffreAssureur);
+         
+                        List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(Assur.getId());
+               
+                        request.setAttribute("ListCourtier", ListCourtier);
+
                 jspClient = "/UserService/SessionAssureur.jsp";
                 //---------------------------------------------------------------------------------------------------------------------------------------------------------
             } 
@@ -369,6 +375,7 @@ public class AssuranceServlet extends HttpServlet {
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
                 Courtier Court = (Courtier) sess.getAttribute("Courtier");
                 Assureur Assur = (Assureur) sess.getAttribute("Assureur");
+             
                 Administrateur Admin = (Administrateur) sess.getAttribute("Administrateur");
 
                 if (Client != null) {
@@ -392,8 +399,11 @@ public class AssuranceServlet extends HttpServlet {
 
                 } 
                 else if (Assur != null) {
-                    request.setAttribute("Assureur", Assur);
+                    System.out.println(Assur.getMailAssureur());
+                    request.setAttribute("AssureurJSP", Assur);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
+                    System.out.println("esssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"+ListeOffre.get(1).getLeTypeDeProduit().getNomTypeProduit());
+                    
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/UserService/RechercheOffreAssureur.jsp";
 
@@ -797,7 +807,7 @@ public class AssuranceServlet extends HttpServlet {
 
             // besoin rechercher le type produit
             TypeProduit typeProduitOffre = gestionService.rechercheTypeProduit(typeProduit);
-            System.out.println("uwu ");
+            System.out.println("TYPE DE PRODUIT ======="+typeProduit);
             if (typeProduitOffre != null) {
                 System.out.println(typeProduitOffre.getId());
                 System.out.println(typeProduitOffre.getNomTypeProduit());
