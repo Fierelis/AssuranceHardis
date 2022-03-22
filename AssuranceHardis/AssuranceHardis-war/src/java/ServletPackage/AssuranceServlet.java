@@ -508,9 +508,7 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/VoirOffreAssureur.jsp";
             } 
             else if (act.equals("VoirOffreClientUnique")) {
-                System.out.println("Coucou, on est la");
                 doActionAfficherOffre(request, response);
-                System.out.println("De l'autre coté du ravin");
                 jspClient = "/VoirOffreClient.jsp";
             } 
             else if (act.equals("VoirOffreCourtier")) {
@@ -520,6 +518,10 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("VoirOffreEntreprise")) {
                 doActionAfficherOffre(request, response);
                 jspClient = "/VoirOffreEntreprise.jsp";
+            } 
+             else if (act.equals("VoirOffreAdmin")) {
+                doActionAfficherOffre(request, response);
+                jspClient = "/VoirOffreAdmin.jsp";
             } 
             else if (act.equals("Souscrire")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");

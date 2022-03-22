@@ -76,7 +76,7 @@
                                 <form>
                                     <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
                                     <input type="Submit" value="Voir l'Offre">
-                                    <input type="hidden" name="action" value="VoirOffre">
+                                    <input type="hidden" name="action" value="VoirOffreAdmin">
                                 </form>
                             </td>
                         </tr>
