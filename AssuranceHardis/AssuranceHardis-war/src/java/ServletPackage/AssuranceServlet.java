@@ -271,11 +271,12 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("FormCreerOffreAssureur")) {
                 doActionCreerOffreAssureur(request, response);
                 
-               /* Assureur a=(Assureur)request.getAttribute("AssureurOffre");          
+                Assureur a=(Assureur)request.getAttribute("AssureurOffre");
+                System.out.println("ohohohohohoh"+ a.getLoginUserService());
                 List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(a.getId());
                 request.setAttribute("listOffreAssureur", listOffreAssureur);
                 List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(a.getId());
-                request.setAttribute("ListCourtier", ListCourtier);*/
+                request.setAttribute("ListCourtier", ListCourtier);
                 jspClient = "/UserService/SessionAssureur.jsp";
                 //---------------------------------------------------------------------------------------------------------------------------------------------------------
             } 

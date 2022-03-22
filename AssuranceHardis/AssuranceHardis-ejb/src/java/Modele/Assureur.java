@@ -160,10 +160,12 @@ public class Assureur extends UtilisateurService implements Serializable{
     }
 
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
