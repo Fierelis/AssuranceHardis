@@ -94,7 +94,7 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/Connexion.jsp";
             } else if (act.equals("CreerEntreprise")) {
                 doActionCreerEntreprise(request, response);
-                jspClient = "/Connexion.jsp";
+                jspClient = "/Connexion.jsp"; 
             } else if (act.equals("CreerAssur")) {
                 doActionCreerAssur(request, response);
                 jspClient = "/Connexion.jsp";;
@@ -645,7 +645,6 @@ public class AssuranceServlet extends HttpServlet {
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
             long IdOffre = Long.parseLong(Offre);
-            System.out.println("--------------------------------------------------------");
             Offre offer = gestionService.RechercherOffre(IdOffre);
             //System.out.println(offer.getTypeOffre());
             System.out.println("1 " + offer.getLeTypeDeProduit().getNomTypeProduit());
