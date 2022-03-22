@@ -22,13 +22,10 @@
         </head>
         <body>
         <% Assureur a = Assureur;%>
-        <%System.out.println("è____________________"+a.getId() + " " + a.getRaisonSocialeAssureur() );%>
         <% List<Offre> listeOffreAssureur = listOffreAssureur;%>
         <% List<Courtier> listeCourtierPartenaire = ListCourtier;%>
-        <%System.out.println("tgggggggggggg");%>
 
         <h4>Bienvenue sur votre espace <%=a.getLoginUserService() %></h4>
-        <%System.out.println("woooooooowoowoww");%>
         <form>
             <button class="button login__submit">
                 <span class="button__text">Home</span>
@@ -60,17 +57,7 @@
         </form>
         <div class ="row">
             <div class ="col-md-6">
-              <%System.out.println("woooooooowoowoww");%>
-              <% for (int i = 0; i < listeOffreAssureur.size(); i++) {
-                      System.out.println(listeOffreAssureur.get(i).getLeTypeDeProduit().getNomTypeProduit());
-                  }
               
-              System.out.println("proute");
-              %>
-              <% for (int i = 0; i < listeCourtierPartenaire.size(); i++) {
-                      System.out.println("vv");
-                  }
-              %>
                  <div id="TableauOffresAssureur">
                      
                     <h4 class="text-center mb-4">Vos offres</h4>
@@ -86,15 +73,10 @@
                         <tbody> 
                         <%
                             for (Offre OffrePartenaire : listeOffreAssureur) {
-                                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                         %>  <tr><td><%=OffrePartenaire.getTypeOffre()%></td>
-                            <%System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");%>
                             <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
-                            <%System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");%>
                             <td><%=OffrePartenaire.getPrixOffre()%></td>     
-                            <%System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");%>
                             <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit()%></td>
-                            <%System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuu");%>
                         </tr>
                         <%} %>
                         </tbody>
@@ -121,11 +103,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuu");%>
                             <%  
                                 for (Courtier CourtierPartenaire : listeCourtierPartenaire) {
                             %> 
-                            <%System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");%>
                             <tr>
                                 <td><%= CourtierPartenaire.getNomCourtier()%></td>
                                 <td><%= CourtierPartenaire.getPrenomCourtier()%></td>

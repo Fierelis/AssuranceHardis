@@ -109,6 +109,7 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
 
     @Override
     public void ModifierAssureur(Assureur Assur, String Login, String mdp, String RaisonSociale, String SiegeSocial, String Mail) {
+        System.out.println("beurkkkkk" +Login);
         Assur.setLoginUserService(Login);
         Assur.setMailAssureur(Mail);
         Assur.setSiegeSocialAssureur(SiegeSocial);

@@ -40,7 +40,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-10">
-                        <form method="post" action="#" class="signin-form">
+                        <form class="signin-form">
 
                             <div class="wrap d-md-flex">
                                 <div class="text-wrapp p-4 p-lg-5">

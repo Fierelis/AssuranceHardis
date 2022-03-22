@@ -4,7 +4,7 @@
     Author     : alex_
 --%>
 
-<%@page import="Modele.Assureur"%>
+<%@page import="Modele.ClientUnique"%>
 <%@page import="java.util.List"%>
 <%@page import="Modele.Offre"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,13 +12,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="AssureurJSP" scope="session" class="Modele.Assureur"></jsp:useBean>
+        <jsp:useBean id="ClientUnique" scope="request" class="Modele.ClientUnique"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
             <title>Recherche d'offre</title>
         </head>
         <body>
-        <%System.out.println("------------wowowowow-----------"); %>
-        <%Assureur Assur = AssureurJSP;%>
+        <%ClientUnique CU = ClientUnique;
+        CU.getId();
+        %>
         <h1>Recherche d'offre </h1>
         <form>
             <button class="button login__submit">
@@ -53,7 +54,7 @@
                         <form>
                             <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
                             <input type="Submit" value="Voir l'Offre">
-                            <input type="hidden" name="action" value="VoirOffre">
+                            <input type="hidden" name="action" value="VoirOffreClient">
                         </form>
                     </td>
                 </tr>
@@ -99,7 +100,6 @@
             })();
         </script>
         <script src="/scripts/js-table-filter.js"></script>
-
 
     </body>
 </html>
