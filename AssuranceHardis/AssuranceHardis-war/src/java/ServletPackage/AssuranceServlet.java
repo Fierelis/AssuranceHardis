@@ -313,11 +313,26 @@ public class AssuranceServlet extends HttpServlet {
             } 
              else if (act.equals("CreerOffreViaCourtier")){
                 String off = request.getParameter("OffreVia");
+                Courtier cour = (Courtier)sess.getAttribute("CourtierJSP");
+                request.setAttribute("CourtierJSP",cour);
                 long id = Long.parseLong(off);
                 Offre offer = gestionService.RechercherOffre(id);
                 request.setAttribute("OffreJSP", offer);
                 jspClient = "/CreerOffreCourtierVia.jsp";
             }
+             else if(act.equals("FormCreerOffreCourtierVia")){
+                 doActionCreerOffreCourtierVia(request, response);
+                 String ass = request.getParameter("assureur");
+                 long id = Long.parseLong(ass);
+                 Assureur Assur = gestionService.RechercherAssureur(id);
+                 Courtier Court = (Courtier)sess.getAttribute("CourtierJSP");
+                  List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
+                        List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, Assur);
+                        request.setAttribute("Courtier", sess.getAttribute("CourtierJSP"));
+                        request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
+                        request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
+                        jspClient = "/SessionCourtier.jsp";
+             }
             else if (act.equals("CompteClient")) {
                 ClientUnique ClientU = (ClientUnique) sess.getAttribute("ClientUnique");
                 request.setAttribute("ClientU", ClientU);
@@ -489,9 +504,7 @@ public class AssuranceServlet extends HttpServlet {
                     request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                     request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                     jspClient = "/SessionCourtier.jsp";
-                    
-                    
-                 
+                   
                 } 
                 else if (Assur != null) {
                     request.setAttribute("AssureurJSP", Assur);
@@ -700,8 +713,7 @@ public class AssuranceServlet extends HttpServlet {
 
     protected void doActionAfficherOffre(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("dans la request");
-        String Offre = request.getParameter("idOffre");
+        String Offre = request.getParameter("contrat");
 
         String message;
         if (Offre.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
@@ -935,6 +947,47 @@ public class AssuranceServlet extends HttpServlet {
         request.setAttribute("message", message);
 
     }
+        protected void doActionCreerOffreCourtierVia(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        String TypeOffre = request.getParameter("TypeOffre");
+        String PrixOffre = request.getParameter("PrixOffre");
+        String Description = request.getParameter("Description");
+        String assureur = request.getParameter("assureur");
+        String typeProduit = request.getParameter("TypeProduit");
+        String courtier= request.getParameter("courtier");
+      
+          System.out.println(typeProduit);
+        String message;
+        if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()|| assureur.trim().isEmpty()|| courtier.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
+        } else {
+            double prix = Double.valueOf(PrixOffre);
+            
+            long idAss= Long.valueOf(assureur);
+            Assureur a= gestionService.RechercherAssureur(idAss);
+            
+            long idCourt= Long.valueOf(courtier);
+            Courtier c= gestionService.RechercherCourtier(idCourt);
+            
+            
+            // besoin rechercher le type produit
+            TypeProduit typeProduitOffre = gestionService.rechercheTypeProduit(typeProduit);
+            System.out.println("uwu ");
+            if (typeProduitOffre != null) {
+                System.out.println(typeProduitOffre.getId());
+                System.out.println(typeProduitOffre.getNomTypeProduit());
+            }
+           
+            //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
+            Offre offer = gestionService.CreerOffre(TypeOffre, prix, Description, true, c, a, typeProduitOffre, c, a.getRaisonSocialeAssureur());
+            String TypeLog = "Create";
+            gestionAdmin.CreerLog(null, null, null, null, offer, null, null, TypeLog);
+            message = "Offre créé avec succès !";
+        }
+        request.setAttribute("message", message);
+
+    }
+
 
     protected void doActionModifierCourtier(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
