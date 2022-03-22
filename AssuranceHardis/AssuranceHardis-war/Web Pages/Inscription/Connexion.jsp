@@ -72,6 +72,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
         <link href="StyleSheets/style.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        
 
 
     </head>
@@ -119,7 +120,7 @@
                                     </div>
 
                                 </div>
-                                <form method="get" action="#" class="signin-form">
+                                <form class="signin-form">
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Identifiant</label>
                                         <input type="text" class="form-control" name="login" placeholder="Identifiant" required>

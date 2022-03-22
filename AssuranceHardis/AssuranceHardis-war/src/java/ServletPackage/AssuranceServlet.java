@@ -132,9 +132,9 @@ public class AssuranceServlet extends HttpServlet {
                         sess.setAttribute("Courtier", null);
                         sess.setAttribute("Assureur", null);
                         sess.setAttribute("Administrateur", null);
-
                         jspClient = "/UserClient/SessionClientUnique.jsp";
                     } 
+                    
                     else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
                         //System.out.println("connexion entreprise");
@@ -165,7 +165,7 @@ public class AssuranceServlet extends HttpServlet {
                     else if (Assur != null) {
                         sess.setAttribute("Assureur", Assur);
                         //Assureur a = (Assureur) sess.getAttribute("Assureur");
-                        request.setAttribute("AssureurJSP", sess.getAttribute("Assureur"));
+                        request.setAttribute("Assureur", sess.getAttribute("Assureur"));
                         // liste offre de l'assureur
                         List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(Assur.getId());
                         request.setAttribute("listOffreAssureur", listOffreAssureur);
@@ -213,7 +213,7 @@ public class AssuranceServlet extends HttpServlet {
                     }
                 } 
                 else {
-                    jspClient = "/Connexion.jsp";
+                    jspClient = "/Inscription/Connexion.jsp";
                     request.setAttribute("message", "Identifiant ou mot de passe incorrect");
                 }
             } // SESSION --------------------------------------------------------------------------------------------------------------------------
@@ -244,8 +244,6 @@ public class AssuranceServlet extends HttpServlet {
                 sess.setAttribute("ClientUnique", new ClientUnique());
                 sess.setAttribute("Assureur", new Assureur());
                 sess.setAttribute("Administrateur", new Administrateur());
-                jspClient = "/Inscription/Connexion.jsp";
-                sess.invalidate();
                 sess = request.getSession(false);
                 jspClient = "/Inscription/Connexion.jsp";
 
@@ -394,8 +392,7 @@ public class AssuranceServlet extends HttpServlet {
 
                 } 
                 else if (Assur != null) {
-                    request.setAttribute("AssureurJSP", Assur);
-                    System.out.println("------------wowowowow-----------");
+                    request.setAttribute("Assureur", Assur);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/UserService/RechercheOffreAssureur.jsp";

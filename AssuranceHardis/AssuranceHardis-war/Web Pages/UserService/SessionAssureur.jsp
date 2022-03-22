@@ -12,21 +12,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:useBean id="AssureurJSP" scope="session" class="Modele.Assureur"></jsp:useBean>
-        <%System.out.println("tgggggggggggg");%>
+        <jsp:useBean id="Assureur" scope="session" class="Modele.Assureur"></jsp:useBean>
         <jsp:useBean id="listOffreAssureur" scope="request" class="java.util.List"></jsp:useBean>
-        <%System.out.println("tgggggggggggg");%>
         <jsp:useBean id="ListCourtier" scope="request" class="java.util.List"></jsp:useBean>
-        <%System.out.println("tgggggggggggg");%>
+     
             <link href="StyleSheets/style.css" rel="stylesheet" type="text/css"/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>DashBoard Assureur</title>
         </head>
         <body>
-        <% Assureur a = AssureurJSP;%>
-        <%System.out.println("tgggggggggggg");%>
+        <% Assureur a = Assureur;%>
+        <%System.out.println("è____________________"+a.getId() + " " + a.getRaisonSocialeAssureur() );%>
         <% List<Offre> listeOffreAssureur = listOffreAssureur;%>
-        <%System.out.println("tgggggggggggg");%>
         <% List<Courtier> listeCourtierPartenaire = ListCourtier;%>
         <%System.out.println("tgggggggggggg");%>
 

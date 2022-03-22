@@ -12,12 +12,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="AssureurJSP" scope="session" class="Modele.Assureur"></jsp:useBean>
+        <jsp:useBean id="Assureur" scope="request" class="Modele.Assureur"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
             <title>Recherche d'offre</title>
         </head>
         <body>
-        <%Assureur Assur = AssureurJSP;%>
+        <%Assureur Assur = Assureur;
+        Assur.getId();
+        %>
         <h1>Recherche d'offre </h1>
         <form>
             <button class="button login__submit">
