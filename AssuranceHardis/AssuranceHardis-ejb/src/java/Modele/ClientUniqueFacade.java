@@ -137,9 +137,13 @@ public class ClientUniqueFacade extends AbstractFacade<ClientUnique> implements 
     }
         @Override
         public void ResilierContratClient(Long numContrat) {
-        String txt="DELETE FROM Contrat as C WHERE R.id = :numContrat ";
+        String txt1="DELETE FROM Logs as L WHERE L.LogContrat.id = :numContrat ";
+        String txt="DELETE FROM Contrat as C WHERE C.id = :numContrat ";
+        Query req1 =getEntityManager().createQuery(txt1);
         Query req =getEntityManager().createQuery(txt);
+        req1.setParameter("numContrat",numContrat);
         req.setParameter("numContrat",numContrat);
+        req1.executeUpdate();
         req.executeUpdate();
     }
 }

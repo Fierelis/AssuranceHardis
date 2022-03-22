@@ -17,8 +17,11 @@
     </head>
     <body>
         <h1>Souscrire au Contrat</h1>
-        <%Entreprise Boite = EntrepriseJSP;
+        <%System.out.println("blablbalbalbalbalbalbalbalbalbalblabl");
+            Entreprise Boite = EntrepriseJSP;
+            System.out.println(Boite);
           Offre offer = ContratJSP;
+          System.out.println(offer);
         %>
           <form>
         <button class="button login__submit">
@@ -45,7 +48,7 @@
             
             <fieldset><h2>Votre Contrat</h2>
                 <label for='assureur'>Assureur</label>
-                <input type='text' name='assureur' readonly='readonly' value='<%=offer.getLAssurance() %>'><br>
+                <input type='text' name='assureur' readonly='readonly' value='<%=offer.getLAssurance().getRaisonSocialeAssureur() %>'><br>
                 
                 <label for='Produit'>Produit</label>
                 <input type='text' name='Produit' readonly='readonly' value='<%=offer.getLeTypeDeProduit().getNomTypeProduit() %>'><br>
@@ -69,11 +72,9 @@
                 </select>
             </fieldset>
                 
-                
                 <input type='hidden' name='action' value='validerSouscription'>
-                <button name='Souscrire' value='Souscrire'>
-           
-            
+                <button name='Souscrire' value='Souscrire'>Valider la souscription</button>
+          
         </form>
         
     </body>

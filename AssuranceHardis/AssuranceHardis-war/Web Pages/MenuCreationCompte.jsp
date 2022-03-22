@@ -31,7 +31,7 @@
         <div class ="container">
             <div class ="row justify-content-md-center"> 
                 <h3>  Choix Utilisateur </h3> <br/> <br/> 
-                <p class ="text-center"> TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS <br> tessssssssssssssssssssssssssssssssssssssssssssss <br> tesssssssssssssssssssssss <P>
+                <p class ="text-center">  <br> tessssssssssssssssssssssssssssssssssssssssssssss <br> tesssssssssssssssssssssss <P>
             </div> <br/>
             <div class = "row">
                 <div class="col-sm-3">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p>
-                                <form method="post" action="#">
+                                <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationAssureur"> </form>
                             </div>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p>
-                                <form method="post" action="#">
+                                <form>
                                   <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationClientUnique"> </form>
                             </div>
@@ -86,9 +86,10 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p>
-                                 <form method="post" action="#">
+                                 <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
-                                 <input type="hidden" name="action" value="SelectionnerCreationCourtier"> </form>
+                                 <input type="hidden" name="action" value="SelectionnerCreationCourtier"> 
+                                 </form>
                             </div>
                         </div>
                     </div>
@@ -107,7 +108,7 @@
                             </div>
                             <div class="content">
                                 <p class ="text-center">Content area</p> 
-                                <form method="post" action="#">
+                                <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationEntreprise"> </form>
                             </div>

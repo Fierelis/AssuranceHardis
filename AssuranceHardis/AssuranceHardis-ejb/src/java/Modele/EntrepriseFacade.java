@@ -51,7 +51,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     @Override
     public Entreprise RechercheEntreprise(long id) {
         Entreprise entreprise=null;
-        String txt="Select entreprise from Entreprise as e where e.id=:i";
+        String txt="Select e from Entreprise as e where e.id=:i";
         Query req =getEntityManager().createQuery(txt);
         req.setParameter("i",id);
         entreprise=(Entreprise)req.getSingleResult();
@@ -71,7 +71,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         
         try {
             Entreprise Boite = null;
-        String txt="Select Boite from UtilisateurClient as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise and Boite.typeUser=:entreprise and Boite.ActivationUser=true";
+        String txt="Select Boite from UtilisateurClient as Boite where Boite.login=:LoginEntreprise and Boite.mdp=:PasswordEntreprise and Boite.typeUser=:entreprise";
         Query req=getEntityManager().createQuery(txt);
         req=req.setParameter("LoginEntreprise",LoginEntreprise);
         req=req.setParameter("PasswordEntreprise", PasswordEntreprise);
@@ -103,9 +103,13 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     }
         @Override
         public void ResilierContratEntreprise(Long numContrat) {
-        String txt="DELETE FROM Contrat as C WHERE R.id = :numContrat ";
+        String txt1="DELETE FROM Logs as L WHERE L.LogContrat.id = :numContrat ";
+        String txt="DELETE FROM Contrat as C WHERE C.id = :numContrat ";
+        Query req1 =getEntityManager().createQuery(txt1);
         Query req =getEntityManager().createQuery(txt);
+        req1.setParameter("numContrat",numContrat);
         req.setParameter("numContrat",numContrat);
+        req1.executeUpdate();
         req.executeUpdate();
     }
 }

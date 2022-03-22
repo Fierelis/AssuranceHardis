@@ -10,13 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="Boite" scope="request" class="Modele.Entreprise"></jsp:useBean>
+        <jsp:useBean id="Entreprise" scope="request" class="Modele.Entreprise"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Informations courtier</h1>
+        <h1>Informations Entreprise</h1>
         
-        <%Entreprise EBoite = Boite;  %>
+        <%Entreprise EBoite = Entreprise; 
+        System.out.println(EBoite);
+        %>
                 <form>
             <button class="button login__submit">
                 <span class="button__text">Home</span>
@@ -55,35 +57,35 @@
         <table>
             <tr>
                 <td>N°</td>
-                <td><input type="text" name="IdEntreprise" readonly="readonly" value="<%=Boite.getId()%>"></td>
+                <td><input type="text" name="IdEntreprise" readonly="readonly" value="<%=EBoite.getId()%>"></td>
             </tr>
             <tr>
                 <td>Raison Sociale</td>
-                <td><input type="text" name="NomEntreprise" value="<%=Boite.getRaisonSocialeEntreprise() %>"></td>
+                <td><input type="text" name="NomEntreprise" value="<%=EBoite.getRaisonSocialeEntreprise() %>"></td>
             </tr>
             <tr>
                 <td>Siège Social</td>
-                <td><input type="text" name="SiegeSocialEntreprise" value="<%=Boite.getSiegeSocialEntreprise() %>"></td>
+                <td><input type="text" name="SiegeSocialEntreprise" value="<%=EBoite.getSiegeSocialEntreprise() %>"></td>
             </tr>
             <tr>
                 <td>Mail</td>
-                <td><input type="text" name="MailEntreprise" value="<%=Boite.getMail() %>"></td>
+                <td><input type="text" name="MailEntreprise" value="<%=EBoite.getMail() %>"></td>
             </tr>
                         <tr>
                 <td>Login</td>
-                <td><input type="text" name="LoginEntreprise" value="<%=Boite.getLogin() %>"></td>
+                <td><input type="text" name="LoginEntreprise" value="<%=EBoite.getLogin() %>"></td>
             </tr>
             <tr>
                 <td>Mot de passe</td>
-                <td><input type="password" name="MdpEntreprise" value="<%=Boite.getMdp()%>"></td>
+                <td><input type="password" name="MdpEntreprise" value="<%=EBoite.getMdp()%>"></td>
             </tr>
             <tr>
                 <td>Taille Entreprise</td>
-                <td><input type="text" name="TailleEntreprise" value="<%=Boite.getTailleEntreprise() %>"></td>
+                <td><input type="text" name="TailleEntreprise" value="<%=EBoite.getTailleEntreprise() %>"></td>
             </tr>
             <tr>
                 <td>Date Création Entreprise</td>
-                <td><%=Boite.getDateCreationEntreprise() %></td>
+                <td><%=EBoite.getDateCreationEntreprise() %></td>
             </tr>
 
             

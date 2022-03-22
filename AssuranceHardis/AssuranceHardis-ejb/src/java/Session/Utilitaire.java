@@ -5,6 +5,7 @@
  */
 package Session;
 
+import Modele.Contrat;
 import Modele.pdf;
 
 /**
@@ -12,7 +13,7 @@ import Modele.pdf;
  * @author alex_
  */
 public class Utilitaire {
-    public static void CreerPdf(String args, String message){
-        pdf.creerPdf(args, message);
+    public static void CreerPdf(Contrat C,String NomClient, String RSAssureur, double PrixOffre, String TypeOffre, String TypeProduit){
+        pdf.creerPdf(C, NomClient,  RSAssureur,  PrixOffre,  TypeOffre,  TypeProduit);
     }
 }

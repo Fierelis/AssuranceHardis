@@ -119,6 +119,7 @@ public class AssuranceServlet extends HttpServlet {
                     Administrateur Admin = null;
                     ClientU = gestionClient.AuthentificationClientUnique(login, mdpHache);
                     Boite = gestionClient.AuthentificationEntreprise(login, mdpHache);
+
                     Court = gestionService.AuthentificationCourtier(login, mdpHache);
                     Assur = gestionService.AuthentificationAssureur(login, mdpHache);
                     Admin = gestionAdmin.AuthentificationAdmin(login, mdpHache);
@@ -137,7 +138,7 @@ public class AssuranceServlet extends HttpServlet {
                     
                     else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
-                        //System.out.println("connexion entreprise");
+                        System.out.println("connexion entreprise" + Boite);
                         request.setAttribute("Entreprise", sess.getAttribute("Entreprise"));
                         //System.out.println("connexion entreprise 2");
                         List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
@@ -320,9 +321,16 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/CompteEntreprise.jsp";
             } 
             else if (act.equals("ModifierInfoEntreprise")) {
+                System.out.println("on est la hein, okaish");
                 doActionModifierEntreprise(request, response);
+                System.out.println("on passe de l'autre coté de la force lets gooo");
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
                 sess.setAttribute("Entreprise", Boite);
+                request.setAttribute("Entreprise", sess.getAttribute("Entreprise"));
+                        //System.out.println("connexion entreprise 2");
+                List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
+                        System.out.println("liste contrat vide ");
+                request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                 jspClient = "/SessionEntreprise.jsp";
             } 
             
@@ -351,11 +359,19 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("validerResiliationEntreprise")){
                 String numC = request.getParameter("IdContrat");
                 long numContrat = Long.parseLong(numC);
+                System.out.println("on est là hein");
+                String TypeLog = "Delete";
+                Date d = new Date();
                 gestionClient.ResilierContratEntreprise(numContrat);
+                gestionAdmin.CreerLog(null, (Entreprise)sess.getAttribute("Entreprise"), null, null, null, null, null, TypeLog);
+                 Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
+                request.setAttribute("Entreprise", sess.getAttribute("Entreprise"));
+                        //System.out.println("connexion entreprise 2");
+                List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
+               request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                 jspClient = "/SessionEntreprise.jsp";
             }
-            //________________________________________________________________________________________
-            
+           
             
 //___________________________________RECHERCHER__OFFRE__PAR__SESSION______________________________________________________________________________________________
             else if (act.equals("CompteAssureur")) {
@@ -385,14 +401,14 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/RechercheOffreClientUnique.jsp";
                 } 
                 else if (Boite != null) {
-                    request.setAttribute("ClientUnique", Client);
+                    request.setAttribute("Entreprise", Boite);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreEntreprise.jsp";
 
                 } 
                 else if (Court != null) {
-                    request.setAttribute("Courtier", Client);
+                    request.setAttribute("Courtier", Court);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreCourtier.jsp";
@@ -504,12 +520,12 @@ public class AssuranceServlet extends HttpServlet {
                 if (ClientU != null) {
                     request.setAttribute("ClientUniqueJSP", ClientU);
                     doActionAfficherContrat(request, response);
-                    jspClient = "SouscriptionContratCU.jsp";
+                    jspClient = "/SouscriptionContratCU.jsp";
                 } 
                 else if (Boite != null) {
                     request.setAttribute("EntrepriseJSP", Boite);
                     doActionAfficherContrat(request, response);
-                    jspClient = "SouscriptionContratEntreprise.jsp";
+                    jspClient = "/SouscriptionContratEntreprise.jsp";
                 }
             }
             else if (act.equals("validerSouscription")) {
@@ -584,10 +600,15 @@ public class AssuranceServlet extends HttpServlet {
             } 
 
             
-            else if (act.equals("print")) {
-                String message = "nnn";             // PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDEPUTAIN DE MERDEv
-                String fje = "try";                 // PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDE PUTAIN DE MERDEPUTAIN DE MERDEv PUTAIN DE MERDE PUTAIN DE MERDE 
-                Utilitaire.CreerPdf(fje, message);
+            else if (act.equals("printEntreprise")) {
+                System.out.println("on est la frérot");
+                doActionCreerPdf(request, response);
+                System.out.println("On a passé le PDF OUAAAAAIS");
+                Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
+                request.setAttribute("Entreprise", Boite);
+                List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
+                request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
+                jspClient="/SessionEntreprise.jsp";
             }
 
             RequestDispatcher Rd;
@@ -651,7 +672,6 @@ public class AssuranceServlet extends HttpServlet {
             System.out.println("2 " + offer.getTypeOffre());
             System.out.println("3 " + offer.getDescriptionOffreContractuelle());
             System.out.println("4 " + offer.getLAssurance().getRaisonSocialeAssureur());
-            System.out.println("5 " + offer.getLeCourtier().getNomCourtier());
             System.out.println("6 " + offer.getPrixOffre());
             message = "offre N° " + offer.getId();
             request.setAttribute("Offre", offer);
@@ -934,7 +954,13 @@ public class AssuranceServlet extends HttpServlet {
 
             long id = Long.parseLong(ID);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(id);
-            String mdph = gestionClient.HashageSha256(mdp);
+            String mdph="";
+            System.out.println("huhu : "+ClientU.getLogin());
+            if(!ClientU.getMdp().equals(mdp)){
+              mdph= gestionClient.HashageSha256(mdp);
+            }else{
+              mdph=mdp; 
+            }
             gestionClient.ModificationClientUnique(ClientU, prenom, nom, login, mdph, iban, mail);
             String TypeLog = "Modify";
             gestionAdmin.CreerLog(ClientU, null, null, null, null, null, null, TypeLog);
@@ -959,7 +985,13 @@ public class AssuranceServlet extends HttpServlet {
         } else {
             long id = Long.parseLong(ID);
             Entreprise Boite = gestionClient.RechercherEntreprise(id);
-            String mdph = gestionClient.HashageSha256(mdp);
+            String mdph="";
+            System.out.println("huhu : "+Boite.getLogin());
+            if(!Boite.getMdp().equals(mdp)){
+              mdph= gestionClient.HashageSha256(mdp);
+            }else{
+              mdph=mdp; 
+            }
             gestionClient.ModifierEntreprise(Boite, login, mdph, raisonSociale, siegeSocial, taille, mail);
             String TypeLog = "Modify";
             gestionAdmin.CreerLog(null, Boite, null, null, null, null, null, TypeLog);
@@ -1021,6 +1053,28 @@ public class AssuranceServlet extends HttpServlet {
             String TypeLog = "Create";
             gestionAdmin.CreerLog(null, Boite, null, null, null, contra, null, TypeLog);
             message = "Contrat créé avec succès !";
+        }
+        request.setAttribute("message", message);
+    }
+    
+    protected void doActionCreerPdf(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("ICI C PARI");
+        String numContrat = request.getParameter("IdContrat");
+        long Idcontrat = Long.parseLong(numContrat);
+        Contrat c = gestionClient.RechercherContrat(Idcontrat);
+        System.out.println(c);
+        String message;
+        if (numContrat.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
+            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
+        } else {
+            String TypeOffre = c.getLoffreDuContrat().getTypeOffre();
+            String TypeProduit = c.getLoffreDuContrat().getLeTypeDeProduit().getNomTypeProduit();
+            String NomClient = c.getLeClientduContrat().getLogin();
+            String RSAssureur = c.getLoffreDuContrat().getLAssurance().getRaisonSocialeAssureur();
+            double PrixOffre = c.getLoffreDuContrat().getPrixOffre();
+            Utilitaire.CreerPdf(c,NomClient, RSAssureur, PrixOffre, TypeOffre, TypeProduit);
+            message = "Facture créé avec succès !";
         }
         request.setAttribute("message", message);
     }
