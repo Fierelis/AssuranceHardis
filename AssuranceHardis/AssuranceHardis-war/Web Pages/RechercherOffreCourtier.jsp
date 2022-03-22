@@ -6,18 +6,18 @@
 
 <%@page import="java.util.List"%>
 <%@page import="Modele.Offre"%>
-<%@page import="Modele.Entreprise"%>
+<%@page import="Modele.Courtier"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="AssureurJSP" scope="request" class="Modele.Assureur"></jsp:useBean>
+        <jsp:useBean id="CourtierJSP" scope="request" class="Modele.Courtier"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-         <%Entreprise boite = EntrepriseJSP;%>
+         <%Courtier Court = CourtierJSP;%>
         <h1>C la Reushairshe</h1>
         <form>
         <button class="button login__submit">
@@ -46,7 +46,7 @@
                             <td>
                                 <form>
                                     <button name="contrat" value="<%=ExistOffre.getId()%>">Voir</button> 
-                                    <input type="hidden" name="Bouton" value="VoirOffre">
+                                    <input type="hidden" name="Bouton" value="VoirOffreCourtier">
                                 </form>
                             </td>
                         </tr>
@@ -55,7 +55,7 @@
             </div>
             <script>
             (function() {
-  'use strict';
+    'use strict';
 
   var TableFilter = (function() {
     var Arr = Array.prototype;

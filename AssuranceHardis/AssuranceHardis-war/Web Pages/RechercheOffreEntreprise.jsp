@@ -4,7 +4,8 @@
     Author     : alex_
 --%>
 
-<%@page import="Modele.Assureur"%>
+<%@page import="Modele.Entreprise"%>
+
 <%@page import="java.util.List"%>
 <%@page import="Modele.Offre"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,13 +13,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="Assureur" scope="request" class="Modele.Assureur"></jsp:useBean>
+        <jsp:useBean id="Entreprise" scope="request" class="Modele.Entreprise"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
             <title>Recherche d'offre</title>
         </head>
         <body>
-        <%Assureur Assur = Assureur;
-        Assur.getId();
+        <%Entreprise boite = Entreprise;
+        boite.getId();
         %>
         <h1>Recherche d'offre </h1>
         <form>
@@ -54,7 +55,7 @@
                         <form>
                             <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
                             <input type="Submit" value="Voir l'Offre">
-                            <input type="hidden" name="action" value="VoirOffreAssureur">
+                            <input type="hidden" name="action" value="VoirOffreEntreprise">
                         </form>
                     </td>
                 </tr>
