@@ -73,16 +73,23 @@
                         for(Contrat ContratSouscrits : ListeContrats){
                         %>  <tr>
                             <td><%=ContratSouscrits.getLoffreDuContrat().getLAssurance().getRaisonSocialeAssureur() %></td>
+                            <td><%=ContratSouscrits.getLoffreDuContrat().getLeTypeDeProduit().getNomTypeProduit() %></td>
                             <td><%=ContratSouscrits.getLoffreDuContrat().getTypeOffre() %></td>
-                            <td><%=ContratSouscrits.getLoffreDuContrat().getLeTypeDeProduit() %></td>
                             <td><%=ContratSouscrits.getDateContrat() %></td>
                             <td><%=ContratSouscrits.getDureeContrat()+" mois"%></td>
                             <td>
                                 <form>
                                     <button name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
-                                    <input type="hidden" name="Bouton" value="ResilierContratClient">
+                                    <input type="hidden" name="action" value="ResilierContratClient">
                                 </form>
                             </td>
+                            
+                            <td>
+                                <form>
+                                    <button name="IdContrat" value="<%=ContratSouscrits.getId()%>">Télécharger Facture</button> 
+                                    <input type="hidden" name="action" value="printClient">
+                                </form>
+                            </td>  
                             
                             </tr>
                        <%   }

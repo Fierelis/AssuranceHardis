@@ -56,7 +56,7 @@
         <table>
             <tr>
                 <td>N°</td>
-                <td><input type="text" name="Idlient" readonly="readonly" value="<%=ClientU.getId()%>"></td>
+                <td><input type="text" name="IdClient" readonly="readonly" value="<%=ClientU.getId()%>"></td>
             </tr>
             <tr>
                 <td>Nom</td>
@@ -76,7 +76,7 @@
             </tr>
             <tr>
                 <td>Mot de passe</td>
-                <td><input type="hidden" name="MdpClient" value="<%=ClientU.getMdp()%>"></td>
+                <td><input type="password" name="MdpClient" value="<%=ClientU.getMdp()%>"></td>
             </tr>
             <tr>
                 <td>Compte Bancaire Associé</td>
