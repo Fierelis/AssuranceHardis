@@ -150,17 +150,17 @@
                     option.onchange = function() {
 
                         if (option.value == 1) {
-                            document.getElementById('TableauAssureuradmin').style.display = 'block';
+                            document.getElementById('TableauAssureuradmin').style.display = '';
                             document.getElementById('TableauCourtierAdmin').style.display = 'none';
                             document.getElementById('tableaucontratsadmin').style.display = 'none';
                         } else if (option.value == 2) {
                             document.getElementById('TableauAssureuradmin').style.display = 'none';
-                            document.getElementById('TableauCourtierAdmin').style.display = 'block';
+                            document.getElementById('TableauCourtierAdmin').style.display = '';
                             document.getElementById('tableaucontratsadmin').style.display = 'none';
                         } else if (option.value == 3) {
                             document.getElementById('TableauAssureuradmin').style.display = 'none';
                             document.getElementById('TableauCourtierAdmin').style.display = 'none';
-                            document.getElementById('tableaucontratsadmin').style.display = 'block';
+                            document.getElementById('tableaucontratsadmin').style.display = '';
                         } else {
                             document.getElementById('TableauAssureuradmin').style.display = 'none';
                             document.getElementById('TableauCourtierAdmin').style.display = 'none';

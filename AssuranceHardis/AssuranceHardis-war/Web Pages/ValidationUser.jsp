@@ -130,9 +130,9 @@
                                     <td><%=L.getDateLog()%></td>
                                     <td><%=L.getLogEntreprise().getLogin()%></td>
                                     <%if (L.getLogEntreprise().isActivationUser() == true) { %>
-                                    <td>Validée</td>
+                                    <td><mark class ="mark0">Validée</mark></td>
                                     <% } else {%>
-                                    <td>En Attente</td>
+                                    <td><mark class ="mark1">En Attente</mark></td>
                                     <% } %>
 
                                     <td>
@@ -300,25 +300,25 @@
             option.onchange = function () {
 
                 if (option.value == 1) {
-                    document.getElementById('tableauclientsattente').style.display = 'block';
+                    document.getElementById('tableauclientsattente').style.display = '';
                     document.getElementById('tableauentrepriseattente').style.display = 'none';
                     document.getElementById('tableaucourtierattente').style.display = 'none';
                     document.getElementById('tableauassurattente').style.display = 'none';
                 } else if (option.value == 2) {
                     document.getElementById('tableauclientsattente').style.display = 'none';
-                    document.getElementById('tableauentrepriseattente').style.display = 'block';
+                    document.getElementById('tableauentrepriseattente').style.display = '';
                     document.getElementById('tableaucourtierattente').style.display = 'none';
                     document.getElementById('tableauassurattente').style.display = 'none';
                 } else if (option.value == 3) {
                     document.getElementById('tableauclientsattente').style.display = 'none';
                     document.getElementById('tableauentrepriseattente').style.display = 'none';
-                    document.getElementById('tableaucourtierattente').style.display = 'block';
+                    document.getElementById('tableaucourtierattente').style.display = '';
                     document.getElementById('tableauassurattente').style.display = 'none';
                 } else if (option.value == 4) {
                     document.getElementById('tableauclientsattente').style.display = 'none';
                     document.getElementById('tableauentrepriseattente').style.display = 'none';
                     document.getElementById('tableaucourtierattente').style.display = 'none';
-                    document.getElementById('tableauassurattente').style.display = 'block';
+                    document.getElementById('tableauassurattente').style.display = '';
                 } else {
                     document.getElementById('tableauclientsattente').style.display = 'none';
                     document.getElementById('tableauentrepriseattente').style.display = 'none';

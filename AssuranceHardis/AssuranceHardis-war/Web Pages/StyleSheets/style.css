@@ -8653,3 +8653,13 @@ color: #ffffff;
     
 }
 
+.mark0 {
+    background-color: #45ba92;
+    color: var(--green);
+  }
+
+  .mark1
+  {
+    background-color: #ff9f3e;
+    color: black;
+  }
