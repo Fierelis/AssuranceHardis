@@ -147,12 +147,18 @@ public class AssuranceServlet extends HttpServlet {
                     else if (Court != null) {
                         sess.setAttribute("CourtierJSP", Court);
                         //System.out.println("*******/////////////////*********************");
-                        //List<Assureur>ListeFiltreePartenaires=gestionService.RechercheAssureurPartenaire(Court.getId());
+                        System.out.println("courtier : "+Court.getId());
+                        List<Assureur>ListTest=gestionService.RechercheAssureurPartenaire(Court.getId());
+                        for (int i = 0; i < ListTest.size(); i++) {
+                            System.out.println(ListTest.get(i).getRaisonSocialeAssureur());
+                        }
+                        request.setAttribute("test", ListTest);
+                        
                         System.out.println("*******/////////////////*********************");
-                        List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
+                        //List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, Assur);
                         List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, Assur);
                         request.setAttribute("Courtier", sess.getAttribute("CourtierJSP"));
-                        request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
+                        //request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                         request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                         sess.setAttribute("Entreprise", null);
                         sess.setAttribute("ClientUnique", null);
@@ -173,11 +179,11 @@ public class AssuranceServlet extends HttpServlet {
                         // liste de tous les courtiers partenaires
                         //System.out.println(a.getId());
                         List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(Assur.getId());
-                        /*System.out.println("taille : " + ListCourtier.size());
+                        //System.out.println("taille : " + ListCourtier.size());
                         System.out.println("suuuuuuuuuuuu");
                         for (int i = 0; i < ListCourtier.size(); i++) {
                             System.out.println(ListCourtier.get(i).getNomCourtier());
-                        }
+                        }/*
                         System.out.println("suuuuuuuuuuuu");*/
                         request.setAttribute("ListCourtier", ListCourtier);
 
@@ -259,8 +265,14 @@ public class AssuranceServlet extends HttpServlet {
             } 
             else if (act.equals("ModifierInfoCourtier")) {
                 doActionModifierCourtier(request, response);
-                Courtier Court = (Courtier) sess.getAttribute("Courtier");
+                
+                
+                Courtier Court = (Courtier) sess.getAttribute("CourtierJSP");
                 sess.setAttribute("CourtierJSP", Court);
+                System.out.println("jjjj"+Court.getId());
+                List<Assureur>ListTest=gestionService.RechercheAssureurPartenaire(Court.getId());                    
+                request.setAttribute("test", ListTest);
+                System.out.println("ServletPackage.AssuranceServlet.processRequest()");
                 List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, null);
                 List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, null);
                 request.setAttribute("Courtier", sess.getAttribute("CourtierJSP"));
@@ -304,11 +316,13 @@ public class AssuranceServlet extends HttpServlet {
                  doActionCreerOffreCourtier(request, response);
                  Courtier Court=(Courtier) sess.getAttribute("CourtierJSP");
                  sess.setAttribute("CourtierJSP", sess.getAttribute("CourtierJSP"));
-                 List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, null);
+                 //List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, null);
                  List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, null);
                  request.setAttribute("CourtierJSP", sess.getAttribute("Courtier"));
-                 request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
+                 //request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                  request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
+                 List<Assureur>ListTest=gestionService.RechercheAssureurPartenaire(Court.getId());
+                 request.setAttribute("test", ListTest);
                 jspClient = "/SessionCourtier.jsp";
             } 
              else if (act.equals("CreerOffreViaCourtier")){
@@ -497,11 +511,13 @@ public class AssuranceServlet extends HttpServlet {
                 else if (Court != null) {
                     //Assur = null;
                     sess.setAttribute("CourtierJSP", Court);
-                    List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, null);
+                    //List<Offre> ListeFiltreePartenaires = gestionService.FiltrerOffre("PartenariatsAssureurs", Court, null);
                     List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, null);
                     System.out.println("Courtier : "+Court.getPrenomCourtier());
+                    List<Assureur>ListTest=gestionService.RechercheAssureurPartenaire(Court.getId());                   
+                    request.setAttribute("test", ListTest);
                     request.setAttribute("CourtierJSP", Court);
-                    request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
+                    //request.setAttribute("ListeFiltreePartenaires", ListeFiltreePartenaires);
                     request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
                     jspClient = "/SessionCourtier.jsp";
                    
@@ -1001,6 +1017,7 @@ public class AssuranceServlet extends HttpServlet {
         String ville = request.getParameter("VilleC");
         String codepostal = request.getParameter("CPC");
         String message;
+        System.out.println("cp "+ codepostal);
         if (nom.trim().isEmpty() || prenom.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || adresse.trim().isEmpty() || mail.trim().isEmpty() || ville.trim().isEmpty() || codepostal.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
@@ -1072,7 +1089,7 @@ public class AssuranceServlet extends HttpServlet {
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
 
-            long id = Long.parseLong(ID);
+            long id = Long.valueOf(ID);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(id);
             String mdph="";
             System.out.println("huhu : "+ClientU.getLogin());

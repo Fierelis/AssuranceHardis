@@ -11,61 +11,142 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="Courtier" scope="request" class="Modele.Courtier"></jsp:useBean>
+        <link href="StyleSheets/style.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1>Informations courtier</h1>
-        
-        <%Courtier Court = Courtier;  %>
-        
-        <form>
-        <table>
-            <tr>
-                <td>N°</td>
-                <td><input type="text" name="Idcourtier" readonly="readonly" value="<%=Court.getId()%>"></td>
-            </tr>
-            <tr>
-                <td>Nom</td>
-                <td><input type="text" name="NomC" value="<%=Court.getNomCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Prénom</td>
-                <td><input type="text" name="PrenomC" value="<%=Court.getPrenomCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Mail</td>
-                <td><input type="text" name="MailC" value="<%=Court.getMailCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Adresse</td>
-                <td><input type="text" name="AdresseC" value="<%=Court.getAdresseCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Ville</td>
-                <td><input type="text" name="VilleC" value="<%=Court.getVilleCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Code Postal</td>
-                <td><input type="text" name="CPC" value="<%=Court.getCPCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Date Naissance</td>
-                <td><input type="date" name="DateNaissanceC" value="<%=Court.getDateNaissanceCourtier()%>"></td>
-            </tr>
-            <tr>
-                <td>Login</td>
-                <td><input type="text" name="LoginC" value="<%=Court.getLoginUserService()%>"></td>
-            </tr>
-            <tr>
-                <td>Mot de passe</td>
-                <td><input type="password" name="MdpC" value="<%=Court.getPasswordUserService()%>"></td>
-            </tr>
-            
-            </table>
-            
-            <input type="hidden" name="action" value="ModifierInfoCourtier">
-            <input id="valid" type="submit" name="Valider" value="Valider les changements">
-        </form>
+    <header class ="header1">
+        <div class = "" id = "navbar">
+            <nav class="navbar navbar-expand-lg">
+               <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                <a class="navbar-brand" href="#">Sombrero</a>
+  <%Courtier Court = Courtier;  %>
+                <!-- <img src = ".jpg" style = "height : 70px">  </img> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: flex-end">
+                    <ul class="navbar-nav">
 
-    </body>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">home</button>
+                            <input type="hidden" name="action" value="home"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Recherche</button>
+                            <input type="hidden" name="action" value="RechercherOffre"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Créer une offre</button>
+                            <input type="hidden" name="action" value="CreerOffreCourtier"></form></li>
+                            <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">CompteCourtier</button>
+                            <input type="hidden" name="action" value="CompteCourtier"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Se déconnecter</button>
+                            <input type="hidden" name="action" value="Deconnexion"></form></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+            
+            
+        </header>
+    <body>
+        <section class="ftco-section">
+
+            <div class="container">
+                 <h1>Vos informations, <%=Court.getPrenomCourtier() %></h1>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-10">
+                        <form class="signin-form">
+                            <div class="wrap d-md-flex">
+                                <div class="text-wrapp p-4 p-lg-5">
+
+
+                                    <div class="form-group mb-3">
+                                        <label class="label" for="LoginCourtier">Identifiant</label>
+                                        <input type="text" class="form-control" name ="Idcourtier" readonly="readonly" value="<%=Court.getId()%>" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label class="label" for="LoginCourtier">Identifiant</label>
+                                        <input type="text" class="form-control" name ="LoginC"  value="<%=Court.getLoginUserService()%>" required>
+                                    </div>
+                                    <div class="form-group mb-3"> 
+                                        <label class="label" for="name">Mot de passe</label>
+                                        <input type="password" class="form-control" name ="MdpC" value="<%=Court.getPasswordUserService()%>" id ="monmdp" required>
+                                        <input type="checkbox" onclick="myFunctionP()"> Voir le mot de passe
+                                    </div>
+                                    
+                                    <div class="form-group mb-3">
+                                        <label class="label" for="name">Nom</label>
+                                        <input type="text" class="form-control" name ="NomC" value="<%=Court.getNomCourtier()%>" required>
+                                    </div> 
+                                    <div class="form-group mb-3">
+                                        <label class="label" for="name">Prénom</label>
+                                        <input type="text" class="form-control" name ="PrenomC" value="<%=Court.getPrenomCourtier()%>" required>
+                                    </div> 
+
+
+                                </div>
+                                <div class="login-wrap p-4 p-lg-5">
+
+
+
+
+                                   <div class="form-group">
+                                       <div class="form-group mb-3">
+                                        <label class="label" for="name">Adresse mail</label>
+                                        <input type="text" class="form-control" name ="MailC" value="<%=Court.getMailCourtier()%>" required>
+                                    </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="name">Date de naissance</label>
+                                            <input type="date" class="form-control" name ="DateNaissanceC" value="<%=Court.getDateNaissanceCourtier()%>">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-group mb-3">
+                                                <label class="label" for="AdresseCourtier">Adresse postale</label>
+                                                <input type="text" class="form-control" name ="AdresseC" value="<%=Court.getAdresseCourtier()%>" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label class="label" for="VilleCourtier">Ville</label>
+                                                <input type="text" class="form-control" name ="VilleC" value="<%=Court.getVilleCourtier()%>" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label class="label" for="CPC">Code postal</label>
+                                                <input type="number" class="form-control" name ="CPC" value="<%=Court.getCPCourtier()%>" required>
+                                            </div>
+                                            <br>
+
+
+                                            <div class="form-group">
+
+                                                <div class ="row justify content-center">
+                                                    <input type="hidden" name="action" value="ModifierInfoCourtier">
+                                                    <button type="submit" class="form-control btn btn-primary submit px-3">Valider les modifications</button>
+                                                    
+                                                </div>
+                                            </div>
+
+
+
+                                        </div> 
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </section>
+
+                    <script src="js/jquery.min.js"></script>
+                    <script src="js/popper.js"></script>
+                    <script src="js/bootstrap.min.js"></script>
+                    <script src="js/main.js"></script>
+                    <script>
+                    function myFunctionP() {
+  var x = document.getElementById("monmdp");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} </script>
+                    </body>
 </html>

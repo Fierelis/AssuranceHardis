@@ -55,9 +55,10 @@
         <h4>Bienvenue sur votre espace <%=a.getLoginUserService()%></h4>
         
         <div class ="row">
-            <div class ="col-md-6">
+            <div class ="col-md-8">
+                <h4 class="text-center mb-4">Vos courtiers partenaires</h4>
                  <div id="TableauOffresAssureur">
-                    <h4 class="text-center mb-4">Vos courtiers partenaires</h4>
+                    
                     <div class="table-wrap">
                     <table class ="table">
                          <thead class="thead-primary">
@@ -85,7 +86,7 @@
 
             
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                <div id="TableauCourtierPartenaire">
                 <h4 class="text-center mb-4">Vos courtiers partenaires</h4>
                 <div class="table-wrap">
@@ -94,7 +95,6 @@
                             <tr>
                                 <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Date de naissance</th>
                                 <th>Ville</th>
                                 <th>Mail</th>
 
@@ -106,8 +106,7 @@
                             %> 
                             <tr>
                                 <td><%= CourtierPartenaire.getNomCourtier()%></td>
-                                <td><%= CourtierPartenaire.getPrenomCourtier()%></td>
-                                <td><%= CourtierPartenaire.getDateNaissanceCourtier()%></td>                       
+                                <td><%= CourtierPartenaire.getPrenomCourtier()%></td>                   
                                 <td><%= CourtierPartenaire.getVilleCourtier()%></td>
                                 <td><%= CourtierPartenaire.getMailCourtier()%></td>
 
@@ -122,8 +121,6 @@
         </div>
         
 </div>
-
-</body>
  <footer class="footer-1">
           
           <div class="container">
@@ -179,4 +176,6 @@
           </div>
           
         </footer>
+</body>
+
 </html>
