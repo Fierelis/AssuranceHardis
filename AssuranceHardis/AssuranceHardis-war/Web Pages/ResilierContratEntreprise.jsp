@@ -15,16 +15,18 @@
     </head>
     <body>
         <%Contrat Con = Contrat;%>
-        <h1>Vous êtes ici pour résilier votre contrat <%=Contrat.getLoffreDuContrat().getLeTypeDeProduit() %></h1>
+        <h1>Vous êtes ici pour résilier votre contrat <%=Contrat.getLoffreDuContrat().getLeTypeDeProduit().getNomTypeProduit() %></h1>
         
         
         <form>
             <label for='IdContrat'>Numéro de contrat : </label>
-            <input type='text' name='IdContrat' readonly='readonly' value='<%=Con.getId() %>'>
+            <input type='text' name='IdContrat' readonly='readonly' value='<%=Con.getId() %>'><br>
             
             <input type='checkbox' name='resiliation' value=''>
-            <p>Je confirme la résiliation du contrat. Cette action est irréversible.</p>
-            <input type='submit' name='action' value='validerResiliationEntreprise'>
+            <p>Je confirme la résiliation du contrat.</p><br>
+            <h3> Attention ! </h3> <p>Cette action est irréversible.</p>
+            <input type='hidden' name='action' value='validerResiliationEntreprise'>
+            <input type="submit" value="Valider Résiliation">
         </form>
         
     </body>

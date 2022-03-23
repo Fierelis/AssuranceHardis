@@ -94,7 +94,8 @@
                                 <p class ="text-center">Content area</p>
                                  <form>
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
-                                 <input type="hidden" name="action" value="SelectionnerCreationCourtier"> </form>
+                                 <input type="hidden" name="action" value="SelectionnerCreationCourtier"> 
+                                 </form>
                             </div>
                         </div>
                     </div>

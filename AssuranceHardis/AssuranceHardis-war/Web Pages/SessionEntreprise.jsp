@@ -14,14 +14,13 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dashboard Client</title>
-        <%System.out.println("FDPPPPPPPPPPPPPPP");%>
         <jsp:useBean id="Entreprise" scope="session" class="Modele.Entreprise"></jsp:useBean>
         <%System.out.println("gggggggggggggggggggggggggg");%>
         <jsp:useBean id="ListeContratEntreprise" scope="request" class="java.util.List"></jsp:useBean>
         </head>
         <body>
 
-        <% Entreprise e = Entreprise;%>
+        <%Entreprise e = Entreprise;%>
         <% List<Contrat> ListeContrats = ListeContratEntreprise;%>
 
         <h1>Bienvenue sur l'espace <%=e.getRaisonSocialeEntreprise() %></h1>
@@ -64,8 +63,8 @@
      <table>
                 <tr>
                     <td>Assureur</td>
-                    <td>Type de Contrat</td>
                     <td>Produit</td>
+                    <td>Type de Contrat</td>
                     <td>Date de Souscription</td>
                     <td>Durée de couverture</td>
                 </tr>
@@ -73,17 +72,23 @@
                        
                         for(Contrat ContratSouscrits : ListeContrats){
                         %>  <tr>
-                            <td><%=ContratSouscrits.getLoffreDuContrat()%></td>
-                            <td><%=ContratSouscrits.getLoffreDuContrat()%></td>
-                            <td><%=ContratSouscrits.getLoffreDuContrat()%></td>
+                            <td><%=ContratSouscrits.getLoffreDuContrat().getLAssurance().getRaisonSocialeAssureur() %></td>
+                            <td><%=ContratSouscrits.getLoffreDuContrat().getLeTypeDeProduit().getNomTypeProduit() %></td>
+                            <td><%=ContratSouscrits.getLoffreDuContrat().getTypeOffre() %></td>
                             <td><%=ContratSouscrits.getDateContrat() %></td>
                             <td><%=ContratSouscrits.getDureeContrat()+" mois"%></td>
                             <td>
                                 <form>
                                     <button name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
-                                    <input type="hidden" name="Bouton" value="ResilierContratEntreprise">
+                                    <input type="hidden" name="action" value="ResilierContratEntreprise">
                                 </form>
-                            </td>     
+                            </td>   
+                            <td>
+                                <form>
+                                    <button name="IdContrat" value="<%=ContratSouscrits.getId()%>">Télécharger Facture</button> 
+                                    <input type="hidden" name="action" value="printEntreprise">
+                                </form>
+                            </td>  
                             </tr>
                        <%   }%>                                             
     </body>

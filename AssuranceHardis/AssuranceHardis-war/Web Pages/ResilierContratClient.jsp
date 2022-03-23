@@ -14,8 +14,43 @@
         <title>JSP Page</title>
     </head>
     <body>
+          <form>
+        <button class="button login__submit">
+            <span class="button__text">Home</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="home">
+        </form>
+             <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+        
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteClient">
+        </form>
+        
+        
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
+        </form>
         <%Contrat Con = Contrat;%>
-        <h1>Vous êtes ici pour résilier votre contrat <%=Contrat.getLoffreDuContrat().getLeTypeDeProduit() %></h1>
+        <h1>Vous êtes ici pour résilier votre contrat <%=Contrat.getLoffreDuContrat().getLeTypeDeProduit().getNomTypeProduit() %></h1>
         
         
         <form>

@@ -4,6 +4,7 @@
     Author     : alexa
 --%>
 
+<%@page import="Modele.Courtier"%>
 <%@page import="Modele.Offre"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <jsp:useBean id="OffreJSP" scope="request" class="Modele.Offre"></jsp:useBean>
+         <jsp:useBean id="CourtierJSP" scope="request" class="Modele.Courtier"></jsp:useBean>
         <title>Creation d'offre</title>
 
     </head>
@@ -21,15 +23,18 @@
             <span class="button__text">Home</span>
             <i class="button__icon fas fa-chevron-right"></i>
 	</button>
-            <%Offre offer = OffreJSP; %>
+            <%Offre offer = OffreJSP;
+            Courtier cour = CourtierJSP;%>
               <input type="hidden" name="action" value="home">
         </form>
         <form method="get" action="AssuranceServlet">
             <fieldset>
                 <legend>Informations Offre</legend>     
                 <label for="TypeOffre">Type d'offre : <span class="requis"></span></label>
-                <input type="text" name="TypeOffre" readonly='readonly' value="<%=offer.getTypeOffre() %>">                  
-
+                <input type="text" name="TypeOffre" readonly='readonly' value="<%=offer.getTypeOffre() %>">     
+                
+                <input type="hidden" name="courtier" readonly='readonly' value="<%=cour.getId() %>">
+                <input type="hidden" name="assureur" readonly='readonly' value="<%=offer.getLAssurance().getId() %>">       
                        
                 <label for="TypeProduit">Type de produit : <span class="requis"></span></label>
                 <input name="TypeProduit" readonly='readonly' value="<%=offer.getLeTypeDeProduit().getNomTypeProduit() %>">  

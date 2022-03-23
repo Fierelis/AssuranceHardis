@@ -48,7 +48,7 @@
                             <td>
                                 <form>
                                     <button name="contrat" value="<%=ExistOffre.getId()%>">Voir</button> 
-                                    <input type="hidden" name="Bouton" value="VoirOffreCourtier">
+                                    <input type="hidden" name="action" value="VoirOffreCourtier">
                                 </form>
                             </td>
                         </tr>

@@ -12,13 +12,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="ClientUniqueJSP" scope="request" class="Modele.ClientUnique"></jsp:useBean>
+        <jsp:useBean id="ClientUnique" scope="request" class="Modele.ClientUnique"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-         <%ClientUnique ClientU = ClientUniqueJSP;%>
-        <h1>C la Reushairshe</h1>
+         <%ClientUnique ClientU = ClientUnique; %>
+   
         <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
@@ -26,6 +26,34 @@
 	</button>
             
               <input type="hidden" name="action" value="home">
+        </form>
+           </form>
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+        
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteClient">
+        </form>
+        
+        
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
         </form>
          <div id="TableauOffres">
             <h2>Totalités des offre</h2>
@@ -45,8 +73,8 @@
                             <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit() %></td>
                             <td>
                                 <form>
-                                    <button name="contrat" value="<%=ExistOffre.getId()%>">Voir</button> 
-                                    <input type="hidden" name="Bouton" value="VoirOffre">
+                                    <button name="idOffre" value="<%=ExistOffre.getId()%>">Voir offre</button> 
+                                    <input type="hidden" name="action" value="VoirOffreClientUnique">
                                 </form>
                             </td>
                         </tr>

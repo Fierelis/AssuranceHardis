@@ -28,15 +28,7 @@
         List<Assureur> Assur = Assureur;
         List<Courtier> Court = Courtier;
         %>
-          <form>
-        <button class="button login__submit">
-            <span class="button__text">test</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-	</button>
-            
-              <input type="hidden" name="action" value="print">
-        </form>
-          
+
          <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
@@ -99,7 +91,7 @@
                 </tr>
             </table>
                  <%} %>
-       
+                 <br>
             <table>  
                 <tr>
                     <td>Nom Courtier</td>
@@ -116,7 +108,7 @@
                 </tr>
             </table>
                  <% } %>
-      
+                 <br>
             <table>
                 <tr>
                     <td>Contrat N°</td>

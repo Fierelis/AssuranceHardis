@@ -28,6 +28,33 @@
             
               <input type="hidden" name="action" value="home">
           </form>
+             <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+        
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteClient">
+        </form>
+        
+        
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
+        </form>
         <h1>Confirmez vous la souscription à cette offrea</h1>
         <form>
             <fieldset><h2>Vous</h2>
@@ -39,7 +66,7 @@
 
                 <label for='mail'>Prenom</label>
                 <input type='text' name='PrenomClient' readonly='readonly' value='<%=Client.getPrenom()%>'>     <br>  
-
+                <input type='hidden' name='Iban' value='<%=Client.getIban()%>'><br>
                 <input type='hidden' name='numClient' value='<%=Client.getId()%>'><br>
             </fieldset><br>
 
@@ -71,7 +98,7 @@
 
 
             <input type='hidden' name='action' value='validerSouscription'>
-            <button name='Souscrire' value='Souscrire'>
+            <button name='Souscrire' value='Souscrire'>Valider ma Souscription</button>
 
         </form>
     </body>

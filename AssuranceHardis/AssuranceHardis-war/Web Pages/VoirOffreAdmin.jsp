@@ -14,15 +14,51 @@
 
         <title>Offre</title>
     </head>
-    <%Offre offer = Offre;%>
+    
     <body>
-
+        <%Offre offer = Offre; %>
          <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
             <i class="button__icon fas fa-chevron-right"></i>
 	</button>
+            
               <input type="hidden" name="action" value="home">
+        </form>
+         
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Inscriptions en Attente</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="ValidationUser">
+        </form>
+         
+          <form>
+        <button class="button login__submit">
+            <span class="button__text">Log Application</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="AccesLogs">
+        </form>
+         
+         <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+            <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
         </form>
         <h1>Information sur l'offre </h1>
         
@@ -32,8 +68,8 @@
             <tr> <td>Type de Contrat</td><td><%=offer.getTypeOffre() %></td></tr>
             <tr> <td>Description Contrat</td><td><%=offer.getDescriptionOffreContractuelle() %></td></tr>
             <tr> <td>Assureur</td><td><%=offer.getLAssurance().getRaisonSocialeAssureur()%></td></tr>
-             <%if (offer.getLeCourtier()!=null){ %>
-            
+            <%if (offer.getLeCourtier()!=null){ %>
+          
             <tr> <td>Courtier</td>  <td><%=offer.getLeCourtier().getNomCourtier() %></td></tr>
             
             <% } %>
@@ -41,8 +77,6 @@
 
             
         </table>
-        
-        
         
     </body>
 </html>
