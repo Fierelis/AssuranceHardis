@@ -66,7 +66,7 @@
                                     </div>
 
                                 </div>
-                                <form action="#" class="signin-form">
+                                <form method="post" action="/AssuranceHardis-war/AssuranceServlet" class="signin-form">
                                     <div class="form-group mb-3">
                                         <label class="label" for="name">Identifiant</label>
                                         <input type="text" class="form-control" name="login" placeholder="Identifiant" required>

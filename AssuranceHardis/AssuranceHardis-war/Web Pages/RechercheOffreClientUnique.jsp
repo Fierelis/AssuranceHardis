@@ -58,12 +58,16 @@
          <div id="TableauOffres">
             <h2>Totalités des offre</h2>
             <p> Filtrer : <input type="text" class="table-filter" data-table="livres"></p>
+ 
             <table class="livres">
+                <thead>
                 <tr><td>Type d'Offre</td>
                     <td>Description de l'offre</td>
                     <td>Prix de l'offre</td>
                     <td>Le type de produit</td>
                 </tr>
+                </thead>
+                <tbody>
                     <% 
                        List<Offre> ListeFiltreeOffres = listeOffre;
                         for(Offre ExistOffre : ListeFiltreeOffres){
@@ -79,6 +83,7 @@
                             </td>
                         </tr>
                        <%}%>
+                </tbody>
             </table>
             </div>
             <script>

@@ -63,20 +63,35 @@
             
               <input type="hidden" name="action" value="Deconnexion">
         </form>
-        <div id="TableauAssureursPartenaires">
-             <h2>Assureurs Partenaires</h2>
-            <table>
-                <td>Nom Assureur</td>
-                    <% 
-                       List<Offre> ListeFiltreeAssureurs=ListeFiltreePartenaires;
-                        for(Offre Partenaire : ListeFiltreeAssureurs){
-                            %>  
-                        <tr>
-                            <td><%=Partenaire.getLAssurance().getRaisonSocialeAssureur() %></td>
-                       </tr>
-                            <%}%>
-            </table>
-        </div>
+        <div class ="row">
+            <div class ="col-md-3">
+                 <div id="TableauOffresPartenaires">
+                <h4 class="text-center mb-4">Assureurs partenaires</h4>
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th>Assureur</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <% 
+                       List<Assureur> testlist=ListeFiltreePartenaires;
+                        for(Assureur Partenaire : testlist){
+                    %>
+                    <tr><td><%= Partenaire.getRaisonSocialeAssureur() %></td>
+
+                        </tr>
+                       <%}%>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
             
         <div id="TableauOffresPartenaires">
             <h2>Offres des assureurs Partenaires</h2>

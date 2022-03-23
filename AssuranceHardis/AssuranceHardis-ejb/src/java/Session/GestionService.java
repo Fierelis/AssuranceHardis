@@ -169,4 +169,5 @@ public class GestionService implements GestionServiceLocal {
     public List RechercheAssureurPartenaire(long id) {
         return assureurFacade.RechercheAssureurPartenaire(id);
     }
+
 }

@@ -46,5 +46,6 @@ public interface AssureurFacadeLocal {
 
     List RechercheAssureurPartenaire(long id);
 
+
     
 }
