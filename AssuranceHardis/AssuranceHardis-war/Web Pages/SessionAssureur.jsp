@@ -1,3 +1,5 @@
+
+
 <%-- 
     Document   : SessionAssureur
     Created on : 8 mars 2022, 11:01:00
@@ -20,6 +22,10 @@
             <title>DashBoard Assureur</title>
         </head>
         <header class ="header1">
+            <% Assureur a = Assureur;%>
+
+        <% List<Offre> listeOffreAssureur = listOffreAssureur;%>
+        <% List<Courtier> listeCourtierPartenaire = ListCourtier;%>
         <div class = "" id = "navbar">
             <nav class="navbar navbar-expand-lg">
                 <img src = "img/sobrero.png" style = "height : 70px">  </img>
@@ -47,17 +53,16 @@
         </header>
 
         <body>
-        <% Assureur a = Assureur;%>
-
-        <% List<Offre> listeOffreAssureur = listOffreAssureur;%>
-        <% List<Courtier> listeCourtierPartenaire = ListCourtier;%>
+        
 
         <h4>Bienvenue sur votre espace <%=a.getLoginUserService()%></h4>
         
-        <div class ="row">
-            <div class ="col-md-6">
+         <div class ="row justify-content-center">
+             <div class="col-md-12 col-lg-10">
+                   <div class="wrap d-md-flex">
+                        <div class="login-wrap p-4 p-lg-5" style ="width : 50%">
                  <div id="TableauOffresAssureur">
-                    <h4 class="text-center mb-4">Vos courtiers partenaires</h4>
+                    <h4 class="text-center mb-4">Vos offres proposées</h4>
                     <div class="table-wrap">
                     <table class ="table">
                          <thead class="thead-primary">
@@ -85,7 +90,7 @@
 
             
 
-            <div class="col-md-6">
+             <div class="text-wrapp p-4 p-lg-5" style ="width : 50%">
                <div id="TableauCourtierPartenaire">
                 <h4 class="text-center mb-4">Vos courtiers partenaires</h4>
                 <div class="table-wrap">
@@ -94,7 +99,7 @@
                             <tr>
                                 <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Date de naissance</th>
+                              
                                 <th>Ville</th>
                                 <th>Mail</th>
 
@@ -107,7 +112,7 @@
                             <tr>
                                 <td><%= CourtierPartenaire.getNomCourtier()%></td>
                                 <td><%= CourtierPartenaire.getPrenomCourtier()%></td>
-                                <td><%= CourtierPartenaire.getDateNaissanceCourtier()%></td>                       
+                                                       
                                 <td><%= CourtierPartenaire.getVilleCourtier()%></td>
                                 <td><%= CourtierPartenaire.getMailCourtier()%></td>
 
@@ -120,9 +125,9 @@
                 </div>
             </div>
         </div>
-        
+                   </div>
 </div>
-
+         </div>
 </body>
  <footer class="footer-1">
           

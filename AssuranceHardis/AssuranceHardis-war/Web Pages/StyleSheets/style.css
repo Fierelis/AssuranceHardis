@@ -8437,7 +8437,9 @@ h1, h2, h3, h4, h5,
 .btn1.btn1-primary:hover {
     border: 1px solid #f75959;
     background: #f75959;
-    color: #fff; }
+    color: #fff;
+    text-decoration: underline;
+}
 .btn1.btn1-primary.btn1-outline-primary {
     border: 1px solid #f75959;
     background: transparent;
@@ -8462,7 +8464,15 @@ h1, h2, h3, h4, h5,
     border: 1px solid transparent;
     background: #fff;
     color: #000; }
-    /* fin du bouton */
+
+.card1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color:#FFF;
+}
 
 /* bouton ta le tableau */
 .btn2 {
@@ -8517,16 +8527,7 @@ h1, h2, h3, h4, h5,
     background: #fff;
     color: #000; }
     /* fin du bouton */
-
-.card1 {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.2s ease-in-out;
-    box-sizing: border-box;
-    margin-top:10px;
-    margin-bottom:10px;
-    background-color:#FFF;
-}
-
+    
 .card1:hover {
     box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -8619,9 +8620,6 @@ left: 50%;
 transform: translate(-50%, -50%);
 }
 */
-table {
-    width: 100%;
-}
 th,
 td {
 text-align: center;
@@ -8646,20 +8644,18 @@ border-right: 2px solid #45444d;
 border-left: 2px solid #45444d;
 }
 
-tbody > tr:hover >  {
+tbody > tr:hover {
 background-color: #f75959;
 color: #ffffff;
-
-    
 }
 
 .mark0 {
     background-color: #45ba92;
-    color: var(--green);
+    color: white;
   }
 
   .mark1
   {
-    background-color: #ff9f3e;
-    color: black;
+    background-color: #f1492a;
+    color: white;
   }

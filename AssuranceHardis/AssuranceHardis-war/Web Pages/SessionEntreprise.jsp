@@ -20,6 +20,8 @@
             <title>DashBoard Client</title>
         </head>
         <header class ="header1">
+            <%Entreprise e = Entreprise;%>
+        <% List<Contrat> ListeContrats = ListeContratEntreprise;%>
         <div class = "" id = "navbar">
             <nav class="navbar navbar-expand-lg">
                 <img src = "img/sobrero.png" style = "height : 70px">  </img>
@@ -47,17 +49,18 @@
         </header>
 
         <body>
+<div class ="row justify-content-center">
+            <div class ="col-md-12 col-lg-10">
+                <div class="login-wrap p-4 p-lg-5" style ="width : 100%">
 
-
-        <%Entreprise e = Entreprise;%>
-        <% List<Contrat> ListeContrats = ListeContratEntreprise;%>
-
-        <h4>Bienvenue sur l'espace <%=e.getRaisonSocialeEntreprise() %></h4>
         
-        <div class ="row">
-            <div class ="col-md-8">
+
+        <h4 class="text-center mb-4">Bienvenue sur l'espace <%=e.getRaisonSocialeEntreprise() %></h4>
+        
+         <div id="TableauContratSouscrits">
+            
                 <h4 class="text-center mb-4">Vos contrats souscrits</h4>
-                 <div id="TableauContratSouscrits">
+                
                     
                     <div class="table-wrap">
                     <table class ="table">
@@ -104,7 +107,7 @@
 
             
 
-                    
+            </div>      
 </div>
  <footer class="footer-1">
           

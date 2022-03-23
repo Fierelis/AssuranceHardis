@@ -53,12 +53,12 @@
         </header>
         
         <body>
+         <div class ="row justify-content-center">
+            <div class ="col-md-12 col-lg-10">
+                <div class="login-wrap p-4 p-lg-5" style ="width : 100%">
+                <h4 class="text-center mb-4">Bonjour <%=ClientU.getPrenom()%></h4>
+       
         
-        <h1 class="text-center mb-4" >Bonjour <%=ClientU.getPrenom()%></h1>
-        
-        <div id="TableauAssureursPartenaires">
-               <div class ="row justify-content-center">
-            <div class ="col-md-12">
                  <div id="TableauAssureursPartenaires">
                     <h4 class="text-center mb-4">Mes Contrats en cours</h4>
                     <div class="table-wrap">
@@ -69,6 +69,8 @@
                             <th>Produit</th>
                             <th>Date de souscription</th>
                             <th>Durée de couverture</th>
+                            <th>Résiliation</th>
+                            <th>Facture</th>
                         </tr>
                          </thead>
                         <tbody> 
@@ -85,14 +87,14 @@
                            
                             <td>
                                 <form>
-                                    <button class="form-control btn1 btn1-primary submit px-3" name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
+                                    <button class="form-control btn2 btn2-primary submit px-3" name="contrat" value="<%=ContratSouscrits.getId()%>">Résilier</button> 
                                     <input type="hidden" name="action" value="ResilierContratClient">
                                 </form>
                             </td>
                             
                             <td>
                                 <form>
-                                    <button class="form-control btn1 btn1-primary submit px-3" download='C:\\Users\\alex_\\Downloads\\FactureContrat_"+ RSAssureur +".pdf' name="IdContrat" value="<%=ContratSouscrits.getId()%>">Télécharger Facture</button> 
+                                    <button class="form-control btn2 btn2-primary submit px-3" download='C:\\Users\\alex_\\Downloads\\FactureContrat_"+ RSAssureur +".pdf' name="IdContrat" value="<%=ContratSouscrits.getId()%>">Télécharger</button> 
                                     <input type="hidden" name="action" value="printClient">
                                 </form>
                             </td>  

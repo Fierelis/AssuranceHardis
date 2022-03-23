@@ -89,9 +89,9 @@
                                     <td><%=L.getDateLog()%></td>
                                     <td><%=L.getLogClientUnique().getLogin()%></td>
                                     <%if (L.getLogClientUnique().isActivationUser() == true) { %>
-                                    <td style = "text-color : green">Validée</td>
+                                    <td><mark class ="mark0">Validée</mark></td>
                                     <% } else {%>
-                                    <td>En Attente</td>
+                                    <td><mark class ="mark1">En Attente</mark></td>
                                     <% } %>
                                     <td>
                                         <%if (L.getLogClientUnique().isActivationUser() == false) {%>
@@ -172,9 +172,9 @@
                                     <td><%=L.getDateLog()%></td>
                                     <td><%=L.getLogCourtier().getMailCourtier()%></td>
                                     <%if (L.getLogCourtier().isActivationUser() == true) { %>
-                                    <td>Validée</td>
+                                    <td><mark class ="mark0">Validée</mark></td>
                                     <% } else {%>
-                                    <td>En Attente</td>
+                                    <td><mark class ="mark1">En Attente</mark></td>
                                     <% } %>
 
                                     <td>
@@ -215,11 +215,10 @@
                                     <td><%=L.getDateLog()%></td>
                                     <td><%=L.getLogAssureur().getRaisonSocialeAssureur()%></td>
                                     <%if (L.getLogAssureur().isActivationUser() == true) { %>
-                                    <td>Validée</td>
+                                    <td><mark class ="mark0">Validée</mark></td>
                                     <% } else {%>
-                                    <td>En Attente</td>
+                                    <td><mark class ="mark1">En Attente</mark></td>
                                     <% } %>
-
                                     <td>
                                         <%if (L.getLogAssureur().isActivationUser() == false) {%>
                                         <form>

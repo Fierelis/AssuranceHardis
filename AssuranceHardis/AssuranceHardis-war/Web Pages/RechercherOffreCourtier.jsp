@@ -82,7 +82,7 @@
                             <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit() %></td>
                             <td>
                                 <form>
-                                    <button name="idOffre" value="<%=ExistOffre.getId()%>">Voir offre</button> 
+                                    <button name="idOffre" class="form-control btn2 btn2-primary submit px-3" value="<%=ExistOffre.getId()%>">Voir offre</button> 
                                     <input type="hidden" name="action" value="VoirOffreCourtier">
                                 </form>
                             </td>

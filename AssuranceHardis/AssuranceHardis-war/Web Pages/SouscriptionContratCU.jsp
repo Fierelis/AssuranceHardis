@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : SouscriptionContrat
     Created on : 15 mars 2022, 16:58:15
@@ -13,93 +14,173 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="ContratJSP" scope="request" class="Modele.Offre"></jsp:useBean>
         <jsp:useBean id="ClientUniqueJSP" scope="request" class="Modele.ClientUnique"></jsp:useBean>
+            <link href="StyleSheets/style.css" rel="stylesheet" type="text/css"/>
             <title>Souscription</title>
         </head>
+        <header class ="header1">
+            <div class = "" id = "navbar">
+                <nav class="navbar navbar-expand-lg">
+                    <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                    <a class="navbar-brand" href="#">Sombrero</a>
+                <%ClientUnique Client = ClientUniqueJSP;
+                    Offre offer = ContratJSP;
+                %>
 
-        <body>
-        <%ClientUnique Client = ClientUniqueJSP;
-            Offre offer = ContratJSP;
-        %>
-        <form>
-        <button class="button login__submit">
-            <span class="button__text">Home</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-	</button>
-            
-              <input type="hidden" name="action" value="home">
-          </form>
-             <form>
-        <button class="button login__submit">
-            <span class="button__text">Rechercher une Offre</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-	</button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: flex-end">
+                    <ul class="navbar-nav">
+
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">home</button>
+                                <input type="hidden" name="action" value="home"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Rechercher une offre</button>
+                                <input type="hidden" name="action" value="RechercherOffre"></form></li>
+
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Mon compte</button>
+                                <input type="hidden" name="action" value="CompteClient"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Se déconnecter</button>
+                                <input type="hidden" name="action" value="Deconnexion"></form></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+    </header>
+                <body>
+
         
-              <input type="hidden" name="action" value="RechercherOffre">
-        </form>
-        
-        <form>
-        <button class="button login__submit">
-            <span class="button__text">Mon Compte</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-	</button>
-            
-              <input type="hidden" name="action" value="CompteClient">
-        </form>
-        
-        
-         <form>
-        <button class="button login__submit">
-            <span class="button__text">Se deconnecter</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-	</button>
-            
-              <input type="hidden" name="action" value="Deconnexion">
-        </form>
-        <h1>Confirmez vous la souscription à cette offrea</h1>
-        <form>
-            <fieldset><h2>Vous</h2>
-                <label for='mail'>Adresse contact</label>
-                <input type='text' name='mail' readonly='readonly' value='<%=Client.getMail()%>'><br>
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <form class="signin-form">
+                    <div class="wrap d-md-flex">
+                        
+                        <div class="text-wrapp p-4 p-lg-5">
+                             <div class="d-flex">
+                                    <div class="w-100">
+                                        <h3 class="mb-4">Confirmer la souscription</h3>
+                                        <h3 class="mb-4">Vos infos</h3>
+                                    </div>
 
-                <label for='mail'>Nom</label>
-                <input type='text' name='NomClient' readonly='readonly' value='<%=Client.getNom()%>'><br>
+                                </div>
 
-                <label for='mail'>Prenom</label>
-                <input type='text' name='PrenomClient' readonly='readonly' value='<%=Client.getPrenom()%>'>     <br>  
-                <input type='hidden' name='Iban' value='<%=Client.getIban()%>'><br>
-                <input type='hidden' name='numClient' value='<%=Client.getId()%>'><br>
-            </fieldset><br>
+                            <label class="label"  for='mail'>Adresse contact</label>
+                            <input type='text' class="form-control" name='mail' readonly='readonly' value='<%=Client.getMail()%>'>
 
-            <fieldset><h2>Votre Contrat</h2>
-                <label for='assureur'>Assureur</label>
-                <input type='text' name='assureur' readonly='readonly' value='<%=offer.getLAssurance()%>'><br>
+                            <label class="label" for='mail'>Nom</label>
+                            <input type='text' class="form-control" name='NomClient' readonly='readonly' value='<%=Client.getNom()%>'>
 
-                <label for='Produit'>Produit</label>
-                <input type='text' name='Produit' readonly='readonly' value='<%=offer.getLeTypeDeProduit().getNomTypeProduit()%>'><br>
-
-                <label for='typeoffre'>Offre</label>
-                <input type='text' name='typeoffre' readonly='readonly' value='<%=offer.getTypeOffre()%>'> <br>
-
-                <label for='description'>Description Contrat</label>
-                <input type='text' name='description' readonly='readonly' value='<%=offer.getDescriptionOffreContractuelle()%>'> <br>
-
-                <label for='Prix'>Prix</label>
-                <input type='text' name='Prix' readonly='readonly' value='<%=offer.getPrixOffre()%>'> <br>
-
-                <input type='hidden' name='numOffre' value='<%=offer.getId()%>'><br>
-
-                <label for='set'>Durée de souscription au contrat : </label>
-                <select name='combo'>
-                    <option name='combo' value='6'>6 mois</option>
-                    <option name='combo' value='12'>12 mois</option>
-                    <option name='combo' value='24'>24 mois</option>
-                </select>
-            </fieldset>
+                            <label class="label" for='mail'>Prenom</label>
+                            <input type='text'  class="form-control" name='PrenomClient' readonly='readonly' value='<%=Client.getPrenom()%>'>     
+                            <input type='hidden' name='Iban' value='<%=Client.getIban()%>'>
+                            <input type='hidden' name='numClient' value='<%=Client.getId()%>'>
 
 
-            <input type='hidden' name='action' value='validerSouscription'>
-            <button name='Souscrire' value='Souscrire'>Valider ma Souscription</button>
+                        </div>
+                        <div class="text-wrapp p-4 p-lg-5">
+ <div class="d-flex">
+                                    <div class="w-100">
+                                        <h3 class="mb-4">Infos contrat</h3>
+                                    </div>
 
-        </form>
+                                </div>
+
+
+                            <label class="label" for='assureur'>Assureur</label>
+                            <input type='text' class="form-control" name='assureur' readonly='readonly' value='<%=offer.getLAssurance().getRaisonSocialeAssureur() %>'>
+
+                            <label class="label" for='Produit'>Produit</label>
+                            <input type='text' class="form-control" name='Produit' readonly='readonly' value='<%=offer.getLeTypeDeProduit().getNomTypeProduit()%>'>
+
+                            <label class="label" for='typeoffre'>Offre</label>
+                            <input type='text' class="form-control" name='typeoffre' readonly='readonly' value='<%=offer.getTypeOffre()%>'>
+
+                            <label class="label" for='description'>Description Contrat</label>
+                            <input type='text' class="form-control" name='description' readonly='readonly' value='<%=offer.getDescriptionOffreContractuelle()%>'> 
+
+                            <label class="label" for='Prix'>Prix</label>
+                            <input type='text' class="form-control" name='Prix' readonly='readonly' value='<%=offer.getPrixOffre()%>'> 
+
+                            <input type='hidden' name='numOffre' value='<%=offer.getId()%>'>
+
+                            <label class="label" for='set'>Durée de souscription au contrat : </label>
+                            <select class="js-multiple-select form-control" name='combo'>
+                                <option name='combo' value='6'>6 mois</option>
+                                <option name='combo' value='12'>12 mois</option>
+                                <option name='combo' value='24'>24 mois</option>
+                            </select>
+
+
+                                    <div class ="row justify content-center">
+                            <input type='hidden' name='action' value='validerSouscription'>
+                            <button type="submit" class="form-control btn btn-primary submit px-3" name='Souscrire' value='Souscrire'>Valider la Souscription</button>
+                                    </div>
+
+                        </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+        <footer class="footer-1">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 pr-md-5">
+                        <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
+                        <p>Comparateur d'assurance</p>
+                    </div>
+                    <div class="col-md">
+                        <ul class="list-unstyled nav-links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">A propos</a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+                        <ul class="list-unstyled nav-links">
+                            <li><a href="#">Nos clients</a></li>
+                            <li><a href="#">Nos courtiers</a></li>
+                            <li><a href="#">Nos assureurs</a></li>
+                            <li><a href="#">Nos avantages</a></li>
+                            <li><a href="#">Actus</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+                        <ul class="list-unstyled nav-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Partners</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md text-md-center">
+                        <ul class="social list-unstyled">
+                            <li><a href="#"><span class="icon-instagram"></span></a></li>
+                            <li><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                            <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                        </ul>
+                        <p class=""><a href="#" class="btn btn-tertiary">Contactez-nous :)</a></p>
+                    </div>
+                </div> 
+
+                <div class="row ">
+                    <div class="col-12 text-center">
+                        <div class="copyright mt-5 pt-5">
+                            <p><small>&copy; 2022 All Rights Reserved.</small></p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+        </footer>
     </body>
 </html>
