@@ -187,7 +187,7 @@ public class AssuranceServlet extends HttpServlet {
                         request.setAttribute("ListCourtier", ListCourtier);
 
                         // liste de tous les clients souscripteur 
-                        sess.setAttribute("AssureurCreerOffre", Assur);  //---------------------------------- à quoi ça correspond ?
+                        //sess.setAttribute("AssureurCreerOffre", Assur);  //---------------------------------- à quoi ça correspond ?
                         sess.setAttribute("Entreprise", null);
                         sess.setAttribute("Courtier", null);
                         sess.setAttribute("ClientUnique", null);
@@ -425,8 +425,8 @@ public class AssuranceServlet extends HttpServlet {
 
                 } 
                 else if (Assur != null) {
-                    System.out.println(Assur.getMailAssureur());
-                    request.setAttribute("AssureurJSP", Assur);
+                    System.out.println("lolo"+Assur.getMailAssureur());
+                    request.setAttribute("AssureurJSP",Assur);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     //System.out.println("esssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"+ListeOffre.get(1).getLeTypeDeProduit().getNomTypeProduit());
                     
