@@ -12,12 +12,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="AdministrateurJSP" scope="request" class="Modele.Administrateur"></jsp:useBean>
+        <jsp:useBean id="Administrateur" scope="request" class="Modele.Administrateur"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
         <title>JSP Page</title>
     </head>
     <body>
-         <%Administrateur admin = AdministrateurJSP;%>
+         <%Administrateur admin = Administrateur;%>
          <h1>C la Reushairshe</h1>
         
         <form>

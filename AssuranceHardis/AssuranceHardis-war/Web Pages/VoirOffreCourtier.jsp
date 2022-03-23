@@ -16,18 +16,48 @@
     </head>
     <%Offre offer = Offre;%>
     <body>
-        <% System.out.println( "1" +offer.getLeTypeDeProduit().getNomTypeProduit()); 
-           System.out.println( "2" +offer.getTypeOffre()); 
-           System.out.println( "3" +offer.getDescriptionOffreContractuelle()); 
-           System.out.println("4" +offer.getLAssurance().getRaisonSocialeAssureur()); 
-           System.out.println( "6" +offer.getPrixOffre()); 
-        %>
-         <form>
+  
+                 <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
             <i class="button__icon fas fa-chevron-right"></i>
 	</button>
+            
               <input type="hidden" name="action" value="home">
+        </form>
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Créer une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+        
+              <input type="hidden" name="action" value="CreerOffreCourtier">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteCourtier">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
         </form>
         <h1>Information sur l'offre </h1>
         
@@ -37,7 +67,7 @@
             <tr> <td>Type de Contrat</td><td><%=offer.getTypeOffre() %></td></tr>
             <tr> <td>Description Contrat</td><td><%=offer.getDescriptionOffreContractuelle() %></td></tr>
             <tr> <td>Assureur</td><td><%=offer.getLAssurance().getRaisonSocialeAssureur()%></td></tr>
-             <%if (offer.getLeCourtier()!=null){ %>
+             <%if (offer.getLeCourtier()!=null ){ %>
             
             <tr> <td>Courtier</td>  <td><%=offer.getLeCourtier().getNomCourtier() %></td></tr>
             

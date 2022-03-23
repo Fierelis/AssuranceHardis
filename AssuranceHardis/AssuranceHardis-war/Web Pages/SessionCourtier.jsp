@@ -13,15 +13,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="CourtierJSP" scope="session" class="Modele.Courtier"></jsp:useBean>
+        <jsp:useBean id="Courtier" scope="session" class="Modele.Courtier"></jsp:useBean>
         <jsp:useBean id="ListeFiltreePartenaires" scope="request" class="java.util.List"></jsp:useBean>
         <jsp:useBean id="ListeFiltreeOffresPartenaires" scope="request" class="java.util.List"></jsp:useBean>
         <title>Page Courtier</title>
     </head>
     <body>
-        <%Courtier Court = CourtierJSP;%>
-        <%System.out.println("****************************");%>
-        <h2>Bonjour <%=Court.getPrenomCourtier() %></h2>
+        <%Courtier Court = Courtier;%>
+  
         <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
@@ -97,7 +96,7 @@
                             <td><%=OffrePartenaire.getLeTypeDeProduit().getNomTypeProduit()%></td>
                             <td><%=OffrePartenaire.getDescriptionOffreContractuelle()%></td>
                             <td><%=OffrePartenaire.getPrixOffre()%></td>
-                            <%System.out.println("****************************");%>
+
                         </tr>
                        <%}%>
             </table>

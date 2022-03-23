@@ -12,19 +12,39 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:useBean id="Assureur" scope="request" class="Modele.Assureur"></jsp:useBean>
         <title>JSP Page</title>
+        
+         <header class ="header1">
+        <div class = "" id = "navbar">
+            <nav class="navbar navbar-expand-lg">
+                <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                <a class="navbar-brand" href="#">Sombrero</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: flex-end">
+                    <ul class="navbar-nav">
+
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">home</button>
+                            <input type="hidden" name="action" value="home"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Recherche</button>
+                            <input type="hidden" name="action" value="RechercherOffre"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Créer une offre</button>
+                            <input type="hidden" name="action" value="CreerOffreAssureur"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Se déconnecter</button>
+                            <input type="hidden" name="action" value="Deconnexion"></form></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+            
+            
+        </header>
     </head>
     <body>
         <h1>Informations courtier</h1>
         
         <%Assureur Assur = Assureur;  %>
-        <form>
-        <button class="button login__submit">
-            <span class="button__text">Home</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-	</button>
-            
-              <input type="hidden" name="action" value="home">
-        </form>
+
         
          <form method="get" action="AssuranceServlet">
             <input type="hidden" name="action" value="RechercherOffre">

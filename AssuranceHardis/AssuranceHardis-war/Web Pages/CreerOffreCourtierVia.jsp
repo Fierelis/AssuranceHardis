@@ -12,20 +12,57 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <jsp:useBean id="OffreJSP" scope="request" class="Modele.Offre"></jsp:useBean>
-         <jsp:useBean id="CourtierJSP" scope="request" class="Modele.Courtier"></jsp:useBean>
+         <jsp:useBean id="Courtier" scope="request" class="Modele.Courtier"></jsp:useBean>
         <title>Creation d'offre</title>
 
     </head>
     <body>
         <h1>Création d'une offre</h1>
-<form>
+
+            <%Offre offer = OffreJSP;
+            Courtier cour = Courtier;%>
+  
+       <form>
         <button class="button login__submit">
             <span class="button__text">Home</span>
             <i class="button__icon fas fa-chevron-right"></i>
 	</button>
-            <%Offre offer = OffreJSP;
-            Courtier cour = CourtierJSP;%>
+            
               <input type="hidden" name="action" value="home">
+        </form>
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Créer une Offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+        
+              <input type="hidden" name="action" value="CreerOffreCourtier">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Rechercher offre</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+              <input type="hidden" name="action" value="RechercherOffre">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Mon Compte</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="CompteCourtier">
+        </form>
+        
+        <form>
+        <button class="button login__submit">
+            <span class="button__text">Se deconnecter</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+	</button>
+            
+              <input type="hidden" name="action" value="Deconnexion">
         </form>
         <form method="get" action="AssuranceServlet">
             <fieldset>
