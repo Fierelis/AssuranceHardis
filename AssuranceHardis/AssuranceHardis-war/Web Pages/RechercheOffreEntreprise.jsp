@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : RechercheOffre
     Created on : 10 mars 2022, 10:28:27
@@ -13,54 +14,84 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <jsp:useBean id="Entreprise" scope="request" class="Modele.Entreprise"></jsp:useBean>
+ <jsp:useBean id="Entreprise" scope="request" class="Modele.Entreprise"></jsp:useBean>
         <jsp:useBean id="listeOffre" scope="request" class="java.util.List"></jsp:useBean>
+        <link href="StyleSheets/style.css" rel="stylesheet" type="text/css"/>
             <title>Recherche d'offre</title>
         </head>
-        <body>
-        <%Entreprise boite = Entreprise;
-        boite.getId();
-        %>
-        <h1>Recherche d'offre </h1>
-        <form>
-            <button class="button login__submit">
-                <span class="button__text">Home</span>
-                <i class="button__icon fas fa-chevron-right"></i>
-            </button>
+        <header class ="header1">
 
-            <input type="hidden" name="action" value="home">
-        </form>
+        <div class = "" id = "navbar">
+            <nav class="navbar navbar-expand-lg">
+               <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                <a class="navbar-brand" href="#">Sombrero</a>
+                
+                <!-- <img src = ".jpg" style = "height : 70px">  </img> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: flex-end">
+                    <ul class="navbar-nav">
 
-        <div id="TableauOffres">
-            <h2>Totalités des offre</h2>
-            <p> Filtrer : <input type="text" class="table-filter" data-table="livres"></p>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">home</button>
+                            <input type="hidden" name="action" value="home"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Recherche</button>
+                            <input type="hidden" name="action" value="RechercherOffre"></form></li>
+                            <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Compte Entreprise</button>
+                            <input type="hidden" name="action" value="CompteEntreprise"></form></li>
+                        <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Se déconnecter</button>
+                            <input type="hidden" name="action" value="Deconnexion"></form></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+            
+            
+        </header>
+         <body>
+         
+        <h1>Recherche d'offre</h1>
+            <div class ="row justify-content-center">
+                <div class ="col-md-12 col-lg-10">
+                <div class="login-wrap p-4 p-lg-5" style ="width : 100%">
+                <h4 class="text-center mb-4">Offres disponibles</h4>
 
-            <table class="livres">
+          <div class="form-group mb-3">
+                 <label class="label" for="name">Filtre</label>
+           <input type="text" class="table-filter" size ="20" data-table="livres">
+            </div>
+            <table class ="table livres">
+                <thead class="thead-primary">
                 <tr>
-                    <td> Type d'Offre</td>
-                    <td> Description de l'offre</td>
-                    <td> Prix de l'offre</td>
-                    <td> Le type de produit</td>
+                    <th> Type d'Offre</th>
+                    <th> Description de l'offre</th>
+                    <th> Prix de l'offre</th>
+                    <th> Le type de produit</th>
+                    <th>Détails</th>
                 </tr>
-                <%
-                    List<Offre> ListeFiltreeOffres = listeOffre;
-                    for (Offre ExistOffre : ListeFiltreeOffres) {
+                </thead>
+                <tbody>
+                 <% 
+                       List<Offre> ListeFiltreeOffres = listeOffre;
+                        for(Offre ExistOffre : ListeFiltreeOffres){
+                    %>  <tr><td><%=ExistOffre.getTypeOffre() %></td>
+                            <td><%=ExistOffre.getDescriptionOffreContractuelle()%></td>
+                            <td><%=ExistOffre.getPrixOffre() %></td>                       
+                            <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit() %></td>
+                            <td>
+                                <form>
+                                    <button name="idOffre" class="form-control btn2 btn2-primary submit px-3" value="<%=ExistOffre.getId()%>">Voir offre</button> 
+                                    <input type="hidden" name="action" value="VoirOffreClientUnique">
+                                </form>
+                            </td>
+                        </tr>
+                       <%}%>
 
-                %>  
-                <tr><td><%=ExistOffre.getTypeOffre()%></td>
-                    <td><%=ExistOffre.getDescriptionOffreContractuelle()%></td>
-                    <td><%=ExistOffre.getPrixOffre()%></td>
-                    <td><%=ExistOffre.getLeTypeDeProduit().getNomTypeProduit()%></td>
-                    <td>
-                        <form>
-                            <input type="hidden" name="idOffre" value="<%=ExistOffre.getId()%>">
-                            <input type="Submit" value="Voir l'Offre">
-                            <input type="hidden" name="action" value="VoirOffreEntreprise">
-                        </form>
-                    </td>
-                </tr>
-                <%}%>
+                </tbody>
             </table>
+        </div>
+                </div>
+            </div>
         </div>
         <script>
             (function () {
@@ -101,6 +132,60 @@
             })();
         </script>
         <script src="/scripts/js-table-filter.js"></script>
-
+ <footer class="footer-1">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 pr-md-5">
+                <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
+                <p>Comparateur d'assurance depuis approximativement 2 semaines / situé nul part car l'appli est trash</p>
+              </div>
+              <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">A propos</a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+              <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                  <li><a href="#">Nos clients</a></li>
+                  <li><a href="#">Nos courtiers</a></li>
+                  <li><a href="#">Nos assureurs</a></li>
+                  <li><a href="#">Nos avantages</a></li>
+                  <li><a href="#">Actus</a></li>
+                </ul>
+              </div>
+              <div class="col-md">
+                <ul class="list-unstyled nav-links">
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms &amp; Conditions</a></li>
+                  <li><a href="#">Partners</a></li>
+                </ul>
+              </div>
+              <div class="col-md text-md-center">
+                <ul class="social list-unstyled">
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                  <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                  <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                </ul>
+                <p class=""><a href="#" class="btn btn-tertiary">Contactez-nous :)</a></p>
+              </div>
+            </div> 
+    
+            <div class="row ">
+              <div class="col-12 text-center">
+                <div class="copyright mt-5 pt-5">
+                  <p><small>&copy; 2022 All Rights Reserved.</small></p>
+                </div>
+              </div>
+            </div> 
+          </div>
+          
+        </footer>
     </body>
 </html>
