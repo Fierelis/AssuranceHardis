@@ -93,18 +93,17 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
     @Override
     public List RechercheCourtierPartenaire(long idAssurance) {
             
-            System.out.println("1 ---");
             String txt="Select distinct c from Courtier as c "
                     + "inner join Offre as o on o.LeCourtier.id=c.id "
-                    + "where o.OffreDeUtilisateurService.id=:idAssurance";                     
+                    + "where o.LAssurance.id=:idAssurance";                   
             Query req=getEntityManager().createQuery(txt);
             req=req.setParameter("idAssurance",idAssurance);
             List<Courtier>result = req.getResultList();
             return result;
         
-            
-        
     }
+    
+    
     @Override
     public void ModifierInformationsCourtier(Courtier court, String NomCourtier, String PrenomCourtier, String AdresseCourtier, String MailCourtier, String LoginUserServiceCourtier, String PasswordUserServiceCourtier, String VilleCourtier, String CPCourtier) {
     court.setAdresseCourtier(AdresseCourtier);
