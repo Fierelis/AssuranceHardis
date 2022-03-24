@@ -105,7 +105,7 @@
                                             <br/>
                                             <div class="form-group">
                                                 <div class ="row justify content-center"> 
-                                                    <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
+                                                    <button type="submit" class="form-control btn btn-primary submit px-3">Créer L'offre</button>
                                                    <input type="hidden" name="Assureur" value="<%=a.getId()%>">
                                                     <input type="hidden" name="action" value="FormCreerOffreAssureur">
                                                 </div>

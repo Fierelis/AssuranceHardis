@@ -91,7 +91,7 @@
                 
                
            <div class ="row justify content-center"> 
-            <button type="submit" class="form-control btn btn-primary submit px-3">Créer offre</button>
+            <button type="submit" class="form-control btn btn-primary submit px-3">Créer L'offre</button>
              <input type="hidden" name="action" value="FormCreerOffreCourtierVia">
            </div>
         </form>
@@ -106,7 +106,7 @@
             <div class="row">
               <div class="col-md-4 pr-md-5">
                 <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
-                <p>Comparateur d'assurance depuis approximativement 2 semaines / situé nul part car l'appli est trash</p>
+                <p>Comparateur d'assurance</p>
               </div>
               <div class="col-md">
                 <ul class="list-unstyled nav-links">

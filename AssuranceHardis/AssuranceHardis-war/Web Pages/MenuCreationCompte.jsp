@@ -52,8 +52,8 @@
                                
                             </div>
                             <div class="content">
-                                <p class ="text-center">Content area</p>
-                                <form>
+                                <p class ="text-center"></p>
+                                <form method="post" action="/AssuranceHardis-war/AssuranceServlet">
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationAssureur"> </form>
                             </div>
@@ -71,8 +71,8 @@
                                 
                             </div>
                             <div class="content">
-                                <p class ="text-center">Content area</p>
-                                <form>
+                                <p class ="text-center"></p>
+                                <form method="post" action="/AssuranceHardis-war/AssuranceServlet">
                                   <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationClientUnique"> </form>
                             </div>
@@ -91,8 +91,8 @@
                                
                             </div>
                             <div class="content">
-                                <p class ="text-center">Content area</p>
-                                 <form>
+                                <p class ="text-center"></p>
+                                 <form method="post" action="/AssuranceHardis-war/AssuranceServlet">
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationCourtier"> 
                                  </form>
@@ -113,8 +113,8 @@
                                
                             </div>
                             <div class="content">
-                                <p class ="text-center">Content area</p> 
-                                <form>
+                                <p class ="text-center"></p> 
+                                <form method="post" action="/AssuranceHardis-war/AssuranceServlet">
                                  <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire</button>
                                  <input type="hidden" name="action" value="SelectionnerCreationEntreprise"> </form>
                             </div>
@@ -140,7 +140,7 @@
             <div class="row">
               <div class="col-md-4 pr-md-5">
                 <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
-                <p>Comparateur d'assurance depuis approximativement 2 semaines / situé nul part car l'appli est trash</p>
+                <p>Comparateur d'assurance</p>
               </div>
               <div class="col-md">
                 <ul class="list-unstyled nav-links">
