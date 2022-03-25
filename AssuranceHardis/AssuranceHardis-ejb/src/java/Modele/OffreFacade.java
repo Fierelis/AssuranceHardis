@@ -90,7 +90,6 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
     @Override
     public List<Offre> FiltrerOffre(String Filtre, Courtier Court, Assureur Assur) {
         List<Offre> ListeFiltree = new ArrayList();
-        System.out.println("LA C LE COURTIEEEEER ====== "+Court);
         if (Court != null) {
             
             long IdCourtier = Court.getId();
@@ -104,13 +103,12 @@ public class OffreFacade extends AbstractFacade<Offre> implements OffreFacadeLoc
                 List<Long> result = req.getResultList();
                 if (result.size() >= 1) {
                     ListeFiltree = req.getResultList();
-                     System.out.println("LA C la liste  ====== "+ListeFiltree);
                 }
             }
             if (Filtre.equals("OffrePartenaires")) {
                 String txt =    "SELECT distinct O "
                         +       "FROM Offre as O "
-                        +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id =:IdCourtier";
+                        +       "WHERE O.LAssurance is not Null and O.OffreDeUtilisateurService.id = :IdCourtier";
                 Query req = getEntityManager().createQuery(txt);
                 req.setParameter("IdCourtier", IdCourtier);
                 List<Long> result = req.getResultList();

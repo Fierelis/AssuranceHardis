@@ -145,9 +145,7 @@ public class AssuranceServlet extends HttpServlet {
                     } 
                     else if (Court != null) {
                         sess.setAttribute("Courtier", Court);
-                        //System.out.println("*******/////////////////*********************");
                         //List<Assureur>ListeFiltreePartenaires=gestionService.RechercheAssureurPartenaire(Court.getId());
-                        System.out.println("*******/////////////////*********************");
                    List<Assureur> ListeAssureur = gestionService.RechercheAssureurPartenaire(Court.getId());
 
                 List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, null);
@@ -171,14 +169,9 @@ public class AssuranceServlet extends HttpServlet {
                         //List<Offre> ListOffre = gestionService.GetListOffreAll();
                         //request.setAttribute("ListeAllOffre", ListOffre);
                         // liste de tous les courtiers partenaires
-                        //System.out.println(a.getId());
                         List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(Assur.getId());
-                        /*System.out.println("taille : " + ListCourtier.size());
-                        System.out.println("suuuuuuuuuuuu");
                         for (int i = 0; i < ListCourtier.size(); i++) {
-                            System.out.println(ListCourtier.get(i).getNomCourtier());
                         }
-                        System.out.println("suuuuuuuuuuuu");*/
                         request.setAttribute("ListCourtier", ListCourtier);
 
                         // liste de tous les clients souscripteur 
@@ -238,7 +231,6 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("ListeAllAssureur", listAssureur);
                 Courtier courtier = (Courtier) sess.getAttribute("Courtier");
                 request.setAttribute("courtier", courtier);
-                System.out.println("le courtier "+ courtier);
                 jspClient = "/CreerOffreCourtier.jsp";
             } 
             else if (act.equals("Deconnexion")) {
@@ -271,9 +263,7 @@ public class AssuranceServlet extends HttpServlet {
 
             } 
             else if (act.equals("CreerOffreAssureur")) {
-                //System.out.println("Uwu Ca sent mauvais !!!");
                 Assureur assureur = (Assureur) sess.getAttribute("AssureurCreerOffre");
-                //System.out.println(assureur.getId());
                 request.setAttribute("AssureurCreerOffreAssureur", assureur);
                 jspClient = "/CreerOffreAssureur.jsp";
             } 
@@ -283,7 +273,6 @@ public class AssuranceServlet extends HttpServlet {
                 
                 Assureur Assur = (Assureur)sess.getAttribute("Assureur");
                 sess.setAttribute("Assureur", Assur);
-                //Assureur a = (Assureur) sess.getAttribute("Assureur");
                 request.setAttribute("Assureur", sess.getAttribute("Assureur"));
                 // liste offre de l'assureur
                 List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(Assur.getId());
@@ -295,9 +284,7 @@ public class AssuranceServlet extends HttpServlet {
                 //---------------------------------------------------------------------------------------------------------------------------------------------------------
             } 
            /* else if (act.equals("CreerOffreAssureur")) {
-                //System.out.println("Uwu Ca sent mauvais !!!");
                 Assureur assureur = (Assureur) sess.getAttribute("AssureurCreerOffre");
-                //System.out.println(assureur.getId());
                 request.setAttribute("AssureurCreerOffreAssureur", assureur);
                 jspClient = "/CreerOffreAssureur.jsp";
             } */
@@ -359,9 +346,7 @@ public class AssuranceServlet extends HttpServlet {
                 Entreprise Boite = (Entreprise) sess.getAttribute("Entreprise");
                 sess.setAttribute("Entreprise", Boite);
                 request.setAttribute("Entreprise", sess.getAttribute("Entreprise"));
-                        //System.out.println("connexion entreprise 2");
                 List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
-                        System.out.println("liste contrat vide ");
                 request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                 jspClient = "/SessionEntreprise.jsp";
             } 
@@ -395,14 +380,12 @@ public class AssuranceServlet extends HttpServlet {
             else if (act.equals("validerResiliationEntreprise")){
                 String numC = request.getParameter("IdContrat");
                 long numContrat = Long.parseLong(numC);
-                System.out.println("on est là hein");
                 String TypeLog = "Delete";
 
                 gestionClient.ResilierContratEntreprise(numContrat);
                 gestionAdmin.CreerLog(null, (Entreprise)sess.getAttribute("Entreprise"), null, null, null, null, null, TypeLog);
                  Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
                 request.setAttribute("Entreprise", sess.getAttribute("Entreprise"));
-                        //System.out.println("connexion entreprise 2");
                 List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
                request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                 jspClient = "/SessionEntreprise.jsp";
@@ -446,7 +429,6 @@ public class AssuranceServlet extends HttpServlet {
 
                 } 
                 else if (Court != null) {
-                    System.out.println("bloblo");
                     request.setAttribute("Courtier", Court);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
@@ -454,10 +436,8 @@ public class AssuranceServlet extends HttpServlet {
 
                 } 
                 else if (Assur != null) {
-                    System.out.println(Assur.getMailAssureur());
                     request.setAttribute("AssureurJSP", Assur);
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
-                    //System.out.println("esssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"+ListeOffre.get(1).getLeTypeDeProduit().getNomTypeProduit());
                     
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreAssureur.jsp";
@@ -465,7 +445,6 @@ public class AssuranceServlet extends HttpServlet {
                 } 
                 else if (Admin != null) {
                     request.setAttribute("Administrateur", Admin);
-                    System.out.println(sess.getAttribute("Administrateur"));
                     List<Offre> ListeOffre = gestionService.GetListOffreAll();
                     request.setAttribute("listeOffre", ListeOffre);
                     jspClient = "/RechercheOffreAdmin.jsp";
@@ -516,7 +495,6 @@ public class AssuranceServlet extends HttpServlet {
                     // liste de tous les courtiers partenaires
                     List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(Assur.getId());
                     for (int i = 0; i < ListCourtier.size(); i++) {
-                        System.out.println(ListCourtier.get(i).getNomCourtier());
                     }
                     request.setAttribute("ListCourtier", ListCourtier);
 
@@ -526,7 +504,6 @@ public class AssuranceServlet extends HttpServlet {
 
                 } 
                 else if (Admin != null) {
-                    System.out.println("je suis bien un admin");
                     sess.setAttribute("Administrateur", Admin);
                     request.setAttribute("Admin", Admin);
                     List<Courtier> ListeCourtier = gestionAdmin.GetListCourtier();
@@ -645,9 +622,7 @@ public class AssuranceServlet extends HttpServlet {
 
             
             else if (act.equals("printEntreprise")) {
-                System.out.println("on est la frérot");
                 doActionCreerPdf(request, response);
-                System.out.println("On a passé le PDF OUAAAAAIS");
                 Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
                 request.setAttribute("Entreprise", Boite);
                 List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
@@ -655,9 +630,7 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient="/SessionEntreprise.jsp";
             }
             else if (act.equals("printClient")) {
-                System.out.println("on est la frérot");
                 doActionCreerPdf(request, response);
-                System.out.println("On a passé le PDF OUAAAAAIS");
                 ClientUnique ClientU = (ClientUnique)sess.getAttribute("ClientUnique");
                 request.setAttribute("ClientUnique", sess.getAttribute("ClientUnique"));
                 List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
@@ -714,7 +687,6 @@ public class AssuranceServlet extends HttpServlet {
     protected void doActionAfficherOffre(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String Offre = request.getParameter("idOffre");
-        System.out.println("NotreOfre: "+Offre);
         String message;
         if (Offre.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
@@ -722,11 +694,6 @@ public class AssuranceServlet extends HttpServlet {
             long IdOffre = Long.parseLong(Offre);
             Offre offer = gestionService.RechercherOffre(IdOffre);
             //System.out.println(offer.getTypeOffre());
-            System.out.println("1 " + offer.getLeTypeDeProduit().getNomTypeProduit());
-            System.out.println("2 " + offer.getTypeOffre());
-            System.out.println("3 " + offer.getDescriptionOffreContractuelle());
-            System.out.println("4 " + offer.getLAssurance().getRaisonSocialeAssureur());
-            System.out.println("6 " + offer.getPrixOffre());
             message = "offre N° " + offer.getId();
             request.setAttribute("Offre", offer);
         }
@@ -758,7 +725,6 @@ public class AssuranceServlet extends HttpServlet {
         String mail = request.getParameter("Email");
         String taille = request.getParameter("TailleEntreprise");
         String siegeSocial = request.getParameter("SiegeSocial");
-        System.out.println(raisonSocial);
         String message;
         if (raisonSocial.trim().isEmpty() || login.trim().isEmpty() || mdp.trim().isEmpty() || dateCreation.trim().isEmpty() || mail.trim().isEmpty() || taille.trim().isEmpty() || siegeSocial.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerEntreprise.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une Entreprise";
@@ -766,7 +732,6 @@ public class AssuranceServlet extends HttpServlet {
             Date dateCreationCompteEntreprise = new Date();
             String typeUser = "Entreprise";
             String hashage = gestionClient.HashageSha256(mdp);
-            System.out.println("---------------------" + hashage);
             java.sql.Date dateCreationEntreprise = java.sql.Date.valueOf(dateCreation);
             //login, mdp, dateCreationUser,typeUser, raisonSocial, siegeSocial,dateCreationEntreprise, tailleEntreprise, mail);
             Entreprise boite = gestionClient.CreerEntreprise(login, hashage, dateCreationCompteEntreprise, typeUser, raisonSocial, siegeSocial, dateCreationEntreprise, taille, mail);
@@ -874,7 +839,6 @@ public class AssuranceServlet extends HttpServlet {
         String assureur = request.getParameter("Assureur");
         String typeProduit = request.getParameter("TypeProduit");
 
-        //System.out.println(typeProduit);
         String message;
         if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
@@ -883,22 +847,16 @@ public class AssuranceServlet extends HttpServlet {
 
             // besoin rechercher le type produit
             TypeProduit typeProduitOffre = gestionService.rechercheTypeProduit(typeProduit);
-            System.out.println("TYPE DE PRODUIT ======="+typeProduit);
             if (typeProduitOffre != null) {
-                System.out.println(typeProduitOffre.getId());
-                System.out.println(typeProduitOffre.getNomTypeProduit());
             }
             // recuperer l'assureur
             long idAssureur = Long.valueOf(assureur);
             Assureur a = gestionService.RechercherAssureur(idAssureur);
             //request.setAttribute("AssureurOffre", a);
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
-            System.out.println("ou est ce qque ca se creer deux fois");
             Offre offer = gestionService.CreerOffre(TypeOffre, prix, Description, true, a, a, typeProduitOffre, null, a.getRaisonSocialeAssureur());
-            System.out.println("ça fonctionne bien" + offer);
             String TypeLog = "Create";
             gestionAdmin.CreerLog(null, null, null, null, offer, null, null, TypeLog);
-            System.out.println("zizi"+offer);
             message = "Admin créé avec succès !";
         }
         request.setAttribute("message", message);
@@ -914,9 +872,7 @@ public class AssuranceServlet extends HttpServlet {
         String typeProduit = request.getParameter("TypeProduit");
         String courtier= request.getParameter("Courtier");
         
-           System.out.println("assureur id :"+assureur);
-           System.out.println("courtier id :"+courtier);
-          System.out.println(typeProduit);
+
         String message;
         if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()|| assureur.trim().isEmpty()|| courtier.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
@@ -932,10 +888,7 @@ public class AssuranceServlet extends HttpServlet {
             
             // besoin rechercher le type produit
             TypeProduit typeProduitOffre = gestionService.rechercheTypeProduit(typeProduit);
-            System.out.println("uwu ");
             if (typeProduitOffre != null) {
-                System.out.println(typeProduitOffre.getId());
-                System.out.println(typeProduitOffre.getNomTypeProduit());
             }
            
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
@@ -956,7 +909,6 @@ public class AssuranceServlet extends HttpServlet {
         String typeProduit = request.getParameter("TypeProduit");
         String courtier= request.getParameter("courtier");
       
-          System.out.println(typeProduit);
         String message;
         if (TypeOffre.trim().isEmpty() || PrixOffre.trim().isEmpty() || Description.trim().isEmpty() || typeProduit.trim().isEmpty()|| assureur.trim().isEmpty()|| courtier.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerOffreAssureur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'une offre assureur";
@@ -972,10 +924,7 @@ public class AssuranceServlet extends HttpServlet {
             
             // besoin rechercher le type produit
             TypeProduit typeProduitOffre = gestionService.rechercheTypeProduit(typeProduit);
-            System.out.println("uwu ");
             if (typeProduitOffre != null) {
-                System.out.println(typeProduitOffre.getId());
-                System.out.println(typeProduitOffre.getNomTypeProduit());
             }
            
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
@@ -1008,7 +957,6 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             Courtier court = gestionService.RechercherCourtier(id);
             String mdph="";
-            System.out.println("huhu : "+court.getLoginUserService());
             if(!court.getPasswordUserService().equals(mdp)){
               mdph= gestionClient.HashageSha256(mdp);
             }else{
@@ -1032,17 +980,14 @@ public class AssuranceServlet extends HttpServlet {
         String Siren = request.getParameter("SirenAssur");
         String Login = request.getParameter("LoginAssur");
         String mdp = request.getParameter("MdpAssur");
-        System.out.println("ghghgh "+Login);
         String message;
         if (ID.trim().isEmpty() || RaisonSociale.trim().isEmpty() || SiegeSocial.trim().isEmpty() || mdp.trim().isEmpty() || Mail.trim().isEmpty() || Siren.trim().isEmpty() || Login.trim().isEmpty() || mdp.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
-            System.out.println("erreur");
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
 
             long id = Long.parseLong(ID);
             Assureur Assur = gestionService.RechercherAssureur(id);
             String mdph="";
-            System.out.println("huhu : "+Assur.getLoginUserService());
             if(!Assur.getPasswordUserService().equals(mdp)){
               mdph= gestionClient.HashageSha256(mdp);
             }else{
@@ -1055,7 +1000,6 @@ public class AssuranceServlet extends HttpServlet {
             message = "Informations modifiées avec succès !";
         }
         request.setAttribute("message", message);
-
     }
 
     protected void doActionModifierClientUnique(HttpServletRequest request,
@@ -1075,7 +1019,6 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(id);
             String mdph="";
-            System.out.println("huhu : "+ClientU.getLogin());
             if(!ClientU.getMdp().equals(mdp)){
               mdph= gestionClient.HashageSha256(mdp);
             }else{
@@ -1106,7 +1049,6 @@ public class AssuranceServlet extends HttpServlet {
             long id = Long.parseLong(ID);
             Entreprise Boite = gestionClient.RechercherEntreprise(id);
             String mdph="";
-            System.out.println("huhu : "+Boite.getLogin());
             if(!Boite.getMdp().equals(mdp)){
               mdph= gestionClient.HashageSha256(mdp);
             }else{
@@ -1124,7 +1066,6 @@ public class AssuranceServlet extends HttpServlet {
     protected void doActionSouscrireContratClientUnique(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         
-       System.out.println("on est bien par ici dis donc");
         String numClient = request.getParameter("numClient");
         String numOffre = request.getParameter("numOffre");
         String Duree = request.getParameter("combo");
@@ -1134,12 +1075,10 @@ public class AssuranceServlet extends HttpServlet {
         if (numClient.trim().isEmpty() || numOffre.trim().isEmpty() || Duree.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";
         } else {
-            System.out.println("on est bien par ici dis donc");
             long IdClient = Long.parseLong(numClient);
             long IdOffre = Long.parseLong(numOffre);
             int DureeContrat = Integer.parseInt(Duree);
             ClientUnique ClientU = gestionClient.RechercherClientUnique(IdClient);
-            System.out.println(ClientU);
             if (iban.equals(ClientU.getIban())) {
                 Offre Loffre = gestionService.RechercherOffre(IdOffre);
                 Contrat contra = gestionClient.CreerContrat(Loffre, ClientU, DureeContrat);
@@ -1183,11 +1122,9 @@ public class AssuranceServlet extends HttpServlet {
     
     protected void doActionCreerPdf(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("ICI C PARI");
         String numContrat = request.getParameter("IdContrat");
         long Idcontrat = Long.parseLong(numContrat);
         Contrat c = gestionClient.RechercherContrat(Idcontrat);
-        System.out.println(c);
         String message;
         if (numContrat.trim().isEmpty()) { //récupère les valeurs de la servlet pour vérifier si elles sont vides
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. " + "<br /> <a href=\"CreerClientUnique.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un Client";

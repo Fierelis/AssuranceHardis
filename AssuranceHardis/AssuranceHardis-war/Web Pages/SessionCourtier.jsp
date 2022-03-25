@@ -1,5 +1,3 @@
-
-
 <%-- 
     Document   : SessionCourtier
     Created on : 8 mars 2022, 11:00:28
@@ -56,8 +54,13 @@
 
         <h2>Bonjour <%=Court.getPrenomCourtier() %></h2>
         
-        <div class ="row">
-            <div class ="col-md-3">
+        <div class ="row justify-content-center">
+             <div class="col-md-12 col-lg-10">
+                   <div class="wrap d-md-flex">
+                        <div class="login-wrap p-4 p-lg-5" style ="width : 30%">
+                            
+                            
+            
                  <div id="TableauOffresPartenaires">
                 <h4 class="text-center mb-4">Assureurs partenaires</h4>
                 <div class="table-wrap">
@@ -83,9 +86,11 @@
                         </tbody>
                     </table>
                 </div>
+                 </div>
+            
             </div>
-            </div>
-       <div class="col-md-9">
+        <div class="text-wrapp p-4 p-lg-5" style ="width : 70%">
+            
                <div id="TableauOffresPartenaires">
                 <h4 class="text-center mb-4">Offre des assureurs partenaires</h4>
                 <div class="table-wrap">
@@ -116,11 +121,13 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            
         </div>
         
 </div>
-     
+             </div>
+             </div>
+        </div>
                        
     </body>
     <footer class="footer-1">
