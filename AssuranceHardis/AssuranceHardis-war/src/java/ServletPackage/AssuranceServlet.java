@@ -98,7 +98,9 @@ public class AssuranceServlet extends HttpServlet {
             } else if (act.equals("CreerAdmin")) {
                 doActionCreerAdmin(request, response);
                 jspClient = "/Connexion.jsp";
-            } // SESSION --------------------------------------------------------------------------------------------------------------------------
+            } 
+
+// SESSION --------------------------------------------------------------------------------------------------------------------------
             
             else if (act.equals("Connexion")) {
                 sess = request.getSession(true);
@@ -122,7 +124,7 @@ public class AssuranceServlet extends HttpServlet {
                         request.setAttribute("ClientUnique", sess.getAttribute("ClientUnique"));
                         List<Contrat> ListeContratClient = gestionClient.RecupererContratClientUnique(ClientU);
                         request.setAttribute("ListeContrat", ListeContratClient);
-                        sess.setAttribute("Entreprise", null);
+                        sess.setAttribute("Entreprise", null); // retour des sessions à null
                         sess.setAttribute("Courtier", null);
                         sess.setAttribute("Assureur", null);
                         sess.setAttribute("Administrateur", null);
@@ -131,11 +133,9 @@ public class AssuranceServlet extends HttpServlet {
                     
                     else if (Boite != null) {
                         sess.setAttribute("Entreprise", Boite);
-                        System.out.println("connexion entreprise" + Boite);
                         request.setAttribute("Entreprise", sess.getAttribute("Entreprise"));
-                        //System.out.println("connexion entreprise 2");
+                        // Liste des contrats
                         List<Contrat> ListeContratEntreprise = gestionClient.RecupererContratSouscritEntreprise(Boite);
-                        System.out.println("liste contrat vide ");
                         request.setAttribute("ListeContratEntreprise", ListeContratEntreprise);
                         sess.setAttribute("ClientUnique", null);
                         sess.setAttribute("Courtier", null);
@@ -149,6 +149,7 @@ public class AssuranceServlet extends HttpServlet {
                    List<Assureur> ListeAssureur = gestionService.RechercheAssureurPartenaire(Court.getId());
 
                 List<Offre> ListeFiltreeOffresPartenaires = gestionService.FiltrerOffre("OffrePartenaires", Court, null);
+                // Listes du courtier : assureurs partenaires et offres des partenaires
                 request.setAttribute("Courtier", sess.getAttribute("Courtier"));
                 request.setAttribute("ListeFiltreePartenaires", ListeAssureur);
                 request.setAttribute("ListeFiltreeOffresPartenaires", ListeFiltreeOffresPartenaires);
@@ -166,9 +167,6 @@ public class AssuranceServlet extends HttpServlet {
                         List<Offre> listOffreAssureur = gestionService.GetAllOffreAssureur(Assur.getId());
                         request.setAttribute("listOffreAssureur", listOffreAssureur);
                         //liste de toutes les offres
-                        //List<Offre> ListOffre = gestionService.GetListOffreAll();
-                        //request.setAttribute("ListeAllOffre", ListOffre);
-                        // liste de tous les courtiers partenaires
                         List<Courtier> ListCourtier = gestionService.RechercheCourtierPartenaire(Assur.getId());
                         for (int i = 0; i < ListCourtier.size(); i++) {
                         }
@@ -207,7 +205,9 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/Connexion.jsp";
                     request.setAttribute("message", "Identifiant ou mot de passe incorrect");
                 }
-            } // SESSION --------------------------------------------------------------------------------------------------------------------------
+            } 
+//FIN DE  SESSION --------------------------------------------------------------------------------------------------------------------------
+           
             else if (act.equals("MenuCreerCompte")) {
                 jspClient = "/MenuCreationCompte.jsp";
             } 
@@ -233,6 +233,8 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("courtier", courtier);
                 jspClient = "/CreerOffreCourtier.jsp";
             } 
+            
+            //DECONNEXION
             else if (act.equals("Deconnexion")) {
                 sess.setAttribute("Courtier", new Courtier());
                 sess.setAttribute("Entreprise", new Entreprise());
@@ -283,11 +285,7 @@ public class AssuranceServlet extends HttpServlet {
                 jspClient = "/SessionAssureur.jsp";
                 //---------------------------------------------------------------------------------------------------------------------------------------------------------
             } 
-           /* else if (act.equals("CreerOffreAssureur")) {
-                Assureur assureur = (Assureur) sess.getAttribute("AssureurCreerOffre");
-                request.setAttribute("AssureurCreerOffreAssureur", assureur);
-                jspClient = "/CreerOffreAssureur.jsp";
-            } */
+
             else if (act.equals("FormCreerOffreCourtier")) {
                  doActionCreerOffreCourtier(request, response);
                  Courtier Court=(Courtier) sess.getAttribute("Courtier");
@@ -567,6 +565,8 @@ public class AssuranceServlet extends HttpServlet {
                     jspClient = "/SessionEntreprise.jsp";
                 }
             } 
+// Validation des inscription _____________________________________________________________________________________________________________________
+
             else if (act.equals("ValidationUser")) {
                 String TypeLog = "Create";
                 List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog);
@@ -578,7 +578,6 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("logs", Listlog);
                 jspClient = "/AccesLogs.jsp";
             } 
-           
             else if (act.equals("ValiderInscriptionClientUnique")) {
                 String id = request.getParameter("IdClientUnique");
                 long idl = Long.parseLong(id);
@@ -619,8 +618,9 @@ public class AssuranceServlet extends HttpServlet {
                 request.setAttribute("logs", Listlog);
                 jspClient = "/ValidationUser.jsp";
             } 
+//_______________Fin Validation des inscription _____________________________________________________________________________________________________________________
 
-            
+            // impression des factures 
             else if (act.equals("printEntreprise")) {
                 doActionCreerPdf(request, response);
                 Entreprise Boite = (Entreprise)sess.getAttribute("Entreprise");
@@ -898,8 +898,8 @@ public class AssuranceServlet extends HttpServlet {
             message = "Offre créé avec succès !";
         }
         request.setAttribute("message", message);
-
     }
+       
         protected void doActionCreerOffreCourtierVia(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         String TypeOffre = request.getParameter("TypeOffre");
@@ -926,7 +926,7 @@ public class AssuranceServlet extends HttpServlet {
             TypeProduit typeProduitOffre = gestionService.rechercheTypeProduit(typeProduit);
             if (typeProduitOffre != null) {
             }
-           
+            
             //(String TypeOffre, double PrixOffre, String DescriptionOffre, boolean OffreActive, UtilisateurService IdUtilisateurService, Assureur PartenariatAssurance , TypeProduit LeTypeDeProduit) {
             Offre offer = gestionService.CreerOffre(TypeOffre, prix, Description, true, c, a, typeProduitOffre, c, a.getRaisonSocialeAssureur());
             String TypeLog = "Create";
