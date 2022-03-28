@@ -587,6 +587,8 @@ public class AssuranceServlet extends HttpServlet {
                 String TypeLog = "Create";
                 List<Logs> Listlog = gestionAdmin.RecupLogByType(TypeLog);
                 request.setAttribute("logs", Listlog);
+                //Mailer mail=new Mailer();
+                //mail.envoyerConfirmationCreationCompte(ClientU.getNom(), PassAdmin);
                 jspClient = "/ValidationUser.jsp";
             } 
             else if (act.equals("ValiderInscriptionEntreprise")) {

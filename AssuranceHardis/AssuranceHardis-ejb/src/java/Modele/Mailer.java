@@ -96,8 +96,9 @@ public class Mailer {
             message.setSubject("Création de compte");
 
             // Now set the actual message
-            message.setText("Ce mail confirme que vous avez créez un compte sur notre plateforme Sombrero. \r"
+            message.setText("Ce mail confirme que vous avez fais une demande de creation de compte sur notre plateforme Sombrero. \r"
                     + "Nous vous souhaitons la bienvenue parmis nous ! Vous êtes désormais un Sombrebro.\r"
+                    + "Un administrateur va traiter votre demande le plus rapidement possible. Nous vous remercions."
                     + "\r \r"
                     + "Cordialement Sombrero");
 
@@ -158,7 +159,67 @@ public class Mailer {
             message.setSubject("Admin : notification de création de compte");
 
             // Now set the actual message
-            message.setText("Un compte vient d'être créé sur la plateforme Sombrero.");
+            message.setText("Une demande de creation de compte compte vient d'être créé sur la plateforme Sombrero.");
+
+            System.out.println("sending...");
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+
+    }
+    
+    
+    public void envoyerConfirmationCreationCompte(String username, String password) {
+        // Recipient's email ID needs to be mentioned.
+        String to = username;
+
+        // Sender's email ID needs to be mentioned
+        String from = username;
+
+        // Assuming you are sending email from through gmails smtp
+        String host = "smtp.gmail.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication(username, password);
+
+            }
+
+        });
+
+        // Used to debug SMTP issues
+        session.setDebug(true);
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Confirmation de création de compte");
+
+            // Now set the actual message
+            message.setText("Votre compte est maintenant créé sur la plateforme Sombrero. Vous pouvez désormais vous connecter.");
 
             System.out.println("sending...");
             // Send message
