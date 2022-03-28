@@ -21,7 +21,7 @@
     <header class ="header1">
         <div class = "" id = "navbar">
             <nav class="navbar navbar-expand-lg">
-               <img src = "img/sobrero.png" style = "height : 70px">  </img>
+               <img src = "img/sobrero.png" style = "height : 30px">  </img>
                 <a class="navbar-brand" href="#">Sombrero</a>
                
                   <%Offre offer = OffreJSP;

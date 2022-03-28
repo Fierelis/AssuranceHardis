@@ -81,6 +81,9 @@ public class AssureurFacade extends AbstractFacade<Assureur> implements Assureur
             List<Assureur> result = req.getResultList();
             if (result.size() == 1) {
                 Assur = (Assureur) result.get(0);
+                 if (!Assur.isActivationUser()==true){
+                return null;
+            }
             }
             return Assur;
 

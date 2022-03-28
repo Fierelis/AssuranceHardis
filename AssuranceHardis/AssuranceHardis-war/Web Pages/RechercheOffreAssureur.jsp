@@ -15,7 +15,7 @@
         <header class ="header1">
         <div class = "" id = "navbar">
             <nav class="navbar navbar-expand-lg">
-                <img src = "img/sobrero.png" style = "height : 70px"></img>
+                <img src = "img/sobrero.png" style = "height : 30px"></img>
                 <a class="navbar-brand" href="#">Sombrero</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,6 +29,8 @@
                             <input type="hidden" name="action" value="RechercherOffre"></form></li>
                         <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Créer une offre</button>
                             <input type="hidden" name="action" value="CreerOffreAssureur"></form></li>
+                            <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Compte Assureur</button>
+                            <input type="hidden" name="action" value="CompteAssureur"></form></li>
                         <li> <form> <button type="submit" class="form-control btn1 btn1-primary submit px-3">Se déconnecter</button>
                             <input type="hidden" name="action" value="Deconnexion"></form></li>
                     </ul>
@@ -53,7 +55,7 @@
         <div id="TableauOffres">
          
             <div class="form-group mb-3">
-                 <label class="label" for="name">Allez filtre enculé</label>
+                 <label class="label" for="name">Filtrer</label>
            <input type="text" class="table-filter" size ="20" data-table="livres">
             </div>
             <table class ="table livres">
@@ -129,7 +131,7 @@
             <div class="row">
               <div class="col-md-4 pr-md-5">
                 <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
-                <p>Comparateur d'assurance depuis approximativement 2 semaines / situé nul part car l'appli est trash</p>
+                <p>Comparateur d'assurance</p>
               </div>
               <div class="col-md">
                 <ul class="list-unstyled nav-links">
