@@ -14,7 +14,7 @@
         <div class = "" id = "navbar">
             <nav class="navbar navbar-expand-lg">
                 
-                 <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                 <img src = "img/sobrero.png" style = "height : 30px">  </img>
                 <a class="navbar-brand" href="#">Sombrero</a>
 
                 
@@ -139,7 +139,7 @@
             <div class="row">
               <div class="col-md-4 pr-md-5">
                 <a href="#" class="footer-site-logo d-block mb-4">Sombrero</a>
-                <p>Comparateur d'assurance depuis approximativement 2 semaines / situé nul part car l'appli est trash</p>
+                <p>Comparateur d'assurance</p>
               </div>
               <div class="col-md">
                 <ul class="list-unstyled nav-links">

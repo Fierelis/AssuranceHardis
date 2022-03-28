@@ -22,7 +22,7 @@
                       Offre offer = ContratJSP;   %>
         <div class = "" id = "navbar">
             <nav class="navbar navbar-expand-lg">
-                <img src = "img/sobrero.png" style = "height : 70px">  </img>
+                <img src = "img/sobrero.png" style = "height : 30px">  </img>
                 <a class="navbar-brand" href="#">Sombrero</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

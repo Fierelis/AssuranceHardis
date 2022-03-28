@@ -82,6 +82,9 @@ public class CourtierFacade extends AbstractFacade<Courtier> implements Courtier
         List<Courtier>result = req.getResultList();
         if(result.size()==1){
             Court=(Courtier)result.get(0);
+             if (!Court.isActivationUser()==true){
+                return null;
+            }
         }
         return Court;
         } catch (Exception e) {

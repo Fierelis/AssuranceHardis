@@ -79,6 +79,9 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
         List<Entreprise>result = req.getResultList();
         if(result.size()==1){
             Boite=(Entreprise)result.get(0);
+             if (!Boite.isActivationUser()==true){
+                return null;
+            }
         }
         return Boite;
         } catch (Exception e) {
